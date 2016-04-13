@@ -4,7 +4,7 @@ public abstract class POI {
 	private String nombre;
 	private String rubro;
 	private String direccion;
-	private Punto punto;
+	private Punto coordenada;
 	private String calle1;
 	private String calle2;
 	private Integer numero;
@@ -101,11 +101,11 @@ public abstract class POI {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public Punto getPunto() {
-		return punto;
+	public Punto getCoordenada() {
+		return coordenada;
 	}
-	public void setPunto(Punto punto) {
-		this.punto = punto;
+	public void setCoordenada(Punto unaCoordenada) {
+		this.coordenada = unaCoordenada;
 	}
 
 	public String getPais() {
@@ -115,10 +115,13 @@ public abstract class POI {
 		this.pais = pais;
 	}
 	
-	public boolean estoyCercaRespectoA (POI poi){
-		
-		return this.getPunto().distanciaCoord(this.getPunto().getLongitud(),this.getPunto().getLatitud(), poi.punto.getLatitud(), poi.punto.getLongitud())<0.05;
+	//Este es el metodo base que se va a usar para el "Requerimiento Detallado 1"
+	public boolean estasCercaDeLaCoordenada (Punto unaCoordenada){
+		return estasAMenosDeXMetrosDe (500,unaCoordenada);
 	}
 	
+	public boolean estasAMenosDeXMetrosDe (Integer unosMetros, Punto unaCoordenada){
+		return this.getCoordenada().distFrom(this.getCoordenada().getLatitud(), this.getCoordenada().getLongitud(), unaCoordenada.getLatitud(), unaCoordenada.getLongitud()) < unosMetros;
+	}
 
 }

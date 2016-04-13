@@ -5,17 +5,17 @@ import java.util.List;
 public class LocalComercial extends POI{
 	private String rubro;
 	List<Integer> horariosDeAtencion;
-	private double radioCercania;
+	private Integer radioCercania;
 	public String getRubro() {
 		return rubro;
 	}
 	public void setRubro(String rubro) {
 		this.rubro = rubro;
 	}
-	public double getRadioCercania() {
+	public Integer getRadioCercania() {
 		return radioCercania;
 	}
-	public void setRadioCercania(double radioCercania) {
+	public void setRadioCercania(Integer radioCercania) {
 		this.radioCercania = radioCercania;
 	}
 	public List<Integer> getHorariosDeAtencion() {
@@ -25,7 +25,7 @@ public class LocalComercial extends POI{
 		this.horariosDeAtencion = horariosDeAtencion;
 	}
 	
-	public boolean estoyCercaRespectoA (POI poi){
-		return poi.getPunto().distanciaCoord(this.getPunto().getLatitud(), this.getPunto().getLongitud(), poi.getPunto().getLatitud(), poi.getPunto().getLongitud())<radioCercania;
+	public boolean estasCercaDeLaCoordenada (Punto unaCoordenada){
+		return estasAMenosDeXMetrosDe (radioCercania,unaCoordenada);
 	}
 }

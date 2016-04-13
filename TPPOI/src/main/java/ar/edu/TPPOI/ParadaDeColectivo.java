@@ -14,7 +14,7 @@ public class ParadaDeColectivo extends POI {
 	}
 
 
-	public boolean estoyCercaRespectoA (POI poi){
-		return	this.getPunto().distanciaCoord(this.getPunto().getLatitud(), this.getPunto().getLongitud(), poi.getPunto().getLatitud(),poi.getPunto().getLongitud())<0.01;
+	public boolean estasCercaDeLaCoordenada (Punto unaCoordenada){
+		return estasAMenosDeXMetrosDe (100,unaCoordenada);
 	}
 }
