@@ -115,13 +115,18 @@ public abstract class POI {
 		this.pais = pais;
 	}
 	
-	//Este es el metodo base que se va a usar para el "Requerimiento Detallado 1"
-	public boolean estasCercaDeLaCoordenada (Punto unaCoordenada){
-		return estasAMenosDeXMetrosDe (500,unaCoordenada);
+	//Este es el metodo que se va a usar para el "Requerimiento Detallado 1"
+	public boolean estasCercaDe (Punto unaCoordenada){
+		return this.estasAMenosDeXMetrosDe (500,unaCoordenada);
 	}
 	
 	public boolean estasAMenosDeXMetrosDe (Integer unosMetros, Punto unaCoordenada){
-		return this.getCoordenada().distFrom(this.getCoordenada().getLatitud(), this.getCoordenada().getLongitud(), unaCoordenada.getLatitud(), unaCoordenada.getLongitud()) < unosMetros;
+		return this.getCoordenada().distFrom(unaCoordenada) < unosMetros;
+	}
+	
+	//Caso especifico si le mandamos un POI como parametro (reusa el de arriba)
+	public boolean estasAMenosDeXMetrosDe (Integer unosMetros, POI unPOI){
+		return this.estasAMenosDeXMetrosDe(unosMetros, unPOI.getCoordenada());
 	}
 
 }

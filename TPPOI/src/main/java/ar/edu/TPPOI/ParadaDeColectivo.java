@@ -14,7 +14,7 @@ public class ParadaDeColectivo extends POI {
 	}
 
 
-	public boolean estasCercaDeLaCoordenada (Punto unaCoordenada){
-		return estasAMenosDeXMetrosDe (100,unaCoordenada);
+	public boolean estasCercaDe (Punto unaCoordenada){
+		return this.estasAMenosDeXMetrosDe (100,unaCoordenada);
 	}
 }

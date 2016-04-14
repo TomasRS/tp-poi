@@ -6,7 +6,7 @@ import java.util.List;
 public class CGP extends POI {
 	private List<String> barrios=new ArrayList<String>();
 	private List<String> servicios=new ArrayList<String>();
-	private Integer radioDeZona; //es el RADIO de cobertura del CGP
+	private Integer radioDeZona; //hacerlo con Polygon
 	
 	public List<String> getBarrios() {
 		return barrios;
@@ -22,10 +22,9 @@ public class CGP extends POI {
 	}
 	
 	
-	//Por ende si la distancia entre el RADIO y YO es menor al RADIO es porque estoy dentro
-	//de la circunferencia, caso contrario no pertenezo.
-	public boolean estasCercaDeLaCoordenada (Punto unaCoordenada){
-		return estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
+	//Hacerlo con Polygon (nos van a pasar la biblioteca)
+	public boolean estasCercaDe (Punto unaCoordenada){
+		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
 	}
 	
 	

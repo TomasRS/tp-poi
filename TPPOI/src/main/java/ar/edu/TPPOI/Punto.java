@@ -19,7 +19,12 @@ public class Punto {
 	
 
 	//Formula para calcular la distancia entre dos coordenadas (lat, long) EN FORMA DECIMAL
-	public double distFrom(double lat1, double lng1, double lat2, double lng2) {
+	public double distFrom(Punto unaCoordenada) {
+		double lat1 = this.getLatitud();
+		double lng1 = this.getLongitud();
+		double lat2 = unaCoordenada.getLatitud();
+		double lng2 = unaCoordenada.getLongitud();
+		
 	    double earthRadius = 6371000; //meters
 	    double dLat = Math.toRadians(lat2-lat1);
 	    double dLng = Math.toRadians(lng2-lng1);

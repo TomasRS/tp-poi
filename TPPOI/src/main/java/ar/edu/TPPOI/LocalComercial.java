@@ -25,7 +25,7 @@ public class LocalComercial extends POI{
 		this.horariosDeAtencion = horariosDeAtencion;
 	}
 	
-	public boolean estasCercaDeLaCoordenada (Punto unaCoordenada){
-		return estasAMenosDeXMetrosDe (radioCercania,unaCoordenada);
+	public boolean estasCercaDe (Punto unaCoordenada){
+		return this.estasAMenosDeXMetrosDe (radioCercania,unaCoordenada);
 	}
 }
