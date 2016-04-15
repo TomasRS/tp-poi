@@ -8,11 +8,7 @@ import java.util.stream.Collectors;
 public class CGP extends POI {
 	
 	private List<String> barrios=new ArrayList<String>();
-<<<<<<< HEAD
 	private List<Servicio> servicios=new ArrayList<Servicio>();
-=======
-	List<Servicio> servicios = new ArrayList<Servicio>();
->>>>>>> origin/pre-master
 	private Integer radioDeZona; //hacerlo con Polygon
 
 	public  void addServicio(Servicio servicio){
@@ -25,23 +21,16 @@ public class CGP extends POI {
 	public void setBarrios(List<String> barrios) {
 		this.barrios = barrios;
 	}
-<<<<<<< HEAD
-	public List<Servicio> getServicios() {
-		return servicios;
-	}
-	public void setServicios(List<Servicio> servicios) {
-		this.servicios = servicios;
-	}
-	
-=======
->>>>>>> origin/pre-master
 	
 	//Hacerlo con Polygon (nos van a pasar la biblioteca)
-		public boolean estasCercaDe (Punto unaCoordenada){
-			return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
-		}
+	public boolean estasCercaDe (Punto unaCoordenada){
+		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
+	}
 		
-		
+	public boolean estoyEn(String textoDondeBuscar){
+		return super.estoyEn(textoDondeBuscar)||this.servicios.stream()
+		.anyMatch(servicio->textoDondeBuscar.contains(servicio.getNombre()));
+	}
 
 /*	public List<Servicio> serviciosCumplenCondicion(Date fechaHorarioDado){
 		return  (this.servicios
@@ -51,13 +40,6 @@ public class CGP extends POI {
 		
 	}
 	
-<<<<<<< HEAD
-	public boolean estoyEn(String textoDondeBuscar){
-		return super.estoyEn(textoDondeBuscar)||this.servicios.stream()
-			.anyMatch(servicio->textoDondeBuscar.contains(servicio.getNombre()));
-	}
-	
-=======
 		public Boolean estaDisponible(Date fechaHorario, Servicio unServicio) {
 
 		if (unServicio != null ){
@@ -74,5 +56,4 @@ public class CGP extends POI {
 	}*/
 
 
->>>>>>> origin/pre-master
 }
