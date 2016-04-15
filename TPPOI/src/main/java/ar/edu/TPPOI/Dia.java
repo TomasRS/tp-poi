@@ -1,8 +1,8 @@
 package ar.edu.TPPOI;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 
 public class Dia {
 	private List<Intervalo> intervalos;

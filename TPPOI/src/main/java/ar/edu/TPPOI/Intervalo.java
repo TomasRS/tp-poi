@@ -19,8 +19,6 @@ public class Intervalo{
 	return horaFin;
 	}
 
-
-
 	public boolean estaEnLaFranja(Date unaHora){
 		
 		return (unaHora.after(horaInicio) && unaHora.before(horaFin));
