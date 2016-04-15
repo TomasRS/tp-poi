@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+import java.util.Date;
 
 public class Servicio {
-
+<<<<<<< HEAD
 	
 	private Date comienzaServicio;
 	private Date finalizaServicio;
@@ -32,7 +33,7 @@ public class Servicio {
 	
 	
 }
-/*
+=======
 	private List<Dia> dias;
 
 	public List<Dia> getDias() {
@@ -52,5 +53,5 @@ public class Servicio {
 		return this.getDias().stream()
 				.filter(unD->unD.noTieneDisponibleElHorario(fecha))
 				.collect(Collectors.toList());
-	}}*/
-
+	}}
+>>>>>>> 51d4d75b9ddf0cabcc978c95b5f720c4c5885113

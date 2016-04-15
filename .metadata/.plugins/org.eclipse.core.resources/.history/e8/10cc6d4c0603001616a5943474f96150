@@ -1,6 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,8 +37,11 @@ public class CGP extends POI {
 		
 		
 	}
+=======
+import java.util.List;
+>>>>>>> 51d4d75b9ddf0cabcc978c95b5f720c4c5885113
 
-/*public class CGP extends POI {
+public class CGP extends POI {
 	private List<String> barrios=new ArrayList<String>();
 	private List<String> servicios=new ArrayList<String>();
 	private Integer radioDeZona; //hacerlo con Polygon
@@ -60,6 +64,6 @@ public class CGP extends POI {
 	public boolean estasCercaDe (Punto unaCoordenada){
 		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
 	}
-	*/
+	
 	
 }
