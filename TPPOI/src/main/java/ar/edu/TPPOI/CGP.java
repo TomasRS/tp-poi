@@ -7,14 +7,29 @@ import java.util.stream.Collectors;
 
 public class CGP extends POI {
 	
-
+	private List<String> barrios=new ArrayList<String>();
 	List<Servicio> servicios = new ArrayList<Servicio>();
+	private Integer radioDeZona; //hacerlo con Polygon
 
 	public  void addServicio(Servicio servicio){
 		this.servicios.add(servicio);
 	}
+	
+	public List<String> getBarrios() {
+		return barrios;
+	}
+	public void setBarrios(List<String> barrios) {
+		this.barrios = barrios;
+	}
+	
+	//Hacerlo con Polygon (nos van a pasar la biblioteca)
+		public boolean estasCercaDe (Punto unaCoordenada){
+			return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
+		}
+		
+		
 
-	public List<Servicio> serviciosCumplenCondicion(Date fechaHorarioDado){
+/*	public List<Servicio> serviciosCumplenCondicion(Date fechaHorarioDado){
 		return  (this.servicios
 				.stream()
 				.filter(servicio -> servicio.estaAtendiendo(fechaHorarioDado))
@@ -35,31 +50,7 @@ public class CGP extends POI {
 		}
 		
 		
-	}
+	}*/
 
-/*public class CGP extends POI {
-	private List<String> barrios=new ArrayList<String>();
-	private List<String> servicios=new ArrayList<String>();
-	private Integer radioDeZona; //hacerlo con Polygon
-	
-	public List<String> getBarrios() {
-		return barrios;
-	}
-	public void setBarrios(List<String> barrios) {
-		this.barrios = barrios;
-	}
-	public List<String> getServicios() {
-		return servicios;
-	}
-	public void setServicios(List<String> servicios) {
-		this.servicios = servicios;
-	}
-	
-	
-	//Hacerlo con Polygon (nos van a pasar la biblioteca)
-	public boolean estasCercaDe (Punto unaCoordenada){
-		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
-	}
-	*/
-	
+
 }

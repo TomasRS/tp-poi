@@ -6,44 +6,25 @@ import java.util.stream.Collectors;
 
 
 public class Servicio {
-
 	
-	private Date comienzaServicio;
-	private Date finalizaServicio;
-	
-	public Servicio(Date comienzaServicio, Date finalizaServicio){
-		this.comienzaServicio = comienzaServicio;
-		this.finalizaServicio = finalizaServicio;
-	}
-	
-	public Date getFechaHoraServInicio(){
-		return comienzaServicio;
-	}
-	
-	public Date getFechaHoraServFin(){
-		return finalizaServicio;
-	}
-	
-
-	public Boolean estaAtendiendo(Date dateTime){
-		
-		return (dateTime.after(this.comienzaServicio) && (dateTime.before(this.finalizaServicio)));
-	}
-	
-	
-}
-/*
 	private List<Dia> dias;
-
-	public List<Dia> getDias() {
-		return dias;
-	}
-
-	public void setDias(List<Dia> dias) {
-		this.dias = dias;
-	}
 	
-	public boolean disponiblePara(Date fecha ){
+	public void addDias(Dia dia){
+		this.dias.add(dia);
+	}
+
+// LO TENGO PREPARADO YO
+/*	public Boolean estaAtendiendo(Date dateTime){
+		
+		EXTRAE EL DIA Y SE FIJA SI ESTA EN LA LISTA Y SI DEVUELVE TRUE EXTRAE LA HORA Y SE LA DA AL DIA COMO PARAMETRO
+		
+	}*/
+	
+	
+
+//LO HIZO FRAN
+	
+	/*public boolean disponiblePara(Date fecha ){
 		return this.horasDisp(fecha).isEmpty();
 		
 	}
@@ -52,5 +33,8 @@ public class Servicio {
 		return this.getDias().stream()
 				.filter(unD->unD.noTieneDisponibleElHorario(fecha))
 				.collect(Collectors.toList());
-	}}*/
+	}*/
+	
+}
+
 

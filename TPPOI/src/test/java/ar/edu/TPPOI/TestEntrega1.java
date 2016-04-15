@@ -1,8 +1,9 @@
 package ar.edu.TPPOI;
 
-/*import org.junit.Assert;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 
 public class TestEntrega1 {
 	
@@ -40,4 +41,4 @@ public class TestEntrega1 {
 		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe), true);
 	}
 	
-}*/
+}
