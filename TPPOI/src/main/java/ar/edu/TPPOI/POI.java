@@ -130,7 +130,11 @@ public abstract class POI {
 	}
 	
 	public boolean estoyEn(String textoDondeBuscar){
-		return textoDondeBuscar.contains(this.rubro);
+		try {
+			return textoDondeBuscar.contains(this.rubro);
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

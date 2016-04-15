@@ -17,6 +17,7 @@ public class TestEntrega1 {
 	
 	//Parada 114 de Cabildo y Monroe
 	parada114DeCabildoYMonroe.setCoordenada(coordenadaParada114);
+	parada114DeCabildoYMonroe.setLinea("114");
 	coordenadaParada114.setLatitud(-34.558164509672146);
 	coordenadaParada114.setLongitud(-58.459845185279846);
 	
@@ -38,6 +39,11 @@ public class TestEntrega1 {
 	@Test
 	public void testUnPOIEstaAMenosDeXMetrosDeOtroPOI(){
 		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe), true);
+	}
+	
+	@Test
+	public void testBusqueda(){
+		Assert.assertTrue(parada114DeCabildoYMonroe.estoyEn("Quiero viajar en el 114")); 
 	}
 	
 }
