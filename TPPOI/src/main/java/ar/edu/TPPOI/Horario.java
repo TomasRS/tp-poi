@@ -20,8 +20,18 @@ public class Horario {
 		String diaDeSemana = unaFecha.toLocalDate().getDayOfWeek().toString();
 		boolean cumpleDia = day.equals(diaDeSemana);
 		LocalTime horaDelDia = unaFecha.toLocalTime();
+		/* Codigo de debugeo
+		System.out.println("****************************");
+		
+		System.out.println(horaDelDia);
+		System.out.println(horaInicio);
+		System.out.println(horaFin);
+		System.out.println(horaDelDia.isAfter(horaInicio));
+		System.out.println(horaDelDia.isBefore(horaFin));
+		System.out.println("---------------------------------------");
+		*/
 		return cumpleDia&&(
-			horaDelDia.isAfter(horaInicio)||horaDelDia.isBefore(horaFin));
+			horaDelDia.isAfter(horaInicio)&&horaDelDia.isBefore(horaFin));
 	}
 	
 }
