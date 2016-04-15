@@ -13,6 +13,7 @@ hs_err_pid*
 .settings/
 .classpath
 .project
+.metadata
 
 ## gitignore para Maven
 target/
