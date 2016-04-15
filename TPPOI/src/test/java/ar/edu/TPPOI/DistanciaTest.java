@@ -1,9 +1,9 @@
-package ar.edu.TPPOI;
+//package ar.edu.TPPOI;
 
-import org.junit.Before;
-import org.junit.Test;
-import junit.framework.Assert;
-
+//import org.junit.Before;
+//import org.junit.Test;
+//import junit.framework.Assert;
+/*
 public class DistanciaTest{
 	private SucursalBanco banco;
 	private LocalComercial farmacia;
@@ -48,3 +48,4 @@ public class DistanciaTest{
 			Assert.assertFalse(bancoGalicia.estoyCercaRespectoA(paradaLinea65));
 		}
 	}
+*/
