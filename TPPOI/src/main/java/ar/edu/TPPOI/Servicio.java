@@ -1,19 +1,19 @@
 package ar.edu.TPPOI;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Servicio {
 	
-	private List<Dia> dias;
+	private List<Horario> horarios = new ArrayList<Horario>();
 	private String nombre;
 
 	public Servicio(String nombre) {
 		this.nombre = nombre;
 	}
 	
-	public void addDias(Dia dia){
-		this.dias.add(dia);
+	public void addHorario(Horario horario){
+		this.horarios.add(horario);
 	}
 	
 	public void setNombre(String nombre) {
@@ -24,29 +24,9 @@ public class Servicio {
 		return nombre;
 	}
 
-// LO TENGO PREPARADO YO
-/*	public Boolean estaAtendiendo(Date dateTime){
-		
-		EXTRAE EL DIA Y SE FIJA SI ESTA EN LA LISTA Y SI DEVUELVE TRUE EXTRAE LA HORA Y SE LA DA AL DIA COMO PARAMETRO
-		
-	}*/
-	
-	
-
-//LO HIZO FRAN
-	
-	/*public boolean disponiblePara(Date fecha ){
-		return this.horasDisp(fecha).isEmpty();
-		
+	public boolean disponibleEn(LocalDateTime unMomento){
+		return this.horarios.stream()
+			.anyMatch(horario->horario.estaEnMiHorario(unMomento));
 	}
-
-	private List<Dia> horasDisp(Date fecha) {
-		return this.getDias().stream()
-				.filter(unD->unD.noTieneDisponibleElHorario(fecha))
-				.collect(Collectors.toList());
-	}
-	
-}
-	}*/
 	
 }

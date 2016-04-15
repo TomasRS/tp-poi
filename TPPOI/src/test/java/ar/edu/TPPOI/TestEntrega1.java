@@ -1,5 +1,7 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,8 @@ public class TestEntrega1 {
 	Punto coordenadaMia = new Punto();
 	SucursalBanco bancoCiudadCabildo = new SucursalBanco();
 	Punto coordenadaBancoCiudad = new Punto();
+	CGP cgp1 = new CGP();
+	Servicio cargaSUBE;
 	
 	@Before
 	public void init(){
@@ -30,8 +34,18 @@ public class TestEntrega1 {
 	bancoCiudadCabildo.setCoordenada(coordenadaBancoCiudad);
 	coordenadaBancoCiudad.setLatitud(-34.5545459);
 	coordenadaBancoCiudad.setLongitud(-58.46362049999999);
-		
+	
+	//CGP1
+	cargaSUBE = new Servicio("cargar SUBE");
+	Horario horario1 = new Horario("FRIDAY", "08:00", "13:00");
+	Horario horario2 = new Horario("FRIDAY", "15:00", "20:00");
+	cargaSUBE.addHorario(horario1);
+	cargaSUBE.addHorario(horario2);
+	cgp1.addServicio(cargaSUBE);
+	cgp1.setRubro("Propositos generales");
+	cgp1.setCoordenada(coordenadaParada114);
 	}
+	
 	@Test
 	public void testParadaDeColectivoNoEstaCercaDeMiCoordenada(){
 		Assert.assertEquals(parada114DeCabildoYMonroe.estasCercaDe(coordenadaMia),false);
@@ -43,8 +57,17 @@ public class TestEntrega1 {
 	}
 	
 	@Test
-	public void testBusqueda(){
+	public void testEncuentroLaParadaDel114(){
 		Assert.assertTrue(parada114DeCabildoYMonroe.estoyEn("Quiero viajar en el 114")); 
 	}
 	
+	@Test
+	public void testNoEncuentroLaParadaDel114(){
+		Assert.assertFalse(parada114DeCabildoYMonroe.estoyEn("Quiero viajar en el 113")); 
+	}
+	
+	@Test
+	public void testDisponibilidad(){
+		Assert.assertTrue(cgp1.estoyDisponibleEn(LocalDateTime.now()));
+	}
 }

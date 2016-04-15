@@ -1,5 +1,6 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,29 +32,9 @@ public class CGP extends POI {
 		return super.estoyEn(textoDondeBuscar)||this.servicios.stream()
 		.anyMatch(servicio->textoDondeBuscar.contains(servicio.getNombre()));
 	}
-
-/*	public List<Servicio> serviciosCumplenCondicion(Date fechaHorarioDado){
-		return  (this.servicios
-				.stream()
-				.filter(servicio -> servicio.estaAtendiendo(fechaHorarioDado))
-				.collect(Collectors.toList()));
-		
-	}
 	
-		public Boolean estaDisponible(Date fechaHorario, Servicio unServicio) {
-
-		if (unServicio != null ){
-			
-			return unServicio.estaAtendiendo(fechaHorario);
-		
-		}else{
-			
-			return (this.serviciosCumplenCondicion(fechaHorario).size()) >= 1;
-			
-		}
-		
-		
-	}*/
-
-
+	public boolean estoyDisponibleEn(LocalDateTime unMomento){
+		return this.servicios.stream()
+			.anyMatch(servicio->servicio.disponibleEn(unMomento));
+	}
 }
