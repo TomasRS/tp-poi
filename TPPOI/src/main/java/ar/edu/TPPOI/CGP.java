@@ -22,7 +22,7 @@ public class CGP extends POI {
 		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
 	}
 	
-	public boolean contiene(String unaPalabraClave) throws NoSoyValidoException{
+	public boolean contiene(String unaPalabraClave){
 		return (super.contiene(unaPalabraClave) ||
 			   this.getServicios().stream()
 			   .anyMatch(unServicio -> this.estanContenidos(unaPalabraClave, unServicio.getNombre()))
