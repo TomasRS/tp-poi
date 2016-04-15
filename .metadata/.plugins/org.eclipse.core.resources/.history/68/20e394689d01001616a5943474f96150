@@ -1,0 +1,30 @@
+package ar.edu.TPPOI;
+
+import java.util.Date;
+
+public class Servicio {
+	
+	private Date fechaHoraServInicio;
+	private Date fechaHoraServFin;
+	
+	public Servicio(Date fechaHoraServInicio, Date fechaHoraServFin){
+		this.fechaHoraServInicio = fechaHoraServInicio;
+		this.fechaHoraServFin = fechaHoraServFin;
+	}
+	
+	public Date getFechaHoraServInicio(){
+		return fechaHoraServInicio;
+	}
+	
+	public Date getFechaHoraServFin(){
+		return fechaHoraServFin;
+	}
+	
+
+	public Boolean estaEntreRango(Date dateTime, Date dateTimeInicio, Date dateTimeFin){
+		
+		return (dateTime.after(dateTimeInicio) && (dateTime.before(dateTimeFin)));
+	}
+	
+	
+}
