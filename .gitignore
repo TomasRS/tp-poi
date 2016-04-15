@@ -14,7 +14,7 @@ hs_err_pid*
 .classpath
 .project
 .metadata
-
+.recommended
 ## gitignore para Maven
 target/
 pom.xml.tag
