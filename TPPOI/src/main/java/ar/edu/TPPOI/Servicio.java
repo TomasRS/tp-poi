@@ -6,15 +6,24 @@ import java.util.stream.Collectors;
 
 public class Servicio {
 	private List<Dia> dias;
+	private String nombre;
+
+	public Servicio(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public List<Dia> getDias() {
 		return dias;
 	}
-
-	public void setDias(List<Dia> dias) {
-		this.dias = dias;
-	}
 	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
 	public boolean disponiblePara(Date fecha ){
 		return this.horasDisp(fecha).isEmpty();
 		
@@ -24,4 +33,6 @@ public class Servicio {
 		return this.getDias().stream()
 				.filter(unD->unD.noTieneDisponibleElHorario(fecha))
 				.collect(Collectors.toList());
-	}}
+	}
+	
+}

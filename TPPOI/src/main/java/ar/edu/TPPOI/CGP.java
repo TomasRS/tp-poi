@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CGP extends POI {
 	private List<String> barrios=new ArrayList<String>();
-	private List<String> servicios=new ArrayList<String>();
+	private List<Servicio> servicios=new ArrayList<Servicio>();
 	private Integer radioDeZona; //hacerlo con Polygon
 	
 	public List<String> getBarrios() {
@@ -14,10 +14,10 @@ public class CGP extends POI {
 	public void setBarrios(List<String> barrios) {
 		this.barrios = barrios;
 	}
-	public List<String> getServicios() {
+	public List<Servicio> getServicios() {
 		return servicios;
 	}
-	public void setServicios(List<String> servicios) {
+	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
 	}
 	
@@ -27,5 +27,9 @@ public class CGP extends POI {
 		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
 	}
 	
+	public boolean estoyEn(String textoDondeBuscar){
+		return super.estoyEn(textoDondeBuscar)||this.servicios.stream()
+			.anyMatch(servicio->textoDondeBuscar.contains(servicio.getNombre()));
+	}
 	
 }

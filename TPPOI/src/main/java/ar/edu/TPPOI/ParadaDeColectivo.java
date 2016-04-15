@@ -17,4 +17,8 @@ public class ParadaDeColectivo extends POI {
 	public boolean estasCercaDe (Punto unaCoordenada){
 		return this.estasAMenosDeXMetrosDe (100,unaCoordenada);
 	}
+	
+	public boolean estoyEn(String textoDondeBuscar){
+		return super.estoyEn(textoDondeBuscar)||textoDondeBuscar.contains(this.linea);
+	}
 }

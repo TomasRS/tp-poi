@@ -128,5 +128,9 @@ public abstract class POI {
 	public boolean estasAMenosDeXMetrosDe (Integer unosMetros, POI unPOI){
 		return this.estasAMenosDeXMetrosDe(unosMetros, unPOI.getCoordenada());
 	}
+	
+	public boolean estoyEn(String textoDondeBuscar){
+		return textoDondeBuscar.contains(this.rubro);
+	}
 
 }
