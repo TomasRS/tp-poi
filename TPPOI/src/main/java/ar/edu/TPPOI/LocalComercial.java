@@ -3,15 +3,9 @@ package ar.edu.TPPOI;
 import java.util.List;
 
 public class LocalComercial extends POI{
-	private String rubro;
-	List<Integer> horariosDeAtencion;
+	private List<Integer> horariosDeAtencion;
 	private Integer radioCercania;
-	public String getRubro() {
-		return rubro;
-	}
-	public void setRubro(String rubro) {
-		this.rubro = rubro;
-	}
+	
 	public Integer getRadioCercania() {
 		return radioCercania;
 	}
