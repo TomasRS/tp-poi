@@ -13,6 +13,10 @@ hs_err_pid*
 .settings/
 .classpath
 .project
+.metadata/*
+.recommended/*
+.metadata
+.recommended
 
 ## gitignore para Maven
 target/
@@ -27,3 +31,4 @@ buildNumber.properties
 
 ## ignorados especificos
 pre-merge/*
+/TPPOI/

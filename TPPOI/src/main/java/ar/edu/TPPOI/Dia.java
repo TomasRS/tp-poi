@@ -5,20 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Dia {
-	private List<Horario> horarios;
+	private List<Intervalo> intervalos;
 
-	public List<Horario> getHorarios() {
-		return horarios;
+	public void addHorarios(Intervalo horario) {
+		this.intervalos.add(horario);
 	}
-
-	public void setHorarios(List<Horario> horarios) {
-		this.horarios = horarios;
-	}
-	public boolean noTieneDisponibleElHorario(Date dia){
+	
+//LO HIZO FRAN 
+	/*public boolean noTieneDisponibleElHorario(Date dia){
 		return this.getHorarios().stream()
 		.filter(unH->(dia.after(unH.getHoraInicio())&&dia.before(unH.getHoraFin())))
 		.collect(Collectors.toList())
 		.isEmpty();		
-	}
+	}*/
 
 }
