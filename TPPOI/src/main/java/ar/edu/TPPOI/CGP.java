@@ -3,6 +3,7 @@ package ar.edu.TPPOI;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.uqbar.geodds.Point;
 
 public class CGP extends POI {
 	
@@ -18,7 +19,7 @@ public class CGP extends POI {
 	
 	
 	//Hacerlo con Polygon (nos van a pasar la biblioteca)
-	public boolean estasCercaDe (Punto unaCoordenada){
+	public boolean estasCercaDe (Point unaCoordenada){
 		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
 	}
 	

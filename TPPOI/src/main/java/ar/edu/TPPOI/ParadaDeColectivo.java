@@ -1,5 +1,7 @@
 package ar.edu.TPPOI;
 
+import org.uqbar.geodds.Point;
+
 public class ParadaDeColectivo extends POI {
 	private String linea;
 	
@@ -12,7 +14,7 @@ public class ParadaDeColectivo extends POI {
 		this.addPalabraClave(linea);
 	}
 
-	public boolean estasCercaDe (Punto unaCoordenada){
+	public boolean estasCercaDe (Point unaCoordenada){
 		return this.estasAMenosDeXMetrosDe (100,unaCoordenada);
 	}
 
