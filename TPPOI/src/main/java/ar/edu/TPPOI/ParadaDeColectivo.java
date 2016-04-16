@@ -1,5 +1,7 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDateTime;
+
 import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POI {
@@ -17,5 +19,10 @@ public class ParadaDeColectivo extends POI {
 	public boolean estasCercaDe (Point unaCoordenada){
 		return this.estasAMenosDeXMetrosDe (100,unaCoordenada);
 	}
+	
+	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio){
+		return true;
+	}
+	
 
 }

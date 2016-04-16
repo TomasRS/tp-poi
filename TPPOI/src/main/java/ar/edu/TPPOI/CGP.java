@@ -31,9 +31,13 @@ public class CGP extends POI {
 				
 	}
 
-	public boolean estoyDisponibleEn(LocalDateTime unMomento){
-		return this.servicios.stream()
-			.anyMatch(servicio->servicio.disponibleEn(unMomento));
+	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio){
+		if (unServicio != null){
+			return unServicio.disponibleEn(unMomento);
+		}else {
+			return this.servicios.stream()
+					.anyMatch(servicio->servicio.disponibleEn(unMomento));
+		}
 	}
 	
 }

@@ -87,12 +87,16 @@ public class TestEntrega1 {
 	// Tests de disponibilidad
 	@Test
 	public void testCgpDisponible() {
-		Assert.assertTrue(cgp1.estoyDisponibleEn(LocalDateTime.of(2016, 1, 15, 10, 10, 30)));
-		Assert.assertTrue(cgp1.estoyDisponibleEn(LocalDateTime.of(2016, 1, 15, 15, 10, 30)));
+		Assert.assertTrue(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 10, 10, 30)),cargaSUBE));
+		Assert.assertTrue(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 15, 10, 30)),cargaSUBE));
 	}
 	@Test
 	public void testCgpNoDisponible() {
-		Assert.assertFalse(cgp1.estoyDisponibleEn(LocalDateTime.of(2016, 1, 15, 14, 10, 30)));
-		Assert.assertFalse(cgp1.estoyDisponibleEn(LocalDateTime.of(2016, 1, 16, 10, 10, 30)));
+		Assert.assertFalse(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 14, 10, 30)), cargaSUBE));
+		Assert.assertFalse(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)),cargaSUBE));
+	}
+	@Test
+	public void testParadaDeColectivoDisponible(){
+		Assert.assertTrue(parada114DeCabildoYMonroe.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), null));
 	}
 }

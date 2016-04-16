@@ -27,6 +27,8 @@ public class Servicio {
 	public boolean disponibleEn(LocalDateTime unMomento){
 		return this.horarios.stream()
 			.anyMatch(horario->horario.estaEnMiHorario(unMomento));
+		
 	}
+		
 	
 }
