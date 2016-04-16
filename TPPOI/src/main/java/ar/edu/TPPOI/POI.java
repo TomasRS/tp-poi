@@ -167,13 +167,13 @@ public abstract class POI {
 		return this.estasAMenosDeXMetrosDe(unosMetros, unPOI.getCoordenada());
 	}
 	
-	public boolean contiene(String unaPalabraClave) throws NoSoyValidoException{
+	public boolean contiene(String unaPalabraClave) {
 		try {
 		return (palabrasClaves
 					.stream()
 					.anyMatch(unAtributo -> this.estanContenidos(unaPalabraClave,unAtributo))
 			   );
-		} catch (NoSoyValidoException excepcion){
+		} catch (Exception excepcion){
 			return false;
 		}
 	}
