@@ -4,11 +4,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 
 public class CGP extends POI {
 	
 	private List<Servicio> servicios = new ArrayList<>();
-	private Integer radioDeZona; //hacerlo con Polygon
+	private Polygon comuna;
 	
 	public List<Servicio> getServicios() {
 		return servicios;
@@ -17,10 +18,13 @@ public class CGP extends POI {
 		this.servicios.add(servicio);
 	}
 	
+	public void setPoligono(Polygon unaComuna){
+		this.comuna = unaComuna;
+	}
 	
 	//Hacerlo con Polygon (nos van a pasar la biblioteca)
 	public boolean estasCercaDe (Point unaCoordenada){
-		return this.estasAMenosDeXMetrosDe (radioDeZona,unaCoordenada);
+		return this.comuna.isInside(unaCoordenada);
 	}
 	
 	public boolean contiene(String unaPalabraClave){
