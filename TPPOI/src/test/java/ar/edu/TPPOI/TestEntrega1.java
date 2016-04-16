@@ -16,6 +16,8 @@ public class TestEntrega1 {
 	MapaPOI mapaInteractivo;
 	CGP cgp1 = new CGP();
 	Servicio cargaSUBE;
+	Servicio prestamo;
+	LocalComercial starbucks;
 	
 	@Before
 	public void init() {
@@ -30,12 +32,25 @@ public class TestEntrega1 {
 		parada114DeCabildoYMonroe.setCalle2("Cabildo");
 
 		// Banco Ciudad de Cabildo y Congreso
+		prestamo = new Servicio("prestamo");
 		bancoCiudadCabildo = new SucursalBanco();
 		coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
 		bancoCiudadCabildo.setCoordenada(coordenadaBancoCiudad);
 		bancoCiudadCabildo.setCalle1("Cabildo");
 		bancoCiudadCabildo.setCalle2("Congreso");
-
+		Horario horarioBanco1 = new Horario("MONDAY", "10:00", "15:00");
+		Horario horarioBanco2 = new Horario("TUESDAY", "10:00", "15:00");
+		Horario horarioBanco3 = new Horario("WEDNESDAY", "10:00", "15:00");
+		Horario horarioBanco4 = new Horario("THURSDAY", "10:00", "15:00");
+		Horario horarioBanco5 = new Horario("FRIDAY", "10:00", "15:00");
+		
+		bancoCiudadCabildo.addHorarioBancario(horarioBanco1);
+		bancoCiudadCabildo.addHorarioBancario(horarioBanco2);
+		bancoCiudadCabildo.addHorarioBancario(horarioBanco3);
+		bancoCiudadCabildo.addHorarioBancario(horarioBanco4);
+		bancoCiudadCabildo.addHorarioBancario(horarioBanco5);
+		
+		
 		// Mapa interactivo
 		mapaInteractivo = new MapaPOI();
 		mapaInteractivo.listaDePOIs.add(parada114DeCabildoYMonroe);
@@ -50,6 +65,23 @@ public class TestEntrega1 {
 		cgp1.addServicio(cargaSUBE);
 		cgp1.setRubro("Propositos generales");
 		cgp1.setCoordenada(coordenadaParada114);
+		
+		//LOCAL 
+		starbucks = new LocalComercial();
+		Horario horarioStarbucks1 = new Horario("MONDAY", "10:00", "20:00");
+		Horario horarioStarbucks2 = new Horario("TUESDAY", "10:00", "20:00");
+		Horario horarioStarbucks3 = new Horario("WEDNESDAY", "10:00", "20:00");
+		Horario horarioStarbucks4 = new Horario("THURSDAY", "10:00", "20:00");
+		Horario horarioStarbucks5 = new Horario("FRIDAY", "10:00", "20:00");
+		Horario horarioStarbucks6 = new Horario("SATURDAY", "10:00", "20:00");
+		
+		starbucks.addHorarioDeAtencion(horarioStarbucks1);
+		starbucks.addHorarioDeAtencion(horarioStarbucks2);
+		starbucks.addHorarioDeAtencion(horarioStarbucks3);
+		starbucks.addHorarioDeAtencion(horarioStarbucks4);
+		starbucks.addHorarioDeAtencion(horarioStarbucks5);
+		starbucks.addHorarioDeAtencion(horarioStarbucks6);
+		
 	}
 
 	// Tests para Calculo de Cercanias
@@ -99,4 +131,14 @@ public class TestEntrega1 {
 	public void testParadaDeColectivoDisponible(){
 		Assert.assertTrue(parada114DeCabildoYMonroe.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), null));
 	}
+	@Test
+	public void testBancoDisponible(){
+		Assert.assertTrue(bancoCiudadCabildo.estaDisponible((LocalDateTime.of(2016, 1, 14, 10, 10, 30)), prestamo));
+	}
+	@Test
+	public void testLocalDisponible(){
+		Assert.assertTrue(starbucks.estaDisponible((LocalDateTime.of(2016, 1, 14, 10, 10, 30)), null));
+	}
+
+	
 }
