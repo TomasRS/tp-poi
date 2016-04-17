@@ -153,7 +153,7 @@ public abstract class POI {
 		}
 	}
 
-	public boolean estanContenidos(String unaPalabraClave, String unAtributo) {
+	protected boolean estanContenidos(String unaPalabraClave, String unAtributo) {
 		return StringUtils.containsIgnoreCase(unaPalabraClave, unAtributo)
 				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
 	}
