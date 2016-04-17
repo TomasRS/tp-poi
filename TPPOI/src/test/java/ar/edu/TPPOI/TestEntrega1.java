@@ -103,10 +103,19 @@ public class TestEntrega1 {
 	}
 
 	@Test
-	public void testUnPOIEstaAMenosDeXMetrosDeOtroPOI() {
-		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe), true);
+	public void testUnPOIEstaAMenosDe1000MetrosDeOtroPOI() {
+		Assert.assertTrue(bancoCiudadCabildo.estasAMenosDeXMetrosDe(900, parada114DeCabildoYMonroe));
 	}
 
+	@Test
+	public void testUnPOIEstaAMenosDe500MetrosDeOtroPOI() {
+		Assert.assertTrue(bancoCiudadCabildo.estasAMenosDeXMetrosDe(500, parada114DeCabildoYMonroe));
+	}
+	
+	@Test
+	public void testUnPOINoEstaAMenosDe300MetrosDeOtroPOI() {
+		Assert.assertFalse(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe));
+	}
 	/*@Test
 	public void testPuntoDentroDeLaCGP() {
 		Assert.assertTrue(cgp1.estasCercaDe(coordenadaMia));

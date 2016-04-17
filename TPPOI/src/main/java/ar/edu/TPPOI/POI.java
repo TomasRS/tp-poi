@@ -189,7 +189,7 @@ public abstract class POI {
 	}
 
 	public boolean estasAMenosDeXMetrosDe(Integer unosMetros, Point unaCoordenada) {
-		return this.getCoordenada().distance(unaCoordenada) < (unosMetros / 100);
+		return this.getCoordenada().distance(unaCoordenada) < (unosMetros / 1000.0);
 	}
 
 	// Caso especifico si le mandamos un POI como parametro (reusa el de arriba)
