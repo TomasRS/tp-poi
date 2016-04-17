@@ -31,12 +31,15 @@ public class TestEntrega1 {
 		// Mi coordenada - Abasto Shopping
 		coordenadaMia = new Point(-58.42059446334839, -34.60421247366349);
 		// Parada 114 de Cabildo y Monroe
-		parada114DeCabildoYMonroe = new ParadaDeColectivo();
 		coordenadaParada114 = new Point(-58.459845185279846, -34.558164509672146);
 		coordenadaCercaParada114 = new Point(-58.459845186279846, -34.558169509672146);
-		parada114DeCabildoYMonroe.setCoordenada(coordenadaParada114);
+		
+		parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114, 100);
+		
+		//Borrar cuando tomy haga el cambio de DatosPOI, etc
 		parada114DeCabildoYMonroe.setCalle1("Monroe");
 		parada114DeCabildoYMonroe.setCalle2("Cabildo");
+		
 		//--------------------------------------------------------------
 		
 		
