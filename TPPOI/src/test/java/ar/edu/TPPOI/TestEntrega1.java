@@ -34,7 +34,7 @@ public class TestEntrega1 {
 		coordenadaParada114 = new Point(-58.459845185279846, -34.558164509672146);
 		coordenadaCercaParada114 = new Point(-58.459845186279846, -34.558169509672146);
 		
-		parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114, 100);
+		parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114);
 		
 		//Borrar cuando tomy haga el cambio de DatosPOI, etc
 		parada114DeCabildoYMonroe.setCalle1("Monroe");
