@@ -27,7 +27,7 @@ public class TestEntrega1 {
 	public void init() {
 
 		// Mi coordenada - Abasto Shopping
-		coordenadaMia = new Point(-58.41059446334839, -34.60421247366349);
+		coordenadaMia = new Point(-58.42059446334839, -34.60421247366349);
 		// Parada 114 de Cabildo y Monroe
 		parada114DeCabildoYMonroe = new ParadaDeColectivo();
 		coordenadaParada114 = new Point(-58.459845185279846, -34.558164509672146);
@@ -116,10 +116,10 @@ public class TestEntrega1 {
 	public void testUnPOINoEstaAMenosDe300MetrosDeOtroPOI() {
 		Assert.assertFalse(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe));
 	}
-	/*@Test
+	@Test
 	public void testPuntoDentroDeLaCGP() {
 		Assert.assertTrue(cgp1.estasCercaDe(coordenadaMia));
-	}*/
+	}
 
 	@Test
 	public void testPuntoAfueraDeLaCGP() {
