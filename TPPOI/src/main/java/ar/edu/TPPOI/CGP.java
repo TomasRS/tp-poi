@@ -22,10 +22,6 @@ public class CGP extends EmpresaMultiServicios {
 		this.comuna= unaComuna;
 	}
 	
-	public void setPoligono(Polygon unaComuna) {
-		this.comuna = unaComuna;
-	}
-
 	public boolean estasCercaDe(Point unaCoordenada) {
 		return this.comuna.isInside(unaCoordenada);
 	}

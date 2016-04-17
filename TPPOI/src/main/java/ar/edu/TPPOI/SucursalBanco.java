@@ -11,14 +11,12 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		this.coordenada = unaCoordenada;
 		this.radioCercania = unRadioCercania;
 		this.servicios.add(unServicio);
-
 	}
-	
+
 	public SucursalBanco(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Servicio> unosServicios) {
 		this.nombre = unNombre;
 		this.coordenada = unaCoordenada;
 		this.radioCercania = unRadioCercania;
 		this.servicios.addAll(unosServicios);
-
 	}
 }

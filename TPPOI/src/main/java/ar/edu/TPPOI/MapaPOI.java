@@ -15,7 +15,7 @@ public class MapaPOI {
 	public List<POI> buscar(String palabraClave){
 		return (this.getListaDePOIs()
 					.stream()
-					.filter(unPOI -> unPOI.contiene(palabraClave))
+				.filter(unPOI -> unPOI.contiene(palabraClave))
 					.collect(Collectors.toList()));
 	}
 }
