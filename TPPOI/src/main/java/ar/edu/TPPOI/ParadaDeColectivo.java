@@ -1,6 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.uqbar.geodds.Point;
 
@@ -13,7 +14,12 @@ public class ParadaDeColectivo extends POI {
 
 	public void setLinea(String linea) {
 		this.linea = linea;
-		this.addPalabraClave(linea);
+	}
+	
+	protected List<String> palabrasClave(){
+		List<String> posiblesPalabrasClaves = super.palabrasClave();
+		posiblesPalabrasClaves.add(this.linea);
+		return posiblesPalabrasClaves;
 	}
 
 	public boolean estasCercaDe (Point unaCoordenada){
