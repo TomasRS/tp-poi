@@ -6,10 +6,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
-	private String nombre;
-	private String rubro;
+	protected String nombre;
+	protected String rubro;
+	protected Integer radioCercania;
 	private String direccion;
-	private Point coordenada;
+	protected Point coordenada;
 	private String calle1;
 	private String calle2;
 	private Integer numero;
@@ -22,7 +23,6 @@ public abstract class POI {
 	private String barrio;
 	private String provincia;
 	private String pais;
-
 
 	public void setCalle1(String calle1) {
 		this.calle1 = calle1;
@@ -70,6 +70,10 @@ public abstract class POI {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getNombre() {
+		return this.nombre;
 	}
 
 	public void setRubro(String rubro) {
@@ -148,7 +152,6 @@ public abstract class POI {
 			return false;
 		}
 	}
-
 
 	public boolean estanContenidos(String unaPalabraClave, String unAtributo) {
 		return StringUtils.containsIgnoreCase(unaPalabraClave, unAtributo)

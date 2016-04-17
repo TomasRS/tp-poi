@@ -12,15 +12,16 @@ import org.uqbar.geodds.Polygon;
 
 public class TestEntrega1 {
 
-	Point coordenadaMia;
+	Point coordenadaMia, coordenadaCercaParada114,coordenadaCercaBancoCiudad, coordenadaStarbucks, coordenadaCercaStarbucks;
 	ParadaDeColectivo parada114DeCabildoYMonroe;
 	Point coordenadaParada114;
 	SucursalBanco bancoCiudadCabildo;
 	Point coordenadaBancoCiudad;
 	MapaPOI mapaInteractivo;
-	CGP cgp1 = new CGP();
+	CGP cgp1;
 	Servicio cargaSUBE;
 	Servicio prestamo;
+	Servicio cortePelo;
 	LocalComercial starbucks;
 
 	@Before
@@ -31,6 +32,7 @@ public class TestEntrega1 {
 		// Parada 114 de Cabildo y Monroe
 		parada114DeCabildoYMonroe = new ParadaDeColectivo();
 		coordenadaParada114 = new Point(-58.459845185279846, -34.558164509672146);
+		coordenadaCercaParada114 = new Point(-58.459845186279846, -34.558169509672146);
 		parada114DeCabildoYMonroe.setCoordenada(coordenadaParada114);
 		parada114DeCabildoYMonroe.setCalle1("Monroe");
 		parada114DeCabildoYMonroe.setCalle2("Cabildo");
@@ -39,6 +41,7 @@ public class TestEntrega1 {
 		prestamo = new Servicio("prestamo");
 		bancoCiudadCabildo = new SucursalBanco();
 		coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
+		coordenadaCercaBancoCiudad = new Point(-58.46362069999999, -34.5545479);
 		bancoCiudadCabildo.setCoordenada(coordenadaBancoCiudad);
 		bancoCiudadCabildo.setCalle1("Cabildo");
 		bancoCiudadCabildo.setCalle2("Congreso");
@@ -60,9 +63,10 @@ public class TestEntrega1 {
 		mapaInteractivo.listaDePOIs.add(bancoCiudadCabildo);
 
 		// CGP1
-		cargaSUBE = new Servicio("cargar SUBE");
-		Horario horario1 = new Horario("FRIDAY", "08:00", "13:00");
-		Horario horario2 = new Horario("FRIDAY", "15:00", "20:00");
+		List<Horario> horarios = new ArrayList<>();
+		horarios.add(new Horario("FRIDAY", "08:00", "13:00"));
+		horarios.add(new Horario("FRIDAY", "15:00", "20:00"));
+		cargaSUBE = new Servicio("cargar SUBE", horarios);
 		List<Point> puntos = new ArrayList<>();
 		puntos.add(new Point(-58.411898, -34.597984));
 		puntos.add(new Point(-58.426446, -34.597878));
@@ -72,31 +76,33 @@ public class TestEntrega1 {
 		puntos.add(new Point(-58.412372, -34.620890));
 		Polygon poligonoCGP = new Polygon(puntos);
 
-		cargaSUBE.addHorario(horario1);
-		cargaSUBE.addHorario(horario2);
-		cgp1.addServicio(cargaSUBE);
-		cgp1.setRubro("Propositos generales");
-		cgp1.setPoligono(poligonoCGP);
+		cgp1 = new CGP("Comuna 5", "Propositos generales", cargaSUBE, poligonoCGP);
 
 		// LOCAL
-		starbucks = new LocalComercial();
-		Horario horarioStarbucks1 = new Horario("MONDAY", "10:00", "20:00");
-		Horario horarioStarbucks2 = new Horario("TUESDAY", "10:00", "20:00");
-		Horario horarioStarbucks3 = new Horario("WEDNESDAY", "10:00", "20:00");
-		Horario horarioStarbucks4 = new Horario("THURSDAY", "10:00", "20:00");
-		Horario horarioStarbucks5 = new Horario("FRIDAY", "10:00", "20:00");
-		Horario horarioStarbucks6 = new Horario("SATURDAY", "10:00", "20:00");
-
-		starbucks.addHorarioDeAtencion(horarioStarbucks1);
-		starbucks.addHorarioDeAtencion(horarioStarbucks2);
-		starbucks.addHorarioDeAtencion(horarioStarbucks3);
-		starbucks.addHorarioDeAtencion(horarioStarbucks4);
-		starbucks.addHorarioDeAtencion(horarioStarbucks5);
-		starbucks.addHorarioDeAtencion(horarioStarbucks6);
-
+		coordenadaStarbucks = new Point(-58.413718, -34.593303);
+		coordenadaCercaStarbucks = new Point(-58.414099, -34.593686);
+		List<Horario> horarios2 = new ArrayList<>();
+		horarios2.add(new Horario("MONDAY", "10:00", "20:00"));
+		horarios2.add(new Horario("TUESDAY", "10:00", "20:00"));
+		horarios2.add(new Horario("WEDNESDAY", "10:00", "20:00"));
+		horarios2.add(new Horario("THURSDAY", "10:00", "20:00"));
+		horarios2.add(new Horario("FRIDAY", "10:00", "20:00"));
+		horarios2.add(new Horario("SATURDAY", "10:00", "20:00"));
+		
+		starbucks = new LocalComercial("Starbucks", coordenadaStarbucks, 50, horarios2);
 	}
 
 	// Tests para Calculo de Cercanias
+	@Test
+	public void testStarbucksNoEstaCercaDeMiCoordenada() {
+		Assert.assertEquals(starbucks.estasCercaDe(coordenadaMia), false);
+	}
+
+	@Test
+	public void testStarbucksEstaCercaDeCoordenadaCercaStarbucks() {
+		Assert.assertEquals(starbucks.estasCercaDe(coordenadaCercaStarbucks), true);
+	}
+	
 	@Test
 	public void testParadaDeColectivoNoEstaCercaDeMiCoordenada() {
 		Assert.assertEquals(parada114DeCabildoYMonroe.estasCercaDe(coordenadaMia), false);
@@ -104,26 +110,27 @@ public class TestEntrega1 {
 
 	@Test
 	public void testUnPOIEstaAMenosDe1000MetrosDeOtroPOI() {
-		Assert.assertTrue(bancoCiudadCabildo.estasAMenosDeXMetrosDe(900, parada114DeCabildoYMonroe));
+		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe),true);
 	}
 
 	@Test
 	public void testUnPOIEstaAMenosDe500MetrosDeOtroPOI() {
-		Assert.assertTrue(bancoCiudadCabildo.estasAMenosDeXMetrosDe(500, parada114DeCabildoYMonroe));
+		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(500, parada114DeCabildoYMonroe),true);
 	}
-	
+
 	@Test
 	public void testUnPOINoEstaAMenosDe300MetrosDeOtroPOI() {
-		Assert.assertFalse(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe));
+		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe),false);
 	}
+
 	@Test
 	public void testPuntoDentroDeLaCGP() {
-		Assert.assertTrue(cgp1.estasCercaDe(coordenadaMia));
+		Assert.assertEquals(cgp1.estasCercaDe(coordenadaMia),true);
 	}
 
 	@Test
 	public void testPuntoAfueraDeLaCGP() {
-		Assert.assertFalse(cgp1.estasCercaDe(coordenadaParada114));
+		Assert.assertEquals(cgp1.estasCercaDe(coordenadaParada114),false);
 	}
 
 	// Tests para Busqueda de Texto Libre
@@ -149,15 +156,20 @@ public class TestEntrega1 {
 
 	// Tests de disponibilidad
 	@Test
-	public void testCgpDisponible() {
+	public void testCgpDisponibleConServcio() {
 		Assert.assertTrue(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 10, 10, 30)), cargaSUBE));
 		Assert.assertTrue(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 15, 10, 30)), cargaSUBE));
 	}
 
 	@Test
-	public void testCgpNoDisponible() {
+	public void testCgpNoDisponibleConServicio() {
 		Assert.assertFalse(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 14, 10, 30)), cargaSUBE));
 		Assert.assertFalse(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), cargaSUBE));
+	}
+
+	@Test(expected = NoExisteServicioAsociadoException.class)
+	public void testCgpSinServicioAsociado() {
+		cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 10, 10, 30)), prestamo);
 	}
 
 	@Test
