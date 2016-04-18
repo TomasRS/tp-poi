@@ -20,7 +20,6 @@ public class TestEntrega1 {
 	MapaPOI mapaInteractivo;
 	CGP cgp1;
 	Servicio cargaSUBE;
-	ServicioBuilder prestamoBuilder;
 	Servicio prestamo;
 	Servicio cortePelo;
 	LocalComercial starbucks;
@@ -44,8 +43,17 @@ public class TestEntrega1 {
 		
 		
 		// Banco Ciudad de Cabildo y Congreso
-		prestamoBuilder = new ServicioBuilder();
-		prestamo = prestamoBuilder.servicioConHorarioBanco("prestamo");
+		//Seteo los dias de atencion
+		List<String> diasDePrestamo = new ArrayList<String>();
+		diasDePrestamo.add("MONDAY");
+		diasDePrestamo.add("TUESDAY");
+		diasDePrestamo.add("WEDNESDAY");
+		diasDePrestamo.add("THURSDAY");
+		diasDePrestamo.add("FRIDAY");
+		prestamo = new Servicio(
+				"prestamo",
+				diasDePrestamo,
+				"10:00", "15:00");
 		coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
 		coordenadaCercaBancoCiudad = new Point(-58.46362069999999, -34.5545479);
 	

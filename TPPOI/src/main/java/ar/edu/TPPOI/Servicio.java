@@ -22,6 +22,12 @@ public class Servicio {
 		this.nombre = unNombre;
 		this.horarios.addAll(unosHorarios);
 	}
+	
+	public Servicio(String unNombre, List<String> diasConHorariosComunes,String horaInicioComun, String horaFinComun){
+		List<Horario> horariosComunes = Horario.horariosComunes(diasConHorariosComunes, horaInicioComun, horaFinComun);
+		this.nombre = unNombre;
+		this.horarios = horariosComunes;
+	}
 
 	public String getNombre() {
 		return nombre;
