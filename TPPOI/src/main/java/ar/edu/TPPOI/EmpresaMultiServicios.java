@@ -21,6 +21,10 @@ public abstract class EmpresaMultiServicios extends POI {
 			return this.servicios.stream().anyMatch(servicio -> servicio.disponibleEn(unMomento));
 		}
 	}
+	
+	public void agregarServicio (Servicio unServicio){
+		this.servicios.add(unServicio);
+	}
 
 	public boolean contiene(String unaPalabraClave) {
 		return (super.contiene(unaPalabraClave) || this.servicios.stream()

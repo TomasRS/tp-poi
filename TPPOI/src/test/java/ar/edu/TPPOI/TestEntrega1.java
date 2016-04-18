@@ -86,7 +86,8 @@ public class TestEntrega1 {
 		puntos.add(new Point(-58.412372, -34.620890));
 		Polygon poligonoCGP = new Polygon(puntos);
 
-		cgp1 = new CGP("Comuna 5", "Propositos generales", cargaSUBE, poligonoCGP);
+		cgp1 = new CGP("Comuna 5", "Propositos generales", poligonoCGP);
+		cgp1.agregarServicio(cargaSUBE);
 		//--------------------------------------------------------------
 		
 		// ----------------------------LOCAL------------------------------
