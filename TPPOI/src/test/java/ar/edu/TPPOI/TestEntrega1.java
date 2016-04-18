@@ -57,7 +57,8 @@ public class TestEntrega1 {
 		coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
 		coordenadaCercaBancoCiudad = new Point(-58.46362069999999, -34.5545479);
 	
-		bancoCiudadCabildo = new SucursalBanco("Banco Ciudad", coordenadaBancoCiudad, 50, prestamo);
+		bancoCiudadCabildo = new SucursalBanco("Banco Ciudad", coordenadaBancoCiudad, 50);
+		bancoCiudadCabildo.agregarServicio(prestamo);
 	
 		//Borrar cuando tomy haga el cambio de DatosPOI, etc
 		bancoCiudadCabildo.setCalle1("Cabildo");

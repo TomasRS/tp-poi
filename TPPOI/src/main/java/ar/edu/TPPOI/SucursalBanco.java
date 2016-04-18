@@ -6,14 +6,18 @@ import org.uqbar.geodds.Point;
 
 public class SucursalBanco extends EmpresaMultiServicios {
 
-	public SucursalBanco(String unNombre, Point unaCoordenada, Integer unRadioCercania, Servicio unServicio) {
+	public SucursalBanco(String unNombre, Point unaCoordenada, Integer unRadioCercania) {
 		this.setNombreCoordRadio(unNombre, unaCoordenada, unRadioCercania);
+	}
+	
+	public void agregarServicio (Servicio unServicio){
 		this.servicios.add(unServicio);
 	}
-
-	public SucursalBanco(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Servicio> unosServicios) {
-		this.setNombreCoordRadio(unNombre, unaCoordenada, unRadioCercania);
-		this.servicios.addAll(unosServicios);
+	public void agregarListaDeServicios (List<Servicio> servicios){
+		this.servicios.addAll(servicios);
+	}
+	public void AgregarServicioAlBanco(String unNombre, Point unaCoordenada, Integer unRadioCercania, Servicio unServicio){
+	
 	}
 	
 	public void setNombreCoordRadio(String unNombre, Point unaCoordenada, Integer radioCercania){
