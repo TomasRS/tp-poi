@@ -158,34 +158,34 @@ public class TestEntrega1 {
 
 	// Tests para Busqueda de Texto Libre
 	@Test
-	public void testBuscarPOIsEnBaseAUnTextoLibreJusto() {
+	public void testEncuentraDosPOIsEnBaseAUnTextoLibreJusto() {
 		Assert.assertEquals(mapaInteractivo.buscar("Cabildo").size(), 2);
 	}
 
 	@Test
-	public void testBuscarPOIsEnBaseAUnTextoLibreMasLargo() {
+	public void testEncuentraDosPOIsEnBaseAUnTextoLibreMasLargo() {
 		Assert.assertEquals(mapaInteractivo.buscar("Avenida Cabildo").size(), 2);
 	}
 
 	@Test
-	public void testBuscarPOIsEnBaseAUnTextoLibreMasChico() {
+	public void testEncuentraDosPOIsEnBaseAUnTextoLibreMasChico() {
 		Assert.assertEquals(mapaInteractivo.buscar("Cabil").size(), 2);
 	}
 
 	@Test
-	public void testBuscarPOIsEnBaseAUnTextoLibreErroneo() {
+	public void testNoEncuentraPOIsEnBaseAUnTextoLibreErroneo() {
 		Assert.assertEquals(mapaInteractivo.buscar("Docabil").size(), 0);
 	}
 
 	// Tests de disponibilidad
 	@Test
-	public void testCgpDisponibleConServcio() {
+	public void testElCGPDisponibleParaCargarSube() {
 		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 10, 10, 30)), cargaSUBE), true);
 		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 15, 10, 30)), cargaSUBE), true);
 	}
 
 	@Test
-	public void testCgpNoDisponibleConServicio() {
+	public void testCGPNoDispponibleParaCargarSube() {
 		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 14, 10, 30)), cargaSUBE), false);
 		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), cargaSUBE), false);
 	}
