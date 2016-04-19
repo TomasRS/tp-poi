@@ -7,15 +7,10 @@ import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POI {
 	private String linea;
-
-	public ParadaDeColectivo(String unNombre, Point unaCoordenada) {
-		this(unNombre, unaCoordenada, 100);
-	}
 	
-	private ParadaDeColectivo(String unNombre, Point unaCoordenada, Integer unRadioCercania) {
+	public ParadaDeColectivo(String unNombre, Point unaCoordenada) {
 		this.nombre = unNombre;
 		this.coordenada = unaCoordenada;
-		this.radioCercania = unRadioCercania;
 	}
 
 	protected List<String> palabrasClave() {
@@ -25,7 +20,7 @@ public class ParadaDeColectivo extends POI {
 	}
 
 	public boolean estasCercaDe(Point unaCoordenada) {
-		return this.estasAMenosDeXMetrosDe(this.radioCercania, unaCoordenada);
+		return this.estasAMenosDeXMetrosDe(100, unaCoordenada);
 	}
 
 	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio) {
