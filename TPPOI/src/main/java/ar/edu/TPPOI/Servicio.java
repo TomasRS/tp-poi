@@ -18,15 +18,24 @@ public class Servicio {
 		this.horarios.add(unHorario);
 	}
 
+	public static Servicio nuevoServicioBanco(String unNombre) {
+		return new Servicio(unNombre, Servicio.horariosBanco());
+	}
+
+	public static List<Horario> horariosBanco() {
+		List<Horario> horarios = new ArrayList<>();
+		horarios.add(new Horario("MONDAY", "10:00", "16:00"));
+		horarios.add(new Horario("TUESDAY", "10:00", "16:00"));
+		horarios.add(new Horario("WEDNESDAY", "10:00", "16:00"));
+		horarios.add(new Horario("THURSDAY", "10:00", "16:00"));
+		horarios.add(new Horario("FRIDAY", "10:00", "16:00"));
+		horarios.add(new Horario("SATURDAY", "10:00", "16:00"));
+		return horarios;
+	}
+
 	public Servicio(String unNombre, List<Horario> unosHorarios) {
 		this.nombre = unNombre;
 		this.horarios.addAll(unosHorarios);
-	}
-	
-	public Servicio(String unNombre, List<String> diasConHorariosComunes,String horaInicioComun, String horaFinComun){
-		List<Horario> horariosComunes = Horario.horariosComunes(diasConHorariosComunes, horaInicioComun, horaFinComun);
-		this.nombre = unNombre;
-		this.horarios = horariosComunes;
 	}
 
 	public String getNombre() {

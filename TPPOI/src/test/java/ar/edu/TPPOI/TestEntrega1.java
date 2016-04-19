@@ -44,13 +44,8 @@ public class TestEntrega1 {
 		
 		// Banco Ciudad de Cabildo y Congreso
 		//Seteo los dias de atencion
-		List<String> diasDePrestamo = new ArrayList<String>();
-		diasDePrestamo.add("MONDAY");
-		diasDePrestamo.add("TUESDAY");
-		diasDePrestamo.add("WEDNESDAY");
-		diasDePrestamo.add("THURSDAY");
-		diasDePrestamo.add("FRIDAY");
-		prestamo = new Servicio("prestamo", diasDePrestamo, "10:00", "15:00");
+		
+		prestamo = Servicio.nuevoServicioBanco("prestamo");
 		coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
 		coordenadaCercaBancoCiudad = new Point(-58.46362069999999, -34.5545479);
 	
