@@ -27,9 +27,12 @@ public abstract class EmpresaMultiServicios extends POI {
 	}
 
 	public boolean contiene(String unaPalabraClave) {
-		return (super.contiene(unaPalabraClave) || this.servicios.stream()
-				.anyMatch(unServicio -> this.estanContenidos(unaPalabraClave, unServicio.getNombre())));
+		return (super.contiene(unaPalabraClave) || this.buscaUnServicio(this.servicios,unaPalabraClave));
 
 	}
 
+	public boolean buscaUnServicio (List<Servicio> servicios, String unaPalabraClave){
+		return this.servicios.stream()
+				.anyMatch(unServicio -> this.estanContenidos(unaPalabraClave, unServicio.getNombre()));
+	}
 }
