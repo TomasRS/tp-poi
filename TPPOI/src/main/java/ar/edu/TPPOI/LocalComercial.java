@@ -8,6 +8,10 @@ import org.uqbar.geodds.Point;
 public class LocalComercial extends POI {
 	private List<Horario> horarios = new ArrayList<Horario>();
 
+	public LocalComercial(String unNombre, Point unaCoordenada, List<Horario> unosHorarios) {
+		this(unNombre, unaCoordenada, 500, unosHorarios);
+	}
+
 	public LocalComercial(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios) {
 		this.nombre = unNombre;
 		this.coordenada = unaCoordenada;
@@ -19,7 +23,4 @@ public class LocalComercial extends POI {
 		return this.horarios.stream().anyMatch(horario -> horario.estaEnMiHorario(unMomento));
 	}
 
-	public boolean estasCercaDe(Point unaCoordenada) {
-		return this.estasAMenosDeXMetrosDe(this.radioCercania, unaCoordenada);
-	}
 }

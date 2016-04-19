@@ -71,7 +71,7 @@ public abstract class POI {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -108,25 +108,23 @@ public abstract class POI {
 		return this.getCoordenada() != null;
 	}
 
-	// Este es el metodo que se va a usar para el "Requerimiento Detallado 1"
 	public boolean estasCercaDe(Point unaCoordenada) {
-		return this.estasAMenosDeXMetrosDe(500, unaCoordenada);
+		return this.estasAMenosDeXMetrosDe(this.radioCercania, unaCoordenada);
 	}
 
 	public boolean estasAMenosDeXMetrosDe(Integer unosMetros, Point unaCoordenada) {
 		return this.distanciaAUnaCoordenada(unaCoordenada) < (unosMetros / 1000.0);
 	}
-	
-	public double distanciaAUnaCoordenada (Point unaCoordenada){
+
+	public double distanciaAUnaCoordenada(Point unaCoordenada) {
 		return this.getCoordenada().distance(unaCoordenada);
 	}
 
-	// Caso especifico si le mandamos un POI como parametro (reusa el de arriba)
 	public boolean estasAMenosDeXMetrosDe(Integer unosMetros, POI unPOI) {
 		return this.estasAMenosDeXMetrosDe(unosMetros, unPOI.getCoordenada());
 	}
 
-	protected List<String> palabrasClave(){
+	protected List<String> palabrasClave() {
 		List<String> posiblesPalabrasClaves = new ArrayList<>();
 		posiblesPalabrasClaves.add(nombre);
 		posiblesPalabrasClaves.add(rubro);
@@ -145,12 +143,11 @@ public abstract class POI {
 		posiblesPalabrasClaves.add(pais);
 		return posiblesPalabrasClaves;
 	}
-	
+
 	public boolean contiene(String unaPalabraClave) {
 		List<String> posiblesPalabrasClaves = this.palabrasClave();
 		try {
-			return (posiblesPalabrasClaves
-					.stream()
+			return (posiblesPalabrasClaves.stream()
 					.anyMatch(unAtributo -> this.estanContenidos(unaPalabraClave, unAtributo)));
 		} catch (Exception excepcion) {
 			return false;
