@@ -12,7 +12,7 @@ public class ParadaDeColectivo extends POI {
 		this(unNombre, unaCoordenada, 100);
 	}
 	
-	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Integer unRadioCercania) {
+	private ParadaDeColectivo(String unNombre, Point unaCoordenada, Integer unRadioCercania) {
 		this.nombre = unNombre;
 		this.coordenada = unaCoordenada;
 		this.radioCercania = unRadioCercania;
