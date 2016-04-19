@@ -134,11 +134,6 @@ public class TestEntrega1 {
 	}
 
 	@Test
-	public void testUnPOIEstaAMenosDe500MetrosDeOtroPOI() {
-		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(500, parada114DeCabildoYMonroe),true);
-	}
-
-	@Test
 	public void testUnPOINoEstaAMenosDe300MetrosDeOtroPOI() {
 		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe),false);
 	}
