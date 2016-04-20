@@ -36,6 +36,9 @@ public class TestEntrega1 {
 		parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114);
 		
 		//Borrar cuando tomy haga el cambio de DatosPOI, etc
+		Direccion direccionParada114 = new Direccion();
+		direccionParada114.setCalles("Monroe", "Cabildo");
+		parada114DeCabildoYMonroe.setDireccion(direccionParada114);
 		parada114DeCabildoYMonroe.setCalle1("Monroe");
 		parada114DeCabildoYMonroe.setCalle2("Cabildo");
 		
@@ -53,6 +56,9 @@ public class TestEntrega1 {
 		bancoCiudadCabildo.agregarServicio(prestamo);
 	
 		//Borrar cuando tomy haga el cambio de DatosPOI, etc
+		Direccion direccionBancoCiudad = new Direccion();
+		direccionBancoCiudad.setCalles("Cabildo", "Congreso");
+		bancoCiudadCabildo.setDireccion(direccionBancoCiudad);
 		bancoCiudadCabildo.setCalle1("Cabildo");
 		bancoCiudadCabildo.setCalle2("Congreso");
 		

@@ -9,21 +9,13 @@ public abstract class POI {
 	protected String nombre;
 	protected String rubro;
 	protected Integer radioCercania;
-	private String direccion;
 	protected Point coordenada;
 	private String calle1;
 	private String calle2;
-	private Integer numero;
-	private String callePrincipal;
-	private Integer piso;
-	private String depto;
-	private String unidad;
-	private String codigoPostal;
-	private String localidad;
-	private String barrio;
-	private String provincia;
-	private String pais;
+	private Direccion direccion;
 
+// Setters y getters
+	
 	public void setCalle1(String calle1) {
 		this.calle1 = calle1;
 	}
@@ -31,43 +23,7 @@ public abstract class POI {
 	public void setCalle2(String calle2) {
 		this.calle2 = calle2;
 	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
-
-	public void setCallePrincipal(String callePrincipal) {
-		this.callePrincipal = callePrincipal;
-	}
-
-	public void setPiso(Integer piso) {
-		this.piso = piso;
-	}
-
-	public void setDepto(String depto) {
-		this.depto = depto;
-	}
-
-	public void setUnidad(String unidad) {
-		this.unidad = unidad;
-	}
-
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
-	}
-
-	public void setLocalidad(String localidad) {
-		this.localidad = localidad;
-	}
-
-	public void setBarrio(String barrio) {
-		this.barrio = barrio;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -80,10 +36,6 @@ public abstract class POI {
 		this.rubro = rubro;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
 	public Point getCoordenada() {
 		return coordenada;
 	}
@@ -91,10 +43,12 @@ public abstract class POI {
 	public void setCoordenada(Point unaCoordenada) {
 		this.coordenada = unaCoordenada;
 	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
+	
+	public void setDireccion(Direccion direccion){
+		this.direccion = direccion;
 	}
+
+// FIN Setters y getters
 
 	public boolean sosValido() {
 		return this.tengoNombre() && this.tengoCoordenada();
@@ -128,19 +82,11 @@ public abstract class POI {
 		List<String> posiblesPalabrasClaves = new ArrayList<>();
 		posiblesPalabrasClaves.add(nombre);
 		posiblesPalabrasClaves.add(rubro);
-		posiblesPalabrasClaves.add(direccion);
-		posiblesPalabrasClaves.add(calle1);
-		posiblesPalabrasClaves.add(calle2);
-		posiblesPalabrasClaves.add(String.valueOf(numero));
-		posiblesPalabrasClaves.add(callePrincipal);
-		posiblesPalabrasClaves.add(String.valueOf(piso));
-		posiblesPalabrasClaves.add(depto);
-		posiblesPalabrasClaves.add(unidad);
-		posiblesPalabrasClaves.add(codigoPostal);
-		posiblesPalabrasClaves.add(localidad);
-		posiblesPalabrasClaves.add(barrio);
-		posiblesPalabrasClaves.add(provincia);
-		posiblesPalabrasClaves.add(pais);
+		try{
+			posiblesPalabrasClaves.addAll(direccion.posiblesPalabrasClaves());
+		} catch (Exception e) {
+			System.out.println("No tiene direccion que agregar");
+		}
 		return posiblesPalabrasClaves;
 	}
 
