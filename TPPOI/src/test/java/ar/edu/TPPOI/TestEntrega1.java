@@ -58,11 +58,6 @@ public class TestEntrega1 {
 		
 		//--------------------------------------------------------------
 
-		// Mapa interactivo
-		mapaInteractivo = new MapaPOI();
-		mapaInteractivo.listaDePOIs.add(parada114DeCabildoYMonroe);
-		mapaInteractivo.listaDePOIs.add(bancoCiudadCabildo);
-		//--------------------------------------------------------------
 		
 		// CGP1
 		List<Horario> horarios = new ArrayList<>();
@@ -94,6 +89,14 @@ public class TestEntrega1 {
 		horarios2.add(new Horario("SATURDAY", "10:00", "20:00"));
 		
 		starbucks = LocalComercial.nuevoLocal("Starbucks", coordenadaStarbucks, 50, horarios2, "Cafeteria");
+		//--------------------------------------------------------------
+		
+		// Mapa interactivo
+		mapaInteractivo = new MapaPOI();
+		mapaInteractivo.listaDePOIs.add(parada114DeCabildoYMonroe);
+		mapaInteractivo.listaDePOIs.add(bancoCiudadCabildo);
+		mapaInteractivo.listaDePOIs.add(cgp1);
+		mapaInteractivo.listaDePOIs.add(starbucks);
 		//--------------------------------------------------------------
 	}
 
@@ -162,6 +165,11 @@ public class TestEntrega1 {
 	@Test
 	public void testNoEncuentraPOIsEnBaseAUnTextoLibreErroneo() {
 		Assert.assertEquals(mapaInteractivo.buscar("Docabil").size(), 0);
+	}
+	
+	@Test
+	public void testEncuentraNombreServicioSUBE() {
+		Assert.assertEquals(mapaInteractivo.buscar("SUBE").size(),1);
 	}
 
 	// Tests de disponibilidad
