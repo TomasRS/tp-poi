@@ -93,7 +93,7 @@ public class TestEntrega1 {
 		horarios2.add(new Horario("FRIDAY", "10:00", "20:00"));
 		horarios2.add(new Horario("SATURDAY", "10:00", "20:00"));
 		
-		starbucks = new LocalComercial("Starbucks", coordenadaStarbucks, 50, horarios2);
+		starbucks = LocalComercial.nuevoLocal("Starbucks", coordenadaStarbucks, 50, horarios2, "Cafeteria");
 		//--------------------------------------------------------------
 	}
 
