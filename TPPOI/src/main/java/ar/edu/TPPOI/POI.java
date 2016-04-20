@@ -10,20 +10,9 @@ public abstract class POI {
 	protected String rubro;
 	protected Integer radioCercania;
 	protected Point coordenada;
-	private String calle1;
-	private String calle2;
-	private Direccion direccion;
+	protected Direccion direccion;
 
 // Setters y getters
-	
-	public void setCalle1(String calle1) {
-		this.calle1 = calle1;
-	}
-
-	public void setCalle2(String calle2) {
-		this.calle2 = calle2;
-	}
-	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -82,10 +71,11 @@ public abstract class POI {
 		List<String> posiblesPalabrasClaves = new ArrayList<>();
 		posiblesPalabrasClaves.add(nombre);
 		posiblesPalabrasClaves.add(rubro);
+		//capturo excepciones para manejar errores de falta de instanciacion
 		try{
 			posiblesPalabrasClaves.addAll(direccion.posiblesPalabrasClaves());
 		} catch (Exception e) {
-			System.out.println("No tiene direccion que agregar");
+			//"No tiene direccion que agregar
 		}
 		return posiblesPalabrasClaves;
 	}
