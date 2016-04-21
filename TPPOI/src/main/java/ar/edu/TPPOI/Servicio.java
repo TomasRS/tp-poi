@@ -1,8 +1,10 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.DayOfWeek;
 
 public class Servicio {
 
@@ -23,13 +25,16 @@ public class Servicio {
 	}
 
 	public static List<Horario> horariosBanco() {
+		LocalTime horaInicio = LocalTime.of(10, 00);
+		LocalTime horaFin = LocalTime.of(16, 00);
+
 		List<Horario> horarios = new ArrayList<>();
-		horarios.add(new Horario("MONDAY", "10:00", "16:00"));
-		horarios.add(new Horario("TUESDAY", "10:00", "16:00"));
-		horarios.add(new Horario("WEDNESDAY", "10:00", "16:00"));
-		horarios.add(new Horario("THURSDAY", "10:00", "16:00"));
-		horarios.add(new Horario("FRIDAY", "10:00", "16:00"));
-		horarios.add(new Horario("SATURDAY", "10:00", "16:00"));
+		horarios.add(new Horario(DayOfWeek.MONDAY, horaInicio, horaFin));
+		horarios.add(new Horario(DayOfWeek.TUESDAY, horaInicio, horaFin));
+		horarios.add(new Horario(DayOfWeek.WEDNESDAY, horaInicio, horaFin));
+		horarios.add(new Horario(DayOfWeek.THURSDAY, horaInicio, horaFin));
+		horarios.add(new Horario(DayOfWeek.FRIDAY, horaInicio, horaFin));
+
 		return horarios;
 	}
 
@@ -43,7 +48,7 @@ public class Servicio {
 	}
 
 	public boolean disponibleEn(LocalDateTime unMomento) {
-		return this.horarios.stream().anyMatch(horario -> horario.estaEnMiHorario(unMomento));
+		return (new ExisteHorarioDisponibleEnHorarios(this.horarios, unMomento)).validar();
 	}
 
 }

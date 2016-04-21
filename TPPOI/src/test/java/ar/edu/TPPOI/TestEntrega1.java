@@ -1,6 +1,8 @@
 package ar.edu.TPPOI;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +53,8 @@ public class TestEntrega1 {
 
 		// CGP1
 		List<Horario> horarios = new ArrayList<>();
-		horarios.add(new Horario("FRIDAY", "08:00", "13:00"));
-		horarios.add(new Horario("FRIDAY", "15:00", "20:00"));
+		horarios.add(new Horario(DayOfWeek.FRIDAY, LocalTime.of(8, 00), LocalTime.of(13, 00)));
+		horarios.add(new Horario(DayOfWeek.FRIDAY, LocalTime.of(15, 00), LocalTime.of(20, 00)));
 		cargaSUBE = new Servicio("cargar SUBE", horarios);
 		Direccion direccionCGP = new Direccion("Corrientes", 500);
 		List<Point> puntos = new ArrayList<>();
@@ -71,13 +73,18 @@ public class TestEntrega1 {
 		// ----------------------------LOCAL------------------------------
 		coordenadaStarbucks = new Point(-58.413718, -34.593303);
 		coordenadaCercaStarbucks = new Point(-58.414099, -34.593686);
+
+		LocalTime horaInicio = LocalTime.of(10, 00);
+		LocalTime horaFin = LocalTime.of(20, 00);
+
 		List<Horario> horarios2 = new ArrayList<>();
-		horarios2.add(new Horario("MONDAY", "10:00", "20:00"));
-		horarios2.add(new Horario("TUESDAY", "10:00", "20:00"));
-		horarios2.add(new Horario("WEDNESDAY", "10:00", "20:00"));
-		horarios2.add(new Horario("THURSDAY", "10:00", "20:00"));
-		horarios2.add(new Horario("FRIDAY", "10:00", "20:00"));
-		horarios2.add(new Horario("SATURDAY", "10:00", "20:00"));
+		horarios2.add(new Horario(DayOfWeek.MONDAY, horaInicio, horaFin));
+		horarios2.add(new Horario(DayOfWeek.TUESDAY, horaInicio, horaFin));
+		horarios2.add(new Horario(DayOfWeek.WEDNESDAY, horaInicio, horaFin));
+		horarios2.add(new Horario(DayOfWeek.THURSDAY, horaInicio, horaFin));
+		horarios2.add(new Horario(DayOfWeek.FRIDAY, horaInicio, horaFin));
+		horarios2.add(new Horario(DayOfWeek.SATURDAY, horaInicio, horaFin));
+
 		Direccion direccionStarbucks = new Direccion("Coronel Diaz", 1400);
 
 		starbucks = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks, horarios2,
@@ -96,47 +103,47 @@ public class TestEntrega1 {
 	// Tests para Calculo de Cercanias
 	@Test
 	public void testStarbucksNoEstaCercaDeMiCoordenada() {
-		Assert.assertEquals(starbucks.estasCercaDe(coordenadaMia), false);
+		Assert.assertFalse(starbucks.estasCercaDe(coordenadaMia));
 	}
 
 	@Test
 	public void testStarbucksEstaCercaDeCoordenadaCercaStarbucks() {
-		Assert.assertEquals(starbucks.estasCercaDe(coordenadaCercaStarbucks), true);
+		Assert.assertTrue(starbucks.estasCercaDe(coordenadaCercaStarbucks));
 	}
 
 	@Test
 	public void testParadaDeColectivoNoEstaCercaDeMiCoordenada() {
-		Assert.assertEquals(parada114DeCabildoYMonroe.estasCercaDe(coordenadaMia), false);
+		Assert.assertFalse(parada114DeCabildoYMonroe.estasCercaDe(coordenadaMia));
 	}
 
 	@Test
 	public void testBancoCiudadCabildoNoEstaCercaDeMiCoordenada() {
-		Assert.assertEquals(bancoCiudadCabildo.estasCercaDe(coordenadaMia), false);
+		Assert.assertFalse(bancoCiudadCabildo.estasCercaDe(coordenadaMia));
 	}
 
 	@Test
 	public void testBancoCiudadCabildoEstaCercaDeCoordenadaCercaBancoCiudad() {
-		Assert.assertEquals(bancoCiudadCabildo.estasCercaDe(coordenadaCercaBancoCiudad), true);
+		Assert.assertTrue(bancoCiudadCabildo.estasCercaDe(coordenadaCercaBancoCiudad));
 	}
 
 	@Test
 	public void testUnPOIEstaAMenosDe1000MetrosDeOtroPOI() {
-		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe), true);
+		Assert.assertTrue(bancoCiudadCabildo.estasAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe));
 	}
 
 	@Test
 	public void testUnPOINoEstaAMenosDe300MetrosDeOtroPOI() {
-		Assert.assertEquals(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe), false);
+		Assert.assertFalse(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe));
 	}
 
 	@Test
 	public void testPuntoDentroDeLaCGP() {
-		Assert.assertEquals(cgp1.estasCercaDe(coordenadaMia), true);
+		Assert.assertTrue(cgp1.estasCercaDe(coordenadaMia));
 	}
 
 	@Test
 	public void testPuntoAfueraDeLaCGP() {
-		Assert.assertEquals(cgp1.estasCercaDe(coordenadaParada114), false);
+		Assert.assertFalse(cgp1.estasCercaDe(coordenadaParada114));
 	}
 
 	// Tests para Busqueda de Texto Libre
@@ -168,14 +175,14 @@ public class TestEntrega1 {
 	// Tests de disponibilidad
 	@Test
 	public void testElCGPDisponibleParaCargarSube() {
-		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 10, 10, 30)), cargaSUBE), true);
-		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 15, 10, 30)), cargaSUBE), true);
+		Assert.assertTrue(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 10, 10, 30)), cargaSUBE));
+		Assert.assertTrue(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 15, 10, 30)), cargaSUBE));
 	}
 
 	@Test
 	public void testCGPNoDispponibleParaCargarSube() {
-		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 14, 10, 30)), cargaSUBE), false);
-		Assert.assertEquals(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), cargaSUBE), false);
+		Assert.assertFalse(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 14, 10, 30)), cargaSUBE));
+		Assert.assertFalse(cgp1.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), cargaSUBE));
 	}
 
 	@Test(expected = NoExisteServicioAsociadoException.class)
@@ -185,19 +192,17 @@ public class TestEntrega1 {
 
 	@Test
 	public void testParadaDeColectivoDisponible() {
-		Assert.assertEquals(parada114DeCabildoYMonroe.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), null),
-				true);
+		Assert.assertTrue(parada114DeCabildoYMonroe.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), null));
 	}
 
 	@Test
 	public void testBancoDisponible() {
-		Assert.assertEquals(bancoCiudadCabildo.estaDisponible((LocalDateTime.of(2016, 1, 14, 10, 10, 30)), prestamo),
-				true);
+		Assert.assertTrue(bancoCiudadCabildo.estaDisponible((LocalDateTime.of(2016, 1, 14, 10, 10, 30)), prestamo));
 	}
 
 	@Test
 	public void testLocalDisponible() {
-		Assert.assertEquals(starbucks.estaDisponible((LocalDateTime.of(2016, 1, 14, 10, 10, 30)), null), true);
+		Assert.assertTrue(starbucks.estaDisponible(LocalDateTime.of(2016, 1, 14, 10, 10, 30)));
 	}
 
 }

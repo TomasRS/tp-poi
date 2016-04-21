@@ -16,7 +16,7 @@ public abstract class POI {
 	public String getNombre() {
 		return this.nombre;
 	}
-	
+
 	public Point getCoordenada() {
 		return coordenada;
 	}
@@ -61,12 +61,8 @@ public abstract class POI {
 
 	public boolean contiene(String unaPalabraClave) {
 		List<String> posiblesPalabrasClaves = this.palabrasClave();
-		try {
-			return (posiblesPalabrasClaves.stream()
-					.anyMatch(unAtributo -> this.estanContenidos(unaPalabraClave, unAtributo)));
-		} catch (Exception excepcion) {
-			return false;
-		}
+		return (posiblesPalabrasClaves.stream()
+				.anyMatch(unAtributo -> this.estanContenidos(unaPalabraClave, unAtributo)));
 	}
 
 	protected boolean estanContenidos(String unaPalabraClave, String unAtributo) {

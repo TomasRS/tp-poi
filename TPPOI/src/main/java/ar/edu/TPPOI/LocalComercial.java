@@ -38,8 +38,8 @@ public class LocalComercial extends POI {
 		this.direccion = unaDireccion;
 	}
 
-	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio) {
-		return this.horarios.stream().anyMatch(horario -> horario.estaEnMiHorario(unMomento));
+	public boolean estaDisponible(LocalDateTime unMomento) {
+		return (new ExisteHorarioDisponibleEnHorarios(this.horarios, unMomento)).validar();
 	}
 
 }
