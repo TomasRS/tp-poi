@@ -5,14 +5,16 @@ import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POI {
 
-	public ParadaDeColectivo(String unNombre, Point unaCoordenada) {
-		this(unNombre, unaCoordenada, 100);
+	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Direccion unaDireccion) {
+		this(unNombre, unaCoordenada, 100, unaDireccion);
 	}
 
-	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Integer unRadioCercania) {
+	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Integer unRadioCercania, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.coordenada = unaCoordenada;
 		this.radioCercania = unRadioCercania;
+		this.direccion = unaDireccion;
+		this.rubro = "Transporte";
 	}
 
 	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio) {
