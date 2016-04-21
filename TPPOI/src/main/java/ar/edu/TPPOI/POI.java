@@ -12,39 +12,23 @@ public abstract class POI {
 	protected Point coordenada;
 	protected Direccion direccion;
 
-// Setters y getters
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
+	// Getters
 	public String getNombre() {
 		return this.nombre;
 	}
-
-	public void setRubro(String rubro) {
-		this.rubro = rubro;
-	}
-
+	
 	public Point getCoordenada() {
 		return coordenada;
 	}
 
-	public void setCoordenada(Point unaCoordenada) {
-		this.coordenada = unaCoordenada;
-	}
-	
-	public void setDireccion(Direccion direccion){
-		this.direccion = direccion;
-	}
-
-// FIN Setters y getters
+	// --------------------Fin-Getters----------------------------
 
 	public boolean sosValido() {
 		return this.tengoNombre() && this.tengoCoordenada();
 	}
 
 	public boolean tengoNombre() {
-		return this.nombre != null;
+		return this.getNombre() != null;
 	}
 
 	public boolean tengoCoordenada() {
@@ -71,12 +55,7 @@ public abstract class POI {
 		List<String> posiblesPalabrasClaves = new ArrayList<>();
 		posiblesPalabrasClaves.add(nombre);
 		posiblesPalabrasClaves.add(rubro);
-		//capturo excepciones para manejar errores de falta de instanciacion
-		try{
-			posiblesPalabrasClaves.addAll(direccion.posiblesPalabrasClaves());
-		} catch (Exception e) {
-			//"No tiene direccion que agregar
-		}
+		posiblesPalabrasClaves.addAll(direccion.posiblesPalabrasClaves());
 		return posiblesPalabrasClaves;
 	}
 
