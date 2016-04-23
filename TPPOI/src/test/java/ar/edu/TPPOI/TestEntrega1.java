@@ -171,6 +171,12 @@ public class TestEntrega1 {
 	public void testEncuentraNombreServicioSUBE() {
 		Assert.assertEquals(mapaInteractivo.buscar("SUBE").size(), 1);
 	}
+	
+	@Test
+	public void testEncuentraParada114() {
+		Assert.assertEquals(mapaInteractivo.buscar("114").size(), 1);
+	}
+
 
 	// Tests de disponibilidad
 	@Test
