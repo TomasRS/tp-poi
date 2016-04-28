@@ -15,5 +15,9 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		this.direccion = unaDireccion;
 		this.rubro = "Bancos";
 	}
+	
+	public boolean coincideConAtributo(String unTextoLibre){
+		return false;
+	}
 
 }

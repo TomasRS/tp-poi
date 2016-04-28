@@ -17,5 +17,10 @@ public class CGP extends EmpresaMultiServicios {
 	public boolean estasCercaDe(Point unaCoordenada) {
 		return this.comuna.isInside(unaCoordenada);
 	}
+	
+	public boolean coincideConAtributo(String unTextoLibre){
+		return servicios.stream()
+						.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()));
+	}
 
 }
