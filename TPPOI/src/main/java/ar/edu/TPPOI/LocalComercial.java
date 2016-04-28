@@ -37,7 +37,11 @@ public class LocalComercial extends POI {
 		this.rubro = unRubro;
 		this.direccion = unaDireccion;
 	}
-
+	
+	public boolean coincideConAtributo(String unTextoLibre){
+		return this.rubro.equals(unTextoLibre);
+	}
+	
 	public boolean estaDisponible(LocalDateTime unMomento) {
 		return (new ExisteHorarioDisponibleEnHorarios(this.horarios, unMomento)).validar();
 	}

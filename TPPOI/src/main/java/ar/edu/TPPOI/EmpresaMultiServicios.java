@@ -35,4 +35,9 @@ public abstract class EmpresaMultiServicios extends POI {
 		return this.servicios.stream()
 				.anyMatch(unServicio -> this.estanContenidos(unaPalabraClave, unServicio.getNombre()));
 	}
+	
+	public boolean coincideConAtributo(String unTextoLibre){
+		return servicios.stream()
+						.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()));
+	}
 }

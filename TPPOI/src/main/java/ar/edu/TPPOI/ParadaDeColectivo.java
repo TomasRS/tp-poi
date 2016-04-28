@@ -20,5 +20,9 @@ public class ParadaDeColectivo extends POI {
 	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio) {
 		return true;
 	}
+	
+	public boolean coincideConAtributo(String unTextoLibre){
+		return this.nombre.equals(unTextoLibre);
+	}
 
 }

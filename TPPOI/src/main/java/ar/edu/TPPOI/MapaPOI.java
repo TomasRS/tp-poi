@@ -12,10 +12,10 @@ public class MapaPOI {
 		return listaDePOIs;
 	}
 
-	public List<POI> buscar(String palabraClave){
+	public List<POI> buscar(String textoLibre){
 		return (this.getListaDePOIs()
 			.stream()
-			.filter(unPOI -> unPOI.contiene(palabraClave))
+			.filter(unPOI -> unPOI.contiene(textoLibre))
 			.collect(Collectors.toList()));
 	}
 }

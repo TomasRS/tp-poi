@@ -11,6 +11,7 @@ public abstract class POI {
 	protected Integer radioCercania;
 	protected Point coordenada;
 	protected Direccion direccion;
+	protected List<String> tags = new ArrayList<>();
 
 	// Getters
 	public String getNombre() {
@@ -22,7 +23,9 @@ public abstract class POI {
 	}
 
 	// --------------------Fin-Getters----------------------------
-
+	
+	public abstract boolean coincideConAtributo(String unTextoLibre);
+	
 	public boolean sosValido() {
 		return this.tengoNombre() && this.tengoCoordenada();
 	}
@@ -50,23 +53,23 @@ public abstract class POI {
 	public boolean estasAMenosDeXMetrosDe(Integer unosMetros, POI unPOI) {
 		return this.estasAMenosDeXMetrosDe(unosMetros, unPOI.getCoordenada());
 	}
-
-	protected List<String> palabrasClave() {
-		List<String> posiblesPalabrasClaves = new ArrayList<>();
-		posiblesPalabrasClaves.add(nombre);
-		posiblesPalabrasClaves.add(rubro);
-		posiblesPalabrasClaves.addAll(direccion.posiblesPalabrasClaves());
-		return posiblesPalabrasClaves;
+	
+	public boolean coincideConAlgunTag(String unTextoLibre){
+		return tags.stream()
+				   .anyMatch(unTag -> unTag.equals(unTextoLibre));
 	}
 
-	public boolean contiene(String unaPalabraClave) {
-		List<String> posiblesPalabrasClaves = this.palabrasClave();
-		return (posiblesPalabrasClaves.stream()
-				.anyMatch(unAtributo -> this.estanContenidos(unaPalabraClave, unAtributo)));
-	}
 
+	public boolean contiene(String unTextoLibre){
+		return (this.coincideConAtributo(unTextoLibre) ||
+				this.coincideConAlgunTag(unTextoLibre));
+	}
+	
 	protected boolean estanContenidos(String unaPalabraClave, String unAtributo) {
 		return StringUtils.containsIgnoreCase(unaPalabraClave, unAtributo)
 				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
 	}
+	
+	
+
 }
