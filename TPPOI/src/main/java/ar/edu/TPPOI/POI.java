@@ -13,7 +13,7 @@ public abstract class POI {
 	protected Direccion direccion;
 	protected List<String> tags = new ArrayList<>();
 
-	// Getters
+	// Getters y setters
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -21,7 +21,14 @@ public abstract class POI {
 	public Point getCoordenada() {
 		return coordenada;
 	}
+	
+	public List<String> getTags(){
+		return this.tags;
+	}
 
+	public void setTag(String unTag){
+		this.tags.add(unTag);
+	}
 	// --------------------Fin-Getters----------------------------
 	
 	public abstract boolean coincideConAtributo(String unTextoLibre);

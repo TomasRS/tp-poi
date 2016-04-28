@@ -15,7 +15,7 @@ import org.uqbar.geodds.Polygon;
 public class TestEntrega1 {
 
 	Point coordenadaMia, coordenadaCercaParada114, coordenadaCercaBancoCiudad, coordenadaStarbucks,
-			coordenadaCercaStarbucks;
+			coordenadaCercaStarbucks, coordenadaSportClub;
 	ParadaDeColectivo parada114DeCabildoYMonroe;
 	Point coordenadaParada114;
 	SucursalBanco bancoCiudadCabildo;
@@ -26,6 +26,7 @@ public class TestEntrega1 {
 	Servicio prestamo;
 	Servicio cortePelo;
 	LocalComercial starbucks;
+	LocalComercial sportclub;
 
 	@Before
 	public void init() {
@@ -90,6 +91,29 @@ public class TestEntrega1 {
 		starbucks = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks, horarios2,
 				direccionStarbucks);
 		// --------------------------------------------------------------
+		
+		// ----------------------------GIMNASIO SPORTCLUB------------------
+		coordenadaSportClub = new Point(-58.4627205, -34.5436991);
+
+		LocalTime horaInicioGym = LocalTime.of(7, 00);
+		LocalTime horaFinGym = LocalTime.of(22, 00);
+
+		List<Horario> horariosGym = new ArrayList<>();
+		horariosGym.add(new Horario(DayOfWeek.MONDAY, horaInicioGym, horaFinGym));
+		horariosGym.add(new Horario(DayOfWeek.TUESDAY, horaInicioGym, horaFinGym));
+		horariosGym.add(new Horario(DayOfWeek.WEDNESDAY, horaInicioGym, horaFinGym));
+		horariosGym.add(new Horario(DayOfWeek.THURSDAY, horaInicioGym, horaFinGym));
+		horariosGym.add(new Horario(DayOfWeek.FRIDAY, horaInicioGym, horaFinGym));
+		horariosGym.add(new Horario(DayOfWeek.SATURDAY, horaInicioGym, horaFinGym));
+
+		Direccion direccionSportClub = new Direccion("Avenida Libertador", 7395);
+
+		sportclub = LocalComercial.nuevoLocal("SportClub", coordenadaSportClub, 15,
+				horariosGym, "Gimnasio", direccionSportClub);
+		
+		sportclub.setTag("fitness");
+		sportclub.setTag("musculacion");
+		sportclub.setTag("spinning");
 
 		// Mapa interactivo
 		mapaInteractivo = new MapaPOI();
@@ -97,6 +121,7 @@ public class TestEntrega1 {
 		mapaInteractivo.listaDePOIs.add(bancoCiudadCabildo);
 		mapaInteractivo.listaDePOIs.add(cgp1);
 		mapaInteractivo.listaDePOIs.add(starbucks);
+		mapaInteractivo.listaDePOIs.add(sportclub);
 		// --------------------------------------------------------------
 	}
 
@@ -148,33 +173,23 @@ public class TestEntrega1 {
 
 	// Tests para Busqueda de Texto Libre
 	@Test
-	public void testEncuentraDosPOIsEnBaseAUnTextoLibreJusto() {
-		Assert.assertEquals(mapaInteractivo.buscar("Cabildo").size(), 2);
+	public void testEncuentraPorNombreDeParadaDeColectivo(){
+		Assert.assertEquals(mapaInteractivo.buscar("114").size(), 1);
 	}
-
+	
 	@Test
-	public void testEncuentraDosPOIsEnBaseAUnTextoLibreMasLargo() {
-		Assert.assertEquals(mapaInteractivo.buscar("Avenida Cabildo").size(), 2);
+	public void testEncuentraPorRubroDeLocales(){
+		Assert.assertEquals(mapaInteractivo.buscar("Cafeteria").size(), 1);
 	}
-
+	
 	@Test
-	public void testEncuentraDosPOIsEnBaseAUnTextoLibreMasChico() {
-		Assert.assertEquals(mapaInteractivo.buscar("Cabil").size(), 2);
-	}
-
-	@Test
-	public void testNoEncuentraPOIsEnBaseAUnTextoLibreErroneo() {
-		Assert.assertEquals(mapaInteractivo.buscar("Docabil").size(), 0);
+	public void testEncuentraPorPalabraClave(){
+		Assert.assertEquals(mapaInteractivo.buscar("fitness").size(), 1);
 	}
 
 	@Test
 	public void testEncuentraNombreServicioSUBE() {
 		Assert.assertEquals(mapaInteractivo.buscar("SUBE").size(), 1);
-	}
-	
-	@Test
-	public void testEncuentraParada114() {
-		Assert.assertEquals(mapaInteractivo.buscar("114").size(), 1);
 	}
 
 
