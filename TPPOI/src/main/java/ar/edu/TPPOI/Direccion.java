@@ -1,21 +1,19 @@
 package ar.edu.TPPOI;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Direccion {
 	
-	private String calle1;
-	private String calle2;
-	private Integer numero;
-	private String callePrincipal;
-	private Integer piso;
-	private String letraDepto;
-	private String unidad;
-	private String localidad;
-	private String barrio;
-	private String provincia;
-	private String pais;
+	protected String calle1;
+	protected String calle2;
+	protected Integer numero;
+	protected String callePrincipal;
+	protected Integer piso;
+	protected String letraDepto;
+	protected String unidad;
+	protected String localidad;
+	protected String barrio;
+	protected String provincia;
+	protected String pais;
 	
 	public Direccion() {
 		//Constructor para instanciar la clase sin atributos
@@ -51,22 +49,6 @@ public class Direccion {
 	
 	public void setUnidad(String unidad){
 		this.unidad = unidad;
-	}
-	
-	public List<String> posiblesPalabrasClaves(){
-		List<String> posiblesPalabrasClaves = new ArrayList<>();
-		posiblesPalabrasClaves.add(this.calle1);
-		posiblesPalabrasClaves.add(this.calle2);
-		posiblesPalabrasClaves.add(String.valueOf(numero));
-		posiblesPalabrasClaves.add(callePrincipal);
-		posiblesPalabrasClaves.add(String.valueOf(piso));
-		posiblesPalabrasClaves.add(letraDepto);
-		posiblesPalabrasClaves.add(unidad);
-		posiblesPalabrasClaves.add(localidad);
-		posiblesPalabrasClaves.add(barrio);
-		posiblesPalabrasClaves.add(provincia);
-		posiblesPalabrasClaves.add(pais);
-		return posiblesPalabrasClaves;
 	}
 	
 }

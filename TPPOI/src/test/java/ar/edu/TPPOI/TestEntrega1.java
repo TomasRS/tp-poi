@@ -49,7 +49,7 @@ public class TestEntrega1 {
 		Direccion direccionBancoCiudad = new Direccion();
 		direccionBancoCiudad.setCalles("Cabildo", "Congreso");
 
-		bancoCiudadCabildo = new SucursalBanco("Banco Ciudad", coordenadaBancoCiudad, 50, direccionBancoCiudad);
+		bancoCiudadCabildo = new SucursalBanco("Banco Ciudad", coordenadaBancoCiudad, direccionBancoCiudad);
 		bancoCiudadCabildo.agregarServicio(prestamo);
 
 		// CGP1

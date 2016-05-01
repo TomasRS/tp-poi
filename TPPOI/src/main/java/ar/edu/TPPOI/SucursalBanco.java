@@ -8,7 +8,7 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		this(unNombre, unaCoordenada, 500, unaDireccion);
 	}
 
-	public SucursalBanco(String unNombre, Point unaCoordenada, Integer unRadioCercania, Direccion unaDireccion) {
+	private SucursalBanco(String unNombre, Point unaCoordenada, Integer unRadioCercania, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.coordenada = unaCoordenada;
 		this.radioCercania = unRadioCercania;
