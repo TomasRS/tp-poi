@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -258,6 +257,13 @@ public class TestEntrega1 {
 	public void testBarrioAbastoQuitoCineAbasto() {
 		mapaInteractivo.borrarPOI(cineAbasto);
 		Assert.assertFalse(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
+	}
+	
+	//Test para cambiar nombre a Starbucks
+		@Test
+	public void testStarbuckCambiaAStarbacks(){
+			mapaInteractivo.modificarNombre("starbacks", "starbucks");
+		Assert.assertTrue(starbucks.getNombre().equals("starbacks"));
 	}
 
 }

@@ -76,6 +76,10 @@ public abstract class POI {
 		return StringUtils.containsIgnoreCase(unaPalabraClave, unAtributo)
 				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
 	}
+
+	public void setNombre(String nombre) {
+		this.nombre=nombre;
+	}
 	
 	
 
