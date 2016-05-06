@@ -28,7 +28,9 @@ public class LocalComercial extends POI {
 		return new LocalComercial(unNombre, unaCoordenada, unRadioCercania, unosHorarios, unRubro, unaDireccion);
 	}
 
-	private LocalComercial(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
+	
+	//Para agregar cine hubo que transformar a public este método
+	public LocalComercial(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
 			String unRubro, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.coordenada = unaCoordenada;

@@ -18,4 +18,12 @@ public class MapaPOI {
 			.filter(unPOI -> unPOI.contiene(textoLibre))
 			.collect(Collectors.toList()));
 	}
+	
+	public void agregarPOI(POI poi){
+		listaDePOIs.add(poi);
+	}
+	
+	public void borrarPOI(POI poi){
+		listaDePOIs.remove(poi);
+	}
 }
