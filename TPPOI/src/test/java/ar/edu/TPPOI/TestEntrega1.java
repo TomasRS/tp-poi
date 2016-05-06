@@ -259,11 +259,16 @@ public class TestEntrega1 {
 		Assert.assertFalse(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
 	}
 	
-	//Test para cambiar nombre a Starbucks
+	//Test para cambiar nombres
 		@Test
 	public void testStarbuckCambiaAStarbacks(){
-			mapaInteractivo.modificarNombre("starbacks", "starbucks");
+			starbucks.setNombre("starbacks");
 		Assert.assertTrue(starbucks.getNombre().equals("starbacks"));
 	}
+		@Test
+		public void testBancoCiudadPasaASerBancoDeLaCiudad(){
+			bancoCiudadCabildo.setNombre("bancoDeLaCiudad");
+			Assert.assertTrue(bancoCiudadCabildo.getNombre().equals("bancoDeLaCiudad"));
+		}
 
 }

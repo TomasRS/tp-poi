@@ -13,11 +13,48 @@ public abstract class POI {
 	protected Direccion direccion;
 	protected List<String> tags = new ArrayList<>();
 
-	// Getters y setters
+	
+	public String getRubro() {
+		return rubro;
+	}
+
+	public void setRubro(String rubro) {
+		this.rubro = rubro;
+	}
+
+	public Integer getRadioCercania() {
+		return radioCercania;
+	}
+
+	public void setRadioCercania(Integer radioCercania) {
+		this.radioCercania = radioCercania;
+	}
+
+	public Direccion getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
+
+	public void setCoordenada(Point coordenada) {
+		this.coordenada = coordenada;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+
 	public String getNombre() {
 		return this.nombre;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre=nombre;
+	}
+	
 	public Point getCoordenada() {
 		return coordenada;
 	}
@@ -29,7 +66,7 @@ public abstract class POI {
 	public void setTag(String unTag){
 		this.tags.add(unTag);
 	}
-	// --------------------Fin-Getters----------------------------
+
 	
 	public abstract boolean coincideConAtributo(String unTextoLibre);
 	
@@ -77,10 +114,5 @@ public abstract class POI {
 				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre=nombre;
-	}
-	
-	
 
 }
