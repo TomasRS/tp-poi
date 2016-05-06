@@ -13,6 +13,12 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 public class TestEntrega1 {
+	
+	LocalComercial cineAbasto;
+	MapaPOI barrioAbasto;
+	Point coordenadaCineAbasto;
+	Direccion direccionCineAbasto;
+	
 
 	Point coordenadaMia, coordenadaCercaParada114, coordenadaCercaBancoCiudad, coordenadaStarbucks,
 			coordenadaCercaStarbucks, coordenadaSportClub;
@@ -114,6 +120,22 @@ public class TestEntrega1 {
 		sportclub.setTag("fitness");
 		sportclub.setTag("musculacion");
 		sportclub.setTag("spinning");
+		
+		//Cine Abasto
+		coordenadaCineAbasto = new Point (-34.6033055,-58.411887);
+		direccionCineAbasto = new Direccion ("Av Corrientes", 3247);
+		LocalTime horaInicioCine= LocalTime.of(10, 00);
+		LocalTime horaFinCine = LocalTime.of(23, 00);
+		List<Horario> horariosCine = new ArrayList<>();
+		horariosCine.add(new Horario(DayOfWeek.MONDAY, horaInicioCine, horaFinCine));
+		horariosCine.add(new Horario(DayOfWeek.TUESDAY, horaInicioCine, horaFinCine));
+		horariosCine.add(new Horario(DayOfWeek.WEDNESDAY, horaInicioCine, horaFinCine));
+		horariosCine.add(new Horario(DayOfWeek.THURSDAY, horaInicioCine, horaFinCine));
+		horariosCine.add(new Horario(DayOfWeek.FRIDAY, horaInicioCine, horaFinCine));
+		horariosCine.add(new Horario(DayOfWeek.SATURDAY, horaInicioCine, horaFinCine));
+		horariosCine.add(new Horario(DayOfWeek.SUNDAY, horaInicioCine, horaFinCine));
+		cineAbasto =new LocalComercial("cineAbasto", coordenadaCineAbasto,800, horariosCine, "cine",direccionCineAbasto);
+				
 
 		// Mapa interactivo
 		mapaInteractivo = new MapaPOI();
@@ -122,6 +144,7 @@ public class TestEntrega1 {
 		mapaInteractivo.listaDePOIs.add(cgp1);
 		mapaInteractivo.listaDePOIs.add(starbucks);
 		mapaInteractivo.listaDePOIs.add(sportclub);
+		mapaInteractivo.listaDePOIs.add(cineAbasto);
 		// --------------------------------------------------------------
 	}
 
@@ -224,6 +247,17 @@ public class TestEntrega1 {
 	@Test
 	public void testLocalDisponible() {
 		Assert.assertTrue(starbucks.estaDisponible(LocalDateTime.of(2016, 1, 14, 10, 10, 30)));
+	}
+	
+	//Tests para agregar y quitar POIs
+	@Test
+		public void testBarrioAbastoAgregoCineAbasto() {
+			Assert.assertTrue(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
+		}
+	@Test
+	public void testBarrioAbastoQuitoCineAbasto() {
+		mapaInteractivo.borrarPOI(cineAbasto);
+		Assert.assertFalse(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
 	}
 
 }

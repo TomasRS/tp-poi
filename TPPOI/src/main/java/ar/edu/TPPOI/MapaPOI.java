@@ -26,4 +26,5 @@ public class MapaPOI {
 	public void borrarPOI(POI poi){
 		listaDePOIs.remove(poi);
 	}
+
 }
