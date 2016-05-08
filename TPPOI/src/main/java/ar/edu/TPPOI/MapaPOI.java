@@ -13,13 +13,12 @@ public class MapaPOI {
 	}
 
 	public List<POI> buscar(String textoLibre) {
-		return (this.getListaDePOIs().stream().filter(unPOI -> unPOI.contiene(textoLibre))
-				.collect(Collectors.toList()));
+		return buscar(textoLibre, "");
 	}
 
 	public List<POI> buscar(String textoLibre, String otroTextoLibre) {
 		return (this.getListaDePOIs().stream()
-				.filter(unPOI -> unPOI.contiene(textoLibre) && unPOI.contiene(otroTextoLibre))
+				.filter(unPOI -> unPOI.contiene(textoLibre) && (unPOI.contiene(otroTextoLibre) || otroTextoLibre == ""))
 				.collect(Collectors.toList()));
 	}
 
