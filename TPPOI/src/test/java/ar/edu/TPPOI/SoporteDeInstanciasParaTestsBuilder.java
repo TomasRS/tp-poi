@@ -163,7 +163,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			mapa.listaDePOIs.add(cgpComuna5());
 			mapa.listaDePOIs.add(starbucksCoronelDiaz1400());
 			mapa.listaDePOIs.add(sportClubLibertador7395());
-			mapa.listaDePOIs.add(cineAbasto());
 		}
 
 		return mapa;

@@ -24,8 +24,6 @@ public class CGPTest {
 		prestamo = soporteParaTests.prestamo();
 		cargaSUBE = soporteParaTests.cargaSUBE();
 		cgp1 = soporteParaTests.cgpComuna5();
-
-		// --------------------------------------------------------------
 	}
 
 	@Test

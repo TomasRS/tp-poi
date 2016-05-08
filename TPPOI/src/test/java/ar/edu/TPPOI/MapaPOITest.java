@@ -16,7 +16,6 @@ public class MapaPOITest {
 
 		cineAbasto = soporteParaTests.cineAbasto();
 		mapaInteractivo = soporteParaTests.mapa();
-		// --------------------------------------------------------------
 	}
 
 	@Test
@@ -41,11 +40,13 @@ public class MapaPOITest {
 
 	@Test
 	public void testBarrioAbastoAgregoCineAbasto() {
+		mapaInteractivo.agregarPOI(cineAbasto);
 		Assert.assertTrue(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
 	}
 
 	@Test
 	public void testBarrioAbastoQuitoCineAbasto() {
+		mapaInteractivo.agregarPOI(cineAbasto);
 		mapaInteractivo.borrarPOI(cineAbasto);
 		Assert.assertFalse(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
 	}
