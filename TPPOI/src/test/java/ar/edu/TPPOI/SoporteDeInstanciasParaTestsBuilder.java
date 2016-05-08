@@ -48,6 +48,18 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	}
 
+	public Servicio cargaSUBE() {
+		if (cargaSUBE == null) {
+			List<Horario> horarios = new ArrayList<>();
+			horarios.add(new Horario(DayOfWeek.FRIDAY, LocalTime.of(8, 00), LocalTime.of(13, 00)));
+			horarios.add(new Horario(DayOfWeek.FRIDAY, LocalTime.of(15, 00), LocalTime.of(20, 00)));
+			cargaSUBE = new Servicio("cargar SUBE", horarios);
+		}
+
+		return cargaSUBE;
+
+	}
+
 	public SucursalBanco bancoCiudadCabildoYCongreso() {
 		if (bancoCiudadCabildoYCongreso == null) {
 			coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
@@ -63,10 +75,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public CGP cgpComuna5() {
 		if (cgpComuna5 == null) {
-			List<Horario> horarios = new ArrayList<>();
-			horarios.add(new Horario(DayOfWeek.FRIDAY, LocalTime.of(8, 00), LocalTime.of(13, 00)));
-			horarios.add(new Horario(DayOfWeek.FRIDAY, LocalTime.of(15, 00), LocalTime.of(20, 00)));
-			cargaSUBE = new Servicio("cargar SUBE", horarios);
 			Direccion direccionCGP = new Direccion("Corrientes", 500);
 			List<Point> puntos = new ArrayList<>();
 			puntos.add(new Point(-58.411898, -34.597984));
@@ -77,7 +85,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			puntos.add(new Point(-58.412372, -34.620890));
 			Polygon poligonoCGP = new Polygon(puntos);
 			cgpComuna5 = new CGP("Comuna 5", "Propositos generales", poligonoCGP, direccionCGP);
-			cgpComuna5.agregarServicio(cargaSUBE);
+			cgpComuna5.agregarServicio(cargaSUBE());
 		}
 
 		return cgpComuna5;
@@ -150,12 +158,12 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public MapaPOI mapa() {
 		if (mapa == null) {
 			mapa = new MapaPOI();
-			mapa.listaDePOIs.add(parada114DeCabildoYMonroe);
-			mapa.listaDePOIs.add(bancoCiudadCabildoYCongreso);
-			mapa.listaDePOIs.add(cgpComuna5);
-			mapa.listaDePOIs.add(starbucksCoronelDiaz1400);
-			mapa.listaDePOIs.add(sportClubLibertador7395);
-			mapa.listaDePOIs.add(cineAbasto);
+			mapa.listaDePOIs.add(paradaDeColectivo114DeCabildoYMonroe());
+			mapa.listaDePOIs.add(bancoCiudadCabildoYCongreso());
+			mapa.listaDePOIs.add(cgpComuna5());
+			mapa.listaDePOIs.add(starbucksCoronelDiaz1400());
+			mapa.listaDePOIs.add(sportClubLibertador7395());
+			mapa.listaDePOIs.add(cineAbasto());
 		}
 
 		return mapa;
