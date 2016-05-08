@@ -34,6 +34,16 @@ public class MapaPOITest {
 	}
 
 	@Test
+	public void testEncuentraPorDosPalabrasClave() {
+		Assert.assertEquals(mapaInteractivo.buscar("fitness", "musculacion").size(), 1);
+	}
+
+	@Test
+	public void testNoEncuentraPorDosPalabrasClave() {
+		Assert.assertEquals(mapaInteractivo.buscar("fitness", "SUBE").size(), 0);
+	}
+
+	@Test
 	public void testEncuentraNombreServicioSUBE() {
 		Assert.assertEquals(mapaInteractivo.buscar("SUBE").size(), 1);
 	}
