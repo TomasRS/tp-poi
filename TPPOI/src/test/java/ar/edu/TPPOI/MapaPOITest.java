@@ -8,6 +8,7 @@ public class MapaPOITest {
 
 	LocalComercial cineAbasto;
 	MapaPOI mapaInteractivo;
+	BancoAdapter bancoAdapter;
 
 	@Before
 	public void init() {
@@ -16,6 +17,7 @@ public class MapaPOITest {
 
 		cineAbasto = soporteParaTests.cineAbasto();
 		mapaInteractivo = soporteParaTests.mapa();
+		bancoAdapter = soporteParaTests.bancoAdapter();
 	}
 
 	@Test
@@ -49,6 +51,11 @@ public class MapaPOITest {
 	}
 
 	@Test
+	public void testBuscarBancoPlazaExtraccionesEnSistemaExterno() {
+		Assert.assertEquals((bancoAdapter.buscar("Banco de la Plaza", "extracciones")).size(), 2);
+	}
+
+	@Test
 	public void testBarrioAbastoAgregoCineAbasto() {
 		mapaInteractivo.agregarPOI(cineAbasto);
 		Assert.assertTrue(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
@@ -60,4 +67,28 @@ public class MapaPOITest {
 		mapaInteractivo.borrarPOI(cineAbasto);
 		Assert.assertFalse(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
 	}
+
+	@Test
+	public void testObtenerDosPOISucursalBancoDesdeSistemaExterno() {
+		Assert.assertEquals(mapaInteractivo.buscarEnSistemasExternos("Banco de la Plaza", "extracciones").size(), 2);
+	}
+
+	@Test
+	public void testQueSeAgreguenDosSucursalesBancoQueNoExisten() {
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 5);
+		mapaInteractivo.buscar("Banco de la Plaza", "extracciones");
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+	}
+
+	@Test
+	public void testQueNoSeAgreguenDosSucursalesBancoQueExisten() {
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 5);
+		mapaInteractivo.buscar("Banco de la Plaza", "extracciones");
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+		Assert.assertEquals(mapaInteractivo.busquedaLocal("Banco de la Plaza", "Caballito").size(), 1);
+		Assert.assertEquals(mapaInteractivo.busquedaLocal("Banco de la Plaza", "Avellaneda").size(), 1);
+		mapaInteractivo.buscar("Banco de la Plaza", "extracciones");
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+	}
+
 }

@@ -8,6 +8,9 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class SoporteDeInstanciasParaTestsBuilder {
 
 	Point miCoordenaAbasto, coordenadaCercaParada114, coordenadaCercaBancoCiudad, coordenadaStarbucks,
@@ -16,6 +19,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	ParadaDeColectivo parada114DeCabildoYMonroe;
 	Servicio cargaSUBE, prestamo, cortePelo;
 	LocalComercial starbucksCoronelDiaz1400, sportClubLibertador7395, cineAbasto;
+	BancoExternoImpostor bancoExternoImpostor;
+	BancoAdapter bancoAdapter;
 	SucursalBanco bancoCiudadCabildoYCongreso;
 	CGP cgpComuna5;
 	MapaPOI mapa;
@@ -60,12 +65,35 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	}
 
+	public String json() {
+		return "[" + "{ 'banco': 'Banco de la Plaza'," + "'x': -35.9338322," + "'y': 72.348353,"
+				+ "'sucursal': 'Avellaneda'," + "'gerente': 'Javier Loeschbor',"
+				+ "'servicios': [ 'cobro cheques', 'depósitos', 'extracciones', 'transferencias', 'créditos', '', '', '' ]"
+				+ "}," + "{ 'banco': 'Banco de la Plaza'," + "'x': -35.9345681," + "'y': 72.344546,"
+				+ "'sucursal': 'Caballito'," + "'gerente': 'Fabián Fantaguzzi',"
+				+ "'servicios': [ 'depósitos', 'extracciones', 'transferencias', 'seguros', '', '', '', '' ]" + "}"
+				+ "]";
+
+	}
+
+	public BancoExternoImpostor bancoExternoImpostorMock() {
+		bancoExternoImpostor = mock(BancoExternoImpostor.class);
+		when(bancoExternoImpostor.buscar("Banco de la Plaza", "extracciones")).thenReturn(this.json());
+		return bancoExternoImpostor;
+	}
+
+	public BancoAdapter bancoAdapter() {
+		bancoAdapter = new BancoAdapter(bancoExternoImpostorMock());
+		return bancoAdapter;
+
+	}
+
 	public SucursalBanco bancoCiudadCabildoYCongreso() {
 		if (bancoCiudadCabildoYCongreso == null) {
 			coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
 			Direccion direccionBancoCiudad = new Direccion();
 			direccionBancoCiudad.setCalles("Cabildo", "Congreso");
-			bancoCiudadCabildoYCongreso = new SucursalBanco("Banco Ciudad", coordenadaBancoCiudad,
+			bancoCiudadCabildoYCongreso = new SucursalBanco("Banco Ciudad", "Belgrano", coordenadaBancoCiudad,
 					direccionBancoCiudad);
 			bancoCiudadCabildoYCongreso.agregarServicio(this.prestamo());
 		}
@@ -158,11 +186,12 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public MapaPOI mapa() {
 		if (mapa == null) {
 			mapa = new MapaPOI();
-			mapa.listaDePOIs.add(paradaDeColectivo114DeCabildoYMonroe());
-			mapa.listaDePOIs.add(bancoCiudadCabildoYCongreso());
-			mapa.listaDePOIs.add(cgpComuna5());
-			mapa.listaDePOIs.add(starbucksCoronelDiaz1400());
-			mapa.listaDePOIs.add(sportClubLibertador7395());
+			mapa.agregarPOI(paradaDeColectivo114DeCabildoYMonroe());
+			mapa.agregarPOI(bancoCiudadCabildoYCongreso());
+			mapa.agregarPOI(cgpComuna5());
+			mapa.agregarPOI(starbucksCoronelDiaz1400());
+			mapa.agregarPOI(sportClubLibertador7395());
+			mapa.agregarSistemaExternoAdapter(bancoAdapter());
 		}
 
 		return mapa;

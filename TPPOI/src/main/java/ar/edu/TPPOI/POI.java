@@ -13,7 +13,6 @@ public abstract class POI {
 	protected Direccion direccion;
 	protected List<String> tags = new ArrayList<>();
 
-	
 	public String getRubro() {
 		return rubro;
 	}
@@ -46,30 +45,28 @@ public abstract class POI {
 		this.tags = tags;
 	}
 
-
 	public String getNombre() {
 		return this.nombre;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre=nombre;
+		this.nombre = nombre;
 	}
-	
+
 	public Point getCoordenada() {
 		return coordenada;
 	}
-	
-	public List<String> getTags(){
+
+	public List<String> getTags() {
 		return this.tags;
 	}
 
-	public void setTag(String unTag){
+	public void setTag(String unTag) {
 		this.tags.add(unTag);
 	}
 
-	
 	public abstract boolean coincideConAtributo(String unTextoLibre);
-	
+
 	public boolean sosValido() {
 		return this.tengoNombre() && this.tengoCoordenada();
 	}
@@ -86,33 +83,42 @@ public abstract class POI {
 		return this.estasAMenosDeXMetrosDe(this.radioCercania, unaCoordenada);
 	}
 
-	public boolean estasAMenosDeXMetrosDe(Integer unosMetros, Point unaCoordenada) {
+	private boolean estasAMenosDeXMetrosDe(Integer unosMetros, Point unaCoordenada) {
 		return this.distanciaAUnaCoordenada(unaCoordenada) < (unosMetros / 1000.0);
 	}
 
-	public double distanciaAUnaCoordenada(Point unaCoordenada) {
+	private double distanciaAUnaCoordenada(Point unaCoordenada) {
 		return this.getCoordenada().distance(unaCoordenada);
 	}
 
 	public boolean estasAMenosDeXMetrosDe(Integer unosMetros, POI unPOI) {
 		return this.estasAMenosDeXMetrosDe(unosMetros, unPOI.getCoordenada());
 	}
-	
-	public boolean coincideConAlgunTag(String unTextoLibre){
-		return tags.stream()
-				   .anyMatch(unTag -> unTag.equals(unTextoLibre));
+
+	private boolean coincideConAlgunTag(String unTextoLibre) {
+		return tags.stream().anyMatch(unTag -> unTag.equals(unTextoLibre));
 	}
 
-
-	public boolean contiene(String unTextoLibre){
-		return (this.coincideConAtributo(unTextoLibre) ||
-				this.coincideConAlgunTag(unTextoLibre));
+	public boolean busqueda(String unTextoLibre, String otroTextoLibre) {
+		return busquedaConcreta(unTextoLibre) && (otroTextoLibre == "" || busquedaConcreta(otroTextoLibre));
 	}
-	
+
+	private boolean busquedaConcreta(String unTextoLibre) {
+		return this.coincideConAtributo(unTextoLibre) || this.coincideConAlgunTag(unTextoLibre);
+	}
+
 	protected boolean estanContenidos(String unaPalabraClave, String unAtributo) {
 		return StringUtils.containsIgnoreCase(unaPalabraClave, unAtributo)
 				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
 	}
 
+	public String printString() {
+		return nombre + rubro + radioCercania.toString() + coordenada.toString();
+	}
+	
+	public void busquedaParaActualizarmeSiCorresponde(MapaPOI unMapaPOI){
+		unMapaPOI.actualizarPOISiCorresponde(this, this.getNombre());
+	}
+	
 
 }
