@@ -91,4 +91,5 @@ public class MapaPOITest {
 		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
 	}
 
+	
 }

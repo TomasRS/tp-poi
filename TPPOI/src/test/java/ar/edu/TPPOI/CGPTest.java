@@ -52,4 +52,8 @@ public class CGPTest {
 	public void testCgpSinServicioAsociado() {
 		cgp1.estaDisponible((LocalDateTime.of(2016, 1, 15, 10, 10, 30)), prestamo);
 	}
+	@Test
+	public void testEncuentraAlmagroEnElCGP5(){
+		Assert.assertTrue(cgp1.getZonasQueIncluye().contains("Almagro"));
+	}
 }

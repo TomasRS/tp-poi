@@ -105,6 +105,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		if (cgpComuna5 == null) {
 			Direccion direccionCGP = new Direccion("Corrientes", 500);
 			List<Point> puntos = new ArrayList<>();
+			List<String> zonasCGP5 = new ArrayList<>();
 			puntos.add(new Point(-58.411898, -34.597984));
 			puntos.add(new Point(-58.426446, -34.597878));
 			puntos.add(new Point(-58.433334, -34.602696));
@@ -114,6 +115,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			Polygon poligonoCGP = new Polygon(puntos);
 			cgpComuna5 = new CGP("Comuna 5", "Propositos generales", poligonoCGP, direccionCGP);
 			cgpComuna5.agregarServicio(cargaSUBE());
+			zonasCGP5.add("Almagro");
+			cgpComuna5.setZonasQueIncluye(zonasCGP5);
 		}
 
 		return cgpComuna5;
