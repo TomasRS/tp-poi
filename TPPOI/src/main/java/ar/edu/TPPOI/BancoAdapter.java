@@ -42,4 +42,11 @@ public class BancoAdapter implements SistemaExternoAdapterInterface {
 				unNombreServicio -> sucursalBanco.agregarServicio(Servicio.nuevoServicioBanco(unNombreServicio)));
 		return sucursalBanco;
 	}
+
+	@Override
+	public List<CentroDTO> buscar(String unTextoLibre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

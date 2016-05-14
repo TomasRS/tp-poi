@@ -18,6 +18,9 @@ public class CGP extends EmpresaMultiServicios {
 		this.zonasQueIncluye = zonasQueIncluye;
 	}
 
+	public CGP(Direccion unaDireccion){
+		this.direccion=unaDireccion;
+	}
 	public CGP(String unNombre, String unRubro, Polygon unaComuna, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.rubro = unRubro;
@@ -30,8 +33,9 @@ public class CGP extends EmpresaMultiServicios {
 	}
 	
 	public boolean coincideConAtributo(String unTextoLibre){
-		return servicios.stream()
-						.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()));
+	 return this.servicios.stream()
+				.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()));
 	}
+
 
 }
