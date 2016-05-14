@@ -75,6 +75,10 @@ public abstract class POI {
 	}
 
 	public abstract boolean coincideConAtributo(String unTextoLibre);
+	
+	public boolean soyElMismoPOI(POI otroPOI){
+		return otroPOI.getId() == id;
+	}
 
 	public boolean sosValido() {
 		return this.tengoNombre() && this.tengoCoordenada();

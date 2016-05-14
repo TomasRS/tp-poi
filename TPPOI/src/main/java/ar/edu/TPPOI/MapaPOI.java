@@ -62,7 +62,10 @@ public class MapaPOI {
 			//unaListaPOIs
 		}		
 	}
-	 
+
+	private boolean estaEnLocal(POI unPOIExterno){
+		return listaDePOIs.stream().anyMatch(unPOILocal -> unPOILocal.soyElMismoPOI(unPOIExterno));
+	}
 
 	public void agregarSistemaExternoAdapter(SistemaExternoAdapterInterface unSistemaExternoAdapter) {
 		listaDeSistemaExternoAdapter.add(unSistemaExternoAdapter);
