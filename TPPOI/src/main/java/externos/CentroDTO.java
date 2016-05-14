@@ -10,10 +10,20 @@ import ar.edu.TPPOI.POI;
 import ar.edu.TPPOI.Rango;
 
 public class CentroDTO {
-		
+	
+	private String id;
 	private Integer numeroDeComuna;
+	
 	public Integer getNumeroDeComuna() {
 		return numeroDeComuna;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setNumeroDeComuna(Integer numeroDeComuna) {
@@ -80,6 +90,7 @@ public class CentroDTO {
 		List<CentroDTO> listaDeCGPsExternosParaElAdapter= new ArrayList <CentroDTO>();
 		Rango rangos= new Rango();
 		rangos.traer();
+		nuevoCGP.setId("Identificador 3");
 		nuevoCGP.setDirector("Juan");
 		nuevoCGP.setDomicilioCompleto("Junin 521");
 		nuevoCGP.zonas.add("San Cristobal");
