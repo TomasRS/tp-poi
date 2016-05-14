@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import com.google.gson.Gson;
 
+import externos.BancoJSON;
+
 public class BancoJSONTest {
 
 	@Test

@@ -1,8 +1,13 @@
-package ar.edu.TPPOI;
+package externos;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import ar.edu.TPPOI.Direccion;
+import ar.edu.TPPOI.Intervalo;
+import ar.edu.TPPOI.POI;
+import ar.edu.TPPOI.Rango;
 
 public class CentroDTO {
 		

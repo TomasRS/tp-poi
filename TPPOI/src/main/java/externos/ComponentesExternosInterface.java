@@ -1,6 +1,8 @@
-package ar.edu.TPPOI;
+package externos;
 
 import java.util.List;
+
+import ar.edu.TPPOI.POI;
 
 public interface ComponentesExternosInterface {
 

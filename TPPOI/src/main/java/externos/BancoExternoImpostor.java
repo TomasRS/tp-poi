@@ -1,4 +1,4 @@
-package ar.edu.TPPOI;
+package externos;
 
 public class BancoExternoImpostor {
 

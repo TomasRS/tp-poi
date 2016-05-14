@@ -8,6 +8,9 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import externos.BancoAdapter;
+import externos.BancoExternoImpostor;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

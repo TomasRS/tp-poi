@@ -1,4 +1,4 @@
-package ar.edu.TPPOI;
+package externos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,11 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import com.google.gson.Gson;
+
+import ar.edu.TPPOI.Direccion;
+import ar.edu.TPPOI.POI;
+import ar.edu.TPPOI.Servicio;
+import ar.edu.TPPOI.SucursalBanco;
 
 public class BancoAdapter implements SistemaExternoAdapterInterface {
 

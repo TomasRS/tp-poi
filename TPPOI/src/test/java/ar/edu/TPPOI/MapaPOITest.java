@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import externos.BancoAdapter;
+
 public class MapaPOITest {
 
 	LocalComercial cineAbasto;
