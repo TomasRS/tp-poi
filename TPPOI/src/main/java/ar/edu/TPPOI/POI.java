@@ -6,12 +6,21 @@ import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
+	protected String id;
 	protected String nombre;
 	protected String rubro;
 	protected Integer radioCercania;
 	protected Point coordenada;
 	protected Direccion direccion;
 	protected List<String> tags = new ArrayList<>();
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getRubro() {
 		return rubro;

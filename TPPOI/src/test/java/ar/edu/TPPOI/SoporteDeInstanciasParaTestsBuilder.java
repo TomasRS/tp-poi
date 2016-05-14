@@ -42,6 +42,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			Direccion direccionParada114 = new Direccion();
 			direccionParada114.setCalles("Monroe", "Cabildo");
 			parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114, direccionParada114);
+			parada114DeCabildoYMonroe.setId("id_parada114");
 		}
 
 		return parada114DeCabildoYMonroe;
@@ -107,6 +108,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			bancoCiudadCabildoYCongreso = new SucursalBanco("Banco Ciudad", "Belgrano", coordenadaBancoCiudad,
 					direccionBancoCiudad);
 			bancoCiudadCabildoYCongreso.agregarServicio(this.prestamo());
+			bancoCiudadCabildoYCongreso.setId("id_bancoC_C");
 		}
 
 		return bancoCiudadCabildoYCongreso;
@@ -128,6 +130,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			cgpComuna5.agregarServicio(cargaSUBE());
 			zonasCGP5.add("Almagro");
 			cgpComuna5.setZonasQueIncluye(zonasCGP5);
+			cgpComuna5.setId("id_com5");
 		}
 
 		return cgpComuna5;
@@ -148,6 +151,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			Direccion direccionStarbucks = new Direccion("Coronel Diaz", 1400);
 			starbucksCoronelDiaz1400 = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks,
 					horarios2, direccionStarbucks);
+			starbucksCoronelDiaz1400.setId("id_stbks");
 		}
 
 		return starbucksCoronelDiaz1400;
@@ -171,6 +175,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			sportClubLibertador7395.setTag("fitness");
 			sportClubLibertador7395.setTag("musculacion");
 			sportClubLibertador7395.setTag("spinning");
+			sportClubLibertador7395.setId("id_sptclub");
 		}
 
 		return sportClubLibertador7395;
@@ -192,6 +197,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horariosCine.add(new Horario(DayOfWeek.SUNDAY, horaInicioCine, horaFinCine));
 			cineAbasto = new LocalComercial("cineAbasto", coordenadaCineAbasto, 800, horariosCine, "cine",
 					direccionCineAbasto);
+			cineAbasto.setId("id_abasto");
 		}
 
 		return cineAbasto;
