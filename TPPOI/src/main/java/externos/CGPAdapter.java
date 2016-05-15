@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.TPPOI.CGP;
+import ar.edu.TPPOI.Direccion;
 import ar.edu.TPPOI.POI;
 
 public class CGPAdapter implements SistemaExternoAdapterInterface{
 	
-	CGPExterno CGPExternoImpostor;
+	CGPExternoImpostor CGPExternoImpostor;
 	
-	public CGPAdapter(CGPExterno unSistemaConsultaDeCGPsExterno) {
+	public CGPAdapter(CGPExternoImpostor unSistemaConsultaDeCGPsExterno) {
 		CGPExternoImpostor = unSistemaConsultaDeCGPsExterno;
 	}
 
@@ -27,12 +28,31 @@ public class CGPAdapter implements SistemaExternoAdapterInterface{
 
 	private List<POI> generarNuevosCGPs(List<CentroDTO> listaDeCGPsExternos) {
 		List<POI> nuevasCGPs = new ArrayList<>();
-		listaDeCGPsExternos.stream().forEach(unCGP->nuevasCGPs.add(setAtributosParaActualizar(unCGP)));
+		listaDeCGPsExternos.stream().forEach(unCGPExterno->nuevasCGPs.add(crearCGPDeExterno(unCGPExterno)));
 		return nuevasCGPs;
 	}
 
-	private CGP setAtributosParaActualizar(CentroDTO unCGP){
-		return new CGP(unCGP.partirDomicilio());
+	private CGP crearCGPDeExterno(CentroDTO unCGPExterno){
+		CGP nuevoCGP = new CGP(partirDomicilio(unCGPExterno));
+		
+		return nuevoCGP;
+	}
+	
+	public Direccion partirDomicilio(CentroDTO unCGPExterno) {
+		Integer numeracion=0;
+		String callePrincipal="";
+		String str = unCGPExterno.getDomicilioCompleto();
+		String delimiter = "";
+		String[] temp;
+		temp = str.split(delimiter);
+		for (int i = unCGPExterno.getDomicilioCompleto().length()-1;i==0; i--)
+		{
+		numeracion=Integer.parseInt(temp[1]);
+		callePrincipal=str.substring(0, str.length()-temp.length);
+		}
+		Direccion domicilioConvertido= new Direccion();
+		domicilioConvertido.setPrincipal(callePrincipal, numeracion);
+		return domicilioConvertido;
 	}
 
 	@Override

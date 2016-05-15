@@ -86,6 +86,7 @@ public class CentroDTO {
 	private Rango rangos;
 	
 	public List<CentroDTO> traer() {
+		//esto va en el mock
 		CentroDTO nuevoCGP = new CentroDTO();
 		List<CentroDTO> listaDeCGPsExternosParaElAdapter= new ArrayList <CentroDTO>();
 		Rango rangos= new Rango();
@@ -101,27 +102,5 @@ public class CentroDTO {
 		this.serviciosDTO.put("asesoramiento", rangos.traer());
 		listaDeCGPsExternosParaElAdapter.add(nuevoCGP);		
 		return listaDeCGPsExternosParaElAdapter;
-	}
-
-	public POI setAtributosParaActualizar() {
-		return null;
-		
-	}
-
-	public Direccion partirDomicilio() {
-		Integer numeracion=0;
-		String callePrincipal="";
-		String str = this.domicilioCompleto;
-		String delimiter = "";
-		String[] temp;
-		temp = str.split(delimiter);
-		for (int i = this.getDomicilioCompleto().length()-1;i==0; i--)
-		{
-		numeracion=Integer.parseInt(temp[1]);
-		callePrincipal=str.substring(0, str.length()-temp.length);
-		}
-		Direccion domicilioConvertido= new Direccion();
-		domicilioConvertido.setPrincipal(callePrincipal, numeracion);
-		return domicilioConvertido;
 	}
 }
