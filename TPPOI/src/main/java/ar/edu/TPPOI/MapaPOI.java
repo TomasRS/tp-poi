@@ -45,27 +45,32 @@ public class MapaPOI {
 		listaDePOIs.remove(poi);
 	}
 
-	
 	private void actualizarPOIsSiCorresponde(List<POI> unaListaDePOIs) {
 		unaListaDePOIs.stream().forEach(unPOI -> actualizarPOISiCorresponde(unPOI));
-	 }
-	
-	private void actualizarPOISiCorresponde(POI unPOIExterno){
-		if (estaEnLocal(unPOIExterno)){
-			//actualiza POI
+	}
+
+	private void actualizarPOISiCorresponde(POI unPOIExterno) {
+		if (estaEnLocal(unPOIExterno)) {
+			// actualiza POI
+			buscarPoi(unPOIExterno).actualizar(unPOIExterno);
 		} else {
 			agregarPOI(unPOIExterno);
 		}
 	}
 
-	private boolean estaEnLocal(POI unPOIExterno){
-		return listaDePOIs.stream().anyMatch(unPOILocal -> unPOILocal.soyElMismoPOI(unPOIExterno));
+	private boolean estaEnLocal(POI unPOIExterno) {
+		return buscarPoi(unPOIExterno) != null;
 	}
 	
-	//metodo que retorna la lista de los ids de POIs como string (lo use para verificar algunas cosas)
-	private String enLista(){
+	private POI buscarPoi(POI poi){
+		return listaDePOIs.stream().filter(unPOILocal -> unPOILocal.soyElMismoPOI(poi)).findFirst().get();
+	}
+
+	// metodo que retorna la lista de los ids de POIs como string (lo use para
+	// verificar algunas cosas)
+	private String enLista() {
 		String salida = "";
-		for (POI unPOI: listaDePOIs){
+		for (POI unPOI : listaDePOIs) {
 			salida += unPOI.getId() + ',';
 		}
 		return salida;

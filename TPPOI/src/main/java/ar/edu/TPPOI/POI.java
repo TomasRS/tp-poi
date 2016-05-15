@@ -129,4 +129,6 @@ public abstract class POI {
 		return nombre + rubro + radioCercania.toString() + coordenada.toString();
 	}
 	
+	public abstract void actualizar( POI unPOIExterno);
+	
 }

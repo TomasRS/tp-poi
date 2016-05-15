@@ -26,4 +26,5 @@ public abstract class EmpresaMultiServicios extends POI {
 		this.servicios.add(unServicio);
 	}
 
+	public abstract void actualizar( POI unPOIExterno);
 }

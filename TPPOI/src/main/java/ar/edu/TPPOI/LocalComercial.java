@@ -29,7 +29,7 @@ public class LocalComercial extends POI {
 	}
 
 	
-	//Para agregar cine hubo que transformar a public este método
+	//Para agregar cine hubo que transformar a public este mï¿½todo
 	public LocalComercial(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
 			String unRubro, Direccion unaDireccion) {
 		this.nombre = unNombre;
@@ -47,5 +47,10 @@ public class LocalComercial extends POI {
 	public boolean estaDisponible(LocalDateTime unMomento) {
 		return (new ExisteHorarioDisponibleEnHorarios(this.horarios, unMomento)).validar();
 	}
+	
+	//No hace nada esta por el metodo abstracto en POI  
+	public void actualizar( POI unPOIExterno){
+		}
+	
 
 }

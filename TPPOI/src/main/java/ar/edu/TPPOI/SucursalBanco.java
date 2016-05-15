@@ -31,5 +31,9 @@ public class SucursalBanco extends EmpresaMultiServicios {
 	public String printString() {
 		return super.printString() + this.getNombreSucursal();
 	}
+	
+	//FALTA
+	public void actualizar( POI unPOIExterno){
+		}
 
 }

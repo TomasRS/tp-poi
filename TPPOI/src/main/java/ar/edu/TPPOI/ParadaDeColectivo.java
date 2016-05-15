@@ -24,5 +24,9 @@ public class ParadaDeColectivo extends POI {
 	public boolean coincideConAtributo(String unTextoLibre){
 		return this.nombre.equals(unTextoLibre);
 	}
+	
+	//No hace nada esta por el metodo abstracto en POI  
+	public void actualizar( POI unPOIExterno){
+		}
 
 }

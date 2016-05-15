@@ -36,6 +36,10 @@ public class CGP extends EmpresaMultiServicios {
 	 return this.servicios.stream()
 				.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()));
 	}
+	
+	//SETEAR ATRIBUTOS DISTINTOS CON LOS DEL EXTERNO
+	public void actualizar( POI unPOIExterno){
+		}
 
 
 }
