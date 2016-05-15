@@ -50,19 +50,6 @@ public class MapaPOI {
 		unaListaDePOIs.stream().forEach(unPOI -> actualizarPOISiCorresponde(unPOI));
 	 }
 	
-	public void actualizarPOISiCorresponde(POI unPOI, String unTextoLibre){
-		this.busquedaLocal(unTextoLibre, "");
-	}
-	
-	public void actualizarPOISiCorresponde(POI unPOI, String unTextoLibre, String otroTextoLibre){
-		List<POI> unaListaPOIs = this.busquedaLocal(unTextoLibre, otroTextoLibre);
-		if (unaListaPOIs.size() == 0){
-			this.agregarPOI(unPOI);
-		}else{
-			//unaListaPOIs
-		}		
-	}
-	
 	private void actualizarPOISiCorresponde(POI unPOIExterno){
 		if (estaEnLocal(unPOIExterno)){
 			//actualiza POI
@@ -73,6 +60,15 @@ public class MapaPOI {
 
 	private boolean estaEnLocal(POI unPOIExterno){
 		return listaDePOIs.stream().anyMatch(unPOILocal -> unPOILocal.soyElMismoPOI(unPOIExterno));
+	}
+	
+	//metodo que retorna la lista de los ids de POIs como string (lo use para verificar algunas cosas)
+	private String enLista(){
+		String salida = "";
+		for (POI unPOI: listaDePOIs){
+			salida += unPOI.getId() + ',';
+		}
+		return salida;
 	}
 
 	public void agregarSistemaExternoAdapter(SistemaExternoAdapterInterface unSistemaExternoAdapter) {

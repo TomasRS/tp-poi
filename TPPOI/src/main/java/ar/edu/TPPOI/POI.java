@@ -77,7 +77,7 @@ public abstract class POI {
 	public abstract boolean coincideConAtributo(String unTextoLibre);
 	
 	public boolean soyElMismoPOI(POI otroPOI){
-		return otroPOI.getId() == id;
+		return id.equals(otroPOI.getId());
 	}
 
 	public boolean sosValido() {
@@ -129,9 +129,4 @@ public abstract class POI {
 		return nombre + rubro + radioCercania.toString() + coordenada.toString();
 	}
 	
-	public void busquedaParaActualizarmeSiCorresponde(MapaPOI unMapaPOI){
-		unMapaPOI.actualizarPOISiCorresponde(this, this.getNombre());
-	}
-	
-
 }

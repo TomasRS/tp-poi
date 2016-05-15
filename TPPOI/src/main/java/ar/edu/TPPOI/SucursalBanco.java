@@ -32,7 +32,4 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		return super.printString() + this.getNombreSucursal();
 	}
 
-	public void busquedaParaActualizarmeSiCorresponde(MapaPOI unMapaPOI) {
-		unMapaPOI.actualizarPOISiCorresponde(this, this.getNombre(), this.getNombreSucursal());
-	}
 }

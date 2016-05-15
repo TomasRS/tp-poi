@@ -92,6 +92,5 @@ public class MapaPOITest {
 		mapaInteractivo.buscar("Banco de la Plaza", "extracciones");
 		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
 	}
-
 	
 }
