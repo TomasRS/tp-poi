@@ -47,7 +47,7 @@ public class MapaPOI {
 
 	
 	private void actualizarPOIsSiCorresponde(List<POI> unaListaDePOIs) {
-		unaListaDePOIs.stream().forEach(unPOI -> unPOI.busquedaParaActualizarmeSiCorresponde(this));
+		unaListaDePOIs.stream().forEach(unPOI -> actualizarPOISiCorresponde(unPOI));
 	 }
 	
 	public void actualizarPOISiCorresponde(POI unPOI, String unTextoLibre){
@@ -61,6 +61,14 @@ public class MapaPOI {
 		}else{
 			//unaListaPOIs
 		}		
+	}
+	
+	private void actualizarPOISiCorresponde(POI unPOIExterno){
+		if (estaEnLocal(unPOIExterno)){
+			//actualiza POI
+		} else {
+			agregarPOI(unPOIExterno);
+		}
 	}
 
 	private boolean estaEnLocal(POI unPOIExterno){
