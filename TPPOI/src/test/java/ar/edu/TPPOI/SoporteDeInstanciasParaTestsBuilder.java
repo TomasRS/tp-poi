@@ -10,6 +10,8 @@ import org.uqbar.geodds.Polygon;
 
 import externos.BancoAdapter;
 import externos.BancoExternoImpostor;
+import externos.CentroDTO;
+import externos.ServicioDTO;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -69,6 +71,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	}
 
+	////////// PARA BANCO EXTERNO
 	public String json() {
 		return "[{ 'id': 'identificador1'," + 
 					"'banco': 'Banco de la Plaza'," + 
@@ -100,6 +103,39 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	}
 
+	/////////////////////////////////////////////////
+	////////// PARA CGP EXTERNO
+	
+	public List<CentroDTO> crearCentrosDTO() {
+		CentroDTO nuevoCGP = new CentroDTO();
+		List<CentroDTO> listaDeCGPsExternosParaElAdapter= new ArrayList <CentroDTO>();
+		nuevoCGP.id = "Identificador 3";
+		nuevoCGP.director = "Juan";
+		nuevoCGP.domicilioCompleto = "Junin 521";
+		nuevoCGP.zonas.add("San Cristobal");
+		nuevoCGP.zonas.add("Balvanera");
+		nuevoCGP.numeroDeComuna = 3;
+		nuevoCGP.telefono = "4375-0644/45";
+		nuevoCGP. serviciosDTO = crearServiciosDTO();
+		listaDeCGPsExternosParaElAdapter.add(nuevoCGP);		
+		return listaDeCGPsExternosParaElAdapter;
+	}
+	
+	public ServicioDTO[] crearServiciosDTO(){
+		ServicioDTO unServicio = new ServicioDTO();
+		unServicio.setNombreServicio("asesoramiento");
+		List<Integer[]> rangosServicio = new ArrayList<>();
+		rangosServicio.add(new Integer[]{1,9,0,14,0});
+		rangosServicio.add(new Integer[]{2,9,0,14,0});
+		rangosServicio.add(new Integer[]{3,9,0,14,0});
+		rangosServicio.add(new Integer[]{4,9,0,14,0});
+		rangosServicio.add(new Integer[]{5,9,0,14,0});
+		rangosServicio.add(new Integer[]{6,10,0,13,0});
+		unServicio.setRangoServicioDTO(rangosServicio);
+		return new ServicioDTO[]{unServicio};
+	}
+	////////////////////////////////////////////////////
+	
 	public SucursalBanco bancoCiudadCabildoYCongreso() {
 		if (bancoCiudadCabildoYCongreso == null) {
 			coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
