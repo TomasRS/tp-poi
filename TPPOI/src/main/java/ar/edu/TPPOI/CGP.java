@@ -13,6 +13,10 @@ public class CGP extends EmpresaMultiServicios {
 	public List<String> getZonasQueIncluye() {
 		return zonasQueIncluye;
 	}
+	
+	public Polygon getComuna(){
+		return comuna;
+	}
 
 	public void setZonasQueIncluye(List<String> zonasQueIncluye) {
 		this.zonasQueIncluye = zonasQueIncluye;
@@ -39,7 +43,13 @@ public class CGP extends EmpresaMultiServicios {
 	
 	//SETEAR ATRIBUTOS DISTINTOS CON LOS DEL EXTERNO
 	public void actualizar( POI unPOIExterno){
-		}
-
+		this.setCoordenada(unPOIExterno.getCoordenada());
+		this.setDireccion(unPOIExterno.getDireccion());
+		this.setNombre(unPOIExterno.getNombre());
+		this.setTags(unPOIExterno.getTags());
+		
+	
+	}
+		
 
 }

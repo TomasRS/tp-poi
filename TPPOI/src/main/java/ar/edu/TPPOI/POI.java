@@ -130,5 +130,6 @@ public abstract class POI {
 	}
 	
 	public abstract void actualizar( POI unPOIExterno);
+
 	
 }
