@@ -10,9 +10,19 @@ import ar.edu.TPPOI.POI;
 import ar.edu.TPPOI.Rango;
 
 public class CentroDTO {
+	// esta clase debe ser wraper
+	// o venir con sus propios metodos 
+	// ya que es externa a nuestro sistema
 	
-	private String id;
-	private Integer numeroDeComuna;
+	
+	public String id;
+	public Integer numeroDeComuna;
+	public List<String> zonas;
+	public String director;
+	public String domicilioCompleto;
+	public Map<String,List<List<Intervalo>>> serviciosDTO;
+	public String telefono;
+	public Rango rangos;
 	
 	public Integer getNumeroDeComuna() {
 		return numeroDeComuna;
@@ -22,20 +32,8 @@ public class CentroDTO {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public void setNumeroDeComuna(Integer numeroDeComuna) {
-		this.numeroDeComuna = numeroDeComuna;
-	}
-
 	public List<String> getZonas() {
 		return zonas;
-	}
-
-	public void setZonas(List<String> zonas) {
-		this.zonas = zonas;
 	}
 
 	public String getDirector() {
@@ -50,42 +48,19 @@ public class CentroDTO {
 		return domicilioCompleto;
 	}
 
-	public void setDomicilioCompleto(String domicilioCompleto) {
-		this.domicilioCompleto = domicilioCompleto;
-	}
-
 	public Map<String, List<List<Intervalo>>> getServiciosDTO() {
 		return serviciosDTO;
-	}
-
-	public void setServiciosDTO(Map<String, List<List<Intervalo>>> serviciosDTO) {
-		this.serviciosDTO = serviciosDTO;
 	}
 
 	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
 	public Rango getRangos() {
 		return rangos;
 	}
-
-	public void setRangos(Rango rangos) {
-		this.rangos = rangos;
-	}
-
-	private List<String> zonas;
-	private String director;
-	private String domicilioCompleto;
-	private Map<String,List<List<Intervalo>>> serviciosDTO;
-	private String telefono;
-	private Rango rangos;
 	
-	public List<CentroDTO> traer() {
+	/*public List<CentroDTO> traer() {
 		//esto va en el mock
 		CentroDTO nuevoCGP = new CentroDTO();
 		List<CentroDTO> listaDeCGPsExternosParaElAdapter= new ArrayList <CentroDTO>();
@@ -102,5 +77,5 @@ public class CentroDTO {
 		this.serviciosDTO.put("asesoramiento", rangos.traer());
 		listaDeCGPsExternosParaElAdapter.add(nuevoCGP);		
 		return listaDeCGPsExternosParaElAdapter;
-	}
+	}*/
 }
