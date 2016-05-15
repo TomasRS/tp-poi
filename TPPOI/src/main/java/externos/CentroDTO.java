@@ -20,9 +20,8 @@ public class CentroDTO {
 	public List<String> zonas;
 	public String director;
 	public String domicilioCompleto;
-	public Map<String,List<Intervalo[]>> serviciosDTO;
+	public ServicioDTO[] serviciosDTO;
 	public String telefono;
-	public Rango rangos;
 	
 	public Integer getNumeroDeComuna() {
 		return numeroDeComuna;
@@ -48,7 +47,7 @@ public class CentroDTO {
 		return domicilioCompleto;
 	}
 
-	public Map<String, List<Intervalo[]>> getServiciosDTO() {
+	public ServicioDTO[] getServiciosDTO() {
 		return serviciosDTO;
 	}
 
@@ -56,10 +55,6 @@ public class CentroDTO {
 		return telefono;
 	}
 
-	public Rango getRangos() {
-		return rangos;
-	}
-	
 	/*public List<CentroDTO> traer() {
 		//esto va en el mock
 		CentroDTO nuevoCGP = new CentroDTO();

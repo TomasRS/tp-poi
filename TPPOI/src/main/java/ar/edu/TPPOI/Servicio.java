@@ -17,7 +17,11 @@ public class Servicio {
 
 	public Servicio(String unNombre, Horario unHorario) {
 		this.nombre = unNombre;
-		this.horarios.add(unHorario);
+		this.agregarHorario(unHorario);
+	}
+	
+	public void agregarHorario(Horario unHorario){
+		horarios.add(unHorario);
 	}
 
 	public static Servicio nuevoServicioBanco(String unNombre) {
