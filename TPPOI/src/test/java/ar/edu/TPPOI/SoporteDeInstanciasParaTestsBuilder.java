@@ -10,6 +10,8 @@ import org.uqbar.geodds.Polygon;
 
 import externos.BancoAdapter;
 import externos.BancoExternoImpostor;
+import externos.CGPAdapter;
+import externos.CGPExternoImpostor;
 import externos.CentroDTO;
 import externos.ServicioDTO;
 
@@ -26,6 +28,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	LocalComercial starbucksCoronelDiaz1400, sportClubLibertador7395, cineAbasto;
 	BancoExternoImpostor bancoExternoImpostor;
 	BancoAdapter bancoAdapter;
+	CGPExternoImpostor cgpExternoImpostor;
+	CGPAdapter cgpAdapter;
 	SucursalBanco bancoCiudadCabildoYCongreso;
 	CGP cgpComuna5;
 	MapaPOI mapa;
@@ -134,6 +138,19 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		unServicio.setRangoServicioDTO(rangosServicio);
 		return new ServicioDTO[]{unServicio};
 	}
+	
+	public CGPExternoImpostor CGPExternoImpostorMock() {
+		cgpExternoImpostor = mock(CGPExternoImpostor.class);
+		when(cgpExternoImpostor.buscar("Balvanera")).thenReturn(this.crearCentrosDTO());
+		return cgpExternoImpostor;
+	}
+
+	public CGPAdapter CGPAdapter() {
+		cgpAdapter = new CGPAdapter(CGPExternoImpostorMock());
+		return cgpAdapter;
+
+	}
+	
 	////////////////////////////////////////////////////
 	
 	public SucursalBanco bancoCiudadCabildoYCongreso() {
@@ -248,6 +265,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			mapa.agregarPOI(starbucksCoronelDiaz1400());
 			mapa.agregarPOI(sportClubLibertador7395());
 			mapa.agregarSistemaExternoAdapter(bancoAdapter());
+			//mapa.agregarSistemaExternoAdapter(CGPAdapter());
 		}
 
 		return mapa;
