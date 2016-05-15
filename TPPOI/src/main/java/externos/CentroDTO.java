@@ -1,5 +1,6 @@
 package externos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CentroDTO {
@@ -10,7 +11,7 @@ public class CentroDTO {
 	
 	public String id;
 	public Integer numeroDeComuna;
-	public List<String> zonas;
+	public List<String> zonas = new ArrayList<>();
 	public String director;
 	public String domicilioCompleto;
 	public ServicioDTO[] serviciosDTO;

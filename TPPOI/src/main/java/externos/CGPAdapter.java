@@ -24,7 +24,7 @@ public class CGPAdapter implements SistemaExternoAdapterInterface{
 		List<CentroDTO> listaDeCGPsExternos = CGPExternoImpostor.buscar(unTextoLibre);
 		List<POI> listaCGPEncontrados = new ArrayList<>();
 		if (listaDeCGPsExternos==null){//code smells, no se ve bien comparar con null
-			//
+			System.out.println("hay null");
 		} else {
 			listaCGPEncontrados = this.generarNuevosCGPs(listaDeCGPsExternos);
 		}
@@ -92,8 +92,7 @@ public class CGPAdapter implements SistemaExternoAdapterInterface{
 
 	@Override
 	public List<POI> buscar(String unTextoLibre, String otroTextoLibre) {
-		// TODO Auto-generated method stub
-		return null;
+		return buscar(unTextoLibre);
 	}
 }
 

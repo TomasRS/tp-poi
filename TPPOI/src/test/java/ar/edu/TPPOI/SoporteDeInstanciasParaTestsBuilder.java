@@ -121,7 +121,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		nuevoCGP.numeroDeComuna = 3;
 		nuevoCGP.telefono = "4375-0644/45";
 		nuevoCGP. serviciosDTO = crearServiciosDTO();
-		listaDeCGPsExternosParaElAdapter.add(nuevoCGP);		
+		listaDeCGPsExternosParaElAdapter.add(nuevoCGP);
 		return listaDeCGPsExternosParaElAdapter;
 	}
 	
@@ -136,7 +136,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		rangosServicio.add(new Integer[]{5,9,0,14,0});
 		rangosServicio.add(new Integer[]{6,10,0,13,0});
 		unServicio.setRangoServicioDTO(rangosServicio);
-		return new ServicioDTO[]{unServicio};
+		ServicioDTO[] serviciosDTO = new ServicioDTO[]{unServicio};
+		return serviciosDTO;
 	}
 	
 	public CGPExternoImpostor CGPExternoImpostorMock() {
@@ -265,7 +266,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			mapa.agregarPOI(starbucksCoronelDiaz1400());
 			mapa.agregarPOI(sportClubLibertador7395());
 			mapa.agregarSistemaExternoAdapter(bancoAdapter());
-			//mapa.agregarSistemaExternoAdapter(CGPAdapter());
+			mapa.agregarSistemaExternoAdapter(CGPAdapter());
 		}
 
 		return mapa;
