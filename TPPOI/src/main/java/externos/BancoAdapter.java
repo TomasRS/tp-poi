@@ -50,7 +50,7 @@ public class BancoAdapter implements SistemaExternoAdapterInterface {
 	}
 
 	@Override
-	public List<CentroDTO> buscar(String unTextoLibre) {
+	public List<POI> buscar(String unTextoLibre) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -6,11 +6,11 @@ import ar.edu.TPPOI.POI;
 
 public class CGPExterno implements SistemaExternoAdapterInterface{
 
-	private CentroDTO CGPExterno;
+	private CentroDTO DTOExterno;
 
 
 	public List<CentroDTO> buscar(String unTextoLibre) {
-		return CGPExterno.traer();
+		return DTOExterno.traer();
 	}
 
 

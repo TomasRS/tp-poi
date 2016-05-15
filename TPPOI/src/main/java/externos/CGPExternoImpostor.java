@@ -1,16 +1,14 @@
 package externos;
-/*package ar.edu.TPPOI;
 
 import java.util.List;
 
 public class CGPExternoImpostor {
-	private List<CGPExterno> CentroDTO ;
-	CentroDTO CGPExterno;
+	//private List<CentroDTO> CentrosDTO ;
+	//CentroDTO CGPExterno;
 	
-	public List<POI> buscar(String unTextoLibre) {
-		CGPExterno.traer();
-		
+	public List<CentroDTO> buscar(String unTextoLibre) {
+		//CentrosDTO = CGPExterno.traer();
+		return null;
 	}
 	
 }
-*/
