@@ -20,7 +20,7 @@ public class CentroDTO {
 	public List<String> zonas;
 	public String director;
 	public String domicilioCompleto;
-	public Map<String,List<List<Intervalo>>> serviciosDTO;
+	public Map<String,List<Intervalo[]>> serviciosDTO;
 	public String telefono;
 	public Rango rangos;
 	
@@ -48,7 +48,7 @@ public class CentroDTO {
 		return domicilioCompleto;
 	}
 
-	public Map<String, List<List<Intervalo>>> getServiciosDTO() {
+	public Map<String, List<Intervalo[]>> getServiciosDTO() {
 		return serviciosDTO;
 	}
 
