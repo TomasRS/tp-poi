@@ -73,9 +73,12 @@ public abstract class POI {
 	public void setTag(String unTag) {
 		this.tags.add(unTag);
 	}
-
-	public abstract boolean coincideConAtributo(String unTextoLibre);
 	
+	//METODOS ABSTRACTOS-----------------------------------------------------
+	public abstract boolean coincideConAtributo(String unTextoLibre);
+	public abstract void actualizar( POI unPOIExterno);
+	
+	//-----------------------------------------------------------------------
 	public boolean soyElMismoPOI(POI otroPOI){
 		return id.equals(otroPOI.getId());
 	}
@@ -129,7 +132,7 @@ public abstract class POI {
 		return nombre + rubro + radioCercania.toString() + coordenada.toString();
 	}
 	
-	public abstract void actualizar( POI unPOIExterno);
+
 
 	
 }
