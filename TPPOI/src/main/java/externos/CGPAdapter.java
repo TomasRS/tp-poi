@@ -37,7 +37,7 @@ public class CGPAdapter implements SistemaExternoAdapterInterface{
 		return nuevasCGPs;
 	}
 
-	private CGP crearCGPDeExterno(CentroDTO unCGPExterno){
+	public CGP crearCGPDeExterno(CentroDTO unCGPExterno){
 		CGP nuevoCGP = new CGP(partirDomicilio(unCGPExterno));
 		nuevoCGP.setId(unCGPExterno.getId());
 		//comuna en nuestro sistema es polygon y externamente es un entero

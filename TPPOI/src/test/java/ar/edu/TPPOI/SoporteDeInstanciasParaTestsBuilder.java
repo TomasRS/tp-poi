@@ -125,6 +125,19 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return listaDeCGPsExternosParaElAdapter;
 	}
 	
+	public CentroDTO crearCentroDTO() {
+		CentroDTO nuevoCGP = new CentroDTO();
+		nuevoCGP.id = "Identificador 3";
+		nuevoCGP.director = "Juan";
+		nuevoCGP.domicilioCompleto = "Junin 521";
+		nuevoCGP.zonas.add("San Cristobal");
+		nuevoCGP.zonas.add("Balvanera");
+		nuevoCGP.numeroDeComuna = 3;
+		nuevoCGP.telefono = "4375-0644/45";
+		nuevoCGP. serviciosDTO = crearServiciosDTO();
+		return nuevoCGP;
+	}
+	
 	public ServicioDTO[] crearServiciosDTO(){
 		ServicioDTO unServicio = new ServicioDTO();
 		unServicio.setNombreServicio("asesoramiento");

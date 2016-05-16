@@ -47,9 +47,8 @@ public class CGP extends EmpresaMultiServicios {
 		this.setDireccion(unCGPExterno.getDireccion());
 		this.setNombre(unCGPExterno.getNombre());
 		this.setTags(unCGPExterno.getTags());
-	//	this.setServicios(unCGPExterno.getServicios()); NO SE XQ NO ME LO RECONOCE DE LA CLASE PADRE
+		//this.setServicios(unCGPExterno.getServicios());
 	
-		// ¿Faltan mas atributos?
 	
 	}
 		

@@ -51,20 +51,30 @@ public class MapaPOI {
 
 	private void actualizarPOISiCorresponde(POI unPOIExterno) {
 		if (estaEnLocal(unPOIExterno)) {
-			// actualiza POI
 			buscarPoi(unPOIExterno).actualizar(unPOIExterno);
 		} else {
 			agregarPOI(unPOIExterno);
 		}
 	}
-
-	private boolean estaEnLocal(POI unPOIExterno) {
-		return buscarPoi(unPOIExterno) != null;
-	}
 	
-	private POI buscarPoi(POI poi){
-		return listaDePOIs.stream().filter(unPOILocal -> unPOILocal.soyElMismoPOI(poi)).findFirst().get();
-	}
+		public POI buscarPoi(POI poi){
+			
+			return listaDePOIs.
+				stream().
+				filter(unPOILocal -> unPOILocal.soyElMismoPOI(poi)).
+				findFirst().orElse(null);
+			}
+	
+				
+		
+	
+		public boolean estaEnLocal(POI unPOIExterno) {	
+		return buscarPoi(unPOIExterno) != null; 
+		}
+				
+	
+		
+		
 
 	// metodo que retorna la lista de los ids de POIs como string (lo use para
 	// verificar algunas cosas)

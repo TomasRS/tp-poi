@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import externos.BancoAdapter;
 import externos.CGPAdapter;
+import externos.CentroDTO;
 
 public class MapaPOITest {
 
@@ -13,17 +14,35 @@ public class MapaPOITest {
 	MapaPOI mapaInteractivo;
 	BancoAdapter bancoAdapter;
 	CGPAdapter cgpAdapter;
+	CentroDTO centro;
 
 	@Before
 	public void init() {
 
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
-
 		cineAbasto = soporteParaTests.cineAbasto();
 		mapaInteractivo = soporteParaTests.mapa();
 		bancoAdapter = soporteParaTests.bancoAdapter();
 		cgpAdapter = soporteParaTests.CGPAdapter();
+		centro = soporteParaTests.crearCentroDTO();
+	
+		
 	}
+	
+	@Test
+	
+	public void testTransformarExternoEnPoiYRetornarlo(){
+		CGP comuna6 = cgpAdapter.crearCGPDeExterno(centro);
+		mapaInteractivo.listaDePOIs.add(comuna6);
+		Assert.assertSame(mapaInteractivo.buscarPoi(comuna6), comuna6);
+	}
+	
+//	@Test
+//	public void testEstaPOIenLocal(){
+//		CGP comuna6 = cgpAdapter.crearCGPDeExterno(centro);
+//		mapaInteractivo.listaDePOIs.add(comuna6);
+//		Assert.assertTrue((mapaInteractivo.estaEnLocal(comuna6)));
+//	}
 
 	@Test
 	public void testEncuentraPorNombreDeParadaDeColectivo() {
