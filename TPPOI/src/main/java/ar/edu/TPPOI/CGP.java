@@ -42,12 +42,14 @@ public class CGP extends EmpresaMultiServicios {
 	}
 	
 	//SETEAR ATRIBUTOS DISTINTOS CON LOS DEL EXTERNO
-	public void actualizar( POI unPOIExterno){
-		this.setCoordenada(unPOIExterno.getCoordenada());
-		this.setDireccion(unPOIExterno.getDireccion());
-		this.setNombre(unPOIExterno.getNombre());
-		this.setTags(unPOIExterno.getTags());
-		
+	public void actualizar( POI unCGPExterno){
+		this.setCoordenada(unCGPExterno.getCoordenada());
+		this.setDireccion(unCGPExterno.getDireccion());
+		this.setNombre(unCGPExterno.getNombre());
+		this.setTags(unCGPExterno.getTags());
+	//	this.setServicios(unCGPExterno.getServicios()); NO SE XQ NO ME LO RECONOCE DE LA CLASE PADRE
+	
+		// ¿Faltan mas atributos?
 	
 	}
 		

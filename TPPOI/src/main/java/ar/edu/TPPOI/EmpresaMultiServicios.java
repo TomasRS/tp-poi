@@ -22,6 +22,14 @@ public abstract class EmpresaMultiServicios extends POI {
 		}
 	}
 	
+	public List<Servicio> getServicios(){
+		return servicios;
+	}
+	
+	public void setServicios(List<Servicio> servicios){
+		this.servicios = servicios;
+	}
+	
 	public void agregarServicio (Servicio unServicio){
 		this.servicios.add(unServicio);
 	}

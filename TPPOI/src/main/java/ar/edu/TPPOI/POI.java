@@ -73,6 +73,7 @@ public abstract class POI {
 	public void setTag(String unTag) {
 		this.tags.add(unTag);
 	}
+
 	
 	//METODOS ABSTRACTOS-----------------------------------------------------
 	public abstract boolean coincideConAtributo(String unTextoLibre);
@@ -131,8 +132,6 @@ public abstract class POI {
 	public String printString() {
 		return nombre + rubro + radioCercania.toString() + coordenada.toString();
 	}
-	
-
 
 	
 }
