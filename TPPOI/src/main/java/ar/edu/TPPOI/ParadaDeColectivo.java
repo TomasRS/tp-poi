@@ -1,6 +1,8 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POI {
@@ -25,8 +27,14 @@ public class ParadaDeColectivo extends POI {
 		return this.nombre.equals(unTextoLibre);
 	}
 	
-	//No hace nada esta por el metodo abstracto en POI  
+	//No hace nada es para hacer andar actualizar en POI  
 	public void actualizar( POI unPOIExterno){
 		}
+	
+	//No hace nada es para hacer andar el getServicio en CGP
+	public List<Servicio> getServicios(){
+		return null;
+	}
+	
 
 }

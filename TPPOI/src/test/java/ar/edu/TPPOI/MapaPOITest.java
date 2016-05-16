@@ -37,12 +37,12 @@ public class MapaPOITest {
 		Assert.assertSame(mapaInteractivo.buscarPoi(comuna6), comuna6);
 	}
 	
-//	@Test
-//	public void testEstaPOIenLocal(){
-//		CGP comuna6 = cgpAdapter.crearCGPDeExterno(centro);
-//		mapaInteractivo.listaDePOIs.add(comuna6);
-//		Assert.assertTrue((mapaInteractivo.estaEnLocal(comuna6)));
-//	}
+	@Test
+	public void testEstaPOIenLocal(){
+		CGP comuna6 = cgpAdapter.crearCGPDeExterno(centro);
+		mapaInteractivo.listaDePOIs.add(comuna6);
+		Assert.assertTrue((mapaInteractivo.estaEnLocal(comuna6)));
+	}
 
 	@Test
 	public void testEncuentraPorNombreDeParadaDeColectivo() {

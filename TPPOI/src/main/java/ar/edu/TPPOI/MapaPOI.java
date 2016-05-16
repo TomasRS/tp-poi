@@ -65,16 +65,10 @@ public class MapaPOI {
 				findFirst().orElse(null);
 			}
 	
-				
-		
-	
 		public boolean estaEnLocal(POI unPOIExterno) {	
 		return buscarPoi(unPOIExterno) != null; 
 		}
 				
-	
-		
-		
 
 	// metodo que retorna la lista de los ids de POIs como string (lo use para
 	// verificar algunas cosas)

@@ -35,4 +35,4 @@ public abstract class EmpresaMultiServicios extends POI {
 	}
 
 	public abstract void actualizar( POI unPOIExterno);
-}
+	}

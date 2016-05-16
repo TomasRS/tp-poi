@@ -48,9 +48,14 @@ public class LocalComercial extends POI {
 		return (new ExisteHorarioDisponibleEnHorarios(this.horarios, unMomento)).validar();
 	}
 	
-	//No hace nada esta por el metodo abstracto en POI  
+	//No hace nada es para hacer andar actualizar en POI  
 	public void actualizar( POI unPOIExterno){
 		}
+	
+	//No hace nada es para hacer andar el getServicio en CGP
+	public List<Servicio> getServicios(){
+		return null;
+	}
 	
 
 }
