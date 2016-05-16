@@ -52,10 +52,4 @@ public class LocalComercial extends POI {
 	public void actualizar( POI unPOIExterno){
 		}
 	
-	//No hace nada es para hacer andar el getServicio en CGP
-	public List<Servicio> getServicios(){
-		return null;
-	}
-	
-
 }

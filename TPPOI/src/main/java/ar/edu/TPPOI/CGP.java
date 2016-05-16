@@ -47,9 +47,7 @@ public class CGP extends EmpresaMultiServicios {
 		this.setDireccion(unCGPExterno.getDireccion());
 		this.setNombre(unCGPExterno.getNombre());
 		this.setTags(unCGPExterno.getTags());
-		this.setServicios(unCGPExterno.getServicios());
-	
-	
+		this.setServicios(((CGP) unCGPExterno).getServicios());	
 	}
 		
 

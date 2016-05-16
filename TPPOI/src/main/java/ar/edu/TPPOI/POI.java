@@ -78,7 +78,6 @@ public abstract class POI {
 	//METODOS ABSTRACTOS-----------------------------------------------------
 	public abstract boolean coincideConAtributo(String unTextoLibre);
 	public abstract void actualizar( POI unPOIExterno);
-	public abstract List<Servicio> getServicios();
 	//-----------------------------------------------------------------------
 	public boolean soyElMismoPOI(POI otroPOI){
 		return id.equals(otroPOI.getId());

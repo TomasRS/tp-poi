@@ -57,19 +57,17 @@ public class MapaPOI {
 		}
 	}
 	
-		public POI buscarPoi(POI poi){
-			
-			return listaDePOIs.
-				stream().
-				filter(unPOILocal -> unPOILocal.soyElMismoPOI(poi)).
-				findFirst().orElse(null);
-			}
+	public POI buscarPoi(POI poi){		
+		return listaDePOIs.
+			stream().
+			filter(unPOILocal -> unPOILocal.soyElMismoPOI(poi)).
+			findFirst().orElse(null);
+	}
 	
-		public boolean estaEnLocal(POI unPOIExterno) {	
+	public boolean estaEnLocal(POI unPOIExterno) {	
 		return buscarPoi(unPOIExterno) != null; 
-		}
+	}
 				
-
 	// metodo que retorna la lista de los ids de POIs como string (lo use para
 	// verificar algunas cosas)
 	private String enLista() {

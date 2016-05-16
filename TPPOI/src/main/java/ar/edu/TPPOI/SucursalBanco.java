@@ -33,7 +33,7 @@ public class SucursalBanco extends EmpresaMultiServicios {
 	}
 	
 	//FALTA
-	public void actualizar( POI unPOIExterno){
+	public void actualizar(POI unPOIExterno){
 		}
 
 }
