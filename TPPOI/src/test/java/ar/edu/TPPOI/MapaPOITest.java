@@ -1,5 +1,8 @@
 package ar.edu.TPPOI;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -133,6 +136,16 @@ public class MapaPOITest {
 	public void testQueEncuentreUnCGPQueYaAgregado() {
 		mapaInteractivo.buscar("Balvanera");
 		Assert.assertEquals(mapaInteractivo.busquedaLocal("asesoramiento", "").size(), 1);
+	}
+	
+	@Test
+	public void testQueSeteeBienServiciosCGP(){
+		mapaInteractivo.buscar("Balvanera");
+		List<Servicio> serviciosLocales = ((CGP) mapaInteractivo.busquedaLocal("asesoramiento", "").get(0)).getServicios();
+		System.out.println("busque locales");
+		List<Servicio> serviciosRemotos = ((CGP) mapaInteractivo.buscarEnSistemasExternos("Balvanera", "").get(0)).getServicios();
+		System.out.println("busque remoto");
+		Assert.assertEquals(serviciosRemotos.size(), serviciosLocales.size());
 	}
 	
 	@Test
