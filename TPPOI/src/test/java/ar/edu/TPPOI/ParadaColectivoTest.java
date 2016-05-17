@@ -28,7 +28,7 @@ public class ParadaColectivoTest {
 
 	@Test
 	public void testParadaDeColectivoDisponible() {
-		Assert.assertTrue(parada114DeCabildoYMonroe.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30)), null));
+		Assert.assertTrue(parada114DeCabildoYMonroe.estaDisponible((LocalDateTime.of(2016, 1, 16, 10, 10, 30))));
 	}
 
 }

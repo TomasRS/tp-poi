@@ -1,7 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 import org.uqbar.geodds.Point;
 
@@ -19,7 +19,7 @@ public class ParadaDeColectivo extends POI {
 		this.rubro = "Transporte";
 	}
 
-	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio) {
+	public boolean estaDisponible(LocalDateTime unMomento) {
 		return true;
 	}
 	
