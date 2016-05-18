@@ -50,5 +50,9 @@ public class Direccion {
 	public void setUnidad(String unidad){
 		this.unidad = unidad;
 	}
+
+	public boolean coincideConCalle(String unTextoLibre) {
+		return this.callePrincipal.equals(unTextoLibre);
+	}
 	
 }
