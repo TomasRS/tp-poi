@@ -6,21 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
 
 public abstract class POI {
-	protected String id;
 	protected String nombre;
 	protected String rubro;
 	protected Integer radioCercania;
 	protected Point coordenada;
 	protected Direccion direccion;
 	protected List<String> tags = new ArrayList<>();
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getRubro() {
 		return rubro;
@@ -74,14 +65,12 @@ public abstract class POI {
 		this.tags.add(unTag);
 	}
 
-	
-	//METODOS ABSTRACTOS-----------------------------------------------------
+	// METODOS ABSTRACTOS-----------------------------------------------------
 	public abstract boolean coincideConAtributo(String unTextoLibre);
-	public abstract void actualizar( POI unPOIExterno);
-	//-----------------------------------------------------------------------
-	public boolean soyElMismoPOI(POI otroPOI){
-		return id.equals(otroPOI.getId());
-	}
+
+	public abstract void actualizar(POI unPOIExterno);
+
+	// -----------------------------------------------------------------------
 
 	public boolean sosValido() {
 		return this.tengoNombre() && this.tengoCoordenada();
@@ -128,10 +117,16 @@ public abstract class POI {
 				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
 	}
 
-	public String printString() {
-		return nombre + rubro + radioCercania.toString() + coordenada.toString();
+	public boolean soyBanco() {
+		return false;
 	}
-	
-	
+
+	public boolean soyCGP() {
+		return false;
+	}
+
+	public boolean soyElMismoPOI(POI otroPOI) {
+		return StringUtils.containsIgnoreCase(otroPOI.getNombre(), this.getNombre());
+	}
 
 }

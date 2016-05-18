@@ -1,5 +1,6 @@
 package ar.edu.TPPOI;
 
+import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
 
 public class SucursalBanco extends EmpresaMultiServicios {
@@ -28,12 +29,26 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		return this.getNombre().equals(unTextoLibre) || this.getNombreSucursal().equals(unTextoLibre);
 	}
 
-	public String printString() {
-		return super.printString() + this.getNombreSucursal();
+	public boolean soyBanco() {
+		return true;
 	}
-	
-	//FALTA
-	public void actualizar(POI unPOIExterno){
+
+	public boolean soyElMismoPOI(POI otroPOI) {
+
+		if (otroPOI.soyBanco()) {
+			SucursalBanco unaSucursalBanco = (SucursalBanco) otroPOI;
+			return (StringUtils.containsIgnoreCase(unaSucursalBanco.getNombre(), this.getNombre())
+					&& StringUtils.containsIgnoreCase(unaSucursalBanco.getNombreSucursal(), this.getNombreSucursal()));
+		} else {
+			return false;
 		}
+
+	}
+
+	public void actualizar(POI unPOIExterno) {
+		this.setCoordenada(unPOIExterno.getCoordenada());
+		this.setDireccion(unPOIExterno.getDireccion());
+		this.setServicios(((SucursalBanco) unPOIExterno).getServicios());
+	}
 
 }

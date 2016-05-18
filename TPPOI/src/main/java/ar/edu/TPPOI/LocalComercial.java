@@ -22,14 +22,12 @@ public class LocalComercial extends POI {
 			List<Horario> unosHorarios, Direccion unaDireccion) {
 		return new LocalComercial(unNombre, unaCoordenada, 50, unosHorarios, "Cafeteria", unaDireccion);
 	}
-	
+
 	public static LocalComercial nuevoLocal(String unNombre, Point unaCoordenada, Integer unRadioCercania,
 			List<Horario> unosHorarios, String unRubro, Direccion unaDireccion) {
 		return new LocalComercial(unNombre, unaCoordenada, unRadioCercania, unosHorarios, unRubro, unaDireccion);
 	}
 
-	
-	//Para agregar cine hubo que transformar a public este m�todo
 	public LocalComercial(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
 			String unRubro, Direccion unaDireccion) {
 		this.nombre = unNombre;
@@ -39,17 +37,17 @@ public class LocalComercial extends POI {
 		this.rubro = unRubro;
 		this.direccion = unaDireccion;
 	}
-	
-	public boolean coincideConAtributo(String unTextoLibre){
+
+	public boolean coincideConAtributo(String unTextoLibre) {
 		return this.rubro.equals(unTextoLibre);
 	}
-	
+
 	public boolean estaDisponible(LocalDateTime unMomento) {
 		return (new ExisteHorarioDisponibleEnHorarios(this.horarios, unMomento)).validar();
 	}
-	
-	//No hace nada es para hacer andar actualizar en POI  
-	public void actualizar( POI unPOIExterno){
-		}
-	
+
+	// No hace nada es para hacer andar actualizar en POI
+	public void actualizar(POI unPOIExterno) {
+	}
+
 }

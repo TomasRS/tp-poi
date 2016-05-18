@@ -14,13 +14,13 @@ public class BancoExternoImportorTest {
 	}
 
 	@Test
-	public void busquedaConCoincidenciaDevuelveJSon() {
+	public void testBusquedaConCoincidenciaDevuelveJSon() {
 		Assert.assertEquals(soporteDeInstanciasParaTestsBuilder.json(), soporteDeInstanciasParaTestsBuilder
 				.bancoExternoImpostorMock().buscar("Banco de la Plaza", "extracciones"));
 	}
 
 	@Test
-	public void busquedaSinCoincidenciaDevuelveVacio() {
+	public void testBusquedaSinCoincidenciaDevuelveVacio() {
 		Assert.assertEquals(null,
 				soporteDeInstanciasParaTestsBuilder.bancoExternoImpostorMock().buscar("Banco de la Plaza", "extracci"));
 	}

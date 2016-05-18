@@ -42,7 +42,6 @@ public class BancoAdapter implements SistemaExternoAdapterInterface {
 		Point coordenadaSucursalBanco = new Point(unBancoJSON.getX(), unBancoJSON.getY());
 		SucursalBanco sucursalBanco = new SucursalBanco(unBancoJSON.getBanco(), unBancoJSON.getSucursal(),
 				coordenadaSucursalBanco, new Direccion());
-		sucursalBanco.setId(unBancoJSON.getId());
 		unBancoJSON.getServicios().remove("");
 		unBancoJSON.getServicios().forEach(
 				unNombreServicio -> sucursalBanco.agregarServicio(Servicio.nuevoServicioBanco(unNombreServicio)));

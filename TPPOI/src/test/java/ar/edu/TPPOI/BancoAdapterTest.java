@@ -17,19 +17,28 @@ public class BancoAdapterTest {
 	}
 
 	@Test
-	public void busquedaConCoincidenciaDevuelveDosSucursalesBanco() {
+	public void testBusquedaConCoincidenciaDevuelveDosSucursalesBanco() {
 
+		SucursalBanco unaSucursalBanco;
 		List<POI> listaDePOIs = soporteDeInstanciasParaTestsBuilder.bancoAdapter().buscar("Banco de la Plaza",
 				"extracciones");
 		Assert.assertEquals(listaDePOIs.size(), 2);
-		Assert.assertEquals(listaDePOIs.get(0).printString(),
-				"Banco de la Plaza" + "Bancos" + "500" + new Point(-35.9338322, 72.348353).toString() + "Avellaneda");
-		Assert.assertEquals(listaDePOIs.get(1).printString(),
-				"Banco de la Plaza" + "Bancos" + "500" + new Point(-35.9345681, 72.344546).toString() + "Caballito");
+		unaSucursalBanco = (SucursalBanco) listaDePOIs.get(0);
+		Assert.assertEquals(unaSucursalBanco.getNombre(), "Banco de la Plaza");
+		Assert.assertEquals(unaSucursalBanco.getRubro(), "Bancos");
+		Assert.assertEquals(unaSucursalBanco.getRadioCercania(), (Integer) 500);
+		Assert.assertEquals(unaSucursalBanco.getCoordenada().toString(), new Point(-35.9338322, 72.348353).toString());
+		Assert.assertEquals(unaSucursalBanco.getNombreSucursal(), "Avellaneda");
+		unaSucursalBanco = (SucursalBanco) listaDePOIs.get(1);
+		Assert.assertEquals(unaSucursalBanco.getNombre(), "Banco de la Plaza");
+		Assert.assertEquals(unaSucursalBanco.getRubro(), "Bancos");
+		Assert.assertEquals(unaSucursalBanco.getRadioCercania(), (Integer) 500);
+		Assert.assertEquals(unaSucursalBanco.getCoordenada().toString(), new Point(-35.9345681, 72.344546).toString());
+		Assert.assertEquals(unaSucursalBanco.getNombreSucursal(), "Caballito");
 	}
 
 	@Test
-	public void busquedaSinCoincidenciaDeSucursalesBanco() {
+	public void testBusquedaSinCoincidenciaDeSucursalesBanco() {
 		Assert.assertEquals(soporteDeInstanciasParaTestsBuilder.bancoAdapter().buscar("Banco de la Plaza", "").size(),
 				0);
 	}

@@ -13,8 +13,8 @@ public class CGP extends EmpresaMultiServicios {
 	public List<String> getZonasQueIncluye() {
 		return zonasQueIncluye;
 	}
-	
-	public Polygon getComuna(){
+
+	public Polygon getComuna() {
 		return comuna;
 	}
 
@@ -22,9 +22,6 @@ public class CGP extends EmpresaMultiServicios {
 		this.zonasQueIncluye = zonasQueIncluye;
 	}
 
-	public CGP(Direccion unaDireccion){
-		this.direccion=unaDireccion;
-	}
 	public CGP(String unNombre, String unRubro, Polygon unaComuna, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.rubro = unRubro;
@@ -35,20 +32,25 @@ public class CGP extends EmpresaMultiServicios {
 	public boolean estasCercaDe(Point unaCoordenada) {
 		return this.comuna.isInside(unaCoordenada);
 	}
-	
-	public boolean coincideConAtributo(String unTextoLibre){
-	 return this.servicios.stream()
+
+	public boolean coincideConAtributo(String unTextoLibre) {
+		return this.servicios.stream()
 				.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()));
 	}
-	
-	//SETEAR ATRIBUTOS DISTINTOS CON LOS DEL EXTERNO
-	public void actualizar( POI unCGPExterno){
+
+	public void actualizar(POI unCGPExterno) {
 		this.setCoordenada(unCGPExterno.getCoordenada());
 		this.setDireccion(unCGPExterno.getDireccion());
-		this.setNombre(unCGPExterno.getNombre());
 		this.setTags(unCGPExterno.getTags());
-		this.setServicios(((CGP) unCGPExterno).getServicios());	
+		this.setServicios(((CGP) unCGPExterno).getServicios());
 	}
-		
+
+	public boolean soyCGP() {
+		return true;
+	}
+
+	public boolean soyElMismoPOI(POI otroPOI) {
+		return otroPOI.soyCGP() && super.soyElMismoPOI(otroPOI);
+	}
 
 }

@@ -3,17 +3,12 @@ package externos;
 import java.util.List;
 
 public class BancoJSON {
-	String id;
 	String banco;
 	Double x;
 	Double y;
 	String sucursal;
 	String gerente;
 	List<String> servicios;
-	
-	public String getId(){
-		return id;
-	}
 
 	public String getBanco() {
 		return banco;

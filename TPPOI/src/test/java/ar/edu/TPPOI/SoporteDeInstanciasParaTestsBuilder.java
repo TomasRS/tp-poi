@@ -48,7 +48,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			Direccion direccionParada114 = new Direccion();
 			direccionParada114.setCalles("Monroe", "Cabildo");
 			parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114, direccionParada114);
-			parada114DeCabildoYMonroe.setId("id_parada114");
 		}
 
 		return parada114DeCabildoYMonroe;
@@ -75,23 +74,14 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	}
 
-	////////// PARA BANCO EXTERNO
 	public String json() {
-		return "[{ 'id': 'identificador1'," + 
-					"'banco': 'Banco de la Plaza'," + 
-					"'x': -35.9338322," + 
-					"'y': 72.348353," + 
-					"'sucursal': 'Avellaneda'," + 
-					"'gerente': 'Javier Loeschbor'," + 
-					"'servicios': [ 'cobro cheques', 'depósitos', 'extracciones', 'transferencias', 'créditos', '', '', '' ]" + "}," + 
-				"{ 'id': 'identificador2'," + 
-					"'banco': 'Banco de la Plaza'," + 
-					"'x': -35.9345681," + 
-					"'y': 72.344546," + 
-					"'sucursal': 'Caballito'," + 
-					"'gerente': 'Fabián Fantaguzzi'," + 
-					"'servicios': [ 'depósitos', 'extracciones', 'transferencias', 'seguros', '', '', '', '' ]" + "}"+ 
-				"]";
+		return "[{ 'banco': 'Banco de la Plaza'," + "'x': -35.9338322," + "'y': 72.348353,"
+				+ "'sucursal': 'Avellaneda'," + "'gerente': 'Javier Loeschbor',"
+				+ "'servicios': [ 'cobro cheques', 'depósitos', 'extracciones', 'transferencias', 'créditos', '', '', '' ]"
+				+ "}," + "{  'banco': 'Banco de la Plaza'," + "'x': -35.9345681," + "'y': 72.344546,"
+				+ "'sucursal': 'Caballito'," + "'gerente': 'Fabián Fantaguzzi',"
+				+ "'servicios': [ 'depósitos', 'extracciones', 'transferencias', 'seguros', '', '', '', '' ]" + "}"
+				+ "]";
 
 	}
 
@@ -107,52 +97,47 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	}
 
-	/////////////////////////////////////////////////
-	////////// PARA CGP EXTERNO
-	
 	public List<CentroDTO> crearCentrosDTO() {
 		CentroDTO nuevoCGP = new CentroDTO();
-		List<CentroDTO> listaDeCGPsExternosParaElAdapter= new ArrayList <CentroDTO>();
-		nuevoCGP.id = "Identificador 3";
+		List<CentroDTO> listaDeCGPsExternosParaElAdapter = new ArrayList<CentroDTO>();
 		nuevoCGP.director = "Juan";
 		nuevoCGP.domicilioCompleto = "Junin 521";
 		nuevoCGP.zonas.add("San Cristobal");
 		nuevoCGP.zonas.add("Balvanera");
 		nuevoCGP.numeroDeComuna = 3;
 		nuevoCGP.telefono = "4375-0644/45";
-		nuevoCGP. serviciosDTO = crearServiciosDTO();
+		nuevoCGP.serviciosDTO = crearServiciosDTO();
 		listaDeCGPsExternosParaElAdapter.add(nuevoCGP);
 		return listaDeCGPsExternosParaElAdapter;
 	}
-	
+
 	public CentroDTO crearCentroDTO() {
 		CentroDTO nuevoCGP = new CentroDTO();
-		nuevoCGP.id = "Identificador 3";
 		nuevoCGP.director = "Juan";
 		nuevoCGP.domicilioCompleto = "Junin 521";
 		nuevoCGP.zonas.add("San Cristobal");
 		nuevoCGP.zonas.add("Balvanera");
 		nuevoCGP.numeroDeComuna = 3;
 		nuevoCGP.telefono = "4375-0644/45";
-		nuevoCGP. serviciosDTO = crearServiciosDTO();
+		nuevoCGP.serviciosDTO = crearServiciosDTO();
 		return nuevoCGP;
 	}
-	
-	public ServicioDTO[] crearServiciosDTO(){
+
+	public ServicioDTO[] crearServiciosDTO() {
 		ServicioDTO unServicio = new ServicioDTO();
 		unServicio.setNombreServicio("asesoramiento");
 		List<Integer[]> rangosServicio = new ArrayList<>();
-		rangosServicio.add(new Integer[]{1,9,0,14,0});
-		rangosServicio.add(new Integer[]{2,9,0,14,0});
-		rangosServicio.add(new Integer[]{3,9,0,14,0});
-		rangosServicio.add(new Integer[]{4,9,0,14,0});
-		rangosServicio.add(new Integer[]{5,9,0,14,0});
-		rangosServicio.add(new Integer[]{6,10,0,13,0});
+		rangosServicio.add(new Integer[] { 1, 9, 0, 14, 0 });
+		rangosServicio.add(new Integer[] { 2, 9, 0, 14, 0 });
+		rangosServicio.add(new Integer[] { 3, 9, 0, 14, 0 });
+		rangosServicio.add(new Integer[] { 4, 9, 0, 14, 0 });
+		rangosServicio.add(new Integer[] { 5, 9, 0, 14, 0 });
+		rangosServicio.add(new Integer[] { 6, 10, 0, 13, 0 });
 		unServicio.setRangoServicioDTO(rangosServicio);
-		ServicioDTO[] serviciosDTO = new ServicioDTO[]{unServicio};
+		ServicioDTO[] serviciosDTO = new ServicioDTO[] { unServicio };
 		return serviciosDTO;
 	}
-	
+
 	public CGPExternoImpostor CGPExternoImpostorMock() {
 		cgpExternoImpostor = mock(CGPExternoImpostor.class);
 		when(cgpExternoImpostor.buscar("Balvanera")).thenReturn(this.crearCentrosDTO());
@@ -165,9 +150,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return cgpAdapter;
 
 	}
-	
-	////////////////////////////////////////////////////
-	
+
 	public SucursalBanco bancoCiudadCabildoYCongreso() {
 		if (bancoCiudadCabildoYCongreso == null) {
 			coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
@@ -176,7 +159,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			bancoCiudadCabildoYCongreso = new SucursalBanco("Banco Ciudad", "Belgrano", coordenadaBancoCiudad,
 					direccionBancoCiudad);
 			bancoCiudadCabildoYCongreso.agregarServicio(this.prestamo());
-			bancoCiudadCabildoYCongreso.setId("id_bancoC_C");
 		}
 
 		return bancoCiudadCabildoYCongreso;
@@ -198,7 +180,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			cgpComuna5.agregarServicio(cargaSUBE());
 			zonasCGP5.add("Almagro");
 			cgpComuna5.setZonasQueIncluye(zonasCGP5);
-			cgpComuna5.setId("id_com5");
 		}
 
 		return cgpComuna5;
@@ -219,7 +200,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			Direccion direccionStarbucks = new Direccion("Coronel Diaz", 1400);
 			starbucksCoronelDiaz1400 = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks,
 					horarios2, direccionStarbucks);
-			starbucksCoronelDiaz1400.setId("id_stbks");
 		}
 
 		return starbucksCoronelDiaz1400;
@@ -243,7 +223,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			sportClubLibertador7395.setTag("fitness");
 			sportClubLibertador7395.setTag("musculacion");
 			sportClubLibertador7395.setTag("spinning");
-			sportClubLibertador7395.setId("id_sptclub");
 		}
 
 		return sportClubLibertador7395;
@@ -265,7 +244,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horariosCine.add(new Horario(DayOfWeek.SUNDAY, horaInicioCine, horaFinCine));
 			cineAbasto = new LocalComercial("cineAbasto", coordenadaCineAbasto, 800, horariosCine, "cine",
 					direccionCineAbasto);
-			cineAbasto.setId("id_abasto");
 		}
 
 		return cineAbasto;
