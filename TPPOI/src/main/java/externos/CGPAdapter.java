@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.uqbar.geodds.Polygon;
 
 import ar.edu.TPPOI.CGP;
@@ -73,7 +72,7 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 		String delimiter = "";
 		String[] temp;
 		temp = str.split(delimiter);
-		for (int i = unCGPExterno.getDomicilioCompleto().length() - 1; i == 0; i--) {
+		for (int i = unCGPExterno.getDomicilioCompleto().length() - 1; i ==unCGPExterno.getDomicilioCompleto().length() - 2; i--) {
 			numeracion = Integer.parseInt(temp[1]);
 			callePrincipal = str.substring(0, str.length() - temp.length);
 		}
@@ -81,7 +80,6 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 		domicilioConvertido.setPrincipal(callePrincipal, numeracion);
 		return domicilioConvertido;
 	}
-
 	@Override
 	public List<POI> buscar(String unTextoLibre, String otroTextoLibre) {
 		return buscar(unTextoLibre);
