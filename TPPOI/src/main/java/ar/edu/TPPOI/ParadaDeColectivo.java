@@ -1,8 +1,6 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
-
-
 import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POI {
@@ -22,13 +20,14 @@ public class ParadaDeColectivo extends POI {
 	public boolean estaDisponible(LocalDateTime unMomento) {
 		return true;
 	}
-	
-	public boolean coincideConAtributo(String unTextoLibre){
+
+	public boolean coincideConAtributo(String unTextoLibre) {
 		return this.nombre.equals(unTextoLibre);
 	}
-	
-	//No hace nada es para hacer andar actualizar en POI  
-	public void actualizar( POI unPOIExterno){
-		}
-	
+
+	public void actualizar(POI unPOI) {
+		this.actualizarDesdeDatos(unPOI.getCoordenada(), unPOI.getRadioCercania(), unPOI.getRubro(),
+				unPOI.getDireccion(), unPOI.getTags());
+	}
+
 }

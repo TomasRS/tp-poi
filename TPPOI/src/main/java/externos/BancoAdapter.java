@@ -8,6 +8,7 @@ import org.uqbar.geodds.Point;
 
 import com.google.gson.Gson;
 
+import ar.edu.TPPOI.BancoExternoParaTest;
 import ar.edu.TPPOI.Direccion;
 import ar.edu.TPPOI.POI;
 import ar.edu.TPPOI.Servicio;
@@ -15,16 +16,16 @@ import ar.edu.TPPOI.SucursalBanco;
 
 public class BancoAdapter implements SistemaExternoAdapterInterface {
 
-	BancoExternoImpostor bancoExternoImpostor;
+	BancoExternoParaTest bancoExternoImpostor;
 
-	public BancoAdapter(BancoExternoImpostor unSistemaConsultaDeBancosExterno) {
+	public BancoAdapter(BancoExternoParaTest unSistemaConsultaDeBancosExterno) {
 		bancoExternoImpostor = unSistemaConsultaDeBancosExterno;
 	}
 
 	public List<POI> buscar(String unTextoLibre, String otroTextoLibre) {
 		Gson gson = new Gson();
-		String JSON = this.bancoExternoImpostor.buscar(unTextoLibre, otroTextoLibre);
-		BancoJSON[] bancosJSON = gson.fromJson(JSON, BancoJSON[].class);
+		String json = this.bancoExternoImpostor.buscar(unTextoLibre, otroTextoLibre);
+		BancoJSON[] bancosJSON = gson.fromJson(json, BancoJSON[].class);
 		if (bancosJSON == null) {
 			List<POI> listaVaciaDePOIs = new ArrayList<>();
 			return listaVaciaDePOIs;
@@ -46,12 +47,6 @@ public class BancoAdapter implements SistemaExternoAdapterInterface {
 		unBancoJSON.getServicios().forEach(
 				unNombreServicio -> sucursalBanco.agregarServicio(Servicio.nuevoServicioBanco(unNombreServicio)));
 		return sucursalBanco;
-	}
-
-	@Override
-	public List<POI> buscar(String unTextoLibre) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

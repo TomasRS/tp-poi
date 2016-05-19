@@ -46,8 +46,20 @@ public class LocalComercial extends POI {
 		return (new ExisteHorarioDisponibleEnHorarios(this.horarios, unMomento)).validar();
 	}
 
-	// No hace nada es para hacer andar actualizar en POI
-	public void actualizar(POI unPOIExterno) {
+	public List<Horario> getHorarios() {
+		return this.horarios;
+	}
+
+	public void actualizar(POI unPOI) {
+		this.actualizarDesdeDatos(unPOI.getCoordenada(), unPOI.getRadioCercania(),
+				((LocalComercial) unPOI).getHorarios(), unPOI.getRubro(), unPOI.getDireccion(), unPOI.getTags());
+	}
+
+	public void actualizarDesdeDatos(Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
+			String unRubro, Direccion unaDireccion, List<String> unosTags) {
+
+		super.actualizarDesdeDatos(unaCoordenada, unRadioCercania, unRubro, unaDireccion, unosTags);
+		this.horarios = unosHorarios;
 	}
 
 }

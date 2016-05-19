@@ -20,9 +20,13 @@ public class MapaPOI {
 	}
 
 	public List<POI> buscar(String textoLibre, String otroTextoLibre) {
-		List<POI> listaDePOIsExternos = this.buscarEnSistemasExternos(textoLibre, otroTextoLibre);
-		this.actualizarPOIsSiCorresponde(listaDePOIsExternos);
-		return this.busquedaLocal(textoLibre, otroTextoLibre);
+		List<POI> resultadoBusquedaLocal = this.busquedaLocal(textoLibre, otroTextoLibre);
+		if (resultadoBusquedaLocal.isEmpty()) {
+			List<POI> listaDePOIsExternos = this.buscarEnSistemasExternos(textoLibre, otroTextoLibre);
+			this.actualizarPOIsSiCorresponde(listaDePOIsExternos);
+			resultadoBusquedaLocal = this.busquedaLocal(textoLibre, otroTextoLibre);
+		}
+		return resultadoBusquedaLocal;
 	}
 
 	public List<POI> busquedaLocal(String textoLibre, String otroTextoLibre) {

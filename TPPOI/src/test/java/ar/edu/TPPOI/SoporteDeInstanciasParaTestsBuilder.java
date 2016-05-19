@@ -9,9 +9,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import externos.BancoAdapter;
-import externos.BancoExternoImpostor;
 import externos.CGPAdapter;
-import externos.CGPExternoImpostor;
 import externos.CentroDTO;
 import externos.ServicioDTO;
 
@@ -26,9 +24,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	ParadaDeColectivo parada114DeCabildoYMonroe;
 	Servicio cargaSUBE, prestamo, cortePelo;
 	LocalComercial starbucksCoronelDiaz1400, sportClubLibertador7395, cineAbasto;
-	BancoExternoImpostor bancoExternoImpostor;
+	BancoExternoParaTest bancoExternoImpostor;
 	BancoAdapter bancoAdapter;
-	CGPExternoImpostor cgpExternoImpostor;
+	CGPExternoParaTest cgpExternoImpostor;
 	CGPAdapter cgpAdapter;
 	SucursalBanco bancoCiudadCabildoYCongreso;
 	CGP cgpComuna5;
@@ -82,13 +80,16 @@ public class SoporteDeInstanciasParaTestsBuilder {
 				+ "'sucursal': 'Caballito'," + "'gerente': 'Fabián Fantaguzzi',"
 				+ "'servicios': [ 'depósitos', 'extracciones', 'transferencias', 'seguros', '', '', '', '' ]" + "}"
 				+ "]";
-
 	}
 
-	public BancoExternoImpostor bancoExternoImpostorMock() {
-		bancoExternoImpostor = mock(BancoExternoImpostor.class);
-		when(bancoExternoImpostor.buscar("Banco de la Plaza", "extracciones")).thenReturn(this.json());
-		return bancoExternoImpostor;
+	public BancoExternoParaTest bancoExternoImpostorMock() {
+		/*
+		 * bancoExternoImpostor = mock(BancoExternoImpostor.class);
+		 * when(bancoExternoImpostor.buscar("Banco de la Plaza",
+		 * "extracciones")).thenReturn(this.json()); return
+		 * bancoExternoImpostor;
+		 */
+		return new BancoExternoParaTest();
 	}
 
 	public BancoAdapter bancoAdapter() {
@@ -138,8 +139,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return serviciosDTO;
 	}
 
-	public CGPExternoImpostor CGPExternoImpostorMock() {
-		cgpExternoImpostor = mock(CGPExternoImpostor.class);
+	public CGPExternoParaTest CGPExternoImpostorMock() {
+		cgpExternoImpostor = mock(CGPExternoParaTest.class);
 		when(cgpExternoImpostor.buscar("Balvanera")).thenReturn(this.crearCentrosDTO());
 		when(cgpExternoImpostor.buscar("Junin")).thenReturn(this.crearCentrosDTO());
 		return cgpExternoImpostor;

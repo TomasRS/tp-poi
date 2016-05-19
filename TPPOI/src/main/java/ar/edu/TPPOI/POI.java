@@ -17,32 +17,12 @@ public abstract class POI {
 		return rubro;
 	}
 
-	public void setRubro(String rubro) {
-		this.rubro = rubro;
-	}
-
 	public Integer getRadioCercania() {
 		return radioCercania;
 	}
 
-	public void setRadioCercania(Integer radioCercania) {
-		this.radioCercania = radioCercania;
-	}
-
 	public Direccion getDireccion() {
 		return direccion;
-	}
-
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
-	}
-
-	public void setCoordenada(Point coordenada) {
-		this.coordenada = coordenada;
-	}
-
-	public void setTags(List<String> tags) {
-		this.tags = tags;
 	}
 
 	public String getNombre() {
@@ -64,13 +44,6 @@ public abstract class POI {
 	public void setTag(String unTag) {
 		this.tags.add(unTag);
 	}
-
-	// METODOS ABSTRACTOS-----------------------------------------------------
-	public abstract boolean coincideConAtributo(String unTextoLibre);
-
-	public abstract void actualizar(POI unPOIExterno);
-
-	// -----------------------------------------------------------------------
 
 	public boolean sosValido() {
 		return this.tengoNombre() && this.tengoCoordenada();
@@ -117,16 +90,29 @@ public abstract class POI {
 				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
 	}
 
-	public boolean soyBanco() {
+	public boolean esBanco() {
 		return false;
 	}
 
-	public boolean soyCGP() {
+	public boolean esCGP() {
 		return false;
 	}
 
 	public boolean soyElMismoPOI(POI otroPOI) {
 		return StringUtils.containsIgnoreCase(otroPOI.getNombre(), this.getNombre());
+	}
+
+	public abstract boolean coincideConAtributo(String unTextoLibre);
+
+	public abstract void actualizar(POI unPOIExterno);
+
+	public void actualizarDesdeDatos(Point unaCoordenada, Integer unRadioCercania, String unRubro,
+			Direccion unaDireccion, List<String> unosTags) {
+		this.coordenada = unaCoordenada;
+		this.radioCercania = unRadioCercania;
+		this.rubro = unRubro;
+		this.direccion = unaDireccion;
+		this.tags = unosTags;
 	}
 
 }

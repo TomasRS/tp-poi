@@ -36,23 +36,28 @@ public class CGP extends EmpresaMultiServicios {
 	public boolean coincideConAtributo(String unTextoLibre) {
 		return this.servicios.stream()
 				.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()))
-				|| this.getZonasQueIncluye().contains(unTextoLibre)
-				||this.direccion.coincideConCalle(unTextoLibre);
+				|| this.getZonasQueIncluye().contains(unTextoLibre) || this.direccion.coincideConCalle(unTextoLibre);
 	}
 
 	public void actualizar(POI unCGPExterno) {
-		this.setCoordenada(unCGPExterno.getCoordenada());
-		this.setDireccion(unCGPExterno.getDireccion());
-		this.setTags(unCGPExterno.getTags());
-		this.setServicios(((CGP) unCGPExterno).getServicios());
+		this.actualizarDesdeDatos(unCGPExterno.getCoordenada(), unCGPExterno.getDireccion(), unCGPExterno.getTags(),
+				((CGP) unCGPExterno).getServicios());
 	}
 
-	public boolean soyCGP() {
+	public void actualizarDesdeDatos(Point unaCoordenada, Direccion unaDireccion, List<String> unosTags,
+			List<Servicio> unosServicios) {
+		this.coordenada = unaCoordenada;
+		this.direccion = unaDireccion;
+		this.tags = unosTags;
+		this.servicios = unosServicios;
+	}
+
+	public boolean esCGP() {
 		return true;
 	}
 
 	public boolean soyElMismoPOI(POI otroPOI) {
-		return otroPOI.soyCGP() && super.soyElMismoPOI(otroPOI);
+		return otroPOI.esCGP() && super.soyElMismoPOI(otroPOI);
 	}
 
 }

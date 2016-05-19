@@ -29,26 +29,19 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		return this.getNombre().equals(unTextoLibre) || this.getNombreSucursal().equals(unTextoLibre);
 	}
 
-	public boolean soyBanco() {
+	public boolean esBanco() {
 		return true;
 	}
 
 	public boolean soyElMismoPOI(POI otroPOI) {
 
-		if (otroPOI.soyBanco()) {
+		if (otroPOI.esBanco()) {
 			SucursalBanco unaSucursalBanco = (SucursalBanco) otroPOI;
-			return (StringUtils.containsIgnoreCase(unaSucursalBanco.getNombre(), this.getNombre())
+			return (super.soyElMismoPOI(otroPOI)
 					&& StringUtils.containsIgnoreCase(unaSucursalBanco.getNombreSucursal(), this.getNombreSucursal()));
 		} else {
 			return false;
 		}
 
 	}
-
-	public void actualizar(POI unPOIExterno) {
-		this.setCoordenada(unPOIExterno.getCoordenada());
-		this.setDireccion(unPOIExterno.getDireccion());
-		this.setServicios(((SucursalBanco) unPOIExterno).getServicios());
-	}
-
 }

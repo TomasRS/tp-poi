@@ -8,6 +8,7 @@ import java.util.List;
 import org.uqbar.geodds.Polygon;
 
 import ar.edu.TPPOI.CGP;
+import ar.edu.TPPOI.CGPExternoParaTest;
 import ar.edu.TPPOI.Direccion;
 import ar.edu.TPPOI.Horario;
 import ar.edu.TPPOI.POI;
@@ -15,14 +16,18 @@ import ar.edu.TPPOI.Servicio;
 
 public class CGPAdapter implements SistemaExternoAdapterInterface {
 
-	CGPExternoImpostor CGPExternoImpostor;
+	CGPExternoInterface cgpExterno;
 
-	public CGPAdapter(CGPExternoImpostor unSistemaConsultaDeCGPsExterno) {
-		CGPExternoImpostor = unSistemaConsultaDeCGPsExterno;
+	public CGPAdapter(CGPExternoParaTest unSistemaConsultaDeCGPsExterno) {
+		cgpExterno = unSistemaConsultaDeCGPsExterno;
+	}
+
+	public List<POI> buscar(String unTextoLibre, String otroTextoLibre) {
+		return buscar(unTextoLibre);
 	}
 
 	public List<POI> buscar(String unTextoLibre) {
-		List<CentroDTO> listaDeCGPsExternos = CGPExternoImpostor.buscar(unTextoLibre);
+		List<CentroDTO> listaDeCGPsExternos = cgpExterno.buscar(unTextoLibre);
 		List<POI> listaCGPEncontrados = new ArrayList<>();
 
 		listaCGPEncontrados = this.generarNuevosCGPs(listaDeCGPsExternos);
@@ -37,11 +42,8 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 	}
 
 	public CGP crearCGPDeExterno(CentroDTO unCGPExterno) {
-
 		CGP nuevoCGP = new CGP(unCGPExterno.numeroDeComuna.toString(), new String(), new Polygon(),
 				partirDomicilio(unCGPExterno));
-
-		// comuna en nuestro sistema es polygon y externamente es un entero
 		nuevoCGP.setZonasQueIncluye(unCGPExterno.getZonas());
 		Arrays.stream(unCGPExterno.getServiciosDTO())
 				.forEach(unServicioDTO -> nuevoCGP.agregarServicio(convertirServicioExterno(unServicioDTO)));
@@ -72,16 +74,13 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 		String delimiter = "";
 		String[] temp;
 		temp = str.split(delimiter);
-		for (int i = unCGPExterno.getDomicilioCompleto().length() - 1; i ==unCGPExterno.getDomicilioCompleto().length() - 2; i--) {
+		for (int i = unCGPExterno.getDomicilioCompleto().length() - 1; i == unCGPExterno.getDomicilioCompleto().length()
+				- 2; i--) {
 			numeracion = Integer.parseInt(temp[1]);
 			callePrincipal = str.substring(0, str.length() - temp.length);
 		}
 		Direccion domicilioConvertido = new Direccion();
 		domicilioConvertido.setPrincipal(callePrincipal, numeracion);
 		return domicilioConvertido;
-	}
-	@Override
-	public List<POI> buscar(String unTextoLibre, String otroTextoLibre) {
-		return buscar(unTextoLibre);
 	}
 }
