@@ -22,9 +22,9 @@ public class BancoAdapter implements SistemaExternoAdapterInterface {
 		bancoExternoImpostor = unSistemaConsultaDeBancosExterno;
 	}
 
-	public List<POI> buscar(String unTextoLibre, String otroTextoLibre) {
+	public List<POI> buscar(String unTextoLibre) {
 		Gson gson = new Gson();
-		String json = this.bancoExternoImpostor.buscar(unTextoLibre, otroTextoLibre);
+		String json = this.bancoExternoImpostor.buscar(unTextoLibre);
 		BancoJSON[] bancosJSON = gson.fromJson(json, BancoJSON[].class);
 		if (bancosJSON == null) {
 			List<POI> listaVaciaDePOIs = new ArrayList<>();
@@ -48,5 +48,4 @@ public class BancoAdapter implements SistemaExternoAdapterInterface {
 				unNombreServicio -> sucursalBanco.agregarServicio(Servicio.nuevoServicioBanco(unNombreServicio)));
 		return sucursalBanco;
 	}
-
 }

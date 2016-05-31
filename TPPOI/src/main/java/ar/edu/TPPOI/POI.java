@@ -77,8 +77,8 @@ public abstract class POI {
 		return tags.stream().anyMatch(unTag -> unTag.equals(unTextoLibre));
 	}
 
-	public boolean busqueda(String unTextoLibre, String otroTextoLibre) {
-		return busquedaConcreta(unTextoLibre) && (otroTextoLibre == "" || busquedaConcreta(otroTextoLibre));
+	public boolean busqueda(String unTextoLibre) {
+		return busquedaConcreta(unTextoLibre);
 	}
 
 	private boolean busquedaConcreta(String unTextoLibre) {

@@ -6,6 +6,6 @@ import ar.edu.TPPOI.POI;
 
 public interface SistemaExternoAdapterInterface {
 
-	public List<POI> buscar(String unTextoLibre, String otroTextoLibre);
+	public List<POI> buscar(String unTextoLibre);
 	
 }

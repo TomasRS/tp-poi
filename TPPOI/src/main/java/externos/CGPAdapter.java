@@ -22,10 +22,6 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 		cgpExterno = unSistemaConsultaDeCGPsExterno;
 	}
 
-	public List<POI> buscar(String unTextoLibre, String otroTextoLibre) {
-		return buscar(unTextoLibre);
-	}
-
 	public List<POI> buscar(String unTextoLibre) {
 		List<CentroDTO> listaDeCGPsExternos = cgpExterno.buscar(unTextoLibre);
 		List<POI> listaCGPEncontrados = new ArrayList<>();
@@ -68,19 +64,18 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 	}
 
 	private Direccion partirDomicilio(CentroDTO unCGPExterno) {
-		Integer numeracion = 0;
-		String callePrincipal = "";
-		String str = unCGPExterno.getDomicilioCompleto();
-		String delimiter = "";
-		String[] temp;
-		temp = str.split(delimiter);
-		for (int i = unCGPExterno.getDomicilioCompleto().length() - 1; i == unCGPExterno.getDomicilioCompleto().length()
-				- 2; i--) {
-			numeracion = Integer.parseInt(temp[1]);
-			callePrincipal = str.substring(0, str.length() - temp.length);
+		int i=0;
+		String [] domicilioVectorizado=unCGPExterno.domicilioCompleto.split(" ");
+		String callePrincipalCGPExterno="";
+		while (i<domicilioVectorizado.length){
+			if (i==0){
+				callePrincipalCGPExterno=domicilioVectorizado[0];
+				i++;
+			}else{callePrincipalCGPExterno=callePrincipalCGPExterno.concat(domicilioVectorizado[i].toString());
+			}
+			i++;
 		}
-		Direccion domicilioConvertido = new Direccion();
-		domicilioConvertido.setPrincipal(callePrincipal, numeracion);
+		Direccion domicilioConvertido=new Direccion(callePrincipalCGPExterno,Integer.parseInt(domicilioVectorizado[domicilioVectorizado.length-1]));
 		return domicilioConvertido;
 	}
 }

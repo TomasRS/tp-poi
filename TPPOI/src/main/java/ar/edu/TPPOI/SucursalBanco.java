@@ -26,7 +26,8 @@ public class SucursalBanco extends EmpresaMultiServicios {
 	}
 
 	public boolean coincideConAtributo(String unTextoLibre) {
-		return this.getNombre().equals(unTextoLibre) || this.getNombreSucursal().equals(unTextoLibre);
+		String [] nombre=unTextoLibre.split(",");
+		return this.getNombre().equals(nombre[0]) || this.getNombreSucursal().equals(nombre[0]);
 	}
 
 	public boolean esBanco() {

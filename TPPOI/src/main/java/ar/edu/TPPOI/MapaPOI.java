@@ -16,28 +16,24 @@ public class MapaPOI {
 	}
 
 	public List<POI> buscar(String textoLibre) {
-		return buscar(textoLibre, "");
-	}
-
-	public List<POI> buscar(String textoLibre, String otroTextoLibre) {
-		List<POI> resultadoBusquedaLocal = this.busquedaLocal(textoLibre, otroTextoLibre);
+		List<POI> resultadoBusquedaLocal = this.busquedaLocal(textoLibre);
 		if (resultadoBusquedaLocal.isEmpty()) {
-			List<POI> listaDePOIsExternos = this.buscarEnSistemasExternos(textoLibre, otroTextoLibre);
+			List<POI> listaDePOIsExternos = this.buscarEnSistemasExternos(textoLibre);
 			this.actualizarPOIsSiCorresponde(listaDePOIsExternos);
-			resultadoBusquedaLocal = this.busquedaLocal(textoLibre, otroTextoLibre);
+			resultadoBusquedaLocal = this.busquedaLocal(textoLibre);
 		}
 		return resultadoBusquedaLocal;
 	}
 
-	public List<POI> busquedaLocal(String textoLibre, String otroTextoLibre) {
-		return this.getListaDePOIs().stream().filter(unPOI -> unPOI.busqueda(textoLibre, otroTextoLibre))
+	public List<POI> busquedaLocal(String textoLibre) {
+		return this.getListaDePOIs().stream().filter(unPOI -> unPOI.busqueda(textoLibre))
 				.collect(Collectors.toList());
 	}
 
-	public List<POI> buscarEnSistemasExternos(String textoLibre, String otroTextoLibre) {
+	public List<POI> buscarEnSistemasExternos(String textoLibre) {
 		List<POI> listaDePOIsExternos = new ArrayList<>();
 		listaDeSistemaExternoAdapter.stream().forEach(unSistemaExternoAdapter -> listaDePOIsExternos
-				.addAll(unSistemaExternoAdapter.buscar(textoLibre, otroTextoLibre)));
+				.addAll(unSistemaExternoAdapter.buscar(textoLibre)));
 		return listaDePOIsExternos;
 	}
 
