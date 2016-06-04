@@ -26,11 +26,11 @@ public abstract class Accion implements InterfaceTerminal{
 		return 0;
 	}
 	
-	public void buscarDesdeTerminal(String unTextoLibre){
+	public void buscar(String unTextoLibre){
 		
 	}
 	
-	public boolean superaTiempoDeBusqueda(int tiempoDeBusqueda){
+	public boolean superaTiempoLimite(){
 		
 		return false;
 	}

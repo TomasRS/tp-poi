@@ -6,17 +6,36 @@ public class Terminal implements InterfaceTerminal{
 
 	private int tiempoLimite;
 	private MapaPOI mapa;
+	private int tiempoQueDemoroLaBusqueda;
 	
-
-	
-	public void buscarDesdeTerminal(String unTextoLibre){
-		
-		//codigo para buscar (le dice al mapa que busque)
+	public void setTiempoLimite(int tiempo){
+		this.tiempoLimite = tiempo;
 	}
 	
-	public boolean superaTiempoDeBusqueda(int tiempoDeBusqueda){
+	//Este metodo lo llama el Mapa para decirle que se setee el tiempoQueDemoro la busqueda
+	public void setTiempoQueDemoroLaBusqueda(int unTiempo){
+		this.tiempoQueDemoroLaBusqueda = unTiempo;
+	}
+	
+	public int getTiempoQueDemoroLaBusqueda(){
+		return tiempoQueDemoroLaBusqueda;
+	}
+	
+	public void buscar(String unTextoLibre){
 		
-		//codigo para ver si se supera el tiempo de Busqueda parametrizado (rompe xq no hay return)
+		this.mapa.buscarDesdeTerminal(unTextoLibre, this);
+		
+		if (this.superaTiempoLimite()){
+			
+			//decirle a Notificar que notifique
+		}
+	
+	}
+		
+	public boolean superaTiempoLimite(){
+		
+		return this.getTiempoQueDemoroLaBusqueda() > this.tiempoLimite;
+			
 	}
 
 	

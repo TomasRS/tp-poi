@@ -73,4 +73,11 @@ public class MapaPOI {
 		listaDeSistemaExternoAdapter.remove(unSistemaExternoAdapter);
 	}
 
+	public void buscarDesdeTerminal(String unTexto, Terminal unaTerminal){
+		//comenzar a contar el tiempo
+		this.buscar(unTexto);
+		//finalizar de contar el tiempo
+		
+		//unaTerminal.setTiempoQueDemoroLaBusqueda(/*valorDelTemporizador*/);
+	}
 }

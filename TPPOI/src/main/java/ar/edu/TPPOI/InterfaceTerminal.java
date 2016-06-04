@@ -7,7 +7,7 @@ public interface InterfaceTerminal {
 	void mandarMail();
 	int cantidadDeBusquedasPorFecha(LocalDateTime fecha);
 	void registrar();
-	void buscarDesdeTerminal(String unTextoLibre);
-	boolean superaTiempoDeBusqueda(int tiempoDeBusqueda);
+	void buscar(String unTextoLibre);
+	boolean superaTiempoLimite();
 	
 }
