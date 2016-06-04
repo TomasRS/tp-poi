@@ -1,7 +1,13 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDateTime;
+
 public interface InterfaceTerminal {
 	
-	//Aca van las firmas de los métodos de las clases que implementan esta interfaz
+	void mandarMail();
+	int cantidadDeBusquedasPorFecha(LocalDateTime fecha);
+	void registrar();
+	void buscarDesdeTerminal(String unTextoLibre);
+	boolean superaTiempoDeBusqueda(int tiempoDeBusqueda);
 	
 }
