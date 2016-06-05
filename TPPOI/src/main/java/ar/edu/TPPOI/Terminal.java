@@ -18,13 +18,13 @@ public class Terminal implements InterfaceTerminal{
 		this.tiempoLimite = tiempo;
 	}
 	
-	//Este metodo lo llama el Mapa para decirle que se setee el tiempoQueDemoro la busqueda
-	public void setTiempoQueDemoroLaBusqueda(long unTiempo){
-		this.tiempoQueDemoroLaBusqueda = unTiempo;
-	}
-	
-	public long getTiempoQueDemoroLaBusqueda(){
-		return tiempoQueDemoroLaBusqueda;
+	//Este metodo lo llama el Mapa para mandarle los datos de la busqueda (frase,cantResult,tiempo)
+	public void setDatosDeBusqueda(String unTexto, int cantDeResultados, long elapsedTime){
+		this.tiempoQueDemoroLaBusqueda = elapsedTime;
+		
+		Almacenar terminalConAlmacenar = new Almacenar();
+		terminalConAlmacenar.registrar(unTexto, cantDeResultados, elapsedTime);
+		
 	}
 
 	
