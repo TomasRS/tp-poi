@@ -9,6 +9,8 @@ public class Terminal implements InterfaceTerminal{
 	private double tiempoQueDemoroLaBusqueda;
 	private InterfaceTerminal interfazDeTerminal;
 	
+
+	
 	public void setTiempoLimite(double tiempo){
 		this.tiempoLimite = tiempo;
 	}
