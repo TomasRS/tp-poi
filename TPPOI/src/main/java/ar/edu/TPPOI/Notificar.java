@@ -2,10 +2,16 @@ package ar.edu.TPPOI;
 
 public class Notificar extends Accion {
 
-	protected boolean mailEnviado = false;
+	boolean mailEnviado;
 	
 	public void mandarMail(){
 		
-		this.mailEnviado = true;
+		if (this.getActivado()){
+			this.mailEnviado = true;
+		}
+	}
+	
+	public boolean getMailEnviado(){
+		return mailEnviado;
 	}
 }

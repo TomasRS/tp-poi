@@ -4,10 +4,14 @@ import java.time.LocalDateTime;
 
 public abstract class Accion implements InterfaceTerminal{
 	
-	private boolean habilitado;
+	boolean habilitado;
 	
 	public void setActivado(boolean flag){
 		this.habilitado = flag;
+	}
+	
+	public boolean getActivado(){
+		return habilitado;
 	}
 	
 	//Metodos default para cuando Almacenar, Notificar u ObtenerReporte no deben hacer nada

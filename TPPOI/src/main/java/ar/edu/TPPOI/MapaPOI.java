@@ -76,7 +76,7 @@ public class MapaPOI {
 	public void buscarDesdeTerminal(String unTexto, Terminal unaTerminal){
 		long start = System.nanoTime();
 		this.buscar(unTexto);
-		double elapsedTime = (System.nanoTime() - start) / 1000000000.0; //lo paso a segundos
+		long elapsedTime = System.nanoTime() - start;
 		
 		unaTerminal.setTiempoQueDemoroLaBusqueda(elapsedTime);
 	}

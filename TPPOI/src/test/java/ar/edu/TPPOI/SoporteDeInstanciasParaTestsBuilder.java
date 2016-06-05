@@ -31,6 +31,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	SucursalBanco bancoCiudadCabildoYCongreso;
 	CGP cgpComuna5;
 	MapaPOI mapa;
+	Terminal terminalAbasto = new Terminal();
+	Notificar notificarDeTerminalAbasto = new Notificar();
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -264,5 +266,14 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return mapa;
 	}
+
+	public Terminal terminalAbasto(){
+		if (terminalAbasto == null){
+			terminalAbasto = new Terminal();
+			terminalAbasto.setTiempoLimite(1);
+		}
+		return terminalAbasto;
+	}
+	
 
 }

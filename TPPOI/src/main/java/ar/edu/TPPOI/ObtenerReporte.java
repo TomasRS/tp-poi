@@ -7,7 +7,8 @@ public class ObtenerReporte extends Accion {
 	
 	public int cantidadDeBusquedasPorFecha(LocalDateTime fecha){
 			
-		//codigo para generar el reporte por fecha (rompe porque no hay return)
+		//modificar bien el return para que devuelva lo que corresponde
+		return 0;
 	}
 	
 }
