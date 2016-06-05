@@ -7,7 +7,7 @@ public class Terminal implements InterfaceTerminal{
 	private long tiempoLimite;
 	private MapaPOI mapa;
 	private long tiempoQueDemoroLaBusqueda;
-	public InterfaceTerminal interfazDeTerminal;
+
 	
 	
 	public void setMapa(MapaPOI unMapa){

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public abstract class Accion implements InterfaceTerminal{
 	
 	boolean habilitado;
+	InterfaceTerminal terminalConocida;
 	
 	public void setActivado(boolean flag){
 		this.habilitado = flag;
