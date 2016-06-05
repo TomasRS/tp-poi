@@ -9,12 +9,14 @@ public class Almacenar extends Accion {
 	
 	public void registrar(String unTexto, int cantDeResultados, long elapsedTime){
 		
+		if (this.getActivado()){
 		Historial unaBusquedaHecha = new Historial();
 		unaBusquedaHecha.setFrase(unTexto);
 		unaBusquedaHecha.setCantDeBusquedas(cantDeResultados);
 		unaBusquedaHecha.setTiempoQueTardoLaBusqueda(elapsedTime);
 		
 		this.agregarBusqueda(unaBusquedaHecha);
+		}
 	}
 	
 	public void agregarBusqueda(Historial unaBusqueda){
