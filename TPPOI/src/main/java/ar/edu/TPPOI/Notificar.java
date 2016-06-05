@@ -2,8 +2,10 @@ package ar.edu.TPPOI;
 
 public class Notificar extends Accion {
 
+	protected boolean mailEnviado = false;
+	
 	public void mandarMail(){
 		
-		//codigo de mandar mail
+		this.mailEnviado = true;
 	}
 }

@@ -4,22 +4,20 @@ import java.time.LocalDateTime;
 
 public class Terminal implements InterfaceTerminal{
 
-	private int tiempoLimite;
+	private double tiempoLimite;
 	private MapaPOI mapa;
-	private int tiempoQueDemoroLaBusqueda;
+	private double tiempoQueDemoroLaBusqueda;
+	private InterfaceTerminal interfazDeTerminal;
 	
-	public void setTiempoLimite(int tiempo){
+	public void setTiempoLimite(double tiempo){
 		this.tiempoLimite = tiempo;
 	}
 	
 	//Este metodo lo llama el Mapa para decirle que se setee el tiempoQueDemoro la busqueda
-	public void setTiempoQueDemoroLaBusqueda(int unTiempo){
+	public void setTiempoQueDemoroLaBusqueda(double unTiempo){
 		this.tiempoQueDemoroLaBusqueda = unTiempo;
 	}
-	
-	public int getTiempoQueDemoroLaBusqueda(){
-		return tiempoQueDemoroLaBusqueda;
-	}
+
 	
 	public void buscar(String unTextoLibre){
 		
@@ -27,14 +25,14 @@ public class Terminal implements InterfaceTerminal{
 		
 		if (this.superaTiempoLimite()){
 			
-			//decirle a Notificar que notifique
+			interfazDeTerminal.mandarMail();
 		}
 	
 	}
 		
 	public boolean superaTiempoLimite(){
 		
-		return this.getTiempoQueDemoroLaBusqueda() > this.tiempoLimite;
+		return this.tiempoQueDemoroLaBusqueda > this.tiempoLimite;
 			
 	}
 
