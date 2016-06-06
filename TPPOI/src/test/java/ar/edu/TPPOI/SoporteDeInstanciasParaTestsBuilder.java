@@ -33,6 +33,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	MapaPOI mapa;
 	Terminal terminalAbasto = new Terminal();
 	Notificar notificarDeTerminal = new Notificar();
+	Almacenar almacenarDeTerminal = new Almacenar();
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -279,6 +280,13 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			notificarDeTerminal = new Notificar();
 		}
 		return notificarDeTerminal;
+	}
+	
+	public Almacenar almacenarDeTerminal(){
+		if (almacenarDeTerminal == null){
+			almacenarDeTerminal = new Almacenar();
+		}
+		return almacenarDeTerminal;
 	}
 	
 

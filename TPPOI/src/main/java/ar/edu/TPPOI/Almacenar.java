@@ -1,25 +1,21 @@
 package ar.edu.TPPOI;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 public class Almacenar extends Accion {
 
-	List<Historial> busquedasHechas = new ArrayList<>();
 	
-	public void registrar(String unTexto, int cantDeResultados, long elapsedTime){
+	public void registrar(String unTexto, int cantDeResultados, long elapsedTime, LocalDate fecha, Terminal unaTerminal){
 		
 		if (this.getActivado()){
 		Historial unaBusquedaHecha = new Historial();
 		unaBusquedaHecha.setFrase(unTexto);
 		unaBusquedaHecha.setCantDeBusquedas(cantDeResultados);
 		unaBusquedaHecha.setTiempoQueTardoLaBusqueda(elapsedTime);
+		unaBusquedaHecha.setFecha(fecha);
 		
-		this.agregarBusqueda(unaBusquedaHecha);
+		unaTerminal.agregarBusquedaHecha(unaBusquedaHecha);
 		}
 	}
 	
-	public void agregarBusqueda(Historial unaBusqueda){
-		busquedasHechas.add(unaBusqueda);
-	}
 }

@@ -10,6 +10,7 @@ public class TerminalTest {
 	Terminal terminalAbasto;
 	MapaPOI mapaInteractivo;
 	Notificar notificarDeTerminalAbasto;
+	Almacenar almacenarDeTerminalAbasto;
 	
 	@Before
 	public void init(){
@@ -17,15 +18,18 @@ public class TerminalTest {
 		mapaInteractivo = soporteParaTests.mapa();
 		terminalAbasto = soporteParaTests.terminalAbasto();
 		notificarDeTerminalAbasto = soporteParaTests.notificarDeTerminal();
+		almacenarDeTerminalAbasto = soporteParaTests.almacenarDeTerminal();
+		notificarDeTerminalAbasto.setActivado(true);
+		almacenarDeTerminalAbasto.setActivado(true);
 		terminalAbasto.setMapa(mapaInteractivo);
 		terminalAbasto.setAccionNotificar(notificarDeTerminalAbasto);
+		terminalAbasto.setAccionAlmacenar(almacenarDeTerminalAbasto);
 		
 	}
 	
 	@Test
 	public void testTerminalNotificaCuandoSeExcedeElTiempoLimiteDeBusqueda(){
 		terminalAbasto.setTiempoLimite(1); //en nanosegundos
-		notificarDeTerminalAbasto.setActivado(true);
 		terminalAbasto.buscar("114");
 		Assert.assertEquals(terminalAbasto.notificoMail(), true);
 		
@@ -34,9 +38,15 @@ public class TerminalTest {
 	@Test
 	public void testTerminalNONotificaCuandoNOExcedeElTiempoLimiteDeBusqueda(){
 		terminalAbasto.setTiempoLimite(1000000000); // = 1 segundo
-		notificarDeTerminalAbasto.setActivado(true);
 		terminalAbasto.buscar("114");
 		Assert.assertEquals(terminalAbasto.notificoMail(), false);
 		
+	}
+	
+	@Test
+	public void testTerminalAlmacenaLosResultadosDeLasBusquedas(){
+		terminalAbasto.setTiempoLimite(1000000000);
+		terminalAbasto.buscar("114");
+		Assert.assertEquals(terminalAbasto.almacenoBusqueda(), true);
 	}
 }
