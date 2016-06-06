@@ -32,7 +32,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	CGP cgpComuna5;
 	MapaPOI mapa;
 	Terminal terminalAbasto = new Terminal();
-	Notificar notificarDeTerminalAbasto = new Notificar();
+	Notificar notificarDeTerminal = new Notificar();
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -270,9 +270,15 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public Terminal terminalAbasto(){
 		if (terminalAbasto == null){
 			terminalAbasto = new Terminal();
-			terminalAbasto.setTiempoLimite(1);
 		}
 		return terminalAbasto;
+	}
+	
+	public Notificar notificarDeTerminal(){
+		if (notificarDeTerminal == null){
+			notificarDeTerminal = new Notificar();
+		}
+		return notificarDeTerminal;
 	}
 	
 

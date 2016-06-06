@@ -2,12 +2,12 @@ package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
 
-public class Terminal implements InterfaceTerminal{
+public class Terminal{
 
-	private long tiempoLimite;
-	private MapaPOI mapa;
-	private long tiempoQueDemoroLaBusqueda;
-
+	long tiempoLimite;
+	MapaPOI mapa;
+	long tiempoQueDemoroLaBusqueda;
+	Notificar notificarDeTerminal;
 	
 	
 	public void setMapa(MapaPOI unMapa){
@@ -16,6 +16,10 @@ public class Terminal implements InterfaceTerminal{
 	
 	public void setTiempoLimite(long tiempo){
 		this.tiempoLimite = tiempo;
+	}
+	
+	public void setAccionNotificar(Notificar unNotificar){
+		this.notificarDeTerminal = unNotificar;
 	}
 	
 	//Este metodo lo llama el Mapa para mandarle los datos de la busqueda (frase,cantResult,tiempo)
@@ -27,39 +31,20 @@ public class Terminal implements InterfaceTerminal{
 		
 	}
 
+	public boolean notificoMail(){
+		return notificarDeTerminal.getMailEnviado();
+	}
 	
 	public void buscar(String unTextoLibre){
-		Notificar terminalConNotificar;
-		
+
 		this.mapa.buscarDesdeTerminal(unTextoLibre, this);
 		
 		if (this.superaTiempoLimite()){
-			
-			terminalConNotificar = new Notificar();
-			terminalConNotificar.mandarMail();
+			notificarDeTerminal.mandarMail();
 		}
-	
 	}
 		
 	public boolean superaTiempoLimite(){
-		
-		return this.tiempoQueDemoroLaBusqueda > this.tiempoLimite;
-			
+		return this.tiempoQueDemoroLaBusqueda > this.tiempoLimite;	
 	}
-
-	
-	//Metodos default para que Terminal entienda las firmas de la interfaz superior
-	public void mandarMail(){
-		
-	}
-	
-	public void registrar(){
-		
-	}
-	
-	public int cantidadDeBusquedasPorFecha(LocalDateTime fecha){
-		
-		return 0;
-	}
-
 }

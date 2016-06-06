@@ -2,7 +2,7 @@ package ar.edu.TPPOI;
 
 public class Notificar extends Accion {
 
-	boolean mailEnviado;
+	boolean mailEnviado = false;
 	
 	public void mandarMail(){
 		
