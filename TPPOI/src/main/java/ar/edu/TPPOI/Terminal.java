@@ -11,9 +11,9 @@ public class Terminal{
 	long tiempoQueDemoroLaBusqueda;
 	Notificar notificarDeTerminal;
 	Almacenar almacenarDeTerminal;
-	List<Historial> busquedasHechas = new ArrayList<>();
+	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
 	
-	public void agregarBusquedaHecha(Historial unaBusqueda){
+	public void agregarBusquedaHecha(BusquedaHecha unaBusqueda){
 		busquedasHechas.add(unaBusqueda);
 	}
 	

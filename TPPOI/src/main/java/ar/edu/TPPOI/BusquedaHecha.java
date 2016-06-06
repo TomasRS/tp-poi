@@ -3,7 +3,7 @@ package ar.edu.TPPOI;
 import java.time.LocalDate;
 
 //Este es el objeto que representa la estructura de la busqueda (frase, cantTotal, tiempo) para almacenar
-public class Historial {
+public class BusquedaHecha {
 
 	String frase;
 	int cantidadBusquedas;

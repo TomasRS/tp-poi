@@ -8,7 +8,7 @@ public class Almacenar extends Accion {
 	public void registrar(String unTexto, int cantDeResultados, long elapsedTime, LocalDate fecha, Terminal unaTerminal){
 		
 		if (this.getActivado()){
-		Historial unaBusquedaHecha = new Historial();
+		BusquedaHecha unaBusquedaHecha = new BusquedaHecha();
 		unaBusquedaHecha.setFrase(unTexto);
 		unaBusquedaHecha.setCantDeBusquedas(cantDeResultados);
 		unaBusquedaHecha.setTiempoQueTardoLaBusqueda(elapsedTime);
