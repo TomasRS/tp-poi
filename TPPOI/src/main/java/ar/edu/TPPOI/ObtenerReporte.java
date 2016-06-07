@@ -1,14 +1,15 @@
 package ar.edu.TPPOI;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ObtenerReporte extends Accion {
 
 	
-	public int cantidadDeBusquedasPorFecha(LocalDateTime fecha){
-			
+	public int cantidadDeBusquedasPorFecha(LocalDate fecha, AlmacenTerminales unAlmacen){
 		//modificar bien el return para que devuelva lo que corresponde
-		return 0;
+		return unAlmacen.busquedasEnFecha(fecha).size();
 	}
+	
+	
 	
 }

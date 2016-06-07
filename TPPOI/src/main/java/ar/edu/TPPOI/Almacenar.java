@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Almacenar extends Accion {
 
 	
-	public void registrar(String unTexto, int cantDeResultados, long elapsedTime, LocalDate fecha, Terminal unaTerminal){
+	public void registrar(String unTexto, int cantDeResultados, long elapsedTime, LocalDate fecha, Terminal unaTerminal, AlmacenTerminales unAlmacen){
 		
 		if (this.getActivado()){
 		BusquedaHecha unaBusquedaHecha = new BusquedaHecha();
@@ -15,6 +15,7 @@ public class Almacenar extends Accion {
 		unaBusquedaHecha.setFecha(fecha);
 		
 		unaTerminal.agregarBusquedaHecha(unaBusquedaHecha);
+		unAlmacen.agregarBusquedaHecha(unaBusquedaHecha, unaTerminal.identificador);
 		}
 	}
 	

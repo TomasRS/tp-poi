@@ -25,4 +25,8 @@ public class BusquedaHecha {
 	public void setFecha(LocalDate unaFecha){
 		this.fecha = unaFecha;
 	}
+	
+	public LocalDate getFecha(){
+		return this.fecha;
+	}
 }

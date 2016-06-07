@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Terminal{
-
+	
+	String identificador;//Unico, se usa para identificar a una terminal
 	long tiempoLimite;
 	MapaPOI mapa;
 	long tiempoQueDemoroLaBusqueda;
 	Notificar notificarDeTerminal;
 	Almacenar almacenarDeTerminal;
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
+	AlmacenTerminales almacen = new AlmacenTerminales();//me parece que el almacen deberia ser estatico
 	
 	public void agregarBusquedaHecha(BusquedaHecha unaBusqueda){
 		busquedasHechas.add(unaBusqueda);
@@ -37,7 +39,7 @@ public class Terminal{
 	public void setDatosDeBusqueda(String unTexto, int cantDeResultados, long elapsedTime){
 		this.tiempoQueDemoroLaBusqueda = elapsedTime;
 		LocalDate fecha = LocalDate.now();
-		almacenarDeTerminal.registrar(unTexto, cantDeResultados, elapsedTime, fecha, this);
+		almacenarDeTerminal.registrar(unTexto, cantDeResultados, elapsedTime, fecha, this, almacen);
 		
 	}
 
