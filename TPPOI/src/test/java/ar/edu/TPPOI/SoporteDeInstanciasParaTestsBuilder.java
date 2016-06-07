@@ -146,6 +146,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		cgpExternoImpostor = mock(CGPExternoParaTest.class);
 		when(cgpExternoImpostor.buscar("Balvanera")).thenReturn(this.crearCentrosDTO());
 		when(cgpExternoImpostor.buscar("Junin")).thenReturn(this.crearCentrosDTO());
+		when (cgpExternoImpostor.buscar("San Cristobal")).thenReturn(this.crearCentrosDTO());
 		return cgpExternoImpostor;
 	}
 
