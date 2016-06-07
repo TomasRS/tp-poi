@@ -23,7 +23,7 @@ public class ParadaColectivoTest {
 
 	@Test
 	public void testParadaDeColectivoNoEstaCercaDeMiCoordenada() {
-		Assert.assertFalse(parada114DeCabildoYMonroe.estasCercaDe(coordenadaMia));
+		Assert.assertFalse(parada114DeCabildoYMonroe.estaCercaDe(coordenadaMia));
 	}
 
 	@Test

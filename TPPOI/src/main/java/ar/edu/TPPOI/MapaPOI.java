@@ -58,7 +58,7 @@ public class MapaPOI {
 	}
 
 	public POI buscarPoi(POI poi) {
-		return listaDePOIs.stream().filter(unPOILocal -> unPOILocal.soyElMismoPOI(poi)).findFirst().orElse(null);
+		return listaDePOIs.stream().filter(unPOILocal -> unPOILocal.esElMismoPOI(poi)).findFirst().orElse(null);
 	}
 
 	public boolean estaEnLocal(POI unPOIExterno) {

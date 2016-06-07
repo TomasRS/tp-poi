@@ -28,12 +28,12 @@ public class CGPTest {
 
 	@Test
 	public void testPuntoDentroDeLaCGP() {
-		Assert.assertTrue(cgp1.estasCercaDe(coordenadaMia));
+		Assert.assertTrue(cgp1.estaCercaDe(coordenadaMia));
 	}
 
 	@Test
 	public void testPuntoAfueraDeLaCGP() {
-		Assert.assertFalse(cgp1.estasCercaDe(parada114DeCabildoYMonroe.getCoordenada()));
+		Assert.assertFalse(cgp1.estaCercaDe(parada114DeCabildoYMonroe.getCoordenada()));
 	}
 
 	@Test

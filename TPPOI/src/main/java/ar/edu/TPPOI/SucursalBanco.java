@@ -34,11 +34,11 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		return true;
 	}
 
-	public boolean soyElMismoPOI(POI otroPOI) {
+	public boolean esElMismoPOI(POI otroPOI) {
 
 		if (otroPOI.esBanco()) {
 			SucursalBanco unaSucursalBanco = (SucursalBanco) otroPOI;
-			return (super.soyElMismoPOI(otroPOI)
+			return (super.esElMismoPOI(otroPOI)
 					&& StringUtils.containsIgnoreCase(unaSucursalBanco.getNombreSucursal(), this.getNombreSucursal()));
 		} else {
 			return false;

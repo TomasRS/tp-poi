@@ -30,22 +30,22 @@ public class SucursalBancoTest {
 
 	@Test
 	public void testBancoCiudadCabildoNoEstaCercaDeMiCoordenada() {
-		Assert.assertFalse(bancoCiudadCabildo.estasCercaDe(coordenadaMia));
+		Assert.assertFalse(bancoCiudadCabildo.estaCercaDe(coordenadaMia));
 	}
 
 	@Test
 	public void testBancoCiudadCabildoEstaCercaDeCoordenadaCercaBancoCiudad() {
-		Assert.assertTrue(bancoCiudadCabildo.estasCercaDe(coordenadaCercaBancoCiudad));
+		Assert.assertTrue(bancoCiudadCabildo.estaCercaDe(coordenadaCercaBancoCiudad));
 	}
 
 	@Test
 	public void testUnPOIEstaAMenosDe1000MetrosDeOtroPOI() {
-		Assert.assertTrue(bancoCiudadCabildo.estasAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe));
+		Assert.assertTrue(bancoCiudadCabildo.estaAMenosDeXMetrosDe(1000, parada114DeCabildoYMonroe));
 	}
 
 	@Test
 	public void testUnPOINoEstaAMenosDe300MetrosDeOtroPOI() {
-		Assert.assertFalse(bancoCiudadCabildo.estasAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe));
+		Assert.assertFalse(bancoCiudadCabildo.estaAMenosDeXMetrosDe(300, parada114DeCabildoYMonroe));
 	}
 
 	@Test
