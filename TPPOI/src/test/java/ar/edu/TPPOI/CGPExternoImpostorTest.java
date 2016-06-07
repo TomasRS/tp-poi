@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CGPExternoParaTestImpostor {
+public class CGPExternoImpostorTest{
 	SoporteDeInstanciasParaTestsBuilder soporteDeInstanciasParaTestsBuilder;
 
 	@Before
