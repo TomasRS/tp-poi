@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class Terminal{
 	
-	String identificador;//Unico, se usa para identificar a una terminal
 	long tiempoLimite;
 	Map<LocalDateTime,Integer> busquedasPorFecha=new HashMap<LocalDateTime,Integer>();
 	MapaPOI mapa;
