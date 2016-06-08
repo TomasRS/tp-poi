@@ -1,7 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
-import java.util.List;
+//import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultadoPorBusqueda implements Accion{
@@ -41,9 +41,9 @@ public class ResultadoPorBusqueda implements Accion{
 	}
 
 
-	@Override
+	/*@Override
 	public Integer resultadosTotales(List<Terminal> terminales) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 }

@@ -18,6 +18,10 @@ public class BusquedaHecha {
 		this.cantidadBusquedas = cant;
 	}
 	
+	public Integer getCantDeBusquedas(){
+		return this.cantidadBusquedas;
+	}
+	
 	public void setTiempoQueTardoLaBusqueda(long unTiempo){
 		this.tiempoQueTardoLaConsulta = unTiempo;
 	}

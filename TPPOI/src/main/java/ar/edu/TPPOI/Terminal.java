@@ -75,6 +75,12 @@ public class Terminal{
 	public Integer reporteDeResultadosPorBusqueda(String unTextoLibre){
 		return this.filtrarPorAccion("resultadoPorBusqueda").resultadoPorBusqueda(unTextoLibre,this);
 	}
+	
+	public Integer reporteDeResultadosTotalPorTerminal(){
+		return this.busquedasHechas.stream().mapToInt(unaB->unaB.getCantDeBusquedas()).sum();
+	}
+	
+
 
 	public boolean seEnvioElMail() {
 		return true;

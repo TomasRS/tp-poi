@@ -1,7 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
-import java.util.List;
+//import java.util.List;
 
 public class Almacenar implements Accion {
 
@@ -13,6 +13,8 @@ public class Almacenar implements Accion {
 		busqueda.setTiempoQueTardoLaBusqueda(tiempoQueDemoroLaBusqueda);
 		unaTerminal.busquedasHechas.add(busqueda);
 	}
+	
+
 
 	@Override
 	public void mandarMail(Terminal unaTerminal) {
@@ -36,9 +38,9 @@ public class Almacenar implements Accion {
 	}
 
 
-	@Override
+/*	@Override
 	public Integer resultadosTotales(List<Terminal> terminales) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 }

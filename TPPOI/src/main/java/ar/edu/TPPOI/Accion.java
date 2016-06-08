@@ -1,7 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
-import java.util.List;
+//import java.util.List;
 
 public interface Accion{
 	
@@ -15,6 +15,6 @@ public interface Accion{
 
 	public abstract Integer resultadoPorBusqueda(String unTextoLibre, Terminal terminal);
 
-	public abstract Integer resultadosTotales(List<Terminal> terminales);
+//	public abstract Integer resultadosTotales(List<Terminal> terminales);
 	
 }
