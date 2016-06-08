@@ -3,7 +3,7 @@ package ar.edu.TPPOI;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ResultadoTotalPorUsuario extends Accion{
+public class ResultadoTotalPorUsuario implements Accion{
 	public Integer resultadosTotales(List<Terminal> terminales){
 		return terminales.stream().mapToInt(unaT->unaT.busquedasHechas.size()).sum();
 	}

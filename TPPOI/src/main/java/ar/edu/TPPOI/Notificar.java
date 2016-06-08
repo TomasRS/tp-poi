@@ -3,17 +3,13 @@ package ar.edu.TPPOI;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Notificar extends Accion {
+public class Notificar implements Accion {
 	String nombreAccion="notificar";
 
 	boolean mailEnviado = false;
 	
 	public void mandarMail(Terminal unaTerminal){
-		
-		if (this.getActivado()){
-			this.mailEnviado = true;
 			unaTerminal.seEnvioElMail();
-		}
 	}
 	
 	public String getNombreAccion() {

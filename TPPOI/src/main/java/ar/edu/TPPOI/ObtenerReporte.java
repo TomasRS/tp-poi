@@ -2,13 +2,12 @@ package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ObtenerReporte extends Accion {
+public class ObtenerReporte implements Accion {
 
 	
 	public Integer cantidadDeBusquedasPorFecha(LocalDateTime fecha, Terminal unaTerminal){
-		return unaTerminal.busquedasHechas.stream().filter(unaB->unaB.fecha.equals(fecha)).collect(Collectors.toList()).size();
+		return unaTerminal.busquedasPorFecha.get(fecha);
 	}
 
 	@Override

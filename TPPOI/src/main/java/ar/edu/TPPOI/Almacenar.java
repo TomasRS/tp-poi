@@ -3,7 +3,7 @@ package ar.edu.TPPOI;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Almacenar extends Accion {
+public class Almacenar implements Accion {
 
 
 	public void almacenarBusqueda(String unTextoLibre, long tiempoQueDemoroLaBusqueda, Integer cantidadDeResultados, Terminal unaTerminal){

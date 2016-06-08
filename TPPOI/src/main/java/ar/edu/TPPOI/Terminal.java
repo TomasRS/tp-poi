@@ -24,7 +24,6 @@ public class Terminal{
 
 	long tiempoQueDemoroLaBusqueda;
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
-	AlmacenTerminales almacen = new AlmacenTerminales();//me parece que el almacen deberia ser estatico
 	
 	public void agregarBusquedaHecha(BusquedaHecha unaBusqueda){
 		busquedasHechas.add(unaBusqueda);
@@ -50,14 +49,19 @@ public class Terminal{
 		Integer cantidadDeResultados=this.mapa.buscarDesdeTerminal(unTextoLibre);		
 		this.tiempoQueDemoroLaBusqueda = System.nanoTime() - start;
 		if (this.superaTiempoLimite()) {
-			acciones.stream().filter(unaA->unaA.getNombreAccion().equals("notificar")).collect(Collectors.toList()).get(0).mandarMail(this);
-		};
+			this.filtrarPorAccion("notificar").mandarMail(this);
+			}
+			
 		this.almacenarBusquedaSiEstaActivado(unTextoLibre,this.tiempoQueDemoroLaBusqueda,cantidadDeResultados);
 		}
 		
 	
 	private void almacenarBusquedaSiEstaActivado(String unTextoLibre, long tiempoQueDemoroLaBusqueda2, Integer cantidadDeResultados) {
-		acciones.stream().filter(unaA->unaA.getNombreAccion().equals("almacenar")).collect(Collectors.toList()).get(0).almacenarBusqueda(unTextoLibre, tiempoQueDemoroLaBusqueda2,cantidadDeResultados,this);;
+		this.filtrarPorAccion("almacenar").almacenarBusqueda(unTextoLibre, tiempoQueDemoroLaBusqueda2,cantidadDeResultados,this);
+	}
+	
+	public Accion filtrarPorAccion(String unaAccion){
+		return acciones.stream().filter(unaA->unaA.getNombreAccion().equals(unaAccion)).collect(Collectors.toList()).get(0);
 	}
 
 	public boolean superaTiempoLimite(){
@@ -65,10 +69,11 @@ public class Terminal{
 	}
 	
 	public Integer obtenerReporteDeBusquedasPorFecha(LocalDateTime unaFecha){
-		return acciones.stream().filter(unaA->unaA.getNombreAccion().equals("obtenerReporte")).collect(Collectors.toList()).get(0).cantidadDeBusquedasPorFecha(unaFecha,this);
+		return this.filtrarPorAccion("obtenerReporte").cantidadDeBusquedasPorFecha(unaFecha,this);
 	}
+	
 	public Integer reporteDeResultadosPorBusqueda(String unTextoLibre){
-		return acciones.stream().filter(unaA->unaA.getNombreAccion().equals("resultadoPorBusqueda")).collect(Collectors.toList()).get(0).resultadoPorBusqueda(unTextoLibre,this);
+		return this.filtrarPorAccion("resultadoPorBusqueda").resultadoPorBusqueda(unTextoLibre,this);
 	}
 
 	public boolean seEnvioElMail() {

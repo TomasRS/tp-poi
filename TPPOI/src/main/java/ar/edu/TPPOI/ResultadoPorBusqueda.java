@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultadoPorBusqueda extends Accion{
+public class ResultadoPorBusqueda implements Accion{
 	public String getNombre(){
 		return "resultadoPorBusqueda";
 	
@@ -12,6 +12,7 @@ public class ResultadoPorBusqueda extends Accion{
 
 	public Integer resultadoPorBusqueda(String unTextoLibre, Terminal unaTerminal){
 		return unaTerminal.busquedasHechas.stream().filter(unaB->unaB.frase.equals(unTextoLibre)).collect(Collectors.toList()).size();
+		
 	}
 
 	@Override
