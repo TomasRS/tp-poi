@@ -1,5 +1,9 @@
 package ar.edu.TPPOI;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,31 +11,28 @@ import org.junit.Test;
 
 public class TerminalTest {
 
-	Terminal terminalAbasto;
+	Terminal terminalAbasto=new Terminal ();
 	MapaPOI mapaInteractivo;
-	Notificar notificarDeTerminalAbasto;
-	Almacenar almacenarDeTerminalAbasto;
-	
+
 	@Before
 	public void init(){
-		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
-		mapaInteractivo = soporteParaTests.mapa();
-		terminalAbasto = soporteParaTests.terminalAbasto();
-		notificarDeTerminalAbasto = soporteParaTests.notificarDeTerminal();
-		almacenarDeTerminalAbasto = soporteParaTests.almacenarDeTerminal();
-		notificarDeTerminalAbasto.setActivado(true);
-		almacenarDeTerminalAbasto.setActivado(true);
-		terminalAbasto.setMapa(mapaInteractivo);
-		terminalAbasto.setAccionNotificar(notificarDeTerminalAbasto);
-		terminalAbasto.setAccionAlmacenar(almacenarDeTerminalAbasto);
 		
-	}
+	
+		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
+		mapaInteractivo = soporteParaTests.mapa;
+		
+		terminalAbasto.setMapa(mapaInteractivo);
+			List<Accion>accionesAbasto=new ArrayList<>();
+			accionesAbasto.add(new Notificar());
+			accionesAbasto.add(new Almacenar());
+			terminalAbasto.setAcciones(accionesAbasto);
+	}		
 	
 	@Test
 	public void testTerminalNotificaCuandoSeExcedeElTiempoLimiteDeBusqueda(){
 		terminalAbasto.setTiempoLimite(1); //en nanosegundos
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(terminalAbasto.notificoMail(), true);
+		Assert.assertEquals(terminalAbasto.seEnvioElMail(), true);
 		
 	}
 	
@@ -39,7 +40,7 @@ public class TerminalTest {
 	public void testTerminalNONotificaCuandoNOExcedeElTiempoLimiteDeBusqueda(){
 		terminalAbasto.setTiempoLimite(1000000000); // = 1 segundo
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(terminalAbasto.notificoMail(), false);
+		Assert.assertEquals(terminalAbasto.seEnvioElMail(), false);
 		
 	}
 	
@@ -47,6 +48,6 @@ public class TerminalTest {
 	public void testTerminalAlmacenaLosResultadosDeLasBusquedas(){
 		terminalAbasto.setTiempoLimite(1000000000);
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(terminalAbasto.almacenoBusqueda(), true);
+		Assert.assertEquals(terminalAbasto.busquedasHechas.stream().filter(unaB->unaB.frase.equals("114")).collect(Collectors.toList()).size(),1);
 	}
 }

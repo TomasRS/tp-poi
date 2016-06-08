@@ -73,13 +73,9 @@ public class MapaPOI {
 		listaDeSistemaExternoAdapter.remove(unSistemaExternoAdapter);
 	}
 
-	public void buscarDesdeTerminal(String unTexto, Terminal unaTerminal){
-		int cantDeResultados;
+	public Integer buscarDesdeTerminal(String unTexto){
+		this.buscar(unTexto);
+		return this.buscar(unTexto).size();
 		
-		long start = System.nanoTime();
-		cantDeResultados = this.buscar(unTexto).size();
-		long elapsedTime = System.nanoTime() - start;
-		
-		unaTerminal.setDatosDeBusqueda(unTexto, cantDeResultados, elapsedTime);
 	}
 }
