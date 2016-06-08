@@ -6,18 +6,12 @@ import java.time.LocalDateTime;
 public class Notificar implements Accion {
 	String nombreAccion="notificar";
 
-	boolean mailEnviado = false;
-	
 	public void mandarMail(Terminal unaTerminal){
-			unaTerminal.seEnvioElMail();
+			unaTerminal.setMailEnviado(true);
 	}
 	
 	public String getNombreAccion() {
 		return nombreAccion;
-	}
-
-	public boolean getMailEnviado(){
-		return mailEnviado;
 	}
 	
 

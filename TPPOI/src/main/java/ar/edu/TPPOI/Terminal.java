@@ -14,6 +14,8 @@ public class Terminal{
 	Map<LocalDateTime,Integer> busquedasPorFecha=new HashMap<LocalDateTime,Integer>();
 	MapaPOI mapa;
 	List<Accion> acciones=new ArrayList<>(); 
+	boolean mailEnviado = false;
+	
 	public List<Accion> getAcciones() {
 		return acciones;
 	}
@@ -44,7 +46,12 @@ public class Terminal{
 	public void buscar(String unTextoLibre){
 		LocalDateTime fechaActual= LocalDateTime.now();
 		Integer cantidadDeBusquedasDelDia=busquedasPorFecha.get(fechaActual);
-		busquedasPorFecha.put(fechaActual, cantidadDeBusquedasDelDia++);		
+		if (busquedasPorFecha.containsKey(fechaActual)){
+		busquedasPorFecha.put(fechaActual, cantidadDeBusquedasDelDia++);
+		}
+		else{
+		busquedasPorFecha.put(fechaActual, 0);
+		}
 		long start = System.nanoTime();
 		Integer cantidadDeResultados=this.mapa.buscarDesdeTerminal(unTextoLibre);		
 		this.tiempoQueDemoroLaBusqueda = System.nanoTime() - start;
@@ -53,7 +60,7 @@ public class Terminal{
 			}
 			
 		this.almacenarBusquedaSiEstaActivado(unTextoLibre,this.tiempoQueDemoroLaBusqueda,cantidadDeResultados);
-		}
+	}
 		
 	
 	private void almacenarBusquedaSiEstaActivado(String unTextoLibre, long tiempoQueDemoroLaBusqueda2, Integer cantidadDeResultados) {
@@ -62,6 +69,10 @@ public class Terminal{
 	
 	public Accion filtrarPorAccion(String unaAccion){
 		return acciones.stream().filter(unaA->unaA.getNombreAccion().equals(unaAccion)).collect(Collectors.toList()).get(0);
+	}
+	
+	public List<BusquedaHecha> filtrarBusquedasAlmacenadasPorFrase(String unaFrase){
+		return busquedasHechas.stream().filter(unaB->unaB.frase.equals(unaFrase)).collect(Collectors.toList());
 	}
 
 	public boolean superaTiempoLimite(){
@@ -83,8 +94,11 @@ public class Terminal{
 
 
 	public boolean seEnvioElMail() {
-		return true;
-		
+		return mailEnviado;	
+	}
+	
+	protected void setMailEnviado(boolean flag){
+		mailEnviado = flag;
 	}
 
 	

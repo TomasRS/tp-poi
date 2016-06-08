@@ -2,7 +2,6 @@ package ar.edu.TPPOI;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,7 +10,7 @@ import org.junit.Test;
 
 public class TerminalTest {
 
-	Terminal terminalAbasto=new Terminal ();
+	Terminal terminalAbasto;
 	MapaPOI mapaInteractivo;
 
 	@Before
@@ -19,13 +18,15 @@ public class TerminalTest {
 		
 	
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
-		mapaInteractivo = soporteParaTests.mapa;
+		mapaInteractivo = soporteParaTests.mapa();
+		terminalAbasto = soporteParaTests.terminal();
+		
+		List<Accion>accionesAbasto=new ArrayList<>();
+		accionesAbasto.add(new Notificar());
+		accionesAbasto.add(new Almacenar());
 		
 		terminalAbasto.setMapa(mapaInteractivo);
-			List<Accion>accionesAbasto=new ArrayList<>();
-			accionesAbasto.add(new Notificar());
-			accionesAbasto.add(new Almacenar());
-			terminalAbasto.setAcciones(accionesAbasto);
+		terminalAbasto.setAcciones(accionesAbasto);
 	}		
 	
 	@Test
@@ -48,6 +49,6 @@ public class TerminalTest {
 	public void testTerminalAlmacenaLosResultadosDeLasBusquedas(){
 		terminalAbasto.setTiempoLimite(1000000000);
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(terminalAbasto.busquedasHechas.stream().filter(unaB->unaB.frase.equals("114")).collect(Collectors.toList()).size(),1);
+		Assert.assertEquals(terminalAbasto.filtrarBusquedasAlmacenadasPorFrase("114").size(),1);
 	}
 }
