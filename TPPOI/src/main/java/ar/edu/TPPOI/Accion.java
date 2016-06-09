@@ -15,6 +15,6 @@ public interface Accion{
 
 	public abstract Integer resultadoPorBusqueda(String unTextoLibre, Terminal terminal);
 
-//	public abstract Integer resultadosTotales(List<Terminal> terminales);
+	public abstract Integer reporteDeResultadosTotalPorTerminal(Terminal unaTerminal) ;
 	
 }

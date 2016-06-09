@@ -1,5 +1,6 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,16 +27,15 @@ public class TerminalTest {
 		List<Accion>accionesAbasto=new ArrayList<>();
 		accionesAbasto.add(new Notificar());
 		accionesAbasto.add(new Almacenar());
-
 		accionesAbasto.add(new ObtenerReporte());
-		
-
 		terminalAbasto.setMapa(mapaInteractivo);
 		terminalAbasto.setAcciones(accionesAbasto);
+		
 		List<Accion>accionesCaballito=new ArrayList<>();
 		accionesCaballito.add(new ObtenerReporte());
 		accionesCaballito.add(new Notificar());
 		accionesCaballito.add(new Almacenar());
+		accionesCaballito.add(new ResultadoTotalPorTerminal());
 		terminalCaballito.setMapa(mapaInteractivo);
 		terminalCaballito.setAcciones(accionesCaballito);
 	}		
@@ -63,4 +63,13 @@ public class TerminalTest {
 		Assert.assertEquals(terminalAbasto.filtrarBusquedasAlmacenadasPorFrase("114").size(),1);
 	}
 
+	@Test
+	public void testReporte(){
+		terminalCaballito.setTiempoLimite(1000000000);
+		LocalDateTime a = LocalDateTime.now();
+		terminalCaballito.buscar("114");
+		Assert.assertTrue(terminalCaballito.obtenerReporteDeBusquedasPorFecha(a) == 1);
+	}
+
+	
 }

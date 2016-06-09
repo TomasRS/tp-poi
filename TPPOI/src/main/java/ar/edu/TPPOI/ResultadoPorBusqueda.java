@@ -40,6 +40,12 @@ public class ResultadoPorBusqueda implements Accion{
 		return null;
 	}
 
+	@Override
+	public Integer reporteDeResultadosTotalPorTerminal(Terminal unaTerminal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	/*@Override
 	public Integer resultadosTotales(List<Terminal> terminales) {

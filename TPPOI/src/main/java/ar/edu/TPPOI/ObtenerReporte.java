@@ -41,5 +41,11 @@ public class ObtenerReporte implements Accion {
 		
 	}
 
+	@Override
+	public Integer reporteDeResultadosTotalPorTerminal(Terminal unaTerminal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

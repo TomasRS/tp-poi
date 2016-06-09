@@ -7,14 +7,15 @@ public class ResultadoTotalPorTerminal implements Accion{
 	/*public Integer resultadosTotales(List<Terminal> terminales){
 		return terminales.stream().mapToInt(unaT->unaT.busquedasHechas.size()).sum();
 	}*/
+	
+	String nombreAccion ="resultadoPorTerminal";
 	public Integer reporteDeResultadosTotalPorTerminal(Terminal unaTerminal){
 		return unaTerminal.busquedasHechas.stream().mapToInt(unaB->unaB.getCantDeBusquedas()).sum();
 	}
 
 	@Override
 	public String getNombreAccion() {
-		// TODO Auto-generated method stub
-		return null;
+		return nombreAccion;
 	}
 
 	@Override

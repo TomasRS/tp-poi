@@ -90,6 +90,11 @@ public class Terminal{
 		return this.filtrarPorAccion("resultadoPorBusqueda").resultadoPorBusqueda(unTextoLibre,this);
 	}
 	
+	public Integer reporteDeResultadosPorTerminal(String unTextoLibre){
+		return this.filtrarPorAccion("resultadoPorTerminal").reporteDeResultadosTotalPorTerminal(this);
+	}
+	
+	
 	/*public Integer reporteDeResultadosTotalPorTerminal(){
 		return this.busquedasHechas.stream().mapToInt(unaB->unaB.getCantDeBusquedas()).sum();
 	}*/
