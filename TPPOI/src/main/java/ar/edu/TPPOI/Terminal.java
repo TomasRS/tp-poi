@@ -90,9 +90,9 @@ public class Terminal{
 		return this.filtrarPorAccion("resultadoPorBusqueda").resultadoPorBusqueda(unTextoLibre,this);
 	}
 	
-	public Integer reporteDeResultadosTotalPorTerminal(){
+	/*public Integer reporteDeResultadosTotalPorTerminal(){
 		return this.busquedasHechas.stream().mapToInt(unaB->unaB.getCantDeBusquedas()).sum();
-	}
+	}*/
 	
 
 

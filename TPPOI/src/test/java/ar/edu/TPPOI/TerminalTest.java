@@ -12,6 +12,7 @@ import org.junit.Test;
 public class TerminalTest {
 
 	Terminal terminalAbasto;
+	Terminal terminalCaballito;
 	MapaPOI mapaInteractivo;
 
 	@Before
@@ -21,13 +22,19 @@ public class TerminalTest {
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		mapaInteractivo = soporteParaTests.mapa();
 		terminalAbasto = soporteParaTests.terminal();
+		terminalCaballito = soporteParaTests.terminal();
 		
 		List<Accion>accionesAbasto=new ArrayList<>();
 		accionesAbasto.add(new Notificar());
 		accionesAbasto.add(new Almacenar());
-		
 		terminalAbasto.setMapa(mapaInteractivo);
 		terminalAbasto.setAcciones(accionesAbasto);
+		List<Accion>accionesCaballito=new ArrayList<>();
+		accionesCaballito.add(new ObtenerReporte());
+		accionesCaballito.add(new Notificar());
+		accionesCaballito.add(new Almacenar());
+		terminalCaballito.setMapa(mapaInteractivo);
+		terminalCaballito.setAcciones(accionesCaballito);
 	}		
 	
 	@Test
