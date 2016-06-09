@@ -93,13 +93,6 @@ public class Terminal{
 	public Integer reporteDeResultadosPorTerminal(String unTextoLibre){
 		return this.filtrarPorAccion("resultadoPorTerminal").reporteDeResultadosTotalPorTerminal(this);
 	}
-	
-	
-	/*public Integer reporteDeResultadosTotalPorTerminal(){
-		return this.busquedasHechas.stream().mapToInt(unaB->unaB.getCantDeBusquedas()).sum();
-	}*/
-	
-
 
 	public boolean seEnvioElMail() {
 		return mailEnviado;	

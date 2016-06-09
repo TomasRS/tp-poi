@@ -1,12 +1,9 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
-//import java.util.List;
+
 
 public class ResultadoTotalPorTerminal implements Accion{
-	/*public Integer resultadosTotales(List<Terminal> terminales){
-		return terminales.stream().mapToInt(unaT->unaT.busquedasHechas.size()).sum();
-	}*/
 	
 	String nombreAccion ="resultadoPorTerminal";
 	public Integer reporteDeResultadosTotalPorTerminal(Terminal unaTerminal){
