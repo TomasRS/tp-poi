@@ -37,6 +37,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Terminal terminal;
 	Notificar notificar;
 	Almacenar almacenar;
+	ObtenerReporte reporte;
 	Map<LocalDateTime, Integer> busquedasPorFecha;
 
 	public Point miCoordenaAbasto() {

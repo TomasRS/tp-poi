@@ -49,16 +49,20 @@ public class Terminal{
 		busquedasPorFecha.put(fechaActual, cantidadDeBusquedasDelDia++);
 		}
 		else{
-		busquedasPorFecha.put(fechaActual, 0);
+		busquedasPorFecha.put(fechaActual, 1);
 		}
 		long start = System.nanoTime();
 		Integer cantidadDeResultados=this.mapa.buscarDesdeTerminal(unTextoLibre);		
 		this.tiempoQueDemoroLaBusqueda = System.nanoTime() - start;
-		if (this.superaTiempoLimite()) {
+		if (this.superaTiempoLimite() && this.contieneNotificar()) {
 			this.filtrarPorAccion("notificar").mandarMail(this);
 			}
 			
 		this.almacenarBusquedaSiEstaActivado(unTextoLibre,this.tiempoQueDemoroLaBusqueda,cantidadDeResultados);
+	}
+	
+	private boolean contieneNotificar(){
+		return this.filtrarPorAccion("notificar").getNombreAccion().equals("notificar");
 	}
 		
 	
