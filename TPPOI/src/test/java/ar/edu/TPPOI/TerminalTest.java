@@ -28,6 +28,7 @@ public class TerminalTest {
 		accionesAbasto.add(new Notificar());
 		accionesAbasto.add(new Almacenar());
 		accionesAbasto.add(new ObtenerReporte());
+		accionesAbasto.add(new ResultadoPorBusqueda());
 		terminalAbasto.setMapa(mapaInteractivo);
 		terminalAbasto.setAcciones(accionesAbasto);
 		
@@ -88,6 +89,13 @@ public class TerminalTest {
 		terminalCaballito.buscar("San Cristobal");
 		Assert.assertEquals(terminalCaballito.busquedasPorFecha.get(a), (Integer) 2);
 	}*/
+	
+	@Test
+	public void testResultadoPorBusqueda(){
+		terminalCaballito.setTiempoLimite(1000000000);
+		terminalCaballito.buscar("114");
+		Assert.assertEquals(terminalCaballito.reporteDeResultadosPorBusqueda("114"), (Integer) 1);
+	}
 
 	
 }
