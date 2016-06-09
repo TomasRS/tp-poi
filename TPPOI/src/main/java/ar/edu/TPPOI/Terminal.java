@@ -49,7 +49,7 @@ public class Terminal{
 		busquedasPorFecha.put(fechaActual, cantidadDeBusquedasDelDia++);
 		}
 		else{
-		busquedasPorFecha.put(fechaActual, 1);
+		busquedasPorFecha.put(fechaActual, 0);
 		}
 		long start = System.nanoTime();
 		Integer cantidadDeResultados=this.mapa.buscarDesdeTerminal(unTextoLibre);		

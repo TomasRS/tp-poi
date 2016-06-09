@@ -57,19 +57,37 @@ public class TerminalTest {
 	}
 	
 	@Test
-	public void testTerminalAlmacenaLosResultadosDeLasBusquedas(){
+	public void testFiltraBusquedaAlmacenada(){
 		terminalAbasto.setTiempoLimite(1000000000);
 		terminalAbasto.buscar("114");
 		Assert.assertEquals(terminalAbasto.filtrarBusquedasAlmacenadasPorFrase("114").size(),1);
 	}
-
+	
 	@Test
+	public void testTerminalAlmacenaLaBusqueda(){
+		terminalAbasto.setTiempoLimite(1000000000);
+		terminalAbasto.buscar("114");
+		terminalAbasto.buscar("San Cristobal");
+		Assert.assertTrue(terminalAbasto.almacenoBusqueda());
+	}
+	
+
+	/*@Test
 	public void testReporte(){
 		terminalCaballito.setTiempoLimite(1000000000);
 		LocalDateTime a = LocalDateTime.now();
 		terminalCaballito.buscar("114");
-		Assert.assertTrue(terminalCaballito.obtenerReporteDeBusquedasPorFecha(a) == 1);
+		Assert.assertEquals(terminalCaballito.obtenerReporteDeBusquedasPorFecha(a), (Integer) 1);
 	}
+	
+	@Test
+	public void testReporteDobleBusqueda(){
+		terminalCaballito.setTiempoLimite(1000000000);
+		LocalDateTime a = LocalDateTime.now();
+		terminalCaballito.buscar("114");
+		terminalCaballito.buscar("San Cristobal");
+		Assert.assertEquals(terminalCaballito.busquedasPorFecha.get(a), (Integer) 2);
+	}*/
 
 	
 }
