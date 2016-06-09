@@ -42,6 +42,7 @@ public class Terminal{
 		return busquedasHechas.size() >= 1;
 	}
 	
+	
 	public void buscar(String unTextoLibre){
 		LocalDateTime fechaActual= LocalDateTime.now();
 		Integer cantidadDeBusquedasDelDia=busquedasPorFecha.get(fechaActual);
@@ -90,7 +91,7 @@ public class Terminal{
 		return this.filtrarPorAccion("resultadoPorBusqueda").resultadoPorBusqueda(unTextoLibre,this);
 	}
 	
-	public Integer reporteDeResultadosPorTerminal(String unTextoLibre){
+	public Integer reporteDeResultadosPorTerminal(){
 		return this.filtrarPorAccion("resultadoPorTerminal").reporteDeResultadosTotalPorTerminal(this);
 	}
 

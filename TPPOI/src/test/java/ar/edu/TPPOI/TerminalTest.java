@@ -1,6 +1,5 @@
 package ar.edu.TPPOI;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,7 @@ public class TerminalTest {
 
 	Terminal terminalAbasto;
 	Terminal terminalCaballito;
+	Terminal terminalDevoto;
 	MapaPOI mapaInteractivo;
 
 	@Before
@@ -23,6 +23,9 @@ public class TerminalTest {
 		mapaInteractivo = soporteParaTests.mapa();
 		terminalAbasto = soporteParaTests.terminal();
 		terminalCaballito = soporteParaTests.terminal();
+		terminalDevoto  = soporteParaTests.terminal();
+	
+		
 		
 		List<Accion>accionesAbasto=new ArrayList<>();
 		accionesAbasto.add(new Notificar());
@@ -37,10 +40,16 @@ public class TerminalTest {
 		accionesCaballito.add(new Notificar());
 		accionesCaballito.add(new Almacenar());
 		accionesCaballito.add(new ResultadoTotalPorTerminal());
+		accionesCaballito.add(new ResultadoPorBusqueda());
 		terminalCaballito.setMapa(mapaInteractivo);
 		terminalCaballito.setAcciones(accionesCaballito);
+		
+		List<Accion>accionesDevoto=new ArrayList<>();
+		accionesDevoto.add(new ResultadoTotalPorTerminal());
 	}		
 	
+	
+	//TESTS NOTIFICAR SI PASA TIEMPO LIMITE Y SI NO PASA
 	@Test
 	public void testTerminalNotificaCuandoSeExcedeElTiempoLimiteDeBusqueda(){
 		terminalAbasto.setTiempoLimite(1); //en nanosegundos
@@ -56,22 +65,24 @@ public class TerminalTest {
 		Assert.assertEquals(terminalAbasto.seEnvioElMail(), false);
 		
 	}
-	
+	//TESTS DE ALMACENAR FILTRA BUSQUEDA ALMACENADA Y ME DEVUELVE SI REALMENTE SE HIZO EL ALMACENAMIENTO
 	@Test
 	public void testFiltraBusquedaAlmacenada(){
 		terminalAbasto.setTiempoLimite(1000000000);
 		terminalAbasto.buscar("114");
 		Assert.assertEquals(terminalAbasto.filtrarBusquedasAlmacenadasPorFrase("114").size(),1);
 	}
+	// ALMACENA TODO NO DISTINGUE ENTRE LO QUE ENCUENTRA Y NO 
 	
-	@Test
+	/*@Test
 	public void testTerminalAlmacenaLaBusqueda(){
 		terminalAbasto.setTiempoLimite(1000000000);
 		terminalAbasto.buscar("114");
 		terminalAbasto.buscar("San Cristobal");
 		Assert.assertTrue(terminalAbasto.almacenoBusqueda());
-	}
+	}*/
 	
+	//TEST REPORTE NO ANDAN POR LA FECHA 
 
 	/*@Test
 	public void testReporte(){
@@ -90,11 +101,56 @@ public class TerminalTest {
 		Assert.assertEquals(terminalCaballito.busquedasPorFecha.get(a), (Integer) 2);
 	}*/
 	
-	@Test
+	// NO SABEMOS SI ANDA YA QUE SIEMPRE DEVUELVE 1 AUNQUE NO ENCUENTRE 
+	/*@Test
 	public void testResultadoPorBusqueda(){
 		terminalCaballito.setTiempoLimite(1000000000);
 		terminalCaballito.buscar("114");
 		Assert.assertEquals(terminalCaballito.reporteDeResultadosPorBusqueda("114"), (Integer) 1);
+	}
+	
+	@Test
+	public void testResultadoPorBusqueda2(){
+		terminalCaballito.setTiempoLimite(1000000000);
+		terminalCaballito.buscar("Balvanera");
+		Assert.assertEquals(terminalCaballito.reporteDeResultadosPorBusqueda("Balvanera"), (Integer) 1);
+	}
+
+	@Test
+	public void testResultadoPorBusqueda3(){
+		terminalCaballito.setTiempoLimite(1000000000);
+		terminalCaballito.buscar("DISEÑO DE SISTEMAS");
+		Assert.assertEquals(terminalCaballito.reporteDeResultadosPorBusqueda("DISEÑO DE SISTEMAS"), (Integer) 1);
+	}*/
+	
+	
+
+	// SUMA LO QUE ENCONTRO DE CADA BUSQUEDA DE LA TERMINAL, PROBAMOS INDEPENDENCIA DE ACCIONES
+	@Test
+	public void testResultadoPorTerminal(){
+		terminalCaballito.setTiempoLimite(1000000000);
+		terminalCaballito.buscar("San Cristobal");
+		terminalCaballito.buscar("114");
+		Assert.assertEquals(terminalCaballito.reporteDeResultadosPorTerminal(), (Integer) 2);
+	}
+	
+	
+	@Test
+	public void testResultadoPorTerminalAunquePasenXSegundos(){
+		terminalCaballito.setTiempoLimite(1);
+		terminalCaballito.buscar("San Cristobal");
+		terminalCaballito.buscar("114");
+		terminalCaballito.buscar("Balvanera");
+		Assert.assertEquals(terminalCaballito.reporteDeResultadosPorTerminal(), (Integer) 3);
+	}
+	
+	@Test
+	public void testResultadoPorTerminalIndependizadoDeLasDemasAcciones(){
+		terminalDevoto.setTiempoLimite(1000000000);
+		terminalDevoto.buscar("San Cristobal");
+		terminalDevoto.buscar("114");
+		terminalDevoto.buscar("Balvanera");
+		Assert.assertEquals(terminalDevoto.reporteDeResultadosPorTerminal(), (Integer) 3);
 	}
 
 	

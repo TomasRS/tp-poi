@@ -5,10 +5,9 @@ import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 public class ResultadoPorBusqueda implements Accion{
-	public String getNombre(){
-		return "resultadoPorBusqueda";
+	String nombreAccion ="resultadoPorBusqueda";
 	
-	}
+
 
 	public Integer resultadoPorBusqueda(String unTextoLibre, Terminal unaTerminal){
 		return unaTerminal.busquedasHechas.stream().filter(unaB->unaB.frase.equals(unTextoLibre)).collect(Collectors.toList()).size();
@@ -17,8 +16,8 @@ public class ResultadoPorBusqueda implements Accion{
 
 	@Override
 	public String getNombreAccion() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return nombreAccion;
 	}
 
 	@Override

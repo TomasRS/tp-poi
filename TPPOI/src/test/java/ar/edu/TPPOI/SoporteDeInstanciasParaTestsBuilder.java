@@ -38,6 +38,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Notificar notificar;
 	Almacenar almacenar;
 	ObtenerReporte reporte;
+	ResultadoTotalPorTerminal resultadoTerminal;
+	ResultadoPorBusqueda resultadoBusqueda;
 	Map<LocalDateTime, Integer> busquedasPorFecha;
 
 	public Point miCoordenaAbasto() {
