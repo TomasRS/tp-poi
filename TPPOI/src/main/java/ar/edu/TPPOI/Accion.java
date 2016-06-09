@@ -5,16 +5,16 @@ import java.time.LocalDateTime;
 
 public interface Accion{
 	
-	public abstract String getNombreAccion();
+	public  String getNombreAccion();
 
-	public abstract void mandarMail(Terminal terminal);
+	public void mandarMail(Terminal terminal);
 
-	public abstract void almacenarBusqueda(String unTextoLibre, long tiempoQueDemoroLaBusqueda2, Integer cantidadDeResultados, Terminal terminal);
+	public void almacenarBusqueda(String unTextoLibre, long tiempoQueDemoroLaBusqueda2, Integer cantidadDeResultados, Terminal terminal);
 
-	public abstract Integer cantidadDeBusquedasPorFecha(LocalDateTime unaFecha, Terminal terminal) ;
+	public Integer cantidadDeBusquedasPorFecha(LocalDateTime unaFecha, Terminal terminal) ;
 
-	public abstract Integer resultadoPorBusqueda(String unTextoLibre, Terminal terminal);
+	public Integer resultadoPorBusqueda(String unTextoLibre, Terminal terminal);
 
-	public abstract Integer reporteDeResultadosTotalPorTerminal(Terminal unaTerminal) ;
+	public Integer reporteDeResultadosTotalPorTerminal(Terminal unaTerminal) ;
 	
 }
