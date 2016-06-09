@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ObtenerReporte implements Accion {
 
+	String nombreAccion="obtenerReporte";
 	
 	public Integer cantidadDeBusquedasPorFecha(LocalDateTime fecha, Terminal unaTerminal){
 		return unaTerminal.busquedasPorFecha.get(fecha);
@@ -12,8 +13,7 @@ public class ObtenerReporte implements Accion {
 
 	@Override
 	public String getNombreAccion() {
-		// TODO Auto-generated method stub
-		return null;
+		return nombreAccion;
 	}
 
 

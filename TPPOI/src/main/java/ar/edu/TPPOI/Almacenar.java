@@ -5,7 +5,8 @@ import java.time.LocalDateTime;
 
 public class Almacenar implements Accion {
 
-
+	String nombreAccion="almacenar";
+	
 	public void almacenarBusqueda(String unTextoLibre, long tiempoQueDemoroLaBusqueda, Integer cantidadDeResultados, Terminal unaTerminal){
 		BusquedaHecha busqueda=new BusquedaHecha();
 		busqueda.setCantDeBusquedas(cantidadDeResultados);
@@ -22,7 +23,7 @@ public class Almacenar implements Accion {
 		
 	}
 	public String getNombreAccion() {
-		return "almacenar"; 
+		return nombreAccion; 
 	}
 
 	@Override
