@@ -133,38 +133,40 @@ public class MapaPOITest {
 		mapaInteractivo.buscar("Balvanera");
 		Assert.assertEquals(mapaInteractivo.busquedaLocal("asesoramiento,").size(), 1);
 		Assert.assertEquals(mapaInteractivo.buscar("Balvanera").get(0).getDireccion().callePrincipal, "Junin");
-		Assert.assertEquals(521, mapaInteractivo.buscar("Balvanera").get(0).getDireccion().numero,0);
+		Assert.assertEquals(521, mapaInteractivo.buscar("Balvanera").get(0).getDireccion().numero, 0);
 	}
+
 	@Test
-	public void testEncuentraJunin(){
+	public void testEncuentraJunin() {
 		mapaInteractivo.buscar("Junin");
 		Assert.assertEquals(mapaInteractivo.busquedaLocal("Junin").size(), 1);
-		
+
 	}
+
 	@Test
-	public void testNoEstaElCGPDeBalvaneraAntesDeBuscarAfuera(){
+	public void testNoEstaElCGPDeBalvaneraAntesDeBuscarAfuera() {
 		Assert.assertTrue(mapaInteractivo.busquedaLocal("Balvanera").isEmpty());
 	}
+
 	@Test
-	public void testNoEstaElCGPDeLaCalleJuninAntesDeBuscarAfuera(){
+	public void testNoEstaElCGPDeLaCalleJuninAntesDeBuscarAfuera() {
 		Assert.assertTrue(mapaInteractivo.busquedaLocal("Junin").isEmpty());
 	}
 
 	@Test
-	public void testNoEstaElCGPDeSanCristobalAntesDeBuscarAfuera(){
+	public void testNoEstaElCGPDeSanCristobalAntesDeBuscarAfuera() {
 		Assert.assertTrue(mapaInteractivo.busquedaLocal("San Cristobal").isEmpty());
 	}
+
 	@Test
-	public void testEstaElCGPDeLaCalleJuninEnElComponenteExterno(){
-		Assert.assertEquals(1,mapaInteractivo.buscarEnSistemasExternos("Junin").size(),0);
+	public void testEstaElCGPDeLaCalleJuninEnElComponenteExterno() {
+		Assert.assertEquals(1, mapaInteractivo.buscarEnSistemasExternos("Junin").size(), 0);
 	}
-		
 
 	@Test
 	public void testQueSeteeBienServiciosCGP() {
 		mapaInteractivo.buscar("Balvanera");
-		List<Servicio> serviciosLocales = ((CGP) mapaInteractivo.busquedaLocal("asesoramiento,").get(0))
-				.getServicios();
+		List<Servicio> serviciosLocales = ((CGP) mapaInteractivo.busquedaLocal("asesoramiento,").get(0)).getServicios();
 		List<Servicio> serviciosRemotos = ((CGP) mapaInteractivo.buscarEnSistemasExternos("Balvanera").get(0))
 				.getServicios();
 		Assert.assertEquals(serviciosRemotos.size(), serviciosLocales.size());

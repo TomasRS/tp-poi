@@ -2,11 +2,8 @@ package ar.edu.TPPOI;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
@@ -34,13 +31,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	SucursalBanco bancoCiudadCabildoYCongreso;
 	CGP cgpComuna5;
 	MapaPOI mapa;
-	Terminal terminal;
-	Notificar notificar;
-	Almacenar almacenar;
-	ObtenerReporte reporte;
-	ResultadoTotalPorTerminal resultadoTerminal;
-	ResultadoPorBusqueda resultadoBusqueda;
-	Map<LocalDateTime, Integer> busquedasPorFecha;
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -274,15 +264,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		}
 
 		return mapa;
-	}
-
-	public Terminal terminal(){
-		if (terminal == null){
-			terminal = new Terminal();
-			busquedasPorFecha = new HashMap<LocalDateTime, Integer>();
-			terminal.busquedasPorFecha = busquedasPorFecha;
-		}
-		return terminal;
 	}
 
 }
