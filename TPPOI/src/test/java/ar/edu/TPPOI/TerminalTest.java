@@ -44,19 +44,16 @@ public class TerminalTest {
 	}
 	
 //Test de que pasa si agrego dos notificaciones a la terminal 
-	@Test
+	@Test (expected = YaExisteUnNotificarException.class)
 	public void testNotificarDosVeces(){
 		accionNotificar.setTiempoLimite(1);
 		accionNotificar2.setTiempoLimite(1);
 		terminalAbasto.activarAccion(accionNotificar);
 		terminalAbasto.activarAccion(accionNotificar2);
-		terminalAbasto.buscar("114");
-		Assert.assertEquals(true,accionNotificar.getMailEnviado());
-		Assert.assertEquals(true,accionNotificar2.getMailEnviado());
 	}
 	
 //Tests de Almacenar: Faltan los casos especiales
-	@Test
+	@Test ()
 	public void testAlmacenarResultadosDeBusqueda(){
 		
 		terminalAbasto.activarAccion(accionAlmacenar);

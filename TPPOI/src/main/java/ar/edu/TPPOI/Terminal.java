@@ -16,7 +16,7 @@ public class Terminal {
 	}
 	
 	public void activarAccion(Accion unaAccion){
-	if (acciones.contains(new Notificar())){
+	if (acciones.stream().anyMatch(unaA -> unaA.getClass().equals(new Notificar().getClass()))){
 		throw new YaExisteUnNotificarException("Ya existe un Notificar") ;
 	}
 	else{
