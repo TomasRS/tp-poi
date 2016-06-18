@@ -16,12 +16,16 @@ public class Terminal {
 	}
 	
 	public void activarAccion(Accion unaAccion){
-	if (acciones.stream().anyMatch(unaA -> unaA.getClass().equals(new Notificar().getClass()))){
-		throw new YaExisteUnNotificarException("Ya existe un Notificar") ;
-	}
+	if (this.yaExisteAccionDeEseTipo(unaAccion)){
+		throw new YaExisteUnaAccionDeEseTipoException("Ya existe una accion de ese tipo") ;
+		}
 	else{
 		this.acciones.add(unaAccion);
+		}
 	}
+	
+	public boolean yaExisteAccionDeEseTipo(Accion unaAccion){
+		return acciones.stream().anyMatch(unaA -> unaA.getClass().equals(unaAccion.getClass()));
 	}
 
 	

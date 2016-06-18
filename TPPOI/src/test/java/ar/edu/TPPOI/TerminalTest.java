@@ -11,6 +11,7 @@ public class TerminalTest {
 	Notificar accionNotificar;
 	Notificar accionNotificar2;
 	Almacenar accionAlmacenar;
+	Almacenar accionAlmacenar2;
 	
 	@Before
 	public void init(){
@@ -20,11 +21,12 @@ public class TerminalTest {
 		accionNotificar = soporteParaTests.notificar();
 		accionNotificar2 = soporteParaTests.notificar();
 		accionAlmacenar = soporteParaTests.almacenar();
+		accionAlmacenar2 = soporteParaTests.almacenar();
 		terminalAbasto.setMapa(mapaInteractivo);
 
 	}
 	
-//Tests de Notificar: Faltan los casos especiales	
+//------------------------------ Tests de Notificar ------------------------------
 	@Test
 	public void testNotificarCuandoSeExcedeElTiempoLimite(){
 		accionNotificar.setTiempoLimite(1);
@@ -43,39 +45,31 @@ public class TerminalTest {
 		Assert.assertEquals(false,accionNotificar.getMailEnviado());
 	}
 	
-//Test de que pasa si agrego dos notificaciones a la terminal 
-	@Test (expected = YaExisteUnNotificarException.class)
-	public void testNotificarDosVeces(){
+
+	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
+	public void testQueNoSePuedanAgregarMasDeUnNotificar(){
 		accionNotificar.setTiempoLimite(1);
 		accionNotificar2.setTiempoLimite(1);
 		terminalAbasto.activarAccion(accionNotificar);
 		terminalAbasto.activarAccion(accionNotificar2);
 	}
 	
-//Tests de Almacenar: Faltan los casos especiales
+//------------------------------ Tests de Almacenar ------------------------------
 	@Test ()
 	public void testAlmacenarResultadosDeBusqueda(){
 		
 		terminalAbasto.activarAccion(accionAlmacenar);
 		terminalAbasto.buscar("114");
 		Assert.assertEquals( "114",terminalAbasto.getBusquedasHechas().get(0).getFrase());
-		Assert.assertEquals( (Integer) 2,terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados());
+		Assert.assertEquals( 2,terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados(), 0);
 
 	}
 	
-//Test Terminal tiene activado 2 acciones 
-	@Test 
-	public void testTerminalNotificaYalmacena(){
-		accionNotificar.setTiempoLimite(1);
+ 
+	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
+	public void testQueNoSePuedanAgregarMasDeUnAlmacenar(){
 		terminalAbasto.activarAccion(accionAlmacenar);
-		terminalAbasto.activarAccion(accionNotificar);
-		terminalAbasto.buscar("HOLA");
-		Assert.assertEquals((Integer)0,terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados());
-		Assert.assertEquals("HOLA",terminalAbasto.getBusquedasHechas().get(0).getFrase());
-		Assert.assertEquals( true,accionNotificar.getMailEnviado());
-		Assert.assertEquals(2, terminalAbasto.acciones.size());
-		
+		terminalAbasto.activarAccion(accionAlmacenar2);
 	}
-	
 	
 }
