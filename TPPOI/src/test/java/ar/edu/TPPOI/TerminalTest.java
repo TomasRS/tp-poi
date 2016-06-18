@@ -25,6 +25,38 @@ public class TerminalTest {
 		terminalAbasto.setMapa(mapaInteractivo);
 
 	}
+
+	
+//------------------------------ Tests de Activar/Desactivar ------------------------------	
+
+	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
+	public void testQueNoSePuedanAgregarMasDeUnNotificar(){
+		accionNotificar.setTiempoLimite(1);
+		accionNotificar2.setTiempoLimite(1);
+		terminalAbasto.activarAccion(accionNotificar);
+		terminalAbasto.activarAccion(accionNotificar2);
+	}
+	
+	@Test (expected = NoSePuedeDesactivarException.class)
+	public void testQueNoSePuedaSacarUnNotificarSiLaTerminalNoLoTiene(){
+		accionNotificar.setTiempoLimite(1);
+		accionNotificar2.setTiempoLimite(1);
+		terminalAbasto.desactivarAccion(accionNotificar);
+	}
+	
+	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
+	public void testQueNoSePuedanAgregarMasDeUnAlmacenar(){
+		terminalAbasto.activarAccion(accionAlmacenar);
+		terminalAbasto.activarAccion(accionAlmacenar2);
+	}
+	
+	@Test (expected = NoSePuedeDesactivarException.class)
+	public void testQueNoSePuedaSacarUnAlmacenarSiLaTerminalNoLoTiene(){
+		accionNotificar.setTiempoLimite(1);
+		accionNotificar2.setTiempoLimite(1);
+		terminalAbasto.desactivarAccion(accionAlmacenar);
+	}
+	
 	
 //------------------------------ Tests de Notificar ------------------------------
 	@Test
@@ -45,21 +77,6 @@ public class TerminalTest {
 		Assert.assertEquals(false,accionNotificar.getMailEnviado());
 	}
 	
-//Tests de casos especiales
-	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
-	public void testQueNoSePuedanAgregarMasDeUnNotificar(){
-		accionNotificar.setTiempoLimite(1);
-		accionNotificar2.setTiempoLimite(1);
-		terminalAbasto.activarAccion(accionNotificar);
-		terminalAbasto.activarAccion(accionNotificar2);
-	}
-	
-	@Test (expected = NoSePuedeDesactivarException.class)
-	public void testQueNoSePuedaSacarUnNotificarSiLaTerminalNoLoTiene(){
-		accionNotificar.setTiempoLimite(1);
-		accionNotificar2.setTiempoLimite(1);
-		terminalAbasto.desactivarAccion(accionNotificar);
-	}
 	
 //------------------------------ Tests de Almacenar ------------------------------
 	@Test ()
@@ -71,19 +88,5 @@ public class TerminalTest {
 		Assert.assertEquals( 2,terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados(), 0);
 
 	}
-	
-//Tests de casos especiales
-	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
-	public void testQueNoSePuedanAgregarMasDeUnAlmacenar(){
-		terminalAbasto.activarAccion(accionAlmacenar);
-		terminalAbasto.activarAccion(accionAlmacenar2);
-	}
-	
-	@Test (expected = NoSePuedeDesactivarException.class)
-	public void testQueNoSePuedaSacarUnAlmacenarSiLaTerminalNoLoTiene(){
-		accionNotificar.setTiempoLimite(1);
-		accionNotificar2.setTiempoLimite(1);
-		terminalAbasto.desactivarAccion(accionAlmacenar);
-	}
-	
+		
 }
