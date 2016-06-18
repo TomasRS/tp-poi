@@ -40,4 +40,5 @@ public class Terminal {
 		
 		this.acciones.forEach(unaAccion -> unaAccion.ejecutar(unTextoLibre, cantPOIs, tiempoDeBusqueda, this));
 	}
+
 }

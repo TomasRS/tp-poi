@@ -7,4 +7,5 @@ public class Almacenar implements Accion{
 		BusquedaHecha nuevaBusqueda = new BusquedaHecha(unTextoLibre, cantPOIs, tiempoDeBusqueda);
 		unaTerminal.agregarBusquedaHecha(nuevaBusqueda);
 	}
+	
 }

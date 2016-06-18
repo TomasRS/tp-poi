@@ -31,6 +31,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	SucursalBanco bancoCiudadCabildoYCongreso;
 	CGP cgpComuna5;
 	MapaPOI mapa;
+	Terminal terminal;
+	Notificar notificar;
+	Almacenar almacenar;
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -266,4 +269,27 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return mapa;
 	}
 
+	public Terminal terminal() {
+		if (terminal == null) {
+			terminal = new Terminal();
+		}
+
+		return terminal;
+	}
+	
+	public Notificar notificar() {
+		if (notificar == null) {
+			notificar = new Notificar();
+		}
+
+		return notificar;
+	}
+	
+	public Almacenar almacenar() {
+		if (almacenar == null) {
+			almacenar = new Almacenar();
+		}
+
+		return almacenar;
+	}
 }
