@@ -46,6 +46,10 @@ public class Terminal {
 		return this.busquedasHechas;
 	}
 	
+	public List<Accion> getAcciones(){
+		return this.acciones;
+	}
+	
 	//--------------------------------------------------------------
 	
 	public void buscar(String unTextoLibre){

@@ -29,6 +29,26 @@ public class TerminalTest {
 	
 //------------------------------ Tests de Activar/Desactivar ------------------------------	
 
+	//Tests casos felices
+	@Test
+	public void testActivarUnaAccion(){
+		accionNotificar.setTiempoLimite(1);
+		terminalAbasto.activarAccion(accionNotificar);
+		
+		Assert.assertEquals(true, terminalAbasto.getAcciones().contains(accionNotificar));
+	}
+
+	@Test
+	public void testDesactivarUnaAccionExistente(){
+		accionNotificar.setTiempoLimite(1);
+		terminalAbasto.activarAccion(accionNotificar);
+		terminalAbasto.desactivarAccion(accionNotificar);
+		
+		Assert.assertEquals(false, terminalAbasto.getAcciones().contains(accionNotificar));
+	}
+	
+	
+	//Tests casos especiales
 	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
 	public void testQueNoSePuedanAgregarMasDeUnNotificar(){
 		accionNotificar.setTiempoLimite(1);
@@ -65,7 +85,7 @@ public class TerminalTest {
 		terminalAbasto.activarAccion(accionNotificar);
 		
 		terminalAbasto.buscar("114");
-		Assert.assertEquals( true,accionNotificar.getMailEnviado());
+		Assert.assertEquals(true, accionNotificar.getMailEnviado());
 	}
 	
 	@Test
@@ -74,7 +94,7 @@ public class TerminalTest {
 		terminalAbasto.activarAccion(accionNotificar);
 		
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(false,accionNotificar.getMailEnviado());
+		Assert.assertEquals(false, accionNotificar.getMailEnviado());
 	}
 	
 	
@@ -84,8 +104,8 @@ public class TerminalTest {
 		
 		terminalAbasto.activarAccion(accionAlmacenar);
 		terminalAbasto.buscar("114");
-		Assert.assertEquals( "114",terminalAbasto.getBusquedasHechas().get(0).getFrase());
-		Assert.assertEquals( 2,terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados(), 0);
+		Assert.assertEquals("114", terminalAbasto.getBusquedasHechas().get(0).getFrase());
+		Assert.assertEquals(2, terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados(), 0);
 
 	}
 		
