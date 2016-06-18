@@ -11,4 +11,16 @@ public class BusquedaHecha {
 		this.cantDeResultados = cantPOIs;
 		this.tiempoDeBusqueda = tiempoBusqueda;
 	}
+	
+	public String getFrase(){
+		return this.frase;
+	}
+	
+	public Integer getCantDeResultados(){
+		return this.cantDeResultados;
+	}
+	
+	public long getTiempoDeBusqueda(){
+		return this.tiempoDeBusqueda;
+	}
 }

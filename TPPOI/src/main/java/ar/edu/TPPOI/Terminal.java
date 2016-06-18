@@ -27,6 +27,10 @@ public class Terminal {
 		this.busquedasHechas.add(unaBusquedaHecha);
 	}
 	
+	public List<BusquedaHecha> getBusquedasHechas(){
+		return this.busquedasHechas;
+	}
+	
 	//--------------------------------------------------------------
 	
 	public void buscar(String unTextoLibre){

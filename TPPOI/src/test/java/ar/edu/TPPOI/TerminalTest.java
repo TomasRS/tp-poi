@@ -43,6 +43,14 @@ public class TerminalTest {
 	}
 	
 	
-	
+//Tests de Almacenar: Faltan los casos especiales
+	@Test
+	public void testAlmacenarResultadosDeBusqueda(){
+		
+		terminalAbasto.activarAccion(accionAlmacenar);
+		terminalAbasto.buscar("114");
+		
+		Assert.assertEquals(terminalAbasto.getBusquedasHechas().get(0).getFrase(), "114");
+	}
 	
 }
