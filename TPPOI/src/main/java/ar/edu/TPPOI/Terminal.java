@@ -16,11 +16,20 @@ public class Terminal {
 	}
 	
 	public void activarAccion(Accion unaAccion){
-	if (this.yaExisteAccionDeEseTipo(unaAccion)){
-		throw new YaExisteUnaAccionDeEseTipoException("Ya existe una accion de ese tipo") ;
+		if (this.yaExisteAccionDeEseTipo(unaAccion)){
+			throw new YaExisteUnaAccionDeEseTipoException("Ya existe una accion de ese tipo") ;
 		}
-	else{
-		this.acciones.add(unaAccion);
+		else{
+			this.acciones.add(unaAccion);
+		}
+	}
+	
+	public void desactivarAccion(Accion unaAccion){
+		if (!acciones.contains(unaAccion)){
+			throw new NoSePuedeDesactivarException("No se puede desactivar");
+		}
+		else{
+			this.acciones.remove(unaAccion);
 		}
 	}
 	
@@ -28,10 +37,6 @@ public class Terminal {
 		return acciones.stream().anyMatch(unaA -> unaA.getClass().equals(unaAccion.getClass()));
 	}
 
-	
-	public void desactivarAccion(Accion unaAccion){
-		this.acciones.remove(unaAccion);
-	}
 	
 	public void agregarBusquedaHecha(BusquedaHecha unaBusquedaHecha){
 		this.busquedasHechas.add(unaBusquedaHecha);
