@@ -1,6 +1,6 @@
 package ar.edu.TPPOI;
 
-public class Almacenar extends Accion{
+public class Almacenar implements Accion{
 
 	public void ejecutar(String unTextoLibre, Integer cantPOIs, long tiempoDeBusqueda, Terminal unaTerminal){
 		

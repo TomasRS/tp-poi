@@ -1,6 +1,6 @@
 package ar.edu.TPPOI;
 
-public class Notificar extends Accion{
+public class Notificar implements Accion{
 
 	boolean mailEnviado;
 	long tiempoLimite;
