@@ -1,6 +1,5 @@
 package ar.edu.TPPOI;
 
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +9,7 @@ public class TerminalTest {
 	Terminal terminalAbasto;
 	MapaPOI mapaInteractivo;
 	Notificar accionNotificar;
+	Notificar accionNotificar2;
 	Almacenar accionAlmacenar;
 	
 	@Before
@@ -18,6 +18,7 @@ public class TerminalTest {
 		terminalAbasto = soporteParaTests.terminal();
 		mapaInteractivo = soporteParaTests.mapa();
 		accionNotificar = soporteParaTests.notificar();
+		accionNotificar2 = soporteParaTests.notificar();
 		accionAlmacenar = soporteParaTests.almacenar();
 		terminalAbasto.setMapa(mapaInteractivo);
 
@@ -30,7 +31,7 @@ public class TerminalTest {
 		terminalAbasto.activarAccion(accionNotificar);
 		
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(accionNotificar.getMailEnviado(), true);
+		Assert.assertEquals( true,accionNotificar.getMailEnviado());
 	}
 	
 	@Test
@@ -39,9 +40,20 @@ public class TerminalTest {
 		terminalAbasto.activarAccion(accionNotificar);
 		
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(accionNotificar.getMailEnviado(), false);
+		Assert.assertEquals(false,accionNotificar.getMailEnviado());
 	}
 	
+//Test de que pasa si agrego dos notificaciones a la terminal 
+	@Test
+	public void testNotificarDosVeces(){
+		accionNotificar.setTiempoLimite(1);
+		accionNotificar2.setTiempoLimite(1);
+		terminalAbasto.activarAccion(accionNotificar);
+		terminalAbasto.activarAccion(accionNotificar2);
+		terminalAbasto.buscar("114");
+		Assert.assertEquals(true,accionNotificar.getMailEnviado());
+		Assert.assertEquals(true,accionNotificar2.getMailEnviado());
+	}
 	
 //Tests de Almacenar: Faltan los casos especiales
 	@Test
@@ -49,8 +61,24 @@ public class TerminalTest {
 		
 		terminalAbasto.activarAccion(accionAlmacenar);
 		terminalAbasto.buscar("114");
-		
-		Assert.assertEquals(terminalAbasto.getBusquedasHechas().get(0).getFrase(), "114");
+		Assert.assertEquals( "114",terminalAbasto.getBusquedasHechas().get(0).getFrase());
+		Assert.assertEquals( (Integer) 2,terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados());
+
 	}
+	
+//Test Terminal tiene activado 2 acciones 
+	@Test 
+	public void testTerminalNotificaYalmacena(){
+		accionNotificar.setTiempoLimite(1);
+		terminalAbasto.activarAccion(accionAlmacenar);
+		terminalAbasto.activarAccion(accionNotificar);
+		terminalAbasto.buscar("HOLA");
+		Assert.assertEquals((Integer)0,terminalAbasto.getBusquedasHechas().get(0).getCantDeResultados());
+		Assert.assertEquals("HOLA",terminalAbasto.getBusquedasHechas().get(0).getFrase());
+		Assert.assertEquals( true,accionNotificar.getMailEnviado());
+		Assert.assertEquals(2, terminalAbasto.acciones.size());
+		
+	}
+	
 	
 }

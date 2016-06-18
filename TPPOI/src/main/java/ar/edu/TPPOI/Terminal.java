@@ -16,8 +16,14 @@ public class Terminal {
 	}
 	
 	public void activarAccion(Accion unaAccion){
+	if (acciones.contains(new Notificar())){
+		throw new YaExisteUnNotificarException("Ya existe un Notificar") ;
+	}
+	else{
 		this.acciones.add(unaAccion);
 	}
+	}
+
 	
 	public void desactivarAccion(Accion unaAccion){
 		this.acciones.remove(unaAccion);

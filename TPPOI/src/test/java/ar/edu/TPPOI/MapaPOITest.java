@@ -45,12 +45,12 @@ public class MapaPOITest {
 
 	@Test
 	public void testEncuentraPorNombreDeParadaDeColectivo() {
-		Assert.assertEquals(mapaInteractivo.buscar("114").size(), 1);
+		Assert.assertEquals(mapaInteractivo.buscar("114").size(), 2);
 	}
 
 	@Test
 	public void testEncuentraPorRubroDeLocales() {
-		Assert.assertEquals(mapaInteractivo.buscar("Cafeteria").size(), 1);
+		Assert.assertEquals(mapaInteractivo.buscar("Cafeteria").size(), 2);
 	}
 
 	@Test
@@ -108,24 +108,24 @@ public class MapaPOITest {
 
 	@Test
 	public void testQueSeAgreguenDosSucursalesBancoQueNoExisten() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 5);
-		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
 		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
 	}
 
 	@Test
 	public void testQueSeAgregueUnCGPQueNoExiste() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 5);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
 		mapaInteractivo.buscar("Balvanera");
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 6);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 8);
 	}
 
 	@Test
 	public void testQueSeAgregueSoloUnCGPQueNoExiste() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 5);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
 		mapaInteractivo.buscar("Balvanera");
 		mapaInteractivo.buscar("Junin");
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 6);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 8);
 	}
 
 	@Test
@@ -174,11 +174,11 @@ public class MapaPOITest {
 
 	@Test
 	public void testQueNoSeAgreguenDosSucursalesBancoQueExisten() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 5);
-		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
 		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
 		Assert.assertEquals(mapaInteractivo.busquedaLocal("Banco de la Plaza,").size(), 2);
 		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
 	}
 }

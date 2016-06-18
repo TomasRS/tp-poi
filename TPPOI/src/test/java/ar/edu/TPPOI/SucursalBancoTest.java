@@ -13,6 +13,7 @@ public class SucursalBancoTest {
 	Point coordenadaMia, coordenadaCercaBancoCiudad;
 	ParadaDeColectivo parada114DeCabildoYMonroe;
 	Servicio prestamo;
+	Servicio deudas;
 	SucursalBanco bancoCiudadCabildo;
 
 	@Before
@@ -25,6 +26,7 @@ public class SucursalBancoTest {
 
 		parada114DeCabildoYMonroe = soporteParaTests.paradaDeColectivo114DeCabildoYMonroe();
 		prestamo = soporteParaTests.prestamo();
+		deudas = soporteParaTests.deudas();
 		bancoCiudadCabildo = soporteParaTests.bancoCiudadCabildoYCongreso();
 	}
 
@@ -51,6 +53,10 @@ public class SucursalBancoTest {
 	@Test
 	public void testBancoDisponible() {
 		Assert.assertTrue(bancoCiudadCabildo.estaDisponible((LocalDateTime.of(2016, 1, 14, 10, 10, 30)), prestamo));
+	}
+	@Test (expected = NoExisteServicioAsociadoException.class)
+	public void testBancoDisponibleParaServicioNoContenido() {
+		bancoCiudadCabildo.estaDisponible((LocalDateTime.of(2016, 1, 14, 10, 10, 30)), deudas);
 	}
 
 	@Test

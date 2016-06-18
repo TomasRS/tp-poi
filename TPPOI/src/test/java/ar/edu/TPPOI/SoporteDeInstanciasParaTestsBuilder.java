@@ -21,9 +21,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Point miCoordenaAbasto, coordenadaCercaParada114, coordenadaCercaBancoCiudad, coordenadaStarbucks,
 			coordenadaCercaStarbucks, coordenadaSportClub, coordenadaCineAbasto, coordenadaParada114,
 			coordenadaBancoCiudad;
-	ParadaDeColectivo parada114DeCabildoYMonroe;
-	Servicio cargaSUBE, prestamo, cortePelo;
-	LocalComercial starbucksCoronelDiaz1400, sportClubLibertador7395, cineAbasto;
+	ParadaDeColectivo parada114DeCabildoYMonroe, parada114DeLugano;
+	Servicio cargaSUBE, prestamo, cortePelo, deudas;
+	LocalComercial starbucksCoronelDiaz1400, sportClubLibertador7395, cineAbasto, starbucksRivadavia;
 	BancoExternoParaTest bancoExternoImpostor;
 	BancoAdapter bancoAdapter;
 	CGPExternoParaTest cgpExternoImpostor;
@@ -53,6 +53,17 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return parada114DeCabildoYMonroe;
 	}
+	
+	public ParadaDeColectivo paradaDeColectivo114DeLugano() {
+		if (parada114DeLugano == null) {
+			coordenadaParada114 = new Point(-88.459845185279846, -24.558164509672146);
+			Direccion direccionParada114 = new Direccion();
+			direccionParada114.setCalles("lugano", "mozart");
+			parada114DeLugano = new ParadaDeColectivo("114", coordenadaParada114, direccionParada114);
+		}
+
+		return parada114DeLugano;
+	}
 
 	public Servicio prestamo() {
 		if (prestamo == null) {
@@ -60,6 +71,15 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		}
 
 		return prestamo;
+
+	}
+	
+	public Servicio deudas() {
+		if (deudas == null) {
+			deudas = Servicio.nuevoServicioBanco("deudas");
+		}
+
+		return deudas;
 
 	}
 
@@ -209,6 +229,26 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return starbucksCoronelDiaz1400;
 	}
+	
+	public LocalComercial starbucksRivadavia() {
+		if (starbucksRivadavia == null) {
+			coordenadaStarbucks = new Point(-98.413718, -44.593303);
+			LocalTime horaInicio = LocalTime.of(10, 00);
+			LocalTime horaFin = LocalTime.of(20, 00);
+			List<Horario> horarios2 = new ArrayList<>();
+			horarios2.add(new Horario(DayOfWeek.MONDAY, horaInicio, horaFin));
+			horarios2.add(new Horario(DayOfWeek.TUESDAY, horaInicio, horaFin));
+			horarios2.add(new Horario(DayOfWeek.WEDNESDAY, horaInicio, horaFin));
+			horarios2.add(new Horario(DayOfWeek.THURSDAY, horaInicio, horaFin));
+			horarios2.add(new Horario(DayOfWeek.FRIDAY, horaInicio, horaFin));
+			horarios2.add(new Horario(DayOfWeek.SATURDAY, horaInicio, horaFin));
+			Direccion direccionStarbucks = new Direccion("Rivadavia", 3647);
+			starbucksRivadavia = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks,
+					horarios2, direccionStarbucks);
+		}
+
+		return starbucksRivadavia;
+	}
 
 	public LocalComercial sportClubLibertador7395() {
 		if (sportClubLibertador7395 == null) {
@@ -258,8 +298,10 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		if (mapa == null) {
 			mapa = new MapaPOI();
 			mapa.agregarPOI(paradaDeColectivo114DeCabildoYMonroe());
+			mapa.agregarPOI(paradaDeColectivo114DeLugano());
 			mapa.agregarPOI(bancoCiudadCabildoYCongreso());
 			mapa.agregarPOI(cgpComuna5());
+			mapa.agregarPOI(starbucksRivadavia());
 			mapa.agregarPOI(starbucksCoronelDiaz1400());
 			mapa.agregarPOI(sportClubLibertador7395());
 			mapa.agregarSistemaExternoAdapter(bancoAdapter());
