@@ -34,6 +34,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Terminal terminal;
 	Notificar notificar;
 	Almacenar almacenar;
+	EnvioDeMail envioDeMail;
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -319,9 +320,17 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return terminal;
 	}
 	
-	public Notificar notificar() {
+	public EnvioDeMail envioDeMail(){
+		if (envioDeMail == null) {
+			envioDeMail = new EnvioDeMail();
+		}
+
+		return envioDeMail;
+	}
+	
+	public Notificar notificar(EnvioDeMail unEnvioDeMail) {
 		if (notificar == null) {
-			notificar = new Notificar();
+			notificar = new Notificar(unEnvioDeMail);
 		}
 
 		return notificar;

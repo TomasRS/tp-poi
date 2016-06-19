@@ -12,14 +12,16 @@ public class TerminalTest {
 	Notificar accionNotificar2;
 	Almacenar accionAlmacenar;
 	Almacenar accionAlmacenar2;
+	EnvioDeMail envioDeMail;
 	
 	@Before
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		terminalAbasto = soporteParaTests.terminal();
 		mapaInteractivo = soporteParaTests.mapa();
-		accionNotificar = soporteParaTests.notificar();
-		accionNotificar2 = soporteParaTests.notificar();
+		envioDeMail = soporteParaTests.envioDeMail();
+		accionNotificar = soporteParaTests.notificar(envioDeMail);
+		accionNotificar2 = soporteParaTests.notificar(envioDeMail);
 		accionAlmacenar = soporteParaTests.almacenar();
 		accionAlmacenar2 = soporteParaTests.almacenar();
 		terminalAbasto.setMapa(mapaInteractivo);

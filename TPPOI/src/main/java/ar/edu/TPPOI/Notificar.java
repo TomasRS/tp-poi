@@ -1,9 +1,12 @@
 package ar.edu.TPPOI;
 
+import javax.mail.MessagingException;
+
 public class Notificar implements Accion{
 
 	boolean mailEnviado;
 	long tiempoLimite;
+	EnvioDeMail envioDeMail;
 	
 	public void ejecutar(BusquedaHecha unaBusqueda, Terminal unaTerminal){
 		
@@ -11,6 +14,12 @@ public class Notificar implements Accion{
 		
 		if(unaBusqueda.tiempoDeBusqueda > tiempoLimite){
 			this.enviarMail();
+			try {
+				envioDeMail.generateAndSendEmail(tiempoLimite, unaBusqueda.tiempoDeBusqueda);
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -27,4 +36,12 @@ public class Notificar implements Accion{
 	public boolean getMailEnviado(){
 		return mailEnviado;
 	}
+	
+	public Notificar(EnvioDeMail unEnvioDeMail){
+		this.envioDeMail = unEnvioDeMail;
+	}
+	
+
+ 
+	
 }
