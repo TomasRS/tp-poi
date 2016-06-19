@@ -5,11 +5,11 @@ public class Notificar implements Accion{
 	boolean mailEnviado;
 	long tiempoLimite;
 	
-	public void ejecutar(String unTextoLibre, Integer cantPOIs, long tiempoDeBusqueda, Terminal unaTerminal){
+	public void ejecutar(BusquedaHecha unaBusqueda, Terminal unaTerminal){
 		
-		this.mailEnviado = false; //si se cambia el tiempoLimite en Runtime, mailEnviado podía quedar en true de la busqueda anterior
+		this.mailEnviado = false; //si se cambia el tiempoLimite en Runtime, mailEnviado podï¿½a quedar en true de la busqueda anterior
 		
-		if(tiempoDeBusqueda > tiempoLimite){
+		if(unaBusqueda.tiempoDeBusqueda > tiempoLimite){
 			this.enviarMail();
 		}
 	}

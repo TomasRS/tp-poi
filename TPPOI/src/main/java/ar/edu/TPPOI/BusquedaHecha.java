@@ -6,11 +6,19 @@ public class BusquedaHecha {
 	Integer cantDeResultados;
 	long tiempoDeBusqueda;
 	
-	public BusquedaHecha(String unTextoLibre, Integer cantPOIs, long tiempoBusqueda){
-		this.frase = unTextoLibre;
-		this.cantDeResultados = cantPOIs;
-		this.tiempoDeBusqueda = tiempoBusqueda;
+	public void setFrase(String frase){
+		this.frase = frase;
 	}
+	
+	public void setCantDeResultados(Integer cantDeResultados){
+		this.cantDeResultados = cantDeResultados;
+	}
+	
+	public void setTiempoDeBusqueda(long tiempoDeBusqueda){
+		this.tiempoDeBusqueda = tiempoDeBusqueda;
+	}
+	
+	
 	
 	public String getFrase(){
 		return this.frase;
@@ -22,5 +30,17 @@ public class BusquedaHecha {
 	
 	public long getTiempoDeBusqueda(){
 		return this.tiempoDeBusqueda;
+	}
+	public BusquedaHecha datosDeLaBusqueda(String unTextoLibre,Terminal unaTerminal){
+	long tiempoInicio;
+	long tiempoDeBusqueda;
+	Integer cantPOIs;
+	tiempoInicio = System.nanoTime(); 
+	cantPOIs = unaTerminal.getMapa().cantidadDePOIsEncontrados(unTextoLibre);
+	tiempoDeBusqueda = System.nanoTime() - tiempoInicio;
+	this.setFrase(unTextoLibre);
+	this.setCantDeResultados(cantPOIs);
+	this.setTiempoDeBusqueda(tiempoDeBusqueda);
+	return this;
 	}
 }

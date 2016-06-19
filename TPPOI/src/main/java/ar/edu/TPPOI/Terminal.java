@@ -15,6 +15,10 @@ public class Terminal {
 		this.mapa = unMapa;
 	}
 	
+	public MapaPOI getMapa(){
+		return this.mapa;
+	}
+	
 	public void activarAccion(Accion unaAccion){
 		if (this.yaExisteAccionDeEseTipo(unaAccion)){
 			throw new YaExisteUnaAccionDeEseTipoException("Ya existe una accion de ese tipo") ;
@@ -51,17 +55,10 @@ public class Terminal {
 	}
 	
 	//--------------------------------------------------------------
-	
+	BusquedaHecha unaBusqueda = new BusquedaHecha(); 
 	public void buscar(String unTextoLibre){
-		long tiempoInicio;
-		long tiempoDeBusqueda;
-		Integer cantPOIs;
-		
-		tiempoInicio = System.nanoTime(); 
-		cantPOIs = this.mapa.cantidadDePOIsEncontrados(unTextoLibre);
-		tiempoDeBusqueda = System.nanoTime() - tiempoInicio;
-		
-		this.acciones.forEach(unaAccion -> unaAccion.ejecutar(unTextoLibre, cantPOIs, tiempoDeBusqueda, this));
+		unaBusqueda.datosDeLaBusqueda(unTextoLibre,this);
+		this.acciones.forEach(unaAccion -> unaAccion.ejecutar(unaBusqueda, this));
 	}
 
 }
