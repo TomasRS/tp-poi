@@ -55,8 +55,9 @@ public class Terminal {
 	}
 	
 	//--------------------------------------------------------------
-	BusquedaHecha unaBusqueda = new BusquedaHecha(); 
+	 
 	public void buscar(String unTextoLibre){
+		BusquedaHecha unaBusqueda = new BusquedaHecha();
 		unaBusqueda.datosDeLaBusqueda(unTextoLibre,this);
 		this.acciones.forEach(unaAccion -> unaAccion.ejecutar(unaBusqueda, this));
 	}
