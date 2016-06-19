@@ -72,4 +72,8 @@ public class MapaPOI {
 		listaDeSistemaExternoAdapter.remove(unSistemaExternoAdapter);
 	}
 
+	public Integer cantidadDePOIsEncontrados(String unTextoLibre) {
+		return this.buscar(unTextoLibre).size();
+	}
+
 }

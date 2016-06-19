@@ -58,7 +58,7 @@ public class Terminal {
 		Integer cantPOIs;
 		
 		tiempoInicio = System.nanoTime(); 
-		cantPOIs = this.mapa.buscar(unTextoLibre).size();
+		cantPOIs = this.mapa.cantidadDePOIsEncontrados(unTextoLibre);
 		tiempoDeBusqueda = System.nanoTime() - tiempoInicio;
 		
 		this.acciones.forEach(unaAccion -> unaAccion.ejecutar(unTextoLibre, cantPOIs, tiempoDeBusqueda, this));
