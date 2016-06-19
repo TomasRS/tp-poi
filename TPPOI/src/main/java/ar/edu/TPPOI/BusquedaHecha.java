@@ -33,13 +33,11 @@ public class BusquedaHecha {
 	}
 	public BusquedaHecha datosDeLaBusqueda(String unTextoLibre,Terminal unaTerminal){
 	long tiempoInicio;
-	long tiempoDeBusqueda;
-	Integer cantPOIs;
 	tiempoInicio = System.nanoTime(); 
-	cantPOIs = unaTerminal.getMapa().cantidadDePOIsEncontrados(unTextoLibre);
+	cantDeResultados = unaTerminal.getMapa().cantidadDePOIsEncontrados(unTextoLibre);
 	tiempoDeBusqueda = System.nanoTime() - tiempoInicio;
 	this.setFrase(unTextoLibre);
-	this.setCantDeResultados(cantPOIs);
+	this.setCantDeResultados(cantDeResultados);
 	this.setTiempoDeBusqueda(tiempoDeBusqueda);
 	return this;
 	}
