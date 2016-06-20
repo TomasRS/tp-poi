@@ -1,6 +1,10 @@
 package ar.edu.TPPOI;
 
 import java.util.List;
+
+import excepciones.NoSePuedeDesactivarException;
+import excepciones.YaExisteUnaAccionDeEseTipoException;
+
 import java.util.ArrayList;
 
 public class Terminal {

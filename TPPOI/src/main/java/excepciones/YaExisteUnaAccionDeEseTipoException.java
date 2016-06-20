@@ -1,4 +1,4 @@
-package ar.edu.TPPOI;
+package excepciones;
 
 public class YaExisteUnaAccionDeEseTipoException extends RuntimeException {
 	

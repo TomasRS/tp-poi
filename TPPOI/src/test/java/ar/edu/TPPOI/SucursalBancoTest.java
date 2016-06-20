@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import excepciones.NoExisteServicioAsociadoException;
+
 public class SucursalBancoTest {
 
 	LocalComercial cineAbasto;

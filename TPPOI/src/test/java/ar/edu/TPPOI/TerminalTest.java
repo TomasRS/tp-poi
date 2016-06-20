@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.NoSePuedeDesactivarException;
+import excepciones.YaExisteUnaAccionDeEseTipoException;
+
 public class TerminalTest {
 
 	Terminal terminalAbasto;
