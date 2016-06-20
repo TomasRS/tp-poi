@@ -12,16 +12,18 @@ public class TerminalTest {
 	Notificar accionNotificar2;
 	Almacenar accionAlmacenar;
 	Almacenar accionAlmacenar2;
-	EnvioDeMail envioDeMail;
+	EnvioDeMail envioDeMail1;
+	EnvioDeMail envioDeMail2;
 	
 	@Before
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		terminalAbasto = soporteParaTests.terminal();
 		mapaInteractivo = soporteParaTests.mapa();
-		envioDeMail = soporteParaTests.envioDeMail();
-		accionNotificar = soporteParaTests.notificar(envioDeMail);
-		accionNotificar2 = soporteParaTests.notificar(envioDeMail);
+		envioDeMail1 = soporteParaTests.envioDeMail();
+		envioDeMail2 = soporteParaTests.envioDeMail();
+		accionNotificar = soporteParaTests.notificar(envioDeMail1);
+		accionNotificar2 = soporteParaTests.notificar(envioDeMail2);
 		accionAlmacenar = soporteParaTests.almacenar();
 		accionAlmacenar2 = soporteParaTests.almacenar();
 		terminalAbasto.setMapa(mapaInteractivo);
@@ -87,7 +89,7 @@ public class TerminalTest {
 		terminalAbasto.activarAccion(accionNotificar);
 		
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(true, accionNotificar.getMailEnviado());
+		Assert.assertEquals(true, envioDeMail1.getMailEnviado());
 	}
 	
 	@Test
@@ -96,7 +98,7 @@ public class TerminalTest {
 		terminalAbasto.activarAccion(accionNotificar);
 		
 		terminalAbasto.buscar("114");
-		Assert.assertEquals(false, accionNotificar.getMailEnviado());
+		Assert.assertEquals(false, envioDeMail1.getMailEnviado());
 	}
 	
 	

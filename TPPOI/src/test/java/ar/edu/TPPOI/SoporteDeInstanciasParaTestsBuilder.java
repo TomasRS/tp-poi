@@ -13,8 +13,6 @@ import externos.CGPAdapter;
 import externos.CentroDTO;
 import externos.ServicioDTO;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class SoporteDeInstanciasParaTestsBuilder {
 
