@@ -54,7 +54,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return parada114DeCabildoYMonroe;
 	}
-	
+
 	public ParadaDeColectivo paradaDeColectivo114DeLugano() {
 		if (parada114DeLugano == null) {
 			coordenadaParada114 = new Point(-88.459845185279846, -24.558164509672146);
@@ -74,7 +74,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return prestamo;
 
 	}
-	
+
 	public Servicio deudas() {
 		if (deudas == null) {
 			deudas = Servicio.nuevoServicioBanco("deudas");
@@ -107,13 +107,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	}
 
 	public BancoExternoParaTest bancoExternoImpostorMock() {
-		/*
-		 * bancoExternoImpostor = mock(BancoExternoImpostor.class);
-		 * when(bancoExternoImpostor.buscar("Banco de la Plaza",
-		 * "extracciones")).thenReturn(this.json()); return
-		 * bancoExternoImpostor;
-		 */
 		return new BancoExternoParaTest();
+
 	}
 
 	public BancoAdapter bancoAdapter() {
@@ -164,11 +159,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	}
 
 	public CGPExternoParaTest CGPExternoImpostorMock() {
-		cgpExternoImpostor = mock(CGPExternoParaTest.class);
-		when(cgpExternoImpostor.buscar("Balvanera")).thenReturn(this.crearCentrosDTO());
-		when(cgpExternoImpostor.buscar("Junin")).thenReturn(this.crearCentrosDTO());
-		when (cgpExternoImpostor.buscar("San Cristobal")).thenReturn(this.crearCentrosDTO());
-		return cgpExternoImpostor;
+
+		return new CGPExternoParaTest();
 	}
 
 	public CGPAdapter CGPAdapter() {
@@ -230,7 +222,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return starbucksCoronelDiaz1400;
 	}
-	
+
 	public LocalComercial starbucksRivadavia() {
 		if (starbucksRivadavia == null) {
 			coordenadaStarbucks = new Point(-98.413718, -44.593303);
@@ -244,8 +236,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horarios2.add(new Horario(DayOfWeek.FRIDAY, horaInicio, horaFin));
 			horarios2.add(new Horario(DayOfWeek.SATURDAY, horaInicio, horaFin));
 			Direccion direccionStarbucks = new Direccion("Rivadavia", 3647);
-			starbucksRivadavia = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks,
-					horarios2, direccionStarbucks);
+			starbucksRivadavia = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks, horarios2,
+					direccionStarbucks);
 		}
 
 		return starbucksRivadavia;
@@ -319,15 +311,15 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return terminal;
 	}
-	
-	public EnvioDeMail envioDeMail(){
+
+	public EnvioDeMail envioDeMail() {
 		if (envioDeMail == null) {
 			envioDeMail = new EnvioDeMail();
 		}
 
 		return envioDeMail;
 	}
-	
+
 	public Notificar notificar(EnvioDeMail unEnvioDeMail) {
 		if (notificar == null) {
 			notificar = new Notificar(unEnvioDeMail);
@@ -335,7 +327,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return notificar;
 	}
-	
+
 	public Almacenar almacenar() {
 		if (almacenar == null) {
 			almacenar = new Almacenar();

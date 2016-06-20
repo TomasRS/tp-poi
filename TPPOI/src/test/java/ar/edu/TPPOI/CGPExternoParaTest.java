@@ -11,9 +11,9 @@ public class CGPExternoParaTest implements CGPExternoInterface {
 
 	public List<CentroDTO> buscar(String unTextoLibre) {
 
+		CentroDTO nuevoCGP = new CentroDTO();
+		List<CentroDTO> listaDeCGPsExternosParaElAdapter = new ArrayList<CentroDTO>();
 		if (unTextoLibre.equals("San Cristobal") || unTextoLibre.equals("Junin") || unTextoLibre.equals("Balvanera")) {
-			CentroDTO nuevoCGP = new CentroDTO();
-			List<CentroDTO> listaDeCGPsExternosParaElAdapter = new ArrayList<CentroDTO>();
 			nuevoCGP.director = "Juan";
 			nuevoCGP.domicilioCompleto = "Junin 521";
 			nuevoCGP.zonas.add("San Cristobal");
@@ -22,9 +22,8 @@ public class CGPExternoParaTest implements CGPExternoInterface {
 			nuevoCGP.telefono = "4375-0644/45";
 			nuevoCGP.serviciosDTO = crearServiciosDTO();
 			listaDeCGPsExternosParaElAdapter.add(nuevoCGP);
-			return listaDeCGPsExternosParaElAdapter;
 		}
-		return null;
+		return listaDeCGPsExternosParaElAdapter;
 	}
 
 	public CentroDTO crearCentroDTO() {

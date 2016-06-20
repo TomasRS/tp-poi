@@ -18,7 +18,7 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 
 	CGPExternoInterface cgpExterno;
 
-	public CGPAdapter(CGPExternoParaTest unSistemaConsultaDeCGPsExterno) {
+	public CGPAdapter(CGPExternoInterface unSistemaConsultaDeCGPsExterno) {
 		cgpExterno = unSistemaConsultaDeCGPsExterno;
 	}
 
