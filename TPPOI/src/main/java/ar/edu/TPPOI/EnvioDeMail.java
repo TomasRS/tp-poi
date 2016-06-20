@@ -50,7 +50,7 @@ public class EnvioDeMail {
 		System.out.println("El Mail Session ha sido creado correctamente...");
  
 		// Step3
-		System.out.println("\n\n 3º paso ===> Enviado correo...");
+		System.out.println("\n\n 3º paso ===> Enviando correo...");
 		Transport transport = getMailSession.getTransport("smtp");
  
 		// Enter your correct gmail UserID and Password
