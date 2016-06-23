@@ -1,7 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.util.List;
-
+import java.time.LocalDate;
 import excepciones.NoSePuedeDesactivarException;
 import excepciones.YaExisteUnaAccionDeEseTipoException;
 
@@ -64,6 +64,14 @@ public class Terminal {
 		BusquedaHecha unaBusqueda = new BusquedaHecha();
 		unaBusqueda.datosDeLaBusqueda(unTextoLibre,this);
 		this.acciones.forEach(unaAccion -> unaAccion.ejecutar(unaBusqueda, this));
+	}
+	
+	public int obtenerReporte(LocalDate unaFecha){
+		return GeneradorDeReportes.getSingletonInstance().generarReportePorFecha(unaFecha, busquedasHechas);
+	}
+	
+	public List<Integer> generarReportePorBusqueda(){
+		return GeneradorDeReportes.getSingletonInstance().generarReportePorBusqueda(busquedasHechas);
 	}
 
 }

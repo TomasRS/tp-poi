@@ -303,11 +303,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	}
 
 	public Terminal terminal() {
-		if (terminal == null) {
-			terminal = new Terminal();
-		}
-
-		return terminal;
+		return new Terminal();
 	}
 
 	public EnvioDeMail envioDeMail() {

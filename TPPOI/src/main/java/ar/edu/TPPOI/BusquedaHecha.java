@@ -1,10 +1,13 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDate;
+
 public class BusquedaHecha {
 	
 	String frase;
 	Integer cantDeResultados;
 	long tiempoDeBusqueda;
+	LocalDate fecha;
 	
 	public void setFrase(String frase){
 		this.frase = frase;
@@ -31,6 +34,11 @@ public class BusquedaHecha {
 	public long getTiempoDeBusqueda(){
 		return this.tiempoDeBusqueda;
 	}
+	
+	public LocalDate getFecha(){
+		return fecha;
+	}
+	
 	public BusquedaHecha datosDeLaBusqueda(String unTextoLibre,Terminal unaTerminal){
 	long tiempoInicio;
 	tiempoInicio = System.nanoTime(); 
@@ -39,6 +47,11 @@ public class BusquedaHecha {
 	this.setFrase(unTextoLibre);
 	this.setCantDeResultados(cantDeResultados);
 	this.setTiempoDeBusqueda(tiempoDeBusqueda);
+	this.setFecha(LocalDate.now());
 	return this;
+	}
+
+	private void setFecha(LocalDate unaFecha) {
+		this.fecha = unaFecha;
 	}
 }
