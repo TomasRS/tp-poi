@@ -7,20 +7,8 @@ import java.util.stream.Collectors;
 import java.time.LocalDate;
 
 public class GeneradorDeReportes {
-	private static GeneradorDeReportes generadorDeReportes;
 	
-	private GeneradorDeReportes() {
-		
-	}
-	
-	public static GeneradorDeReportes getSingletonInstance(){
-		if (generadorDeReportes == null){
-			generadorDeReportes = new GeneradorDeReportes();
-		}
-		return generadorDeReportes;
-	}
-	
-	public Integer generarReportePorFecha(LocalDate unaFecha, List<BusquedaHecha> busquedasHechas){
+	public static Integer generarReportePorFecha(LocalDate unaFecha, List<BusquedaHecha> busquedasHechas){
 		Integer cantBusquedas = busquedasHechas.stream()
 							  				   .filter(unaBusqueda -> unaBusqueda.getFecha().equals(unaFecha))
 							  				   .collect(Collectors.toList())
@@ -30,7 +18,7 @@ public class GeneradorDeReportes {
 							  
 	}
 	
-	public List<Integer> generarReportePorBusqueda(List<BusquedaHecha> busquedasHechas){
+	public static List<Integer> generarReportePorBusqueda(List<BusquedaHecha> busquedasHechas){
 		List<Integer> resultadosParciales = busquedasHechas.stream()
 														   .map(unaB -> unaB.getCantDeResultados())
 														   .collect(Collectors.toList());
@@ -38,15 +26,15 @@ public class GeneradorDeReportes {
 		return resultadosParciales;
 	}
 	
-	public Map<Terminal, Integer> generarReportesTotales(List<Terminal> terminales){
+	public static Map<Terminal, Integer> generarReportesTotales(List<Terminal> terminales){
 		Map<Terminal, Integer> terminalesConResultTotales = new HashMap<>();
 		
-		terminales.forEach(unaT -> this.cantTotalPorTerminal(unaT, terminalesConResultTotales));
+		terminales.forEach(unaT -> cantTotalPorTerminal(unaT, terminalesConResultTotales));
 		
 		return terminalesConResultTotales;
 	}
 	
-	private void cantTotalPorTerminal(Terminal unaTerminal, Map<Terminal, Integer> unDiccionario){
+	private static void cantTotalPorTerminal(Terminal unaTerminal, Map<Terminal, Integer> unDiccionario){
 		Integer resultTotal = unaTerminal.generarReportePorBusqueda().stream().mapToInt(Integer::intValue).sum();
 		
 		unDiccionario.put(unaTerminal, resultTotal);

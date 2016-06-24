@@ -203,7 +203,7 @@ public class TerminalTest {
 		terminalCaballito.buscar("hola");
 		terminalCaballito.buscar("SUBE");
 		
-		Assert.assertEquals(diccionarioAuxiliar, GeneradorDeReportes.getSingletonInstance().generarReportesTotales(listaDeTerminales));
+		Assert.assertEquals(diccionarioAuxiliar, GeneradorDeReportes.generarReportesTotales(listaDeTerminales));
 	}
 	
 	

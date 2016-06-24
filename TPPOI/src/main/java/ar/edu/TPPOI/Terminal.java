@@ -67,11 +67,11 @@ public class Terminal {
 	}
 	
 	public int obtenerReporte(LocalDate unaFecha){
-		return GeneradorDeReportes.getSingletonInstance().generarReportePorFecha(unaFecha, busquedasHechas);
+		return GeneradorDeReportes.generarReportePorFecha(unaFecha, busquedasHechas);
 	}
 	
 	public List<Integer> generarReportePorBusqueda(){
-		return GeneradorDeReportes.getSingletonInstance().generarReportePorBusqueda(busquedasHechas);
+		return GeneradorDeReportes.generarReportePorBusqueda(busquedasHechas);
 	}
 
 }
