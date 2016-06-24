@@ -10,7 +10,7 @@ package ar.edu.TPPOI;
 //import javax.mail.internet.MimeMessage;
 //import java.time.LocalDateTime;
 
-public class EnvioDeMail {
+public class EnvioDeMail implements ManejoDeResultado{
 
 	boolean mailEnviado;
 
@@ -21,6 +21,10 @@ public class EnvioDeMail {
 
 	public boolean getMailEnviado() {
 		return this.mailEnviado;
+	}
+	
+	public void ejecutarEnCasoDeFalla(){
+		
 	}
 
 	public void generateAndSendEmail(long unTiempoLimite,
