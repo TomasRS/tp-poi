@@ -12,6 +12,7 @@ public class Terminal {
 	MapaPOI mapa;
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
 	List<Accion> acciones = new ArrayList<>();
+	GeneradorDeReportes reporte;
 	
 	//-------------------------------------------------------------
 	
@@ -58,6 +59,14 @@ public class Terminal {
 		return this.acciones;
 	}
 	
+	public GeneradorDeReportes getReporte() {
+		return reporte;
+	}
+
+	public void setReporte(GeneradorDeReportes reporte) {
+		this.reporte = reporte;
+	}
+	
 	//--------------------------------------------------------------
 	 
 	public void buscar(String unTextoLibre){
@@ -67,11 +76,13 @@ public class Terminal {
 	}
 	
 	public int obtenerReporte(LocalDate unaFecha){
-		return GeneradorDeReportes.generarReportePorFecha(unaFecha, busquedasHechas);
+		return this.getReporte().generarReportePorFecha(unaFecha, this.getBusquedasHechas());   
 	}
 	
+
+
 	public List<Integer> generarReportePorBusqueda(){
-		return GeneradorDeReportes.generarReportePorBusqueda(busquedasHechas);
+		return this.getReporte().generarReportePorBusqueda(this.getBusquedasHechas());
 	}
 
 }

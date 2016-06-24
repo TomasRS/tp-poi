@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class GeneradorDeReportes {
 	
-	public static Integer generarReportePorFecha(LocalDate unaFecha, List<BusquedaHecha> busquedasHechas){
+	public  Integer generarReportePorFecha(LocalDate unaFecha, List<BusquedaHecha> busquedasHechas){
 		Integer cantBusquedas = busquedasHechas.stream()
 							  				   .filter(unaBusqueda -> unaBusqueda.getFecha().equals(unaFecha))
 							  				   .collect(Collectors.toList())
@@ -18,7 +18,7 @@ public class GeneradorDeReportes {
 							  
 	}
 	
-	public static List<Integer> generarReportePorBusqueda(List<BusquedaHecha> busquedasHechas){
+	public List<Integer> generarReportePorBusqueda(List<BusquedaHecha> busquedasHechas){
 		List<Integer> resultadosParciales = busquedasHechas.stream()
 														   .map(unaB -> unaB.getCantDeResultados())
 														   .collect(Collectors.toList());
@@ -26,7 +26,7 @@ public class GeneradorDeReportes {
 		return resultadosParciales;
 	}
 	
-	public static Map<Terminal, Integer> generarReportesTotales(List<Terminal> terminales){
+	public Map<Terminal, Integer> generarReportesTotales(List<Terminal> terminales){
 		Map<Terminal, Integer> terminalesConResultTotales = new HashMap<>();
 		
 		terminales.forEach(unaT -> cantTotalPorTerminal(unaT, terminalesConResultTotales));
@@ -34,7 +34,7 @@ public class GeneradorDeReportes {
 		return terminalesConResultTotales;
 	}
 	
-	private static void cantTotalPorTerminal(Terminal unaTerminal, Map<Terminal, Integer> unDiccionario){
+	private  void cantTotalPorTerminal(Terminal unaTerminal, Map<Terminal, Integer> unDiccionario){
 		Integer resultTotal = unaTerminal.generarReportePorBusqueda().stream().mapToInt(Integer::intValue).sum();
 		
 		unDiccionario.put(unaTerminal, resultTotal);

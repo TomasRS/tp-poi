@@ -33,6 +33,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Notificar notificar;
 	Almacenar almacenar;
 	EnvioDeMail envioDeMail;
+	GeneradorDeReportes generadorReportes;
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -300,6 +301,11 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		}
 
 		return mapa;
+	}
+	
+	
+	public GeneradorDeReportes reportes(){
+		return new GeneradorDeReportes();
 	}
 
 	public Terminal terminal() {
