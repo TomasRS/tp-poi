@@ -279,7 +279,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horariosCine.add(new Horario(DayOfWeek.FRIDAY, horaInicioCine, horaFinCine));
 			horariosCine.add(new Horario(DayOfWeek.SATURDAY, horaInicioCine, horaFinCine));
 			horariosCine.add(new Horario(DayOfWeek.SUNDAY, horaInicioCine, horaFinCine));
-			cineAbasto = new LocalComercial("cineAbasto", coordenadaCineAbasto, 800, horariosCine, "cine",
+			cineAbasto = new LocalComercial("cine Abasto", coordenadaCineAbasto, 800, horariosCine, "cine",
 					direccionCineAbasto);
 		}
 

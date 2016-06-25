@@ -1,5 +1,6 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,6 +75,34 @@ public class MapaPOI {
 
 	public Integer cantidadDePOIsEncontrados(String unTextoLibre) {
 		return this.buscar(unTextoLibre).size();
+	}
+
+	public boolean actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar, ProcActualizarLocalesComerciales procActualizarLocalesComerciales) {
+		List<String>listaDeTags=this.obtenerTagsDelPOI(nombreLocalComercial);
+		return this.actualizarTags(listaDeTags, tagsParaActualizar,procActualizarLocalesComerciales );
+		
+	}
+
+	@SuppressWarnings("null")
+	public boolean actualizarTags(List<String> listaDeTags, List<String> tagsParaActualizar, ProcActualizarLocalesComerciales procActualizarLocalesComerciales) {
+		List<String> tagsAuxiliares = null;
+		Integer elementosAfectados=0;
+		for (Integer i=0; i<listaDeTags.size();i++){
+			if (tagsParaActualizar.contains(listaDeTags.get(i))){
+				tagsAuxiliares.add(listaDeTags.get(i));
+		}else{
+			tagsAuxiliares.add(listaDeTags.get(i));
+			elementosAfectados++;
+		}
+		}
+		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDate.now(),elementosAfectados,true);
+		procActualizarLocalesComerciales.setResultadoDeEjecucion(resultado);
+		return true;
+	}
+
+	private List<String> obtenerTagsDelPOI(String nombreLocalComercial) {
+		return this.listaDePOIs.stream().filter(unPOI->unPOI.nombre.equals(nombreLocalComercial)).collect(Collectors.toList())
+		.get(0).getTags();
 	}
 
 }
