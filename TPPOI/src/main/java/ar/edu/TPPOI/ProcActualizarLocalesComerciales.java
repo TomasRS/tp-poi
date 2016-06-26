@@ -1,7 +1,10 @@
 package ar.edu.TPPOI;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
+import java.io.FileReader;
+import java.io.BufferedReader;
+
 public class ProcActualizarLocalesComerciales extends Proceso{
 	ResultadoDelProceso resultadoDeEjecucion;
 
@@ -13,36 +16,32 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 		this.resultadoDeEjecucion = resultadoDeEjecucion;
 	}
 
-	@SuppressWarnings("null")
+	
+	
 	public void ejecutar() {
 
 		try
 		{
-            BufferedReader br =new BufferedReader(new FileReader (("C:\\nuevasPalabrasClavesDeLocalesComerciales.txt")));
+			BufferedReader br =new BufferedReader(new FileReader ("C:\\nuevasPalabrasClavesDeLocalesComerciales.txt"));
             String linea;
-			List<String> tagsParaActualizar = null;
-			while ((linea=br.readLine())!=null){
-			int i=0;
-			String param="[ ;]+"; 
-			String [] localComercialVectorizado=linea.split(param);
-			String nombreLocalComercial="";
-			while (i<linea.length()){
-				if (i==0){
-					nombreLocalComercial=localComercialVectorizado[0];
-					i++;
-				}else{
-					tagsParaActualizar.add(i-1, localComercialVectorizado[i]);			
+			List<String> tagsParaActualizar = new ArrayList<>();
+			while ((linea=br.readLine())!=null){ 
+				String [] comercialVectorizado=linea.split(";");
+				String nombreLocalComercial ="";
+				nombreLocalComercial=comercialVectorizado[0];
+				String tagsVectorizados= comercialVectorizado[1];
+				String [] tagsSpliteados=tagsVectorizados.split(" ");
+				for(Integer i=0;i<tagsSpliteados.length;i++){
+					tagsParaActualizar.add(tagsSpliteados[i]);		
 				}
-				i++;
-			}			
-			// Cierre del archivo
-			br.close();
-			mapa.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, this);
-		}
+					mapa.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, this);	
 			}
-		catch (Exception e)
-		{
-			e.printStackTrace();
+			br.close();
 		}
+			catch (Exception e)
+					{
+						this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));	
+					}
+				
 	}
 }

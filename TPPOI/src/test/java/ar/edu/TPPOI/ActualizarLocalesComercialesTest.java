@@ -11,24 +11,33 @@ public class ActualizarLocalesComercialesTest {
 	MapaPOI mapaInteractivo;
 	LocalComercial cineAbasto;
 	ConfiguradorDeProcesos configuradorDeProcesos;
-	
+	ReintentarNVeces reintentarNVeces;
+	NoRealizarAccion noRealizarAccion;
 	
 	@Before
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		cineAbasto = soporteParaTests.cineAbasto();
-		actualizadorDeLocalesComerciales= new ProcActualizarLocalesComerciales();
+		actualizadorDeLocalesComerciales= soporteParaTests.actualizadorDeLocalesComerciales();
 		mapaInteractivo=soporteParaTests.mapa();
 		actualizadorDeLocalesComerciales.setMapa(mapaInteractivo);
-		configuradorDeProcesos=new ConfiguradorDeProcesos();
-
-	
-	}
+		configuradorDeProcesos= soporteParaTests.configuradorDeProcesos();
+		reintentarNVeces= soporteParaTests.reintentarNVeces();
+		noRealizarAccion= soporteParaTests.noRealizarAccion();
+		
+}
 	
 	@Test
-	public void seActualizanLosTagsDelCineAbasto(){
-		
+	public void seActualizan4LosTagsDelCineAbasto() throws ProblemaConAccionesEnCasoDeFalla{
 		actualizadorDeLocalesComerciales.ejecutar();
-		Assert.assertEquals(3, actualizadorDeLocalesComerciales.getResultadoDeEjecucion().getCantidadDeElementosAfectados(),0);
+		Assert.assertEquals(4, cineAbasto.getTags().size());
+		
 	}
+	@Test
+	public void seDetectan3ElementosAfectados(){
+		Assert.assertEquals(1,cineAbasto.getTags().size());
+		actualizadorDeLocalesComerciales.ejecutar();
+		Assert.assertEquals(3,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
+	}
+	
 }

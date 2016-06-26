@@ -1,6 +1,8 @@
 package ar.edu.TPPOI;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -94,12 +96,13 @@ public class MapaPOITest {
 		Assert.assertTrue(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
 	}
 
-	@Test
+	//Este test esta demas porque en el soporteDeInstanciasParaTestsBuilderAgregueElCineAbasto
+	/*@Test
 	public void testBarrioAbastoQuitoCineAbasto() {
 		mapaInteractivo.agregarPOI(cineAbasto);
 		mapaInteractivo.borrarPOI(cineAbasto);
 		Assert.assertFalse(mapaInteractivo.getListaDePOIs().contains(cineAbasto));
-	}
+	}*/
 
 	@Test
 	public void testObtenerDosPOISucursalBancoDesdeSistemaExterno() {
@@ -108,24 +111,24 @@ public class MapaPOITest {
 
 	@Test
 	public void testQueSeAgreguenDosSucursalesBancoQueNoExisten() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 8);
 		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 10);
 	}
 
 	@Test
 	public void testQueSeAgregueUnCGPQueNoExiste() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
-		mapaInteractivo.buscar("Balvanera");
 		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 8);
+		mapaInteractivo.buscar("Balvanera");
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
 	}
 
 	@Test
 	public void testQueSeAgregueSoloUnCGPQueNoExiste() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 8);
 		mapaInteractivo.buscar("Balvanera");
 		mapaInteractivo.buscar("Junin");
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 8);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
 	}
 
 	@Test
@@ -174,11 +177,16 @@ public class MapaPOITest {
 
 	@Test
 	public void testQueNoSeAgreguenDosSucursalesBancoQueExisten() {
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 7);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 8);
 		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 10);
 		Assert.assertEquals(mapaInteractivo.busquedaLocal("Banco de la Plaza,").size(), 2);
 		mapaInteractivo.buscar("Banco de la Plaza,extracciones");
-		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 9);
+		Assert.assertEquals(mapaInteractivo.getListaDePOIs().size(), 10);
+	}
+	@Test
+	public void tiene1tagCineAbasto(){
+		Assert.assertEquals(1,mapaInteractivo.getListaDePOIs().stream().filter(unP->unP.getNombre().equals("cine Abasto")).collect(Collectors.toList())
+				.size());
 	}
 }

@@ -34,6 +34,11 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Almacenar almacenar;
 	EnvioDeMail envioDeMail;
 	GeneradorDeReportes generadorReportes;
+	ProcActualizarLocalesComerciales actualizadorDeLocalesComerciales;
+	ConfiguradorDeProcesos configuradorDeProcesos;
+	ReintentarNVeces reintentarNVeces;
+	NoRealizarAccion noRealizarAccion;
+	
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -281,6 +286,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horariosCine.add(new Horario(DayOfWeek.SUNDAY, horaInicioCine, horaFinCine));
 			cineAbasto = new LocalComercial("cine Abasto", coordenadaCineAbasto, 800, horariosCine, "cine",
 					direccionCineAbasto);
+			cineAbasto.setTag("cine");
 		}
 
 		return cineAbasto;
@@ -296,6 +302,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			mapa.agregarPOI(starbucksRivadavia());
 			mapa.agregarPOI(starbucksCoronelDiaz1400());
 			mapa.agregarPOI(sportClubLibertador7395());
+			mapa.agregarPOI(cineAbasto());
 			mapa.agregarSistemaExternoAdapter(bancoAdapter());
 			mapa.agregarSistemaExternoAdapter(CGPAdapter());
 		}
@@ -334,5 +341,34 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		}
 
 		return almacenar;
+	}
+
+	public ProcActualizarLocalesComerciales actualizadorDeLocalesComerciales() {
+		if (actualizadorDeLocalesComerciales==null){
+			actualizadorDeLocalesComerciales=new ProcActualizarLocalesComerciales();
+		}
+		return actualizadorDeLocalesComerciales;
+	}
+
+	public ConfiguradorDeProcesos configuradorDeProcesos() {
+		if (configuradorDeProcesos==null){
+			configuradorDeProcesos=new ConfiguradorDeProcesos();
+		}
+			
+		return configuradorDeProcesos;
+	}
+
+	public ReintentarNVeces reintentarNVeces() {
+		if (reintentarNVeces==null){
+			reintentarNVeces= new ReintentarNVeces();
+		}
+		return reintentarNVeces;
+	}
+
+	public NoRealizarAccion noRealizarAccion() {
+		if(noRealizarAccion==null){
+			noRealizarAccion=new NoRealizarAccion();
+		}
+		return noRealizarAccion;
 	}
 }

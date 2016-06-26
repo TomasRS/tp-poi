@@ -1,7 +1,13 @@
 package ar.edu.TPPOI;
 
-public interface ManejoDeResultado {
+public abstract class ManejoDeResultado {
 
 
-	public abstract void ejecutarEnCasoDeFalla();
+	public abstract void ejecutarEnCasoDeFalla(Proceso unProceso);
+
+	
+
+	public boolean noAceptaCombinarManejos() {
+		return false;
+	};
 }

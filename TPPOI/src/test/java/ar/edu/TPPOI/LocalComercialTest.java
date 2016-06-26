@@ -11,6 +11,7 @@ public class LocalComercialTest {
 
 	Point coordenadaMia, coordenadaCercaStarbucks;
 	LocalComercial starbucks;
+	LocalComercial cineAbasto;
 
 	@Before
 	public void init() {
@@ -19,7 +20,7 @@ public class LocalComercialTest {
 
 		coordenadaMia = soporteParaTests.miCoordenaAbasto();
 		coordenadaCercaStarbucks = new Point(-58.414099, -34.593686);
-
+		cineAbasto= soporteParaTests.cineAbasto();
 		starbucks = soporteParaTests.starbucksCoronelDiaz1400();
 	}
 
@@ -44,5 +45,13 @@ public class LocalComercialTest {
 		starbucks.setNombre("starbacks");
 		Assert.assertTrue(starbucks.getNombre().equals("starbacks"));
 		Assert.assertFalse(starbucks.getNombre().equals("Starbucks"));
+	}
+	@Test
+	public void estaBienElNombre(){
+		Assert.assertTrue(cineAbasto.getNombre().equals("cine Abasto"));
+	}
+	@Test
+	public void tiene1Tag(){
+		Assert.assertEquals(1,cineAbasto.getTags().size(),0);
 	}
 }

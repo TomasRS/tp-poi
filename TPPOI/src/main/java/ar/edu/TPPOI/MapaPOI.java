@@ -77,21 +77,17 @@ public class MapaPOI {
 		return this.buscar(unTextoLibre).size();
 	}
 
-	public boolean actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar, ProcActualizarLocalesComerciales procActualizarLocalesComerciales) {
+	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar, ProcActualizarLocalesComerciales procActualizarLocalesComerciales) {
 		List<String>listaDeTags=this.obtenerTagsDelPOI(nombreLocalComercial);
-		return this.actualizarTags(listaDeTags, tagsParaActualizar,procActualizarLocalesComerciales );
-		
-	}
+		this.actualizarTags(listaDeTags, tagsParaActualizar,procActualizarLocalesComerciales );
+			}
 
-	@SuppressWarnings("null")
 	public boolean actualizarTags(List<String> listaDeTags, List<String> tagsParaActualizar, ProcActualizarLocalesComerciales procActualizarLocalesComerciales) {
-		List<String> tagsAuxiliares = null;
 		Integer elementosAfectados=0;
 		for (Integer i=0; i<listaDeTags.size();i++){
-			if (tagsParaActualizar.contains(listaDeTags.get(i))){
-				tagsAuxiliares.add(listaDeTags.get(i));
+			if (listaDeTags.contains(tagsParaActualizar.get(i))){
 		}else{
-			tagsAuxiliares.add(listaDeTags.get(i));
+			listaDeTags.add(tagsParaActualizar.get(i));
 			elementosAfectados++;
 		}
 		}
@@ -101,8 +97,8 @@ public class MapaPOI {
 	}
 
 	private List<String> obtenerTagsDelPOI(String nombreLocalComercial) {
-		return this.listaDePOIs.stream().filter(unPOI->unPOI.nombre.equals(nombreLocalComercial)).collect(Collectors.toList())
-		.get(0).getTags();
+		return this.getListaDePOIs().stream().filter(unPOI->unPOI.getNombre().equals("cine Abasto")).
+				collect(Collectors.toList()).get(0).getTags();
 	}
 
 }

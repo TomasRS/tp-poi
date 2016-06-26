@@ -1,8 +1,13 @@
 package ar.edu.TPPOI;
 
-public class NoRealizarAccion implements ManejoDeResultado{
+public class NoRealizarAccion extends ManejoDeResultado{
 
-	public void ejecutarEnCasoDeFalla(){
-		
+	
+	public boolean noAceptaCombinarManejos() {
+		return true;
+	}
+	
+	public void ejecutarEnCasoDeFalla(Proceso unProceso) {
+				
 	}
 }
