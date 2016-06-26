@@ -13,6 +13,10 @@ public abstract class POI {
 	protected Direccion direccion;
 	protected List<String> tags = new ArrayList<>();
 
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
 	public String getRubro() {
 		return rubro;
 	}

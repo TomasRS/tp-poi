@@ -12,6 +12,7 @@ public class ActualizarLocalesComercialesTest {
 	ProcActualizarLocalesComerciales actualizadorDeLocalesComerciales;
 	MapaPOI mapaInteractivo;
 	LocalComercial cineAbasto;
+	LocalComercial sportClubLibertador7395;
 	ConfiguradorDeProcesos configuradorDeProcesos;
 	ReintentarNVeces reintentarNVeces;
 	NoRealizarAccion noRealizarAccion;
@@ -26,21 +27,27 @@ public class ActualizarLocalesComercialesTest {
 		configuradorDeProcesos= soporteParaTests.configuradorDeProcesos();
 		reintentarNVeces= soporteParaTests.reintentarNVeces();
 		noRealizarAccion= soporteParaTests.noRealizarAccion();
-		horario1=(Date) soporteParaTests.generarHorario();
-		
+		horario1=soporteParaTests.generarHorario();
+		sportClubLibertador7395=soporteParaTests.sportClubLibertador7395();
 }
 	
 	@Test
-	public void seActualizan4LosTagsDelCineAbasto() throws ProblemaConAccionesEnCasoDeFalla{
+	public void seActualizan4LosTagsDelCineAbasto() {
+		System.out.println(cineAbasto.getTags().size());
 		actualizadorDeLocalesComerciales.run();
+		System.out.println(cineAbasto.getTags().size());
 		Assert.assertEquals(4, cineAbasto.getTags().size());
 		
 	}
 	@Test
-	public void seDetectan3ElementosAfectados(){
+	public void seDetectan1ElementosAfectados(){
 		Assert.assertEquals(1,cineAbasto.getTags().size());
 		actualizadorDeLocalesComerciales.run();
-		Assert.assertEquals(3,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
+		Assert.assertEquals(1,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
+	}
+	@Test
+	public void queda1soloTagEnsportClubLibertador7395(){
+		Assert.assertEquals(3, sportClubLibertador7395.getTags().size());
 	}
 
 }
