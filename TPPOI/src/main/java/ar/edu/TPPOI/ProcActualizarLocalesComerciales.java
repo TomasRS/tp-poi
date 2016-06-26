@@ -16,10 +16,8 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 		this.resultadoDeEjecucion = resultadoDeEjecucion;
 	}
 
-	
-	
-	public void ejecutar() {
 
+	public void run() {
 		try
 		{
 			BufferedReader br =new BufferedReader(new FileReader ("C:\\nuevasPalabrasClavesDeLocalesComerciales.txt"));
@@ -42,6 +40,7 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 					{
 						this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));	
 					}
-				
+
+		
 	}
 }

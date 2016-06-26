@@ -15,7 +15,7 @@ public class ReintentarNVeces extends ManejoDeResultado{
 	
 	public void ejecutarEnCasoDeFalla(Proceso unProceso) {
 		for (Integer i=0; i<this.veces; i++){
-			unProceso.ejecutar();
+			unProceso.run();
 		}
 	}
 

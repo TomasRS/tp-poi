@@ -1,14 +1,29 @@
 package ar.edu.TPPOI;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.TimerTask;
 
-public abstract class Proceso {
+public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
 
 	MapaPOI mapa;
 	ResultadoDelProceso resultadoDeEjecucionDelProceso;
-	LocalDateTime fechaYHora;
+	Date fechaYHora;
 	List<ManejoDeResultado> accionesEnCasoDeError; //el proceso es el que conoce la accion a hacer en caso de que el mismo falle.
+	
+	@Override
+    public int compareTo(Proceso unP) {
+        if ( fechaYHora.getTime() < unP.fechaYHora.getTime()) {
+            return -1;
+        }
+        if (fechaYHora.getTime() > unP.fechaYHora.getTime()) {
+            return 1;
+        }
+        return 0;
+    }
+	
+	
+	
 	
 	public ResultadoDelProceso getResultadoDeEjecucionDelProceso() {
 		return resultadoDeEjecucionDelProceso;
@@ -31,13 +46,13 @@ public abstract class Proceso {
 	public void setMapa(MapaPOI mapa) {
 		this.mapa = mapa;
 	}
-	public LocalDateTime getFechaYHora() {
+	public Date getFechaYHora() {
 		return fechaYHora;
 	}
-	public void setFechaYHora(LocalDateTime fechaYHora) {
+	public void setFechaYHora(Date fechaYHora) {
 		this.fechaYHora = fechaYHora;
 	}
-	public abstract void ejecutar();
+	public abstract void run();
 		
 	
 }

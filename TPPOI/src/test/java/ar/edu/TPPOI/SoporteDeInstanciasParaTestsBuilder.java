@@ -3,6 +3,7 @@ package ar.edu.TPPOI;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
@@ -38,6 +39,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	ConfiguradorDeProcesos configuradorDeProcesos;
 	ReintentarNVeces reintentarNVeces;
 	NoRealizarAccion noRealizarAccion;
+	Date generarHorario;
 	
 
 	public Point miCoordenaAbasto() {
@@ -370,5 +372,12 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			noRealizarAccion=new NoRealizarAccion();
 		}
 		return noRealizarAccion;
+	}
+
+	public Date generarHorario() {
+		if (generarHorario==null){
+			generarHorario=new Date();
+		}
+		return generarHorario;
 	}
 }

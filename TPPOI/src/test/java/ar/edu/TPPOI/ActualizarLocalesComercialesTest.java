@@ -3,6 +3,8 @@ package ar.edu.TPPOI;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import org.junit.Assert;
 
 public class ActualizarLocalesComercialesTest {
@@ -13,7 +15,7 @@ public class ActualizarLocalesComercialesTest {
 	ConfiguradorDeProcesos configuradorDeProcesos;
 	ReintentarNVeces reintentarNVeces;
 	NoRealizarAccion noRealizarAccion;
-	
+	Date horario1;
 	@Before
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
@@ -24,20 +26,21 @@ public class ActualizarLocalesComercialesTest {
 		configuradorDeProcesos= soporteParaTests.configuradorDeProcesos();
 		reintentarNVeces= soporteParaTests.reintentarNVeces();
 		noRealizarAccion= soporteParaTests.noRealizarAccion();
+		horario1=(Date) soporteParaTests.generarHorario();
 		
 }
 	
 	@Test
 	public void seActualizan4LosTagsDelCineAbasto() throws ProblemaConAccionesEnCasoDeFalla{
-		actualizadorDeLocalesComerciales.ejecutar();
+		actualizadorDeLocalesComerciales.run();
 		Assert.assertEquals(4, cineAbasto.getTags().size());
 		
 	}
 	@Test
 	public void seDetectan3ElementosAfectados(){
 		Assert.assertEquals(1,cineAbasto.getTags().size());
-		actualizadorDeLocalesComerciales.ejecutar();
+		actualizadorDeLocalesComerciales.run();
 		Assert.assertEquals(3,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
 	}
-	
+
 }
