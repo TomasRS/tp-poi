@@ -13,6 +13,7 @@ public class ActualizarLocalesComercialesTest {
 	MapaPOI mapaInteractivo;
 	LocalComercial cineAbasto;
 	LocalComercial sportClubLibertador7395;
+	LocalComercial starbucksRivadavia;
 	ConfiguradorDeProcesos configuradorDeProcesos;
 	ReintentarNVeces reintentarNVeces;
 	NoRealizarAccion noRealizarAccion;
@@ -21,6 +22,7 @@ public class ActualizarLocalesComercialesTest {
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		cineAbasto = soporteParaTests.cineAbasto();
+		starbucksRivadavia=soporteParaTests.starbucksRivadavia();
 		actualizadorDeLocalesComerciales= soporteParaTests.actualizadorDeLocalesComerciales();
 		mapaInteractivo=soporteParaTests.mapa();
 		actualizadorDeLocalesComerciales.setMapa(mapaInteractivo);
@@ -33,9 +35,9 @@ public class ActualizarLocalesComercialesTest {
 	
 	@Test
 	public void seActualizan4LosTagsDelCineAbasto() {
-		System.out.println(cineAbasto.getTags().size());
+		
 		actualizadorDeLocalesComerciales.run();
-		System.out.println(cineAbasto.getTags().size());
+		
 		Assert.assertEquals(4, cineAbasto.getTags().size());
 		
 	}
@@ -50,4 +52,16 @@ public class ActualizarLocalesComercialesTest {
 		Assert.assertEquals(3, sportClubLibertador7395.getTags().size());
 	}
 
+	@Test
+	public void seActualizanLosTagsDeStarbucks(){
+		Assert.assertEquals(1, starbucksRivadavia.getTags().size());
+		actualizadorDeLocalesComerciales.run();
+		Assert.assertEquals(3,starbucksRivadavia.getTags().size());
+		
+	}
+	@Test 
+	public void seDetectanTresElemntosAfectados(){
+		actualizadorDeLocalesComerciales.run();
+		Assert.assertEquals(4,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
+	}
 }

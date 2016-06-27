@@ -20,52 +20,53 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 
 
 	public void run() {
+		Integer elementosAfectados=0;
+
 		try
 		{	
-			this.lecturaDeArchivoCorrecta();
+			this.lecturaDeArchivoCorrecta(elementosAfectados);
 			
 		}
 			catch (Exception e)
 					{
 						this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));	
-					}
-
-		
+					}		
 	}
 	
-	public void lecturaDeArchivoCorrecta() throws IOException{
+	public void lecturaDeArchivoCorrecta(Integer elementosAfectados) throws IOException{
 	BufferedReader br =new BufferedReader(new FileReader ("C:\\nuevasPalabrasClavesDeLocalesComerciales.txt"));
     String linea;
-	List<String> tagsParaActualizar = new ArrayList<>();
+	String [] comercialVectorizado;
 	while ((linea=br.readLine())!=null){ 
-		String [] comercialVectorizado=linea.split(";");
+		List<String> tagsParaActualizar = new ArrayList<>();
+		comercialVectorizado=linea.split(";");
 		String nombreLocalComercial ="";
 		nombreLocalComercial=comercialVectorizado[0];
-		System.out.println(nombreLocalComercial);
 		String tagsVectorizados= comercialVectorizado[1];
+		
 		String [] tagsSpliteados=tagsVectorizados.split(" ");
-		for(Integer i=0;i<tagsSpliteados.length;i++){
-			tagsParaActualizar.add(tagsSpliteados[i]);		
+	for(Integer i=0;i<tagsSpliteados.length;i++){
+			tagsParaActualizar.add(tagsSpliteados[i]);				
 		}
-			this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar);	
+				this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, elementosAfectados);			
 	}
 	br.close();
 	}
 	
-	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar) {
+	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar, Integer elementosAfectados) {
 		POI unPOI=this.getMapa().obtenerPOI(nombreLocalComercial);
-		this.actualizarTags(unPOI, tagsParaActualizar);
+		this.actualizarTags(unPOI, tagsParaActualizar, elementosAfectados);
 			}
 
-	public void actualizarTags(POI unPOI, List<String> tagsParaActualizar) {
-		Integer elementosAfectados=0;
+	public void actualizarTags(POI unPOI, List<String> tagsParaActualizar, Integer elementosAfectados) {
+		
 		if (unPOI.getTags().equals(tagsParaActualizar)){
 				}else{
-					elementosAfectados++;			
 					unPOI.setTags(tagsParaActualizar);
-					System.out.println(unPOI.getTags());
+					elementosAfectados++;
 				}
 		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDate.now(),elementosAfectados,true);
 		this.setResultadoDeEjecucion(resultado);
 	}
 }
+

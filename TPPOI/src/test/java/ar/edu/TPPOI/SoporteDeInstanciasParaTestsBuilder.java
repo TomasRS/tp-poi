@@ -242,8 +242,10 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horarios2.add(new Horario(DayOfWeek.FRIDAY, horaInicio, horaFin));
 			horarios2.add(new Horario(DayOfWeek.SATURDAY, horaInicio, horaFin));
 			Direccion direccionStarbucks = new Direccion("Rivadavia", 3647);
-			starbucksRivadavia = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks, horarios2,
+			starbucksRivadavia = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks"+ "", coordenadaStarbucks, horarios2,
 					direccionStarbucks);
+			starbucksRivadavia.setTag("cafe");
+			
 		}
 
 		return starbucksRivadavia;
