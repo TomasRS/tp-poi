@@ -43,13 +43,14 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 		String nombreLocalComercial ="";
 		nombreLocalComercial=comercialVectorizado[0];
 		String tagsVectorizados= comercialVectorizado[1];
-		
-		String [] tagsSpliteados=tagsVectorizados.split(" ");
-	for(Integer i=0;i<tagsSpliteados.length;i++){
-			tagsParaActualizar.add(tagsSpliteados[i]);				
+		if (nombreLocalComercial!=null){
+			String [] tagsSpliteados=tagsVectorizados.split(" ");
+			for(Integer i=0;i<tagsSpliteados.length;i++){
+					tagsParaActualizar.add(tagsSpliteados[i]);				
+				}
+						this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, elementosAfectados);			
+			}
 		}
-				this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, elementosAfectados);			
-	}
 	br.close();
 	}
 	

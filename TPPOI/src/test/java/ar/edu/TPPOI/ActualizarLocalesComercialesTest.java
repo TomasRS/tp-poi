@@ -64,4 +64,10 @@ public class ActualizarLocalesComercialesTest {
 		actualizadorDeLocalesComerciales.run();
 		Assert.assertEquals(4,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
 	}
+	
+	@Test
+	public void musimundoNoSeActualizaPorQueNoExisteEnNuestroRepositorioDePOIs(){
+		actualizadorDeLocalesComerciales.run();
+		Assert.assertFalse(actualizadorDeLocalesComerciales.getMapa().getListaDePOIs().stream().anyMatch((unP->unP.getNombre().equals("musimundo"))));
+	}
 }
