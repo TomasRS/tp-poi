@@ -43,24 +43,25 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 		String nombreLocalComercial ="";
 		nombreLocalComercial=comercialVectorizado[0];
 		String tagsVectorizados= comercialVectorizado[1];
-		if (nombreLocalComercial!=null){
-			String [] tagsSpliteados=tagsVectorizados.split(" ");
-			for(Integer i=0;i<tagsSpliteados.length;i++){
-					tagsParaActualizar.add(tagsSpliteados[i]);				
+		String [] tagsSpliteados=tagsVectorizados.split(" ");
+		
+		for(Integer i=0;i<tagsSpliteados.length;i++){
+			tagsParaActualizar.add(tagsSpliteados[i]);
 				}
-						this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, elementosAfectados);			
-			}
-		}
+						this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, elementosAfectados);								
+	}
 	br.close();
 	}
-	
+		
 	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar, Integer elementosAfectados) {
-		POI unPOI=this.getMapa().obtenerPOI(nombreLocalComercial);
-		this.actualizarTags(unPOI, tagsParaActualizar, elementosAfectados);
-			}
+		if (this.getMapa().listaDePOIs.stream().anyMatch(unP->unP.getNombre().equals(nombreLocalComercial))){
+			POI unPOI=this.getMapa().obtenerPOI(nombreLocalComercial);
+			this.actualizarTags(unPOI, tagsParaActualizar, elementosAfectados);
+			
+		}		
+	}
 
 	public void actualizarTags(POI unPOI, List<String> tagsParaActualizar, Integer elementosAfectados) {
-		
 		if (unPOI.getTags().equals(tagsParaActualizar)){
 				}else{
 					unPOI.setTags(tagsParaActualizar);

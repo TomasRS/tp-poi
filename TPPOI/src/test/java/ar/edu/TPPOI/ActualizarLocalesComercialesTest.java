@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 
@@ -13,7 +14,7 @@ public class ActualizarLocalesComercialesTest {
 	MapaPOI mapaInteractivo;
 	LocalComercial cineAbasto;
 	LocalComercial sportClubLibertador7395;
-	LocalComercial starbucksRivadavia;
+	LocalComercial starbucksCoronelDiaz1400;
 	ConfiguradorDeProcesos configuradorDeProcesos;
 	ReintentarNVeces reintentarNVeces;
 	NoRealizarAccion noRealizarAccion;
@@ -22,7 +23,7 @@ public class ActualizarLocalesComercialesTest {
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		cineAbasto = soporteParaTests.cineAbasto();
-		starbucksRivadavia=soporteParaTests.starbucksRivadavia();
+		starbucksCoronelDiaz1400=soporteParaTests.starbucksCoronelDiaz1400();
 		actualizadorDeLocalesComerciales= soporteParaTests.actualizadorDeLocalesComerciales();
 		mapaInteractivo=soporteParaTests.mapa();
 		actualizadorDeLocalesComerciales.setMapa(mapaInteractivo);
@@ -35,9 +36,7 @@ public class ActualizarLocalesComercialesTest {
 	
 	@Test
 	public void seActualizan4LosTagsDelCineAbasto() {
-		
 		actualizadorDeLocalesComerciales.run();
-		
 		Assert.assertEquals(4, cineAbasto.getTags().size());
 		
 	}
@@ -50,13 +49,15 @@ public class ActualizarLocalesComercialesTest {
 	@Test
 	public void queda1soloTagEnsportClubLibertador7395(){
 		Assert.assertEquals(3, sportClubLibertador7395.getTags().size());
+		actualizadorDeLocalesComerciales.run();
+		Assert.assertEquals(1, sportClubLibertador7395.getTags().size());
 	}
 
 	@Test
 	public void seActualizanLosTagsDeStarbucks(){
-		Assert.assertEquals(1, starbucksRivadavia.getTags().size());
 		actualizadorDeLocalesComerciales.run();
-		Assert.assertEquals(3,starbucksRivadavia.getTags().size());
+		//Assert.assertEquals(3,starbucksCoronelDiaz1400.getTags().size());
+		Assert.assertTrue(this.mapaInteractivo.listaDePOIs.stream().filter(unp->unp.equals(starbucksCoronelDiaz1400)).collect(Collectors.toList()).get(0).getNombre().equals("Starbucks"));
 		
 	}
 	@Test 

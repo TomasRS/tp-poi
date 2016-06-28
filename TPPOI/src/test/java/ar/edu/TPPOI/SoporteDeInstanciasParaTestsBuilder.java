@@ -245,7 +245,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			starbucksRivadavia = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks"+ "", coordenadaStarbucks, horarios2,
 					direccionStarbucks);
 			starbucksRivadavia.setTag("cafe");
-			
 		}
 
 		return starbucksRivadavia;
