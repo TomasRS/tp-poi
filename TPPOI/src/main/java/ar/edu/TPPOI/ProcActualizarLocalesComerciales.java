@@ -34,7 +34,7 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 	}
 	
 	public void lecturaDeArchivoCorrecta(Integer elementosAfectados) throws IOException{
-	BufferedReader br =new BufferedReader(new FileReader ("C:\\nuevasPalabrasClavesDeLocalesComerciales.txt"));
+	BufferedReader br =new BufferedReader(new FileReader ("nuevasPalabrasClavesDeLocalesComerciales.txt"));
     String linea;
 	String [] comercialVectorizado;
 	while ((linea=br.readLine())!=null){ 
