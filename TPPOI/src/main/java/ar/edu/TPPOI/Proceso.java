@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
 
+import excepciones.ProblemaConAccionesEnCasoDeFalla;
+
 public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
 
 	MapaPOI mapa;
