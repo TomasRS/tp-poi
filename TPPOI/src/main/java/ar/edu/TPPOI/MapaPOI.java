@@ -93,7 +93,7 @@ public class MapaPOI {
 	}
 
 	public void eliminarElPOI(String unNombreDePOI, ProcDarDeBajaPOIs proceso){
-		POI poiEncontrado = this.buscar(unNombreDePOI).get(0);
+		POI poiEncontrado = this.obtenerPOI(unNombreDePOI);
 		this.borrarPOI(poiEncontrado);
 		proceso.sumarElementosAfectados(1);
 	}

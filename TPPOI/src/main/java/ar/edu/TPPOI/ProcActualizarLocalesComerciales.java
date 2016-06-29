@@ -57,7 +57,7 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 		if (unPOI.getTags().equals(tagsParaActualizar)){
 				}else{
 					unPOI.setTags(tagsParaActualizar);
-					this.sumarElementosAfectados(tagsParaActualizar.size());
+					this.sumarElementosAfectados(1);
 				}
 		
 		}

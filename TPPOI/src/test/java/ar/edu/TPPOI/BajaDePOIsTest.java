@@ -32,14 +32,14 @@ public class BajaDePOIsTest {
 	
 	@Test
 	public void testDarDeBajaUnPOIExistente(){
-		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("fitness");
+		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		procesoBajaDePOIs.run();
-		Assert.assertEquals(mapaInteractivo.buscar("fitness").size(), 0);
+		Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 0);
 	}
 	
 	@Test
 	public void testSeDetecta1ElementoAfectadoPorHaberEliminado1POI(){
-		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("fitness");
+		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		procesoBajaDePOIs.run();
 		Assert.assertEquals(1, procesoBajaDePOIs.getResultadoDeEjecucionDelProceso().getCantidadDeElementosAfectados(), 0);
 	}
