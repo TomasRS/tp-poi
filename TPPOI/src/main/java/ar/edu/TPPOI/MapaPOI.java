@@ -88,13 +88,13 @@ public class MapaPOI {
 					.collect(Collectors.toList()).get(0);
 	}
 	
-	public void eliminarPOIs(List<String> nombresDeLosPOIs){
-		nombresDeLosPOIs.forEach(unNombreDePOI -> this.eliminarElPOI(unNombreDePOI));
+	public void eliminarPOIs(List<String> nombresDeLosPOIs, ProcDarDeBajaPOIs proceso){
+		nombresDeLosPOIs.forEach(unNombreDePOI -> this.eliminarElPOI(unNombreDePOI, proceso));
 	}
 
-	public void eliminarElPOI(String unNombreDePOI){
-		
+	public void eliminarElPOI(String unNombreDePOI, ProcDarDeBajaPOIs proceso){
 		POI poiEncontrado = this.buscar(unNombreDePOI).get(0);
 		this.borrarPOI(poiEncontrado);
+		proceso.sumarElementosAfectados(1);
 	}
 }

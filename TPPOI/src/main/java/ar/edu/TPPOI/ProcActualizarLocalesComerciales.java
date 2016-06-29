@@ -12,11 +12,11 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 
 
 	public void run() {
-		Integer elementosAfectados=0;
+		this.instanciarResultadoDeEjecucion();
 
 		try
 		{	
-			this.lecturaDeArchivoCorrecta(elementosAfectados);
+			this.lecturaDeArchivoCorrecta();
 			
 		}
 			catch (Exception e)
@@ -25,7 +25,7 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 					}		
 	}
 	
-	public void lecturaDeArchivoCorrecta(Integer elementosAfectados) throws IOException{
+	public void lecturaDeArchivoCorrecta() throws IOException{
 	BufferedReader br =new BufferedReader(new FileReader ("nuevasPalabrasClavesDeLocalesComerciales.txt"));
     String linea;
 	String [] comercialVectorizado;
@@ -40,27 +40,26 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 		for(Integer i=0;i<tagsSpliteados.length;i++){
 			tagsParaActualizar.add(tagsSpliteados[i]);
 				}
-						this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar, elementosAfectados);								
+						this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar);								
 	}
 	br.close();
 	}
 		
-	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar, Integer elementosAfectados) {
+	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar) {
 		if (this.getMapa().listaDePOIs.stream().anyMatch(unP->unP.getNombre().equals(nombreLocalComercial))){
 			POI unPOI=this.getMapa().obtenerPOI(nombreLocalComercial);
-			this.actualizarTags(unPOI, tagsParaActualizar, elementosAfectados);
+			this.actualizarTags(unPOI, tagsParaActualizar);
 			
 		}		
 	}
 
-	public void actualizarTags(POI unPOI, List<String> tagsParaActualizar, Integer elementosAfectados) {
+	public void actualizarTags(POI unPOI, List<String> tagsParaActualizar) {
 		if (unPOI.getTags().equals(tagsParaActualizar)){
 				}else{
 					unPOI.setTags(tagsParaActualizar);
-					elementosAfectados++;
+					this.sumarElementosAfectados(tagsParaActualizar.size());
 				}
-		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDate.now(),elementosAfectados,true);
-		this.setResultadoDeEjecucionDelProceso(resultado);
-	}
+		
+		}
 }
 

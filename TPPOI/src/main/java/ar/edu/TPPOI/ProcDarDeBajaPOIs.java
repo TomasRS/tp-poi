@@ -1,7 +1,6 @@
 package ar.edu.TPPOI;
 
 import java.util.List;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ProcDarDeBajaPOIs extends Proceso{
@@ -12,19 +11,19 @@ public class ProcDarDeBajaPOIs extends Proceso{
 		List<String> nombresDeLosPOIsABajar = new ArrayList<>();
 		nombresDeLosPOIsABajar = servicioBajaDePOIs.getPOIsADarDeBaja();
 		
-		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDate.now(),0,true);
-		this.setResultadoDeEjecucionDelProceso(resultado);
+		this.instanciarResultadoDeEjecucion();
 		
 		try{	
-			this.getMapa().eliminarPOIs(nombresDeLosPOIsABajar);
-			this.sumarUnElementoAfectado();
+			this.getMapa().eliminarPOIs(nombresDeLosPOIsABajar, this);
 		}
 		catch (Exception e){
 			this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));
-			
+			this.getResultadoDeEjecucionDelProceso().setResultadoDeLaEjecucion(false);
 		}
-		
-		
-		
+			
+	}
+	
+	public void setServicioDeBaja(ServicioBajaPOIs servicioBajaDePOIs){
+		this.servicioBajaDePOIs = servicioBajaDePOIs;
 	}
 }

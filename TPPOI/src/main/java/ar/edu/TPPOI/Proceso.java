@@ -1,5 +1,7 @@
 package ar.edu.TPPOI;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
@@ -11,7 +13,7 @@ public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
 	MapaPOI mapa;
 	ResultadoDelProceso resultadoDeEjecucionDelProceso;
 	Date fechaYHora;
-	List<ManejoDeResultado> accionesEnCasoDeError; //el proceso es el que conoce la accion a hacer en caso de que el mismo falle.
+	List<ManejoDeResultado> accionesEnCasoDeError = new ArrayList<>();
 	
 	@Override
     public int compareTo(Proceso unP) {
@@ -53,7 +55,12 @@ public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
 	}
 	public abstract void run();
 		
-	public void sumarUnElementoAfectado(){
-		resultadoDeEjecucionDelProceso.agregarElementoAfectado();
+	public void sumarElementosAfectados(Integer unaCant){
+		resultadoDeEjecucionDelProceso.agregarElementosAfectados(unaCant);
+	}
+	
+	public void instanciarResultadoDeEjecucion(){
+		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDate.now(),0,true);
+		this.setResultadoDeEjecucionDelProceso(resultado);
 	}
 }

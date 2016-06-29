@@ -36,7 +36,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	EnvioDeMail envioDeMail;
 	GeneradorDeReportes generadorReportes;
 	ProcActualizarLocalesComerciales actualizadorDeLocalesComerciales;
+	ProcDarDeBajaPOIs procesoBajaDePOIs;
 	ConfiguradorDeProcesos configuradorDeProcesos;
+	ServicioBajaPOIs servicioBajaDePOIs;
 	ReintentarNVeces reintentarNVeces;
 	NoRealizarAccion noRealizarAccion;
 	Date generarHorario;
@@ -351,6 +353,20 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			actualizadorDeLocalesComerciales=new ProcActualizarLocalesComerciales();
 		}
 		return actualizadorDeLocalesComerciales;
+	}
+	
+	public ProcDarDeBajaPOIs procesoBajaDePOIs(){
+		if (procesoBajaDePOIs==null){
+			procesoBajaDePOIs=new ProcDarDeBajaPOIs();
+		}
+		return procesoBajaDePOIs;
+	}
+	
+	public ServicioBajaPOIs servicioBajaDePOIs(){
+		if (servicioBajaDePOIs==null){
+			servicioBajaDePOIs=new ServicioBajaPOIs();
+		}
+		return servicioBajaDePOIs;
 	}
 
 	public ConfiguradorDeProcesos configuradorDeProcesos() {

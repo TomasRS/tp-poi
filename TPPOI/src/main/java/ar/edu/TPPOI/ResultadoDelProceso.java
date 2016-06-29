@@ -33,8 +33,8 @@ public class ResultadoDelProceso {
 		this.resultadoDeLaEjecucion = resultadoDeLaEjecucion;
 	}
 	
-	public void agregarElementoAfectado(){
-		cantidadDeElementosAfectados++;
+	public void agregarElementosAfectados(Integer unaCant){
+		this.cantidadDeElementosAfectados = cantidadDeElementosAfectados + unaCant;
 	}
 	
 	
