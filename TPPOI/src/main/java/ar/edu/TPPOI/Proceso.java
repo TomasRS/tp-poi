@@ -24,9 +24,6 @@ public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
         return 0;
     }
 	
-	
-	
-	
 	public ResultadoDelProceso getResultadoDeEjecucionDelProceso() {
 		return resultadoDeEjecucionDelProceso;
 	}
@@ -56,5 +53,7 @@ public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
 	}
 	public abstract void run();
 		
-	
+	public void sumarUnElementoAfectado(){
+		resultadoDeEjecucionDelProceso.agregarElementoAfectado();
+	}
 }

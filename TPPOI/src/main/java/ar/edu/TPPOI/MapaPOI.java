@@ -87,5 +87,14 @@ public class MapaPOI {
 			return this.getListaDePOIs().stream().filter(unP->unP.getNombre().equals(nombreLocalComercial))
 					.collect(Collectors.toList()).get(0);
 	}
+	
+	public void eliminarPOIs(List<String> nombresDeLosPOIs){
+		nombresDeLosPOIs.forEach(unNombreDePOI -> this.eliminarElPOI(unNombreDePOI));
+	}
 
+	public void eliminarElPOI(String unNombreDePOI){
+		
+		POI poiEncontrado = this.buscar(unNombreDePOI).get(0);
+		this.borrarPOI(poiEncontrado);
+	}
 }

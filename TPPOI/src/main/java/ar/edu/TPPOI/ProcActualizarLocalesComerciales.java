@@ -8,15 +8,7 @@ import java.time.LocalDate;
 import java.io.BufferedReader;
 
 public class ProcActualizarLocalesComerciales extends Proceso{
-	ResultadoDelProceso resultadoDeEjecucion;
-
-	public ResultadoDelProceso getResultadoDeEjecucion() {
-		return resultadoDeEjecucion;
-	}
-
-	public void setResultadoDeEjecucion(ResultadoDelProceso resultadoDeEjecucion) {
-		this.resultadoDeEjecucion = resultadoDeEjecucion;
-	}
+	
 
 
 	public void run() {
@@ -68,7 +60,7 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 					elementosAfectados++;
 				}
 		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDate.now(),elementosAfectados,true);
-		this.setResultadoDeEjecucion(resultado);
+		this.setResultadoDeEjecucionDelProceso(resultado);
 	}
 }
 

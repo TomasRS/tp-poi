@@ -33,5 +33,9 @@ public class ResultadoDelProceso {
 		this.resultadoDeLaEjecucion = resultadoDeLaEjecucion;
 	}
 	
+	public void agregarElementoAfectado(){
+		cantidadDeElementosAfectados++;
+	}
+	
 	
 }

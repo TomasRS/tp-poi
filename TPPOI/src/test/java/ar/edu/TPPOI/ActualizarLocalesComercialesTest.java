@@ -44,7 +44,7 @@ public class ActualizarLocalesComercialesTest {
 	public void seDetectan1ElementosAfectados(){
 		Assert.assertEquals(1,cineAbasto.getTags().size());
 		actualizadorDeLocalesComerciales.run();
-		Assert.assertEquals(1,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
+		Assert.assertEquals(1,actualizadorDeLocalesComerciales.getResultadoDeEjecucionDelProceso().cantidadDeElementosAfectados,0);
 	}
 	@Test
 	public void queda1soloTagEnsportClubLibertador7395(){
@@ -63,7 +63,7 @@ public class ActualizarLocalesComercialesTest {
 	@Test 
 	public void seDetectanTresElemntosAfectados(){
 		actualizadorDeLocalesComerciales.run();
-		Assert.assertEquals(4,actualizadorDeLocalesComerciales.getResultadoDeEjecucion().cantidadDeElementosAfectados,0);
+		Assert.assertEquals(4,actualizadorDeLocalesComerciales.getResultadoDeEjecucionDelProceso().cantidadDeElementosAfectados,0);
 	}
 	
 	@Test
