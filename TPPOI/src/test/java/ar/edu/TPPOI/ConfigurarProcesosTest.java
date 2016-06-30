@@ -3,7 +3,6 @@ package ar.edu.TPPOI;
 import java.util.Calendar;
 import java.util.Date;
 import org.junit.Before;
-import org.junit.Test;
 
 public class ConfigurarProcesosTest {
 	ProcActualizarLocalesComerciales actualizadorDeLocalesComerciales;
