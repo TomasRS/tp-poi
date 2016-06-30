@@ -1,30 +1,27 @@
 package ar.edu.TPPOI;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.TimerTask;
 
 import excepciones.ProblemaConAccionesEnCasoDeFalla;
 
-public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
+public abstract class Proceso{
 
 	MapaPOI mapa;
 	ResultadoDelProceso resultadoDeEjecucionDelProceso;
-	Date fechaYHora;
 	List<ManejoDeResultado> accionesEnCasoDeError = new ArrayList<>();
 	
-	@Override
-    public int compareTo(Proceso unP) {
-        if ( fechaYHora.getTime() < unP.fechaYHora.getTime()) {
-            return -1;
-        }
-        if (fechaYHora.getTime() > unP.fechaYHora.getTime()) {
-            return 1;
-        }
-        return 0;
-    }
+	public void esperarParaEjecutar(LocalDateTime fechaYHora){
+		LocalDateTime dateTime2 = LocalDateTime.now();
+		long diffInMilli = java.time.Duration.between(dateTime2, fechaYHora).toMillis();
+		try {
+			Thread.sleep(diffInMilli);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+			this.run();
+		}
+	}
 	
 	public ResultadoDelProceso getResultadoDeEjecucionDelProceso() {
 		return resultadoDeEjecucionDelProceso;
@@ -47,12 +44,7 @@ public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
 	public void setMapa(MapaPOI mapa) {
 		this.mapa = mapa;
 	}
-	public Date getFechaYHora() {
-		return fechaYHora;
-	}
-	public void setFechaYHora(Date fechaYHora) {
-		this.fechaYHora = fechaYHora;
-	}
+
 	public abstract void run();
 		
 	public void sumarElementosAfectados(Integer unaCant){
@@ -60,7 +52,7 @@ public abstract class Proceso extends TimerTask implements Comparable<Proceso>{
 	}
 	
 	public void instanciarResultadoDeEjecucion(){
-		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDate.now(),0,true);
+		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDateTime.now(),0,true);
 		this.setResultadoDeEjecucionDelProceso(resultado);
 	}
 }

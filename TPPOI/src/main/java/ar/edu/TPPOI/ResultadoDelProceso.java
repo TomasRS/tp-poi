@@ -1,15 +1,15 @@
 package ar.edu.TPPOI;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ResultadoDelProceso {
 	
 	Integer cantidadDeElementosAfectados;
-	LocalDate fechaYHoraEjecucion;
+	LocalDateTime fechaYHoraEjecucion;
 	boolean resultadoDeLaEjecucion;
 
 	
-	public ResultadoDelProceso(LocalDate fecha, Integer elementosAfectados, boolean resultadoDeLaEjecucion) {
+	public ResultadoDelProceso(LocalDateTime fecha, Integer elementosAfectados, boolean resultadoDeLaEjecucion) {
 		this.setCantidadDeElementosAfectados(elementosAfectados);
 		this.setFechaYHoraEjecucion(fecha);
 		this.setResultadoDeLaEjecucion(resultadoDeLaEjecucion);
@@ -20,10 +20,10 @@ public class ResultadoDelProceso {
 	public void setCantidadDeElementosAfectados(Integer cantidadDeElementosAfectados) {
 		this.cantidadDeElementosAfectados = cantidadDeElementosAfectados;
 	}
-	public LocalDate getFechaYHoraEjecucion() {
+	public LocalDateTime getFechaYHoraEjecucion() {
 		return fechaYHoraEjecucion;
 	}
-	public void setFechaYHoraEjecucion(LocalDate fechaYHoraEjecucion) {
+	public void setFechaYHoraEjecucion(LocalDateTime fechaYHoraEjecucion) {
 		this.fechaYHoraEjecucion = fechaYHoraEjecucion;
 	}
 	public boolean isResultadoDeLaEjecucion() {

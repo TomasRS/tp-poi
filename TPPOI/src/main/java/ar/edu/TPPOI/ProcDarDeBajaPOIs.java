@@ -15,6 +15,7 @@ public class ProcDarDeBajaPOIs extends Proceso{
 		
 		try{	
 			this.getMapa().eliminarPOIs(nombresDeLosPOIsABajar, this);
+			
 		}
 		catch (Exception e){
 			this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));
