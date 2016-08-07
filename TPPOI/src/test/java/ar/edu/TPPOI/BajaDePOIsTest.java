@@ -2,6 +2,9 @@ package ar.edu.TPPOI;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.time.LocalDateTime;
+
 import org.junit.Assert;
 
 public class BajaDePOIsTest {
@@ -65,7 +68,7 @@ public class BajaDePOIsTest {
 		
 		LocalDateTime fechaYHora = LocalDateTime.of(2016, 6, 30, 9, 11, 0);
 		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 6, 30, 9, 11, 30);
-													//YYYY, MM, DD, HH, MIN
+													//YYYY, MM, DD, HH, MIN, SEG
 		
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
 		System.out.println("Primer proceso ejecutado.");
@@ -81,4 +84,16 @@ public class BajaDePOIsTest {
 		    Assert.assertEquals(mapaInteractivo.buscar("SportClub").size(), 0);
 		}
 	}*/
+	
+	@Test
+	public void testLasTareasSeIngresanOrdenadasAlBatchPorFechaYHora(){
+		LocalDateTime fechaYHora = LocalDateTime.of(2016, 8, 7, 13, 5, 30);
+		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 8, 7, 13, 5, 0);
+		
+		//Se ingresa primero el proceso que deberia ir segundo, y segundo el proceso que deberia ir primero
+		configuradorDeProcesos.agregarProcesoAlBatch2(procesoBajaDePOIs, fechaYHora);
+		configuradorDeProcesos.agregarProcesoAlBatch2(procesoBajaDePOIs2, fechaYHora2);
+		
+		Assert.assertEquals(configuradorDeProcesos.getProcesosEnBatch().get(0).getFechaYHora().equals(fechaYHora2), true);
+	}
 }
