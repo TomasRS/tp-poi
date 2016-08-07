@@ -61,19 +61,35 @@ public class BajaDePOIsTest {
 	}
 	
 //----------Test de ejecucion automatica de procesos en base al horario definido----------	
-	/*@Test
-	public void testChequearEjecucionAutomaticaEnBaseALaFechaYHoraSeteadaAlProceso(){
+	
+	@Test
+	public void testLasTareasSeIngresanOrdenadasAlBatchPorFechaYHora(){
+		LocalDateTime fechaYHora = LocalDateTime.of(2016, 8, 7, 16, 30, 30);
+		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 8, 7, 16, 30, 0);
+		
+		//Se ingresa primero el proceso que deberia ir segundo, y segundo el proceso que deberia ir primero
+		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
+		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs2, fechaYHora2);
+
+		Assert.assertEquals(configuradorDeProcesos.getTareasEnBatch().get(0).getFechaYHora().equals(fechaYHora2), true);
+	}
+	
+
+/*	@Test
+	public void testChequearEjecucionAutomaticaDeLosProcesosAgregadosAlBatch(){
 		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		servicioBajaDePOIs2.agregarNombreDePOIADarDeBaja("SportClub");
 		
-		LocalDateTime fechaYHora = LocalDateTime.of(2016, 6, 30, 9, 11, 0);
-		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 6, 30, 9, 11, 30);
+		LocalDateTime fechaYHora = LocalDateTime.of(2016, 8, 7, 18, 27, 0);
+		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 8, 7, 18, 27, 30);
 													//YYYY, MM, DD, HH, MIN, SEG
 		
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
-		System.out.println("Primer proceso ejecutado.");
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs2, fechaYHora2);
-		System.out.println("\nSegundo proceso ejecutado.");
+		
+		configuradorDeProcesos.iniciarModoBatch();
+		
+		System.out.println("Se termino de ejecutar el modo Batch.");
 		
 		//Espera de 1 segundo a que se termine de ejecutar el ultimo proceso asi luego hago los assert
 		try {
@@ -85,15 +101,4 @@ public class BajaDePOIsTest {
 		}
 	}*/
 	
-	@Test
-	public void testLasTareasSeIngresanOrdenadasAlBatchPorFechaYHora(){
-		LocalDateTime fechaYHora = LocalDateTime.of(2016, 8, 7, 13, 5, 30);
-		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 8, 7, 13, 5, 0);
-		
-		//Se ingresa primero el proceso que deberia ir segundo, y segundo el proceso que deberia ir primero
-		configuradorDeProcesos.agregarProcesoAlBatch2(procesoBajaDePOIs, fechaYHora);
-		configuradorDeProcesos.agregarProcesoAlBatch2(procesoBajaDePOIs2, fechaYHora2);
-		
-		Assert.assertEquals(configuradorDeProcesos.getProcesosEnBatch().get(0).getFechaYHora().equals(fechaYHora2), true);
-	}
 }

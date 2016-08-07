@@ -8,17 +8,28 @@ import java.util.List;
 
 public class ConfiguradorDeProcesos{
 
-	List<Tarea> procesosEnBatch = new ArrayList<>();
+	List<Tarea> tareasEnBatch = new ArrayList<>();
+	List<String> numeros = new ArrayList<>();
 	
 	public void agregarProcesoAlBatch(Proceso unProceso, LocalDateTime fechaYHora){
-		
-		unProceso.esperarParaEjecutar(fechaYHora);
+		Tarea nuevaTarea = new Tarea(unProceso, fechaYHora);
+		this.tareasEnBatch.add(nuevaTarea);
+		this.ordenarTareasDelBatch();
 	}
 	
-	public void agregarProcesoAlBatch2(Proceso unProceso, LocalDateTime fechaYHora){
-		Tarea nuevaTarea = new Tarea(unProceso, fechaYHora);
-		this.procesosEnBatch.add(nuevaTarea);
-		Collections.sort(procesosEnBatch, new Comparator<Tarea>() {
+	public void iniciarModoBatch(){
+		Tarea primerTarea = this.getTareasEnBatch().get(0);
+		
+		this.esperarParaEjecutarElPrimero(primerTarea);
+	}
+	
+	//---------------------------------------------------------
+	public List<Tarea> getTareasEnBatch(){
+		return this.tareasEnBatch;
+	}
+	
+	public void ordenarTareasDelBatch(){
+		Collections.sort(tareasEnBatch, new Comparator<Tarea>() {
 	        @Override
 	        public int compare(Tarea tarea1, Tarea tarea2)
 	        {
@@ -27,7 +38,21 @@ public class ConfiguradorDeProcesos{
 		});
 	}
 	
-	public List<Tarea> getProcesosEnBatch(){
-		return this.procesosEnBatch;
+	public void esperarParaEjecutarElPrimero(Tarea unaTarea){
+		LocalDateTime dateTime2 = LocalDateTime.now();
+		long diffInMilli = java.time.Duration.between(dateTime2, unaTarea.getFechaYHora()).toMillis();
+		try {
+			Thread.sleep(diffInMilli);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+			unaTarea.getProceso().run();
+			tareasEnBatch.remove(0);
+			
+			if (!tareasEnBatch.isEmpty()){
+				this.esperarParaEjecutarElPrimero(tareasEnBatch.get(0));
+			}
+			
+		}
 	}
+
 }

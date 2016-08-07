@@ -11,17 +11,7 @@ public abstract class Proceso{
 	MapaPOI mapa;
 	ResultadoDelProceso resultadoDeEjecucionDelProceso;
 	List<ManejoDeResultado> accionesEnCasoDeError = new ArrayList<>();
-	
-	public void esperarParaEjecutar(LocalDateTime fechaYHora){
-		LocalDateTime dateTime2 = LocalDateTime.now();
-		long diffInMilli = java.time.Duration.between(dateTime2, fechaYHora).toMillis();
-		try {
-			Thread.sleep(diffInMilli);
-		} catch(InterruptedException ex) {
-			Thread.currentThread().interrupt();
-			this.run();
-		}
-	}
+
 	
 	public ResultadoDelProceso getResultadoDeEjecucionDelProceso() {
 		return resultadoDeEjecucionDelProceso;
