@@ -1,6 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.util.List;
+import org.uqbar.geodds.Polygon;
 import java.time.LocalDate;
 import excepciones.NoSePuedeDesactivarException;
 import excepciones.YaExisteUnaAccionDeEseTipoException;
@@ -13,6 +14,7 @@ public class Terminal {
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
 	List<Accion> acciones = new ArrayList<>();
 	GeneradorDeReportes reporte;
+	Polygon comuna;
 	
 	//-------------------------------------------------------------
 	
