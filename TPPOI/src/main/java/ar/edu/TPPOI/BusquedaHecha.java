@@ -1,6 +1,7 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class BusquedaHecha {
 	
@@ -39,10 +40,10 @@ public class BusquedaHecha {
 		return fecha;
 	}
 	
-	public BusquedaHecha datosDeLaBusqueda(String unTextoLibre,Terminal unaTerminal){
+	public BusquedaHecha datosDeLaBusqueda(String unTextoLibre,List<POI> poisEncontrados){
 	long tiempoInicio;
 	tiempoInicio = System.nanoTime(); 
-	cantDeResultados = unaTerminal.getMapa().buscar(unTextoLibre).size();
+	cantDeResultados = poisEncontrados.size();
 	tiempoDeBusqueda = System.nanoTime() - tiempoInicio;
 	this.setFrase(unTextoLibre);
 	this.setCantDeResultados(cantDeResultados);

@@ -14,9 +14,8 @@ import excepciones.NoSePuedeDesactivarException;
 import excepciones.YaExisteUnaAccionDeEseTipoException;
 
 public class TerminalTest {
-
-	Terminal terminalAbasto;
-	Terminal terminalCaballito;
+	Terminal terminalAbasto = new Terminal();
+	Terminal terminalCaballito = new Terminal();
 	GeneradorDeReportes generadorDeReportes;
 	MapaPOI mapaInteractivo;
 	Notificar accionNotificar;
@@ -30,8 +29,6 @@ public class TerminalTest {
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		generadorDeReportes = soporteParaTests.reportes();
-		terminalAbasto = soporteParaTests.terminal();
-		terminalCaballito = soporteParaTests.terminal();
 		mapaInteractivo = soporteParaTests.mapa();
 		envioDeMail1 = soporteParaTests.envioDeMail();
 		envioDeMail2 = soporteParaTests.envioDeMail();

@@ -43,6 +43,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	NoRealizarAccion noRealizarAccion;
 	Date generarHorario;
 	
+	
 
 	public Point miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
@@ -320,9 +321,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return new GeneradorDeReportes();
 	}
 
-	public Terminal terminal() {
-		return new Terminal();
-	}
+
 
 	public EnvioDeMail envioDeMail() {
 		if (envioDeMail == null) {

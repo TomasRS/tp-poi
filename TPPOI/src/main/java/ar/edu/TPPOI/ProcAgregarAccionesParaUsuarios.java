@@ -1,18 +1,13 @@
 package ar.edu.TPPOI;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class ProcAgregarAccionesParaUsuarios extends Proceso{
 
-	List<Accion> acciones = new ArrayList<>();
-	public void ejecutar(){
-		
+public class ProcAgregarAccionesParaUsuarios extends ProcesoAltaBaja{
+	
+	public void run(){
+		super.run();
+		terminalesFiltradas.forEach(unaT->unaT.activarAcciones(acciones));	
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

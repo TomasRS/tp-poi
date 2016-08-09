@@ -9,6 +9,14 @@ import excepciones.YaExisteUnaAccionDeEseTipoException;
 import java.util.ArrayList;
 
 public class Terminal {
+	RepositorioDeTerminales rep;
+	
+	public Terminal terminal(){
+	Terminal terminal= new Terminal();
+	rep.agregarTerminal(this);
+	return terminal;
+	
+	}
 	
 	MapaPOI mapa;
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
@@ -71,11 +79,10 @@ public class Terminal {
 	
 	//--------------------------------------------------------------
 	 
-	public List<POI> buscar(String unTextoLibre){
+	public void buscar(String unTextoLibre){
 		BusquedaHecha unaBusqueda = new BusquedaHecha();
-		unaBusqueda.datosDeLaBusqueda(unTextoLibre,this);
+		unaBusqueda.datosDeLaBusqueda(unTextoLibre,this.getMapa().buscar(unTextoLibre));
 		this.acciones.forEach(unaAccion -> unaAccion.luegoDeLaBusqueda(unaBusqueda, this));
-		return this.getMapa().buscar(unTextoLibre);
 	}
 
 	public int obtenerReporte(LocalDate unaFecha){
@@ -83,6 +90,14 @@ public class Terminal {
 	}
 	public List<Integer> generarReportePorBusqueda(){
 		return this.getReporte().generarReportePorBusqueda(this.getBusquedasHechas());
+	}
+
+	public void activarAcciones(ArrayList<Accion> accionesPorProceso) {
+		this.getAcciones().addAll(accionesPorProceso);
+	}
+
+	public void desactivarAcciones(ArrayList<Accion> accionesPorProceso) {
+		this.getAcciones().addAll(accionesPorProceso);
 	}
 
 }
