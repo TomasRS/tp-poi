@@ -72,11 +72,6 @@ public class MapaPOI {
 		listaDeSistemaExternoAdapter.remove(unSistemaExternoAdapter);
 	}
 
-	public Integer cantidadDePOIsEncontrados(String unTextoLibre) {
-		return this.buscar(unTextoLibre).size();
-	}
-
-	
 
 	List<String> obtenerTagsDelPOI(String nombreLocalComercial) {
 		return this.getListaDePOIs().stream().filter(unPOI->unPOI.getNombre().equals("cine Abasto")).

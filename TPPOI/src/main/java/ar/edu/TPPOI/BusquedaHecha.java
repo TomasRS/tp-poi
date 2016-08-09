@@ -42,7 +42,7 @@ public class BusquedaHecha {
 	public BusquedaHecha datosDeLaBusqueda(String unTextoLibre,Terminal unaTerminal){
 	long tiempoInicio;
 	tiempoInicio = System.nanoTime(); 
-	cantDeResultados = unaTerminal.getMapa().cantidadDePOIsEncontrados(unTextoLibre);
+	cantDeResultados = unaTerminal.getMapa().buscar(unTextoLibre).size();
 	tiempoDeBusqueda = System.nanoTime() - tiempoInicio;
 	this.setFrase(unTextoLibre);
 	this.setCantDeResultados(cantDeResultados);

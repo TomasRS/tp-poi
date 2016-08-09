@@ -3,5 +3,5 @@ package ar.edu.TPPOI;
 
 public interface Accion {
 
-	public  void ejecutar(BusquedaHecha unaBusqueda, Terminal unaTerminal);
+	public  void luegoDeLaBusqueda(BusquedaHecha unaBusqueda, Terminal unaTerminal);
 }
