@@ -42,7 +42,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	ReintentarNVeces reintentarNVeces;
 	NoRealizarAccion noRealizarAccion;
 	Date generarHorario;
-	
+	RepositorioDeTerminales rep;
+	ProcAgregarAccionesParaUsuarios procAgregarAcciones;
+	ComunaALaQuePertenece comuna;
 	
 
 	public Point miCoordenaAbasto() {
@@ -316,11 +318,32 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return mapa;
 	}
 	
+	public RepositorioDeTerminales repositorio(){
+		return new RepositorioDeTerminales();
+	}
+	
+	//AGREGAR AL REPOSITORIO ???
+	public Terminal terminal(){
+	terminal= new Terminal();
+	return terminal;
+	
+	}
+	
+	
+	
+	public ProcAgregarAccionesParaUsuarios procAgregarAcciones(){
+		return new ProcAgregarAccionesParaUsuarios();
+	}
+	
+	
 	
 	public GeneradorDeReportes reportes(){
 		return new GeneradorDeReportes();
 	}
 
+	public ComunaALaQuePertenece comuna(){
+		return new ComunaALaQuePertenece();
+	}
 
 
 	public EnvioDeMail envioDeMail() {

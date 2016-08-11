@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 public class RepositorioDeTerminales {
 
-	public ArrayList<Terminal> getTerminales() {
-		return terminales;
+	 ArrayList<Terminal> terminales = new ArrayList<Terminal>();
+	
+	
+	public void agregarTerminal(Terminal terminal) {
+		this.terminales.add(terminal);
 	}
 	
-	public void setTerminales(ArrayList<Terminal> terminales) {
-		this.terminales = terminales;
-	}
-	ArrayList<Terminal> terminales;
-	public void agregarTerminal(Terminal terminal) {
-		this.getTerminales().add(terminal);
+	public ArrayList<Terminal> getTerminales(){
+		return terminales;
 	}
 
 }

@@ -9,15 +9,8 @@ import excepciones.YaExisteUnaAccionDeEseTipoException;
 import java.util.ArrayList;
 
 public class Terminal {
+	
 	RepositorioDeTerminales rep;
-	
-	public Terminal terminal(){
-	Terminal terminal= new Terminal();
-	rep.agregarTerminal(this);
-	return terminal;
-	
-	}
-	
 	MapaPOI mapa;
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
 	List<Accion> acciones = new ArrayList<>();
@@ -26,6 +19,14 @@ public class Terminal {
 	
 	//-------------------------------------------------------------
 	
+	public Polygon getComuna() {
+		return comuna;
+	}
+
+	public void setComuna(Polygon comuna) {
+		this.comuna = comuna;
+	}
+
 	public void setMapa(MapaPOI unMapa){
 		this.mapa = unMapa;
 	}

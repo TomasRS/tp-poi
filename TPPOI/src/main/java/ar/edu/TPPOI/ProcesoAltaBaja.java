@@ -6,13 +6,18 @@ import java.util.List;
 public abstract class ProcesoAltaBaja extends Proceso {
 	ArrayList<Accion> acciones = new ArrayList<>();
 	RepositorioDeTerminales repTerminales;
-	ArrayList<Terminal> terminalesFiltradas=new ArrayList<>();
+	ArrayList<Terminal> terminalesFiltradas = new ArrayList<>();
+	Criterio criterio;
 	
 	public RepositorioDeTerminales getRepTerminales() {
 		return repTerminales;
 	}
 
-	Criterio criterio;
+	public void setRepTerminales(RepositorioDeTerminales repTerminales) {
+		this.repTerminales = repTerminales;
+	}
+
+	
 
 
 	public List<Accion> getAcciones() {
@@ -20,8 +25,8 @@ public abstract class ProcesoAltaBaja extends Proceso {
 	}
 
 
-	public void setAcciones(List<Accion> acciones) {
-		acciones.addAll(acciones);
+	public void agregarAcciones(Accion accion) {
+		acciones.add(accion);
 	}
 
 
