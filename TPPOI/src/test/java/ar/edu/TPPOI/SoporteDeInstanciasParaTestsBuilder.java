@@ -44,7 +44,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Date generarHorario;
 	RepositorioDeTerminales rep;
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones;
-	ComunaALaQuePertenece comuna;
+	ComunaALaQuePertenece comunaCriterio;
 	
 
 	public Point miCoordenaAbasto() {
@@ -213,6 +213,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 		return cgpComuna5;
 	}
+	
+	
 
 	public LocalComercial starbucksCoronelDiaz1400() {
 		if (starbucksCoronelDiaz1400 == null) {
@@ -341,7 +343,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return new GeneradorDeReportes();
 	}
 
-	public ComunaALaQuePertenece comuna(){
+	public ComunaALaQuePertenece comunaCriterio(){
 		return new ComunaALaQuePertenece();
 	}
 
