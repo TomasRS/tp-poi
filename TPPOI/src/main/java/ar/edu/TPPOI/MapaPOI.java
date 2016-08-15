@@ -92,4 +92,26 @@ public class MapaPOI {
 		this.borrarPOI(poiEncontrado);
 		proceso.sumarElementosAfectados(1);
 	}
+
+	public Integer actualizarTagsDe(String nombreLocalComercial, List<String> tagsParaActualizar) {
+		if (this.mapaContieneElPOI(nombreLocalComercial)){
+			POI unPOI=this.obtenerPOI(nombreLocalComercial);
+			return this.actualizarTags(unPOI, tagsParaActualizar);
+		}else{
+			return 0;
+		}
+	}
+	public Integer actualizarTags(POI unPOI, List<String> tagsParaActualizar) {
+		if (unPOI.getTags().equals(tagsParaActualizar)){
+			return 0;
+				}else{
+					unPOI.setTags(tagsParaActualizar);
+					return 1;
+				}
+		
+		}
+
+	public boolean mapaContieneElPOI(String nombreLocalComercial){
+		return listaDePOIs.stream().anyMatch(unP->unP.getNombre().equals(nombreLocalComercial));
+	}
 }

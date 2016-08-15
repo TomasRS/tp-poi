@@ -45,20 +45,9 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 	}
 		
 	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar) {
-		if (this.getMapa().listaDePOIs.stream().anyMatch(unP->unP.getNombre().equals(nombreLocalComercial))){
-			POI unPOI=this.getMapa().obtenerPOI(nombreLocalComercial);
-			this.actualizarTags(unPOI, tagsParaActualizar);
-			
-		}		
+		Integer resultados=this.getMapa().actualizarTagsDe(nombreLocalComercial, tagsParaActualizar);
+		this.sumarElementosAfectados(resultados);	
 	}
 
-	public void actualizarTags(POI unPOI, List<String> tagsParaActualizar) {
-		if (unPOI.getTags().equals(tagsParaActualizar)){
-				}else{
-					unPOI.setTags(tagsParaActualizar);
-					this.sumarElementosAfectados(1);
-				}
-		
-		}
+	
 }
-
