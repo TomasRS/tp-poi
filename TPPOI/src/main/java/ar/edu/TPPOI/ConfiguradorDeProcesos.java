@@ -20,7 +20,7 @@ public class ConfiguradorDeProcesos{
 	public void iniciarModoBatch(){
 		Tarea primerTarea = this.getTareasEnBatch().get(0);
 		
-		this.esperarParaEjecutarElPrimero(primerTarea);
+		this.esperarParaEjecutar(primerTarea);
 	}
 	
 	//---------------------------------------------------------
@@ -38,21 +38,19 @@ public class ConfiguradorDeProcesos{
 		});
 	}
 	
-	public void esperarParaEjecutarElPrimero(Tarea unaTarea){
-		LocalDateTime dateTime2 = LocalDateTime.now();
-		long diffInMilli = java.time.Duration.between(dateTime2, unaTarea.getFechaYHora()).toMillis();
-		try {
-			Thread.sleep(diffInMilli);
-		} catch(InterruptedException ex) {
-			Thread.currentThread().interrupt();
-			unaTarea.getProceso().run();
-			tareasEnBatch.remove(0);
-			
-			if (!tareasEnBatch.isEmpty()){
-				this.esperarParaEjecutarElPrimero(tareasEnBatch.get(0));
-			}
-			
+	public void esperarParaEjecutar(Tarea unaTarea){
+		
+		while (LocalDateTime.now().isBefore(unaTarea.getFechaYHora())){
+		    // Espera
 		}
+		unaTarea.getProceso().run();
+		System.out.println("Se ejecuto el proceso de fecha: "+unaTarea.getFechaYHora());
+		tareasEnBatch.remove(unaTarea);
+		
+		if (!tareasEnBatch.isEmpty()){
+			this.esperarParaEjecutar(tareasEnBatch.get(0));
+		}
+
 	}
 
 }

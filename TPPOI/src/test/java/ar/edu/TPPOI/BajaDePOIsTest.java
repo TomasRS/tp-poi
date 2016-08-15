@@ -75,14 +75,13 @@ public class BajaDePOIsTest {
 	}
 	
 
-/*	@Test
+	@Test
 	public void testChequearEjecucionAutomaticaDeLosProcesosAgregadosAlBatch(){
 		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		servicioBajaDePOIs2.agregarNombreDePOIADarDeBaja("SportClub");
 		
-		LocalDateTime fechaYHora = LocalDateTime.of(2016, 8, 7, 18, 27, 0);
-		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 8, 7, 18, 27, 30);
-													//YYYY, MM, DD, HH, MIN, SEG
+		LocalDateTime fechaYHora = LocalDateTime.now().plusSeconds(5);
+		LocalDateTime fechaYHora2 = LocalDateTime.now().plusSeconds(10);
 		
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs2, fechaYHora2);
@@ -91,7 +90,7 @@ public class BajaDePOIsTest {
 		
 		System.out.println("Se termino de ejecutar el modo Batch.");
 		
-		//Espera de 1 segundo a que se termine de ejecutar el ultimo proceso asi luego hago los assert
+		//Espero de 1 segundo a que se termine de ejecutar el ultimo proceso
 		try {
 		    Thread.sleep(1000);
 		} catch(InterruptedException ex) {
@@ -99,6 +98,6 @@ public class BajaDePOIsTest {
 		    Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 0);
 		    Assert.assertEquals(mapaInteractivo.buscar("SportClub").size(), 0);
 		}
-	}*/
+	}
 	
 }
