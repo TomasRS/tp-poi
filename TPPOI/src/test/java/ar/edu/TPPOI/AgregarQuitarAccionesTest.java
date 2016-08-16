@@ -9,6 +9,7 @@ import org.uqbar.geodds.Polygon;
 public class AgregarQuitarAccionesTest {
 	
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones;
+	ProcQuitarAccionesParaUsuarios procQuitarAcciones;
 	Notificar accionNotificar;
 	Almacenar accionAlmacenar;
 	Terminal terminalAbasto;

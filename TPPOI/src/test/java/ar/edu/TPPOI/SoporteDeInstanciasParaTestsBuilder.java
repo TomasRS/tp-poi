@@ -44,6 +44,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	Date generarHorario;
 	RepositorioDeTerminales rep;
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones;
+	ProcQuitarAccionesParaUsuarios procQuitarAcciones;
 	ComunaALaQuePertenece comunaCriterio;
 	Polygon comunaAbasto;
 	Polygon comunaCaballito;
@@ -339,7 +340,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return new ProcAgregarAccionesParaUsuarios();
 	}
 	
-	
+	public ProcQuitarAccionesParaUsuarios procQuitarAcciones(){
+		return new ProcQuitarAccionesParaUsuarios();
+	}
 	
 	public GeneradorDeReportes reportes(){
 		return new GeneradorDeReportes();
