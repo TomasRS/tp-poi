@@ -4,7 +4,12 @@ public class ProcQuitarAccionesParaUsuarios extends ProcesoAltaBaja {
 
 	public void run(){
 		super.run();
-		terminalesFiltradas.forEach(unaT->unaT.desactivarAcciones(acciones));	
+		terminalesFiltradas.forEach(unaT->this.desactivarCadaAccionPorTerminal(unaT));
 	}
+	
+	public void desactivarCadaAccionPorTerminal(Terminal unaTerminal){
+		acciones.forEach(unaA -> unaTerminal.desactivarAccion(unaA));
+	}
+
 
 }
