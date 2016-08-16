@@ -17,7 +17,9 @@ public abstract class ProcesoAltaBaja extends Proceso {
 		this.repTerminales = repTerminales;
 	}
 
-	
+	public ArrayList<Terminal> getTerminalesFiltradas(){
+		return terminalesFiltradas;
+	}
 
 
 	public List<Accion> getAcciones() {

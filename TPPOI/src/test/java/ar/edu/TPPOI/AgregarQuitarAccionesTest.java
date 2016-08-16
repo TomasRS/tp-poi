@@ -1,7 +1,6 @@
 package ar.edu.TPPOI;
 
 
-import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,8 +61,7 @@ public class AgregarQuitarAccionesTest {
 		procAgregarAcciones.agregarAcciones(accionAlmacenar);
 		procAgregarAcciones.agregarAcciones(accionNotificar);
 		procAgregarAcciones.run();
-		ArrayList<Terminal> terminales = procAgregarAcciones.getRepTerminales().getTerminales();
-		Assert.assertEquals(1, comunaCriterio.filtrarTerminales(terminales).size(),0);
+		Assert.assertEquals(1, procAgregarAcciones.getTerminalesFiltradas().size(),0);
 	}
 
 }
