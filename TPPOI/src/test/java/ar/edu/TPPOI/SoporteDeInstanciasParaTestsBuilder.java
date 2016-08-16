@@ -45,6 +45,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	RepositorioDeTerminales rep;
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones;
 	ComunaALaQuePertenece comunaCriterio;
+	Polygon comunaAbasto;
+	Polygon comunaCaballito;
 	
 
 	public Point miCoordenaAbasto() {
@@ -420,5 +422,29 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			generarHorario=new Date();
 		}
 		return generarHorario;
+	}
+	
+	public Polygon crearComunaAbasto(){
+		List<Point> puntosAbasto = new ArrayList<>();
+		puntosAbasto.add(new Point(-58.411898, -34.597984));
+		puntosAbasto.add(new Point(-58.426446, -34.597878));
+		puntosAbasto.add(new Point(-58.433334, -34.602696));
+		puntosAbasto.add(new Point(-58.430051, -34.615469));
+		puntosAbasto.add(new Point(-58.427899, -34.622162));
+		puntosAbasto.add(new Point(-58.412372, -34.620890));
+		comunaAbasto = new Polygon(puntosAbasto);
+		return comunaAbasto;
+	}
+	
+	public Polygon crearComunaCaballito(){
+		List<Point> puntosCaballito = new ArrayList<>();
+		puntosCaballito.add(new Point(-58.411898, -34.597984));
+		puntosCaballito.add(new Point(-58.426446, -34.597878));
+		puntosCaballito.add(new Point(-58.433334, -34.602696));
+		puntosCaballito.add(new Point(-58.430051, -34.615469));
+		puntosCaballito.add(new Point(-58.427899, -34.622162));
+		puntosCaballito.add(new Point(-58.412372, -34.620891));
+		comunaCaballito = new Polygon(puntosCaballito);
+		return comunaCaballito;
 	}
 }

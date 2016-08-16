@@ -44,7 +44,7 @@ public class ConfiguradorDeProcesos{
 		    // Espera
 		}
 		unaTarea.getProceso().run();
-		System.out.println("Se ejecuto el proceso de fecha: "+unaTarea.getFechaYHora());
+		//System.out.println("Se ejecuto el proceso de fecha: "+unaTarea.getFechaYHora());
 		tareasEnBatch.remove(unaTarea);
 		
 		if (!tareasEnBatch.isEmpty()){

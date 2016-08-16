@@ -88,7 +88,7 @@ public class BajaDePOIsTest {
 		
 		configuradorDeProcesos.iniciarModoBatch();
 		
-		System.out.println("Se termino de ejecutar el modo Batch.");
+		//System.out.println("Se termino de ejecutar el modo Batch.");
 		
 		//Espero de 1 segundo a que se termine de ejecutar el ultimo proceso
 		try {
