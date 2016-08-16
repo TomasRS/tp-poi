@@ -22,11 +22,10 @@ public abstract class Proceso{
 	public void agregarAccionEnCasoDeError(ManejoDeResultado unManejo) throws ProblemaConAccionesEnCasoDeFalla{
 		if (this.accionesEnCasoDeError.size()>0 & unManejo.noAceptaCombinarManejos()){
 			throw new ProblemaConAccionesEnCasoDeFalla("Si desea no realizar acciones debe quitar las existentes");
-		}else{
+		} else {
 			this.accionesEnCasoDeError.add(unManejo);
-		}
-			
-		}
+		}		
+	}
 
 	public MapaPOI getMapa() {
 		return mapa;
@@ -44,5 +43,9 @@ public abstract class Proceso{
 	public void instanciarResultadoDeEjecucion(){
 		ResultadoDelProceso resultado=new ResultadoDelProceso(LocalDateTime.now(),0,true);
 		this.setResultadoDeEjecucionDelProceso(resultado);
+	}
+	
+	public void anularManejos(){
+		this.accionesEnCasoDeError = new ArrayList<>();
 	}
 }
