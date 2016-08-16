@@ -27,7 +27,7 @@ public abstract class ProcesoAltaBaja extends Proceso {
 	}
 
 
-	public void agregarAcciones(Accion accion) {
+	public void agregarAccion(Accion accion) {
 		acciones.add(accion);
 	}
 

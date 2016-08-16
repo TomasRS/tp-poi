@@ -58,8 +58,8 @@ public class AgregarQuitarAccionesTest {
 	@Test
 	public void testAgregarAccionesATerminalSinAccionesActivadasSegunComuna(){
 		procAgregarAcciones.setCriterio(comunaCriterio);
-		procAgregarAcciones.agregarAcciones(accionAlmacenar);
-		procAgregarAcciones.agregarAcciones(accionNotificar);
+		procAgregarAcciones.agregarAccion(accionAlmacenar);
+		procAgregarAcciones.agregarAccion(accionNotificar);
 		procAgregarAcciones.run();
 		Assert.assertEquals(1, procAgregarAcciones.getTerminalesFiltradas().size(),0);
 	}
