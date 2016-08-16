@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Polygon;
 
+import excepciones.NoSePuedeDesactivarException;
+
 public class AgregarQuitarAccionesTest {
 	
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones;
@@ -33,6 +35,7 @@ public class AgregarQuitarAccionesTest {
 		mapaInteractivo = soporteParaTests.mapa();
 		
 		procAgregarAcciones = soporteParaTests.procAgregarAcciones();
+		procQuitarAcciones = soporteParaTests.procQuitarAcciones();
 		
 		comunaAbasto = soporteParaTests.crearComunaAbasto();
 		comunaCaballito = soporteParaTests.crearComunaCaballito();
@@ -48,6 +51,7 @@ public class AgregarQuitarAccionesTest {
 		
 		rep = soporteParaTests.repositorio();
 		procAgregarAcciones.setRepTerminales(rep);
+		procQuitarAcciones.setRepTerminales(rep);
 		rep.agregarTerminal(terminalAbasto);
 		rep.agregarTerminal(terminalCaballito);
 		
@@ -65,4 +69,11 @@ public class AgregarQuitarAccionesTest {
 		Assert.assertEquals(1, procAgregarAcciones.getTerminalesFiltradas().size(),0);
 	}
 
+	@Test (expected = NoSePuedeDesactivarException.class)
+	public void testQuitarAccionesATerminalSinAccionesActivadasSegunComuna(){
+		procQuitarAcciones.setCriterio(comunaCriterio);
+		procQuitarAcciones.agregarAccion(accionAlmacenar);
+		procQuitarAcciones.agregarAccion(accionNotificar);
+		procQuitarAcciones.run();
+	}
 }
