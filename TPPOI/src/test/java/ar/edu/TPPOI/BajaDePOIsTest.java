@@ -88,14 +88,10 @@ public class BajaDePOIsTest {
 		
 		configuradorDeProcesos.iniciarModoBatch();
 		
-		//Espero de 1 segundo a que se termine de ejecutar el ultimo proceso
-		try {
-		    Thread.sleep(1000);
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		    Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 0);
-		    Assert.assertEquals(mapaInteractivo.buscar("SportClub").size(), 0);
-		}
+		
+		Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 0);
+		Assert.assertEquals(mapaInteractivo.buscar("SportClub").size(), 0);
+		
 	}
 	
 }
