@@ -46,6 +46,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones;
 	ProcQuitarAccionesParaUsuarios procQuitarAcciones;
 	ComunaALaQuePertenece comunaCriterio;
+	TodosLosUsuarios todosUsersCriterio;
 	Polygon comunaAbasto;
 	Polygon comunaCaballito;
 	
@@ -352,6 +353,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return new ComunaALaQuePertenece();
 	}
 
+	public TodosLosUsuarios todosUsersCriterio(){
+		return new TodosLosUsuarios();
+	}
 
 	public EnvioDeMail envioDeMail() {
 		if (envioDeMail == null) {

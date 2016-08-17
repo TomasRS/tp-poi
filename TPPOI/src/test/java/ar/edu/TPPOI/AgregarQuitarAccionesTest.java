@@ -13,6 +13,7 @@ public class AgregarQuitarAccionesTest {
 	
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones1;
 	ProcAgregarAccionesParaUsuarios procAgregarAcciones2;
+	ProcAgregarAccionesParaUsuarios procAgregarAcciones3;
 	ProcQuitarAccionesParaUsuarios procQuitarAcciones1;
 	ProcQuitarAccionesParaUsuarios procQuitarAcciones2;
 	ProcQuitarAccionesParaUsuarios procQuitarAcciones3;
@@ -33,6 +34,7 @@ public class AgregarQuitarAccionesTest {
 	ComunaALaQuePertenece comunaCriterio4;
 	Polygon comunaAbasto;
 	Polygon comunaCaballito;
+	TodosLosUsuarios todosUsersCriterio1;
 
 	
 	@Before
@@ -47,6 +49,7 @@ public class AgregarQuitarAccionesTest {
 		
 		procAgregarAcciones1 = soporteParaTests.procAgregarAcciones();
 		procAgregarAcciones2 = soporteParaTests.procAgregarAcciones();
+		procAgregarAcciones3 = soporteParaTests.procAgregarAcciones();
 		procQuitarAcciones1 = soporteParaTests.procQuitarAcciones();
 		procQuitarAcciones2 = soporteParaTests.procQuitarAcciones();
 		procQuitarAcciones3 = soporteParaTests.procQuitarAcciones();
@@ -70,6 +73,7 @@ public class AgregarQuitarAccionesTest {
 		terminalBelgrano.activarAccion(accionAlmacenar);
 		terminalBelgrano.activarAccion(accionNotificar);
 		
+		todosUsersCriterio1 = soporteParaTests.todosUsersCriterio();
 		
 		comunaCriterio1 = soporteParaTests.comunaCriterio();
 		comunaCriterio1.setComunaAsociada(comunaAbasto);
@@ -85,6 +89,7 @@ public class AgregarQuitarAccionesTest {
 		rep3 = soporteParaTests.repositorio();
 		procAgregarAcciones1.setRepTerminales(rep1);
 		procAgregarAcciones2.setRepTerminales(rep3);
+		procAgregarAcciones3.setRepTerminales(rep1);
 		procQuitarAcciones1.setRepTerminales(rep1);
 		procQuitarAcciones2.setRepTerminales(rep2);
 		procQuitarAcciones3.setRepTerminales(rep3);
@@ -100,7 +105,7 @@ public class AgregarQuitarAccionesTest {
 	}
 	
 	//------------------------------ Tests de Agregar/Quitar
-	
+	// ---------------------ITEM 1
 	@Test
 	public void testAgregarAccionesATerminalSinAccionesActivadasSegunComuna(){
 		procAgregarAcciones1.setCriterio(comunaCriterio1);
@@ -142,4 +147,41 @@ public class AgregarQuitarAccionesTest {
 		procAgregarAcciones2.agregarAccion(accionAlmacenar);
 		procAgregarAcciones2.run();
 	}
+	
+	// ------------------------- ITEM 2
+	@Test 
+	public void testAgregarAccionesATerminalSinAccionesActivadasSegunTodosLosUsuarios(){
+		procAgregarAcciones3.setCriterio(todosUsersCriterio1);
+		procAgregarAcciones3.agregarAccion(accionAlmacenar);
+		procAgregarAcciones3.agregarAccion(accionNotificar);
+		procAgregarAcciones3.run();
+		Assert.assertEquals(2, terminalCaballito.getAcciones().size(),0);
+		Assert.assertEquals(2, terminalAbasto.getAcciones().size(),0);
+	}
+	
+	@Test 
+	public void testQuitarAccionesATerminalSinAccionesActivadasSegunTodosLosUsuarios(){
+		procQuitarAcciones2.setCriterio(todosUsersCriterio1);
+		procQuitarAcciones2.agregarAccion(accionAlmacenar);
+		procQuitarAcciones2.agregarAccion(accionNotificar);
+		procQuitarAcciones2.run();
+		Assert.assertEquals(2, procQuitarAcciones2.getTerminalesFiltradas().size(),0);
+	}
+	
+	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
+	public void testAgregarAccionesATerminalConAccionesActivadasYDesactivadasTodosLosUsuarios(){
+		procAgregarAcciones2.setCriterio(todosUsersCriterio1);
+		procAgregarAcciones2.agregarAccion(accionAlmacenar);
+		procAgregarAcciones2.run();
+	}
+	
+	@Test (expected = NoSePuedeDesactivarException.class)
+	public void testQuitarAccionesATerminalConAccionesActivadasYDesactivadasTodosLosUsuarios(){
+		procQuitarAcciones3.setCriterio(comunaCriterio3);
+		procQuitarAcciones3.agregarAccion(accionAlmacenar);
+		procQuitarAcciones3.agregarAccion(accionNotificar);
+		procQuitarAcciones3.run();
+	}
+	
+	// ------------------------------ ITEM 3 
 }
