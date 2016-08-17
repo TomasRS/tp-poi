@@ -49,6 +49,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	TodosLosUsuarios todosUsersCriterio;
 	Polygon comunaAbasto;
 	Polygon comunaCaballito;
+	UsuariosElegidosPorAdmin adminCriterio;
 	
 
 	public Point miCoordenaAbasto() {
@@ -355,6 +356,10 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public TodosLosUsuarios todosUsersCriterio(){
 		return new TodosLosUsuarios();
+	}
+	
+	public UsuariosElegidosPorAdmin adminCriterio(){
+		return new UsuariosElegidosPorAdmin();
 	}
 
 	public EnvioDeMail envioDeMail() {

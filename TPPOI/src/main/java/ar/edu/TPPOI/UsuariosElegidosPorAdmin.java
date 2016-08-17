@@ -9,8 +9,8 @@ public class UsuariosElegidosPorAdmin extends Criterio {
 	public ArrayList<Terminal> getTerminalesElegidasPorAdmin() {
 		return terminalesElegidasPorAdmin;
 	}
-	public void setTerminalesElegidasPorAdmin(ArrayList<Terminal> terminalesElegidasPorAdmin) {
-		this.terminalesElegidasPorAdmin = terminalesElegidasPorAdmin;
+	public void agregarTerminalesElegidasPorAdmin(Terminal terminalElegidasPorAdmin) {
+		this.terminalesElegidasPorAdmin.add(terminalElegidasPorAdmin);
 	}
 	
 	public ArrayList<Terminal> filtrarTerminales(ArrayList<Terminal> terminales) {

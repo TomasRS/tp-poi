@@ -35,6 +35,7 @@ public class AgregarQuitarAccionesTest {
 	Polygon comunaAbasto;
 	Polygon comunaCaballito;
 	TodosLosUsuarios todosUsersCriterio1;
+	UsuariosElegidosPorAdmin adminCriterio;
 
 	
 	@Before
@@ -74,6 +75,8 @@ public class AgregarQuitarAccionesTest {
 		terminalBelgrano.activarAccion(accionNotificar);
 		
 		todosUsersCriterio1 = soporteParaTests.todosUsersCriterio();
+		
+		adminCriterio = soporteParaTests.adminCriterio();
 		
 		comunaCriterio1 = soporteParaTests.comunaCriterio();
 		comunaCriterio1.setComunaAsociada(comunaAbasto);
@@ -184,4 +187,29 @@ public class AgregarQuitarAccionesTest {
 	}
 	
 	// ------------------------------ ITEM 3 
+	
+	@Test 
+	public void testAgregarAccionesATerminalSinAccionesActivadasSegunAdmin(){
+		procAgregarAcciones1.setCriterio(adminCriterio);
+		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalAbasto);
+		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalCaballito);
+		procAgregarAcciones1.agregarAccion(accionAlmacenar);
+		procAgregarAcciones1.agregarAccion(accionNotificar);
+		procAgregarAcciones1.run();
+		Assert.assertEquals(2, terminalCaballito.getAcciones().size(),0);
+		Assert.assertEquals(2, terminalAbasto.getAcciones().size(),0);
+	}
+	
+	@Test 
+	public void testQuitarAccionesATerminalSinAccionesActivadasSegunAdmin(){
+		procQuitarAcciones2.setCriterio(adminCriterio);
+		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalDevoto);
+		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalBelgrano);
+		procQuitarAcciones2.agregarAccion(accionAlmacenar);
+		procQuitarAcciones2.agregarAccion(accionNotificar);
+		procQuitarAcciones2.run();
+		Assert.assertEquals(0, terminalDevoto.getAcciones().size(),0);
+		Assert.assertEquals(0, terminalBelgrano.getAcciones().size(),0);
+	}
+	
 }
