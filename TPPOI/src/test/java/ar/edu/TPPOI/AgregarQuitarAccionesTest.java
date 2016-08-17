@@ -211,5 +211,6 @@ public class AgregarQuitarAccionesTest {
 		Assert.assertEquals(0, terminalDevoto.getAcciones().size(),0);
 		Assert.assertEquals(0, terminalBelgrano.getAcciones().size(),0);
 	}
-	
+	//SI TIENEN QUE FALLAR NO HAGO LOS TEST DE FALLA, YA QUE FUERON PROBADOS SI ANDAN EN LOS DEMAS 
+	// de lo contrario me faltarian esos dos !
 }
