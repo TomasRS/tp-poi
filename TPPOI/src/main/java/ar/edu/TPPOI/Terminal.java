@@ -72,10 +72,24 @@ public class Terminal {
 	
 	//--------------------------------------------------------------
 	 
-	public void buscar(String unTextoLibre){
+	public List<POI> buscar(String unTextoLibre){
 		BusquedaHecha unaBusqueda = new BusquedaHecha();
-		unaBusqueda.datosDeLaBusqueda(unTextoLibre,this.getMapa().buscar(unTextoLibre));
-		this.acciones.forEach(unaAccion -> unaAccion.luegoDeLaBusqueda(unaBusqueda, this));
+		this.guardarBusqueda(unaBusqueda,unTextoLibre);
+		this.accionesAutomaticas(unaBusqueda,this);
+		return this.devolverPOIs(unTextoLibre);
+	}
+	
+	private void accionesAutomaticas(BusquedaHecha unaBusqueda, Terminal terminal) {
+		acciones.forEach(unaAccion -> unaAccion.ejecutarLuegoDeLaBusqueda(unaBusqueda, this));
+		
+	}
+
+	private void guardarBusqueda(BusquedaHecha unaBusqueda, String unTextoLibre) {
+		unaBusqueda.datosDeLaBusqueda(unTextoLibre,this.devolverPOIs(unTextoLibre));
+	}
+
+	public List<POI> devolverPOIs(String unTextoLibre){
+		return getMapa().buscar(unTextoLibre);
 	}
 
 	public int obtenerReporte(LocalDate unaFecha){

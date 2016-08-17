@@ -4,8 +4,8 @@ package ar.edu.TPPOI;
 
 public class ProcAgregarAccionesParaUsuarios extends ProcesoAltaBaja{
 	
-	public void run(){
-		super.run();
+	public void ejecutar(){
+		this.filtrarTerminales();
 		terminalesFiltradas.forEach(unaT->this.activarCadaAccionPorTerminal(unaT));
 	}
 	

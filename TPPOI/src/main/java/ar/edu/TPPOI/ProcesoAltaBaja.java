@@ -36,8 +36,7 @@ public abstract class ProcesoAltaBaja extends Proceso {
 	}
 
 
-	@Override
-	public void run() {
+	public void filtrarTerminales() {
 			terminalesFiltradas.addAll(this.getCriterio().filtrarTerminales(RepositorioDeTerminales.getSingletonInstance().getTerminales()));		
 	}
 

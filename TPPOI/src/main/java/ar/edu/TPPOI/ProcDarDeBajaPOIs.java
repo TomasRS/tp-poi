@@ -7,7 +7,7 @@ public class ProcDarDeBajaPOIs extends Proceso{
 	
 	private ServicioBajaPOIs servicioBajaDePOIs;
 	
-	public void run() {
+	public void ejecutar() {
 		List<String> nombresDeLosPOIsABajar = new ArrayList<>();
 		nombresDeLosPOIsABajar = servicioBajaDePOIs.getPOIsADarDeBaja();
 		

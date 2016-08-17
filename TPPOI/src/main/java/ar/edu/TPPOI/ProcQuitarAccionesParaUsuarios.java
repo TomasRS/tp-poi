@@ -2,8 +2,8 @@ package ar.edu.TPPOI;
 
 public class ProcQuitarAccionesParaUsuarios extends ProcesoAltaBaja {
 
-	public void run(){
-		super.run();
+	public void ejecutar(){
+		this.filtrarTerminales();
 		terminalesFiltradas.forEach(unaT->this.desactivarCadaAccionPorTerminal(unaT));
 	}
 	

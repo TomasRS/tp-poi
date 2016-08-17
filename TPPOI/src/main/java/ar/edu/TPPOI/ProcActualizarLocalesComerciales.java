@@ -9,22 +9,7 @@ import java.io.BufferedReader;
 public class ProcActualizarLocalesComerciales extends Proceso{
 	
 
-
-	public void run() {
-		this.instanciarResultadoDeEjecucion();
-
-		try
-		{	
-			this.lecturaDeArchivoCorrecta();
-			
-		}
-			catch (Exception e)
-					{
-						this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));	
-					}		
-	}
-	
-	public void lecturaDeArchivoCorrecta() throws IOException{
+	public void ejecutar() throws IOException{
 	BufferedReader br =new BufferedReader(new FileReader ("nuevasPalabrasClavesDeLocalesComerciales.txt"));
     String linea;
 	String [] comercialVectorizado;

@@ -1,5 +1,6 @@
 package ar.edu.TPPOI;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,20 @@ public abstract class Proceso{
 		this.mapa = mapa;
 	}
 
-	public abstract void run();
+	public void run(){
+		this.instanciarResultadoDeEjecucion();
+		try
+		{
+			this.ejecutar();
+		}
+		catch (Exception e)
+		{
+			this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));
+		}
+	}
+	
 		
+	public abstract void ejecutar() throws IOException;
 	public void sumarElementosAfectados(Integer unaCant){
 		resultadoDeEjecucionDelProceso.agregarElementosAfectados(unaCant);
 	}
