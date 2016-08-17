@@ -1,19 +1,22 @@
 package ar.edu.TPPOI;
 
 import java.util.List;
+import java.util.Set;
+
 import org.uqbar.geodds.Polygon;
 import java.time.LocalDate;
-import excepciones.NoSePuedeDesactivarException;
-import excepciones.YaExisteUnaAccionDeEseTipoException;
+
+
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Terminal {
 	
 	RepositorioDeTerminales rep;
 	MapaPOI mapa;
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
-	List<Accion> acciones = new ArrayList<>();
+	Set<Accion> acciones = new HashSet<Accion>();
 	GeneradorDeReportes reporte;
 	Polygon comuna;
 	
@@ -36,25 +39,14 @@ public class Terminal {
 	}
 	
 	public void activarAccion(Accion unaAccion){
-		if (this.yaExisteAccionDeEseTipo(unaAccion)){
-			throw new YaExisteUnaAccionDeEseTipoException("Ya existe una accion de ese tipo") ;
-		}
-		else{
-			this.acciones.add(unaAccion);
-		}
+		this.acciones.add(unaAccion);
 	}
+	
 	
 	public void desactivarAccion(Accion unaAccion){
-		if (!acciones.contains(unaAccion)){
-			throw new NoSePuedeDesactivarException("No se puede desactivar");
-		}
-		else{
+		if (acciones.contains(unaAccion)){
 			this.acciones.remove(unaAccion);
 		}
-	}
-	
-	public boolean yaExisteAccionDeEseTipo(Accion unaAccion){
-		return acciones.stream().anyMatch(unaA -> unaA.getClass().equals(unaAccion.getClass()));
 	}
 
 	
@@ -66,7 +58,7 @@ public class Terminal {
 		return this.busquedasHechas;
 	}
 	
-	public List<Accion> getAcciones(){
+	public Set<Accion> getAcciones(){
 		return this.acciones;
 	}
 	
@@ -93,11 +85,11 @@ public class Terminal {
 		return this.getReporte().generarReportePorBusqueda(this.getBusquedasHechas());
 	}
 
-	public void activarAcciones(ArrayList<Accion> accionesPorProceso) {
+	public void activarAcciones(Set<Accion> accionesPorProceso) {
 		this.getAcciones().addAll(accionesPorProceso);
 	}
 
-	public void desactivarAcciones(ArrayList<Accion> accionesPorProceso) {
+	public void desactivarAcciones(Set<Accion> accionesPorProceso) {
 		this.getAcciones().addAll(accionesPorProceso);
 	}
 

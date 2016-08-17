@@ -1,6 +1,7 @@
 package ar.edu.TPPOI;
 
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,9 +63,9 @@ public class AgregarQuitarAccionesTest {
 		comunaCriterio.setComunaAsociada(comunaAbasto);
 		
 		RepositorioDeTerminales.getSingletonInstance().agregarTerminal(terminalAbasto);
-	
+		RepositorioDeTerminales.getSingletonInstance().agregarTerminal(terminalDevoto);
 		RepositorioDeTerminales.getSingletonInstance().agregarTerminal(terminalCaballito);
-		
+		RepositorioDeTerminales.getSingletonInstance().agregarTerminal(terminalBelgrano);
 		
 		
 	}
@@ -72,86 +73,56 @@ public class AgregarQuitarAccionesTest {
 	//------------------------------ Tests de Agregar/Quitar
 	// ---------------------ITEM 1
 	@Test
-	public void testAgregarAccionesATerminalSinAccionesActivadasSegunComuna(){
+	public void testAgregarAccionesAUsuariosSegunComuna(){
 		procAgregarAcciones.setCriterio(comunaCriterio);
 		procAgregarAcciones.agregarAccion(accionAlmacenar);
 		procAgregarAcciones.agregarAccion(accionNotificar);
 		procAgregarAcciones.run();
-		Assert.assertEquals(1, procAgregarAcciones.getTerminalesFiltradas().size(),0);
+		Assert.assertEquals(3, procAgregarAcciones.getTerminalesFiltradas().size(),0);
 	}
 
-	/*@Test (expected = NoSePuedeDesactivarException.class)
-	public void testQuitarAccionesATerminalSinAccionesActivadasSegunComuna(){
+	@Test 
+	public void testQuitarAccionesAUsuariosSegunComuna(){
 		procQuitarAcciones.setCriterio(comunaCriterio);
 		procQuitarAcciones.agregarAccion(accionAlmacenar);
 		procQuitarAcciones.agregarAccion(accionNotificar);
 		procQuitarAcciones.run();
-	}
-	
-	@Test
-	public void testQuitarAccionesATerminalConAccionesActivadasSegunComuna(){
-		procQuitarAcciones.setCriterio(comunaCriterio);
-		procQuitarAcciones.agregarAccion(accionAlmacenar);
-		procQuitarAcciones.agregarAccion(accionNotificar);
-		procQuitarAcciones.run();
-		Assert.assertEquals(2, procQuitarAcciones.getTerminalesFiltradas().size(),0);
-	}
-	
-	//DEBERIAN FALLAR ?????? 
-	@Test (expected = NoSePuedeDesactivarException.class)
-	public void testQuitarAccionesATerminalConAccionesActivadasYDesactivadasSegunComuna(){
-		procQuitarAcciones.setCriterio(comunaCriterio);
-		procQuitarAcciones.agregarAccion(accionAlmacenar);
-		procQuitarAcciones.agregarAccion(accionNotificar);
-		procQuitarAcciones.run();
-	}
-	
-	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
-	public void testAgregarAccionesATerminalConAccionesActivadasYDesactivadasSegunComuna(){
-		procAgregarAcciones.setCriterio(comunaCriterio);
-		procAgregarAcciones.agregarAccion(accionAlmacenar);
-		procAgregarAcciones.run();
+		Assert.assertEquals(0, terminalDevoto.getAcciones().size(),0);
+		Assert.assertEquals(0, terminalAbasto.getAcciones().size(),0);
 	}
 	
 	// ------------------------- ITEM 2
 	@Test 
-	public void testAgregarAccionesATerminalSinAccionesActivadasSegunTodosLosUsuarios(){
+	public void testAgregarAccionesAUsuariosSegunTodosLosUsuarios(){
 		procAgregarAcciones.setCriterio(todosUsersCriterio);
 		procAgregarAcciones.agregarAccion(accionAlmacenar);
-		procAgregarAcciones.agregarAccion(accionNotificar);
 		procAgregarAcciones.run();
-		Assert.assertEquals(2, terminalCaballito.getAcciones().size(),0);
-		Assert.assertEquals(2, terminalAbasto.getAcciones().size(),0);
+		Assert.assertEquals(1, terminalCaballito.getAcciones().size(),0);
+		Assert.assertEquals(1, terminalAbasto.getAcciones().size(),0);
+		Assert.assertEquals(2, terminalDevoto.getAcciones().size(),0);
+		Assert.assertEquals(2, terminalBelgrano.getAcciones().size(),0);
 	}
 	
 	@Test 
-	public void testQuitarAccionesATerminalSinAccionesActivadasSegunTodosLosUsuarios(){
+	public void testQuitarAccionesAUsuariosSegunTodosLosUsuarios(){
 		procQuitarAcciones.setCriterio(todosUsersCriterio);
-		procQuitarAcciones.agregarAccion(accionAlmacenar);
 		procQuitarAcciones.agregarAccion(accionNotificar);
 		procQuitarAcciones.run();
-		Assert.assertEquals(2, procQuitarAcciones.getTerminalesFiltradas().size(),0);
+		Assert.assertEquals(true, procQuitarAcciones.getTerminalesFiltradas().contains(terminalAbasto));
 	}
 	
-	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
-	public void testAgregarAccionesATerminalConAccionesActivadasYDesactivadasTodosLosUsuarios(){
-		procAgregarAcciones.setCriterio(todosUsersCriterio);
-		procAgregarAcciones.agregarAccion(accionAlmacenar);
-		procAgregarAcciones.run();
-	}
-	
-	@Test (expected = NoSePuedeDesactivarException.class)
-	public void testQuitarAccionesATerminalConAccionesActivadasYDesactivadasTodosLosUsuarios(){
-		procQuitarAcciones.setCriterio(comunaCriterio);
-		procQuitarAcciones.agregarAccion(accionAlmacenar);
+	@Test 
+	public void testQuitarAccionesAUsuariosSegunTodosLosUsuarios2(){
+		procQuitarAcciones.setCriterio(todosUsersCriterio);
 		procQuitarAcciones.agregarAccion(accionNotificar);
-		procQuitarAcciones .run();
+		procQuitarAcciones.run();
+		Assert.assertEquals(4,procQuitarAcciones.getTerminalesFiltradas().size(),0);
 	}
-	
+
 	// ------------------------------ ITEM 3 
 	
 	@Test 
-	public void testAgregarAccionesATerminalSinAccionesActivadasSegunAdmin(){
+	public void testAgregarAccionesAUsuariosSegunAdmin(){
 		procAgregarAcciones.setCriterio(adminCriterio);
 		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalAbasto);
 		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalCaballito);
@@ -163,7 +134,7 @@ public class AgregarQuitarAccionesTest {
 	}
 	
 	@Test 
-	public void testQuitarAccionesATerminalSinAccionesActivadasSegunAdmin(){
+	public void testQuitarAccionesAUsuariosSegunAdmin(){
 		procQuitarAcciones.setCriterio(adminCriterio);
 		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalDevoto);
 		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalBelgrano);
@@ -172,7 +143,23 @@ public class AgregarQuitarAccionesTest {
 		procQuitarAcciones.run();
 		Assert.assertEquals(0, terminalDevoto.getAcciones().size(),0);
 		Assert.assertEquals(0, terminalBelgrano.getAcciones().size(),0);
-	}*/
-	//SI TIENEN QUE FALLAR NO HAGO LOS TEST DE FALLA, YA QUE FUERON PROBADOS SI ANDAN EN LOS DEMAS 
-	// de lo contrario me faltarian esos dos !
+	}
+	
+	@Test 
+	public void testQuitarAccionesAUsuariosSegunAdmin2(){
+		procQuitarAcciones.setCriterio(adminCriterio);
+		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalDevoto);
+		adminCriterio.agregarTerminalesElegidasPorAdmin(terminalBelgrano);
+		procQuitarAcciones.agregarAccion(accionAlmacenar);
+		procQuitarAcciones.agregarAccion(accionNotificar);
+		procQuitarAcciones.run();
+		Assert.assertEquals(2, procQuitarAcciones.getTerminalesFiltradas().size(),0);
+	
+	}
+	
+
+	@After
+	public void after(){
+	RepositorioDeTerminales.getSingletonInstance().clean();
+	}
 }

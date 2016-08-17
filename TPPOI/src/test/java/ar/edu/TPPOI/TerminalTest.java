@@ -10,8 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.NoSePuedeDesactivarException;
-import excepciones.YaExisteUnaAccionDeEseTipoException;
+
 
 public class TerminalTest {
 	Terminal terminalAbasto;
@@ -68,32 +67,22 @@ public class TerminalTest {
 	
 	
 	//Tests casos especiales
-	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
+	
+	@Test 
 	public void testQueNoSePuedanAgregarMasDeUnNotificar(){
 		accionNotificar.setTiempoLimite(1);
 		accionNotificar2.setTiempoLimite(1);
 		terminalAbasto.activarAccion(accionNotificar);
-		terminalAbasto.activarAccion(accionNotificar);
+		terminalAbasto.activarAccion(accionNotificar2);
+		Assert.assertEquals(1,terminalAbasto.getAcciones().size(),0);
 	}
 	
-	@Test (expected = NoSePuedeDesactivarException.class)
+	@Test 
 	public void testQueNoSePuedaSacarUnNotificarSiLaTerminalNoLoTiene(){
 		accionNotificar.setTiempoLimite(1);
 		accionNotificar2.setTiempoLimite(1);
 		terminalAbasto.desactivarAccion(accionNotificar);
-	}
-	
-	@Test (expected = YaExisteUnaAccionDeEseTipoException.class)
-	public void testQueNoSePuedanAgregarMasDeUnAlmacenar(){
-		terminalAbasto.activarAccion(accionAlmacenar);
-		terminalAbasto.activarAccion(accionAlmacenar2);
-	}
-	
-	@Test (expected = NoSePuedeDesactivarException.class)
-	public void testQueNoSePuedaSacarUnAlmacenarSiLaTerminalNoLoTiene(){
-		accionNotificar.setTiempoLimite(1);
-		accionNotificar2.setTiempoLimite(1);
-		terminalAbasto.desactivarAccion(accionAlmacenar);
+		Assert.assertEquals(0,terminalAbasto.getAcciones().size(),0);
 	}
 	
 	

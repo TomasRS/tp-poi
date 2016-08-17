@@ -23,4 +23,7 @@ public class RepositorioDeTerminales {
 		return terminales;
 	}
 
+	public void clean(){
+		repo = null;
+	}
 }

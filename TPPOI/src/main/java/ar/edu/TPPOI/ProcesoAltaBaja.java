@@ -1,10 +1,11 @@
 package ar.edu.TPPOI;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class ProcesoAltaBaja extends Proceso {
-	ArrayList<Accion> acciones = new ArrayList<>();
+	Set<Accion> acciones = new HashSet<Accion>();
 	
 	ArrayList<Terminal> terminalesFiltradas = new ArrayList<>();
 	Criterio criterio;
@@ -15,7 +16,7 @@ public abstract class ProcesoAltaBaja extends Proceso {
 	}
 
 
-	public List<Accion> getAcciones() {
+	public Set<Accion> getAcciones() {
 		return acciones;
 	}
 
