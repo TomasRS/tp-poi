@@ -325,11 +325,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return mapa;
 	}
 	
-	public RepositorioDeTerminales repositorio(){
-		return new RepositorioDeTerminales();
-	}
 	
-	//AGREGAR AL REPOSITORIO ???
+	
 	public Terminal terminal(){
 	terminal= new Terminal();
 	return terminal;

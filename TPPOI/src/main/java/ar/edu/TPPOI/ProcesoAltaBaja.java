@@ -5,17 +5,10 @@ import java.util.List;
 
 public abstract class ProcesoAltaBaja extends Proceso {
 	ArrayList<Accion> acciones = new ArrayList<>();
-	RepositorioDeTerminales repTerminales;
+	
 	ArrayList<Terminal> terminalesFiltradas = new ArrayList<>();
 	Criterio criterio;
 	
-	public RepositorioDeTerminales getRepTerminales() {
-		return repTerminales;
-	}
-
-	public void setRepTerminales(RepositorioDeTerminales repTerminales) {
-		this.repTerminales = repTerminales;
-	}
 
 	public ArrayList<Terminal> getTerminalesFiltradas(){
 		return terminalesFiltradas;
@@ -44,7 +37,7 @@ public abstract class ProcesoAltaBaja extends Proceso {
 
 	@Override
 	public void run() {
-			terminalesFiltradas.addAll(this.getCriterio().filtrarTerminales(this.getRepTerminales().getTerminales()));		
+			terminalesFiltradas.addAll(this.getCriterio().filtrarTerminales(RepositorioDeTerminales.getSingletonInstance().getTerminales()));		
 	}
 
 }
