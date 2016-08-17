@@ -9,19 +9,15 @@ public class ProcDarDeBajaPOIs extends Proceso{
 	
 	public void ejecutar() {
 		List<String> nombresDeLosPOIsABajar = new ArrayList<>();
-		nombresDeLosPOIsABajar = servicioBajaDePOIs.getPOIsADarDeBaja();
+		nombresDeLosPOIsABajar = servicioBajaDePOIs.getPOIsADarDeBaja();	
 		
-		this.instanciarResultadoDeEjecucion();
-		
-		try{	
-			this.getMapa().eliminarPOIs(nombresDeLosPOIsABajar, this);
+		this.getMapa().eliminarPOIs(nombresDeLosPOIsABajar, this);
 			
-		}
-		catch (Exception e){
-			this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));
-			this.getResultadoDeEjecucionDelProceso().setResultadoDeLaEjecucion(false);
-		}
-			
+	}
+	
+	public void ejecutarAccionesDeError(){
+		super.ejecutarAccionesDeError();
+		this.getResultadoDeEjecucionDelProceso().setResultadoDeLaEjecucion(false);
 	}
 	
 	public void setServicioDeBaja(ServicioBajaPOIs servicioBajaDePOIs){

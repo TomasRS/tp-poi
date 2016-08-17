@@ -80,15 +80,13 @@ public class BajaDePOIsTest {
 		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		servicioBajaDePOIs2.agregarNombreDePOIADarDeBaja("SportClub");
 		
-		LocalDateTime fechaYHora = LocalDateTime.now().plusSeconds(5);
-		LocalDateTime fechaYHora2 = LocalDateTime.now().plusSeconds(10);
+		LocalDateTime fechaYHora = LocalDateTime.now().plusSeconds(1);
+		LocalDateTime fechaYHora2 = LocalDateTime.now().plusSeconds(2);
 		
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs2, fechaYHora2);
 		
 		configuradorDeProcesos.iniciarModoBatch();
-		
-		System.out.println("Se termino de ejecutar el modo Batch.");
 		
 		//Espero de 1 segundo a que se termine de ejecutar el ultimo proceso
 		try {

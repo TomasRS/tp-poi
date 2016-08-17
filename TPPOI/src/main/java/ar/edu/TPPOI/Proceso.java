@@ -43,10 +43,13 @@ public abstract class Proceso{
 		}
 		catch (Exception e)
 		{
-			this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));
+			this.ejecutarAccionesDeError();
 		}
 	}
 	
+	public void ejecutarAccionesDeError(){
+		this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));
+	}
 		
 	public abstract void ejecutar() throws IOException;
 	public void sumarElementosAfectados(Integer unaCant){
