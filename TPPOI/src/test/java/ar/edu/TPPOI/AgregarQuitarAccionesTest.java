@@ -78,7 +78,7 @@ public class AgregarQuitarAccionesTest {
 		procAgregarAcciones.agregarAccion(accionAlmacenar);
 		procAgregarAcciones.agregarAccion(accionNotificar);
 		procAgregarAcciones.run();
-		Assert.assertEquals(3, procAgregarAcciones.getTerminalesFiltradas().size(),0);
+		Assert.assertEquals(3, procAgregarAcciones.terminales().size(),0);
 	}
 
 	@Test 
@@ -108,7 +108,7 @@ public class AgregarQuitarAccionesTest {
 		procQuitarAcciones.setCriterio(todosUsersCriterio);
 		procQuitarAcciones.agregarAccion(accionNotificar);
 		procQuitarAcciones.run();
-		Assert.assertEquals(true, procQuitarAcciones.getTerminalesFiltradas().contains(terminalAbasto));
+		Assert.assertEquals(true, procQuitarAcciones.terminales().contains(terminalAbasto));
 	}
 	
 	@Test 
@@ -116,7 +116,7 @@ public class AgregarQuitarAccionesTest {
 		procQuitarAcciones.setCriterio(todosUsersCriterio);
 		procQuitarAcciones.agregarAccion(accionNotificar);
 		procQuitarAcciones.run();
-		Assert.assertEquals(4,procQuitarAcciones.getTerminalesFiltradas().size(),0);
+		Assert.assertEquals(4,procQuitarAcciones.terminales().size(),0);
 	}
 
 	// ------------------------------ ITEM 3 
@@ -153,7 +153,7 @@ public class AgregarQuitarAccionesTest {
 		procQuitarAcciones.agregarAccion(accionAlmacenar);
 		procQuitarAcciones.agregarAccion(accionNotificar);
 		procQuitarAcciones.run();
-		Assert.assertEquals(2, procQuitarAcciones.getTerminalesFiltradas().size(),0);
+		Assert.assertEquals(2, procQuitarAcciones.terminales().size(),0);
 	
 	}
 	

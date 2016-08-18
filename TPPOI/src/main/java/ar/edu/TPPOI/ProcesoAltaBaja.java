@@ -2,6 +2,7 @@ package ar.edu.TPPOI;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public abstract class ProcesoAltaBaja extends Proceso {
@@ -36,8 +37,8 @@ public abstract class ProcesoAltaBaja extends Proceso {
 	}
 
 
-	public void filtrarTerminales() {
-			terminalesFiltradas.addAll(this.getCriterio().filtrarTerminales(RepositorioDeTerminales.getSingletonInstance().getTerminales()));		
+	public List<Terminal> terminales() {
+			return this.getCriterio().filtrarTerminales(RepositorioDeTerminales.getSingletonInstance().getTerminales());		
 	}
 
 }
