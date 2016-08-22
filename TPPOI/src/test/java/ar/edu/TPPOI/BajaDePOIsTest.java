@@ -34,8 +34,8 @@ public class BajaDePOIsTest {
 		configuradorDeProcesos= soporteParaTests.configuradorDeProcesos();
 		noRealizarAccion= soporteParaTests.noRealizarAccion();
 	
-		procesoBajaDePOIs.accionesEnCasoDeError.add(noRealizarAccion);
-		procesoBajaDePOIs2.accionesEnCasoDeError.add(noRealizarAccion);
+		procesoBajaDePOIs.setAccionEnCasoDeError(noRealizarAccion);
+		procesoBajaDePOIs2.setAccionEnCasoDeError(noRealizarAccion);
 	}
 
 //-------------------------------Tests para probar el proceso de Dar de Baja-------------------------------

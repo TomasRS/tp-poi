@@ -2,30 +2,25 @@ package ar.edu.TPPOI;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import excepciones.ProblemaConAccionesEnCasoDeFalla;
 
 public abstract class Proceso{
 
 	MapaPOI mapa;
 	ResultadoDelProceso resultadoDeEjecucionDelProceso;
-	List<ManejoDeResultado> accionesEnCasoDeError = new ArrayList<>();
+	ManejoDeResultado accionEnCasoDeError ;
 
 	
+	public ManejoDeResultado getAccionesEnCasoDeError() {
+		return accionEnCasoDeError;
+	}
+	public void setAccionEnCasoDeError(ManejoDeResultado accionesEnCasoDeError) {
+		this.accionEnCasoDeError = accionesEnCasoDeError;
+	}
 	public ResultadoDelProceso getResultadoDeEjecucionDelProceso() {
 		return resultadoDeEjecucionDelProceso;
 	}
 	public void setResultadoDeEjecucionDelProceso(ResultadoDelProceso resultadoDeEjecucionDelProceso) {
 		this.resultadoDeEjecucionDelProceso = resultadoDeEjecucionDelProceso;
-	}
-	public void agregarAccionEnCasoDeError(ManejoDeResultado unManejo) throws ProblemaConAccionesEnCasoDeFalla{
-		if (this.accionesEnCasoDeError.size()>0 & unManejo.noAceptaCombinarManejos()){
-			throw new ProblemaConAccionesEnCasoDeFalla("Si desea no realizar acciones debe quitar las existentes");
-		} else {
-			this.accionesEnCasoDeError.add(unManejo);
-		}		
 	}
 
 	public MapaPOI getMapa() {
@@ -48,7 +43,7 @@ public abstract class Proceso{
 	}
 	
 	public void ejecutarAccionesDeError(){
-		this.accionesEnCasoDeError.forEach(unaA->unaA.ejecutarEnCasoDeFalla(this));
+		this.accionEnCasoDeError.ejecutarEnCasoDeFalla(this);
 	}
 		
 	public abstract void ejecutar() throws IOException;
@@ -61,7 +56,4 @@ public abstract class Proceso{
 		this.setResultadoDeEjecucionDelProceso(resultado);
 	}
 	
-	public void anularManejos(){
-		this.accionesEnCasoDeError = new ArrayList<>();
-	}
 }
