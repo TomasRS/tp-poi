@@ -29,9 +29,11 @@ public class ActualizarLocalesComercialesTest {
 		actualizadorDeLocalesComerciales.setMapa(mapaInteractivo);
 		configuradorDeProcesos= soporteParaTests.configuradorDeProcesos();
 		reintentarNVeces= soporteParaTests.reintentarNVeces();
+		reintentarNVeces.setVeces(5);
 		noRealizarAccion= soporteParaTests.noRealizarAccion();
 		horario1=soporteParaTests.generarHorario();
 		sportClubLibertador7395=soporteParaTests.sportClubLibertador7395();
+		actualizadorDeLocalesComerciales.setAccionEnCasoDeError(reintentarNVeces);
 }
 	
 	@Test
