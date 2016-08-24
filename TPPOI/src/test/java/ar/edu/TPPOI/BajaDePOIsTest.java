@@ -74,9 +74,23 @@ public class BajaDePOIsTest {
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs2, fechaYHora2);
 		
 		configuradorDeProcesos.work();
-		
+	
 		Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 0);
 		Assert.assertEquals(mapaInteractivo.buscar("SportClub").size(), 0);	
+	
+	}
+	
+	@Test
+	public void testNoEjecucionDeProcesoPorTenerFechaPosterior(){
+		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
+
+		LocalDateTime fechaYHora = LocalDateTime.now().plusHours(50);
+		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
+		
+		configuradorDeProcesos.work();
+	
+		Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 1);
+
 	}
 	
 }
