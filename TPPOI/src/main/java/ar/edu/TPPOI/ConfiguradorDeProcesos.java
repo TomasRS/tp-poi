@@ -9,13 +9,7 @@ import java.util.stream.Collectors;
 public class ConfiguradorDeProcesos{
 
 	List<Tarea> tareasEnBatch = new ArrayList<>();
-	List<String> numeros = new ArrayList<>();
-	
-	public void agregarProcesoAlBatch(Proceso unProceso, LocalDateTime fechaYHora){
-		Tarea nuevaTarea = new Tarea(unProceso, fechaYHora);
-		this.tareasEnBatch.add(nuevaTarea);
-	}
-	
+
 	public void work(){
 		List<Tarea> tareasParaEjecutar = this.filtrarTareasAEjecutar();
 		
@@ -23,10 +17,10 @@ public class ConfiguradorDeProcesos{
 		tareasEnBatch.removeAll(tareasParaEjecutar);
 	}
 	
-	
 	//---------------------------------------------------------
-	public List<Tarea> getTareasEnBatch(){
-		return this.tareasEnBatch;
+	public void agregarProcesoAlBatch(Proceso unProceso, LocalDateTime fechaYHora){
+		Tarea nuevaTarea = new Tarea(unProceso, fechaYHora);
+		this.tareasEnBatch.add(nuevaTarea);
 	}
 	
 	public List<Tarea> filtrarTareasAEjecutar(){
@@ -36,6 +30,10 @@ public class ConfiguradorDeProcesos{
 			   .filter(unaT -> unaT.tieneFechaMenorOIgualAAhora(LocalDateTime.now()))
 			   .collect(Collectors.toList()));
 	}
-
-
+	
+	
+	
+	public List<Tarea> getTareasEnBatch(){
+		return this.tareasEnBatch;
+	}
 }
