@@ -1,10 +1,10 @@
 package ar.edu.TPPOI;
 
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConfiguradorDeProcesos{
 
@@ -14,43 +14,28 @@ public class ConfiguradorDeProcesos{
 	public void agregarProcesoAlBatch(Proceso unProceso, LocalDateTime fechaYHora){
 		Tarea nuevaTarea = new Tarea(unProceso, fechaYHora);
 		this.tareasEnBatch.add(nuevaTarea);
-		this.ordenarTareasDelBatch();
 	}
 	
-	public void iniciarModoBatch(){
-		Tarea primerTarea = this.getTareasEnBatch().get(0);
+	public void work(){
+		List<Tarea> tareasParaEjecutar = this.filtrarTareasAEjecutar();
 		
-		this.esperarParaEjecutar(primerTarea);
+		tareasParaEjecutar.forEach(unaT -> unaT.getProceso().run());
+		tareasEnBatch.removeAll(tareasParaEjecutar);
 	}
+	
 	
 	//---------------------------------------------------------
 	public List<Tarea> getTareasEnBatch(){
 		return this.tareasEnBatch;
 	}
 	
-	public void ordenarTareasDelBatch(){
-		Collections.sort(tareasEnBatch, new Comparator<Tarea>() {
-	        @Override
-	        public int compare(Tarea tarea1, Tarea tarea2)
-	        {
-	            return tarea1.getFechaYHora().compareTo(tarea2.getFechaYHora());
-	        }
-		});
+	public List<Tarea> filtrarTareasAEjecutar(){
+		
+		return (tareasEnBatch
+			   .stream()
+			   .filter(unaT -> unaT.tieneFechaMenorOIgualAAhora(LocalDateTime.now()))
+			   .collect(Collectors.toList()));
 	}
-	
-	public void esperarParaEjecutar(Tarea unaTarea){
-		
-		while (LocalDateTime.now().isBefore(unaTarea.getFechaYHora())){
-		    // Espera
-		}
-		unaTarea.getProceso().run();
-//		System.out.println("Se ejecuto el proceso de fecha: "+unaTarea.getFechaYHora());
-		tareasEnBatch.remove(unaTarea);
-		
-		if (!tareasEnBatch.isEmpty()){
-			this.esperarParaEjecutar(tareasEnBatch.get(0));
-		}
 
-	}
 
 }

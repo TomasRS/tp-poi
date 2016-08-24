@@ -60,38 +60,23 @@ public class BajaDePOIsTest {
 		Assert.assertEquals(procesoBajaDePOIs.getResultadoDeEjecucionDelProceso().isResultadoDeLaEjecucion(), false);
 	}
 	
-//----------Test de ejecucion automatica de procesos en base al horario definido----------	
-	
-	@Test
-	public void testLasTareasSeIngresanOrdenadasAlBatchPorFechaYHora(){
-		LocalDateTime fechaYHora = LocalDateTime.of(2016, 8, 7, 16, 30, 30);
-		LocalDateTime fechaYHora2 = LocalDateTime.of(2016, 8, 7, 16, 30, 0);
-		
-		//Se ingresa primero el proceso que deberia ir segundo, y segundo el proceso que deberia ir primero
-		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
-		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs2, fechaYHora2);
-
-		Assert.assertEquals(configuradorDeProcesos.getTareasEnBatch().get(0).getFechaYHora().equals(fechaYHora2), true);
-	}
-	
+//----------Test de ejecucion automatica de procesos en base al horario definido----------		
 
 	@Test
-	public void testChequearEjecucionAutomaticaDeLosProcesosAgregadosAlBatch(){
+	public void testEjecucionDeLos2ProcesosAgregadosAlBatch(){
 		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		servicioBajaDePOIs2.agregarNombreDePOIADarDeBaja("SportClub");
 		
-		LocalDateTime fechaYHora = LocalDateTime.now().plusSeconds(1);
-		LocalDateTime fechaYHora2 = LocalDateTime.now().plusSeconds(2);
+		LocalDateTime fechaYHora = LocalDateTime.now().minusMinutes(10);
+		LocalDateTime fechaYHora2 = LocalDateTime.now();
 		
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs, fechaYHora);
 		configuradorDeProcesos.agregarProcesoAlBatch(procesoBajaDePOIs2, fechaYHora2);
 		
-		configuradorDeProcesos.iniciarModoBatch();
-		
+		configuradorDeProcesos.work();
 		
 		Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 0);
-		Assert.assertEquals(mapaInteractivo.buscar("SportClub").size(), 0);
-		
+		Assert.assertEquals(mapaInteractivo.buscar("SportClub").size(), 0);	
 	}
 	
 }

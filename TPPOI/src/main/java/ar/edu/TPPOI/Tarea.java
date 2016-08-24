@@ -19,4 +19,9 @@ public class Tarea {
 	public LocalDateTime getFechaYHora(){
 		return this.fechaYHora;
 	}
+	
+	public boolean tieneFechaMenorOIgualAAhora(LocalDateTime unaFechaYHora){
+		
+		return (fechaYHora.isBefore(unaFechaYHora) || fechaYHora.isEqual(unaFechaYHora));
+	}
 }
