@@ -14,11 +14,15 @@ public class ReintentarNVeces extends ManejoDeResultado{
 	
 	
 	public void ejecutarEnCasoDeFalla(Proceso unProceso) {
-		unProceso.setAccionEnCasoDeError(new NoRealizarAccion());
-		for (Integer i=0; i<this.veces; i++){
-			System.out.printf("Reintento %d \n", i+1);
-			unProceso.run();
+		if (veces == 0){
+			unProceso.setAccionEnCasoDeError(new NoRealizarAccion());
+		} else {
+			ReintentarNVeces reintento = new ReintentarNVeces();
+			reintento.setVeces(veces - 1);
+			unProceso.setAccionEnCasoDeError(reintento);
 		}
+		System.out.printf("Falta %d intentos\n", veces);
+		unProceso.run();
 	}
 
 }
