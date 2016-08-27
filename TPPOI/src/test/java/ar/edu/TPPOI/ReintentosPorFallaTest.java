@@ -37,4 +37,14 @@ public class ReintentosPorFallaTest {
 		Assert.assertEquals(1, proceso.cantidadEjecucionesRealizadas(), 0);
 	}
 	
+	@Test
+	public void noHayReintentos(){
+		proceso.fallarEn(4);
+		manejoReintento.setVeces(0);
+		proceso.setAccionEnCasoDeError(manejoReintento);
+		proceso.run();
+		Assert.assertEquals(1, proceso.cantidadEjecucionesRealizadas(), 0);
+	}
+	
+	
 }
