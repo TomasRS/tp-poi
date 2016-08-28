@@ -20,6 +20,7 @@ public class ReintentosPorFallaTest {
 	public void seReintenta4Veces(){
 		proceso.fallarEn(4);
 		proceso.run();
+		//el proceso ejecuta 1 + 4 reintentos
 		Assert.assertEquals(5, proceso.cantidadEjecucionesRealizadas(), 0);
 	}
 	
@@ -41,7 +42,6 @@ public class ReintentosPorFallaTest {
 	public void noHayReintentos(){
 		proceso.fallarEn(4);
 		manejoReintento.setVeces(0);
-		proceso.setAccionEnCasoDeError(manejoReintento);
 		proceso.run();
 		Assert.assertEquals(1, proceso.cantidadEjecucionesRealizadas(), 0);
 	}
