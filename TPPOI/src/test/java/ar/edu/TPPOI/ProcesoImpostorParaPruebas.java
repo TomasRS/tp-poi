@@ -2,12 +2,12 @@ package ar.edu.TPPOI;
 
 import java.io.IOException;
 
-public class ProcesoImpostorParaTest extends Proceso{
+public class ProcesoImpostorParaPruebas extends Proceso{
 	
 	private Integer contadorDeEjecucion;
 	private Integer intentosAFallar;
 
-	public ProcesoImpostorParaTest() {
+	public ProcesoImpostorParaPruebas() {
 		contadorDeEjecucion = 0;
 	}
 
@@ -19,7 +19,7 @@ public class ProcesoImpostorParaTest extends Proceso{
 		}
 	}
 	
-	public void fallarEn(Integer numeroDeReintento){
+	public void fallarHasta(Integer numeroDeReintento){
 		this.intentosAFallar = numeroDeReintento; 
 	}
 	
