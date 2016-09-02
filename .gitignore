@@ -1,5 +1,6 @@
 ## gitignore para JAVA
 *.class
+.html
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 # Package Files #
@@ -13,6 +14,11 @@ hs_err_pid*
 .settings/
 .classpath
 .project
+.metadata/*
+.recommended/*
+.metadata
+.recommended
+.recommenders
 
 ## gitignore para Maven
 target/
