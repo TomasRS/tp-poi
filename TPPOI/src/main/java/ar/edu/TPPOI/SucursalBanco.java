@@ -1,8 +1,11 @@
 package ar.edu.TPPOI;
 
+import javax.persistence.Entity;
+
 import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
 
+@Entity
 public class SucursalBanco extends EmpresaMultiServicios {
 
 	private String nombreSucursal;

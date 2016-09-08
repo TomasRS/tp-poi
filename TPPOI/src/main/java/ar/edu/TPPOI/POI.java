@@ -2,15 +2,36 @@ package ar.edu.TPPOI;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Convert;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+
 import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
 
+import converters.PointConverter;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class POI {
+	
+	@Id @GeneratedValue
+	protected long Id;
+	
 	protected String nombre;
 	protected String rubro;
 	protected Integer radioCercania;
+	@Convert(converter = PointConverter.class)
 	protected Point coordenada;
+	@OneToOne
 	protected Direccion direccion;
+	@ElementCollection
 	protected List<String> tags = new ArrayList<>();
 
 	public void setTags(List<String> tags) {

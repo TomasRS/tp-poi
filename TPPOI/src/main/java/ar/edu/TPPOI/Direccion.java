@@ -1,6 +1,14 @@
 package ar.edu.TPPOI;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Direccion {
+	
+	@Id @GeneratedValue
+	private long Id;
 
 	protected String calle1;
 	protected String calle2;

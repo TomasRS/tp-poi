@@ -1,9 +1,17 @@
 package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.uqbar.geodds.Point;
 
+@Entity //@DiscriminatorValue(value="parada_colectivo")
 public class ParadaDeColectivo extends POI {
+	
+	@SuppressWarnings(value="unused")
+	public ParadaDeColectivo(){}
 
 	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Direccion unaDireccion) {
 		this(unNombre, unaCoordenada, 100, unaDireccion);

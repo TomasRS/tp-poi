@@ -8,7 +8,15 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
+    	<class>ar.edu.TPPOI.CGP</class>
+    	<class>ar.edu.TPPOI.LocalComercial</class>
+    	<class>ar.edu.TPPOI.ParadaDeColectivo</class>
+    	<class>ar.edu.TPPOI.SucursalBanco</class>
+    	<class>ar.edu.TPPOI.EmpresaMultiServicio</class>
     	
+    	<class>ar.edu.TPPOI.Direccion</class>
+    	<class>ar.edu.TPPOI.Horario</class>
+    	<class>ar.edu.TPPOI.Servicio</class>
     	 
         <properties> 
 	    	<property name="hibernate.archive.autodetection" value="class"/>        

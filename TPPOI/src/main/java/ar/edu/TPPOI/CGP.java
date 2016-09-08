@@ -2,13 +2,25 @@ package ar.edu.TPPOI;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.persistence.GeneratedValue;
+
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+@Entity
 public class CGP extends EmpresaMultiServicios {
-
+	
+	@Transient
 	private Polygon comuna;
+	@ElementCollection
 	private List<String> zonasQueIncluye;
+	
+	@SuppressWarnings(value="unnused")
+	public CGP(){}
 
 	public List<String> getZonasQueIncluye() {
 		return zonasQueIncluye;

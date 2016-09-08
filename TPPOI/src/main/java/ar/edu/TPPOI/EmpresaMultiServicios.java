@@ -4,12 +4,21 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 import org.uqbar.geodds.Point;
 
 import excepciones.NoExisteServicioAsociadoException;
 
+@Entity
 public abstract class EmpresaMultiServicios extends POI {
-
+	
+	@ManyToMany(cascade = CascadeType.ALL)
 	protected List<Servicio> servicios = new ArrayList<>();
 
 	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio) {
