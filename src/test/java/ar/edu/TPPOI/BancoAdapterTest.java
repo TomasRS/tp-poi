@@ -7,22 +7,25 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import clasesParaTests.BancoExternoParaTest;
+import externos.BancoAdapter;
 
 public class BancoAdapterTest {
 
-	SoporteDeInstanciasParaTestsBuilder soporteDeInstanciasParaTestsBuilder;
+	BancoExternoParaTest servicioBusquedaBancoExterno;
+	BancoAdapter buscadorExternoAdaptado;
 
 	@Before
 	public void init() {
-		soporteDeInstanciasParaTestsBuilder = new SoporteDeInstanciasParaTestsBuilder();
+		servicioBusquedaBancoExterno = new BancoExternoParaTest();
+		buscadorExternoAdaptado = new BancoAdapter(servicioBusquedaBancoExterno);
 	}
 
 	@Test
 	public void testBusquedaConCoincidenciaDevuelveDosSucursalesBanco() {
 
 		SucursalBanco unaSucursalBanco;
-		List<POI> listaDePOIs = soporteDeInstanciasParaTestsBuilder.bancoAdapter()
+		List<POI> listaDePOIs = buscadorExternoAdaptado
 				.buscar("Banco de la Plaza,extracciones");
 		Assert.assertEquals(listaDePOIs.size(), 2);
 		unaSucursalBanco = (SucursalBanco) listaDePOIs.get(0);
@@ -41,7 +44,7 @@ public class BancoAdapterTest {
 
 	@Test
 	public void testBusquedaSinCoincidenciaDeSucursalesBanco() {
-		Assert.assertEquals(soporteDeInstanciasParaTestsBuilder.bancoAdapter().buscar("Banco de la Plaza, ").size(), 0);
+		Assert.assertEquals(buscadorExternoAdaptado.buscar("Banco de la Plaza, ").size(), 0);
 	}
 
 }

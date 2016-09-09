@@ -147,13 +147,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 				+ "]";
 	}
 
-	public BancoExternoParaTest bancoExternoImpostorMock() {
-		return new BancoExternoParaTest();
-
-	}
-
 	public BancoAdapter bancoAdapter() {
-		bancoAdapter = new BancoAdapter(bancoExternoImpostorMock());
+		bancoAdapter = new BancoAdapter(new BancoExternoParaTest());
 		return bancoAdapter;
 
 	}
