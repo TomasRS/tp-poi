@@ -4,15 +4,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import clasesParaTests.ProcesoImpostorParaPruebas;
+import clasesParaTests.ProcesoImpostorParaPruebasDeReintento;
 
 public class ReintentosPorFallaTest {
-	private ProcesoImpostorParaPruebas proceso;
+	private ProcesoImpostorParaPruebasDeReintento proceso;
 	private ReintentarNVeces manejoReintento;
 	
 	@Before
 	public void init(){
-		proceso = new ProcesoImpostorParaPruebas();
+		proceso = new ProcesoImpostorParaPruebasDeReintento();
 		manejoReintento = new ReintentarNVeces();
 		manejoReintento.setVeces(5);
 		proceso.setAccionEnCasoDeError(manejoReintento);

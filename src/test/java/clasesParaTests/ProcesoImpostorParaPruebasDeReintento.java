@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import ar.edu.TPPOI.Proceso;
 
-public class ProcesoImpostorParaPruebas extends Proceso{
+public class ProcesoImpostorParaPruebasDeReintento extends Proceso{
 	
 	private Integer contadorDeEjecucion;
 	private Integer intentosAFallar;
 
-	public ProcesoImpostorParaPruebas() {
+	public ProcesoImpostorParaPruebasDeReintento() {
 		contadorDeEjecucion = 0;
 	}
 
