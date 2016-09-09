@@ -3,6 +3,7 @@ package ar.edu.TPPOI;
 import org.junit.Before;
 import org.junit.Test;
 
+import clasesParaTests.ProcesoActualizadorLocalesImpostor;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 
 import java.util.Date;
@@ -23,19 +24,16 @@ public class ActualizarLocalesComercialesTest {
 	Date horario1;
 	@Before
 	public void init(){
+		actualizadorDeLocalesComerciales = new ProcesoActualizadorLocalesImpostor();
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 		cineAbasto = soporteParaTests.cineAbasto();
 		starbucksCoronelDiaz1400=soporteParaTests.starbucksCoronelDiaz1400();
-		actualizadorDeLocalesComerciales= soporteParaTests.actualizadorDeLocalesComerciales();
 		mapaInteractivo=soporteParaTests.mapa();
 		actualizadorDeLocalesComerciales.setMapa(mapaInteractivo);
 		configuradorDeProcesos= soporteParaTests.configuradorDeProcesos();
-		reintentarNVeces= soporteParaTests.reintentarNVeces();
-		reintentarNVeces.setVeces(5);
 		noRealizarAccion= soporteParaTests.noRealizarAccion();
 		horario1=soporteParaTests.generarHorario();
 		sportClubLibertador7395=soporteParaTests.sportClubLibertador7395();
-		actualizadorDeLocalesComerciales.setAccionEnCasoDeError(reintentarNVeces);
 }
 	
 	@Test

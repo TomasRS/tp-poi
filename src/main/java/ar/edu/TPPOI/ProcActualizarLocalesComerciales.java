@@ -10,10 +10,17 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 	
 
 	public void ejecutar() throws IOException{
-	BufferedReader br =new BufferedReader(new FileReader ("nuevasPalabrasClavesDeLocalesComerciales.txt"));
-    String linea;
-	String [] comercialVectorizado;
-	while ((linea=br.readLine())!=null){ 
+		//por ahora depende mucho de ese archivo, deberia ser configurable la ruta de actualizacion
+		BufferedReader br = new BufferedReader(new FileReader("nuevasPalabrasClavesDeLocalesComerciales.txt"));
+		String linea;
+		while ((linea = br.readLine()) != null) {
+			procesarLinea(linea);
+		}
+		br.close();
+	}
+	
+	protected void procesarLinea(String linea){
+		String [] comercialVectorizado;
 		List<String> tagsParaActualizar = new ArrayList<>();
 		comercialVectorizado=linea.split(";");
 		String nombreLocalComercial ="";
@@ -23,13 +30,11 @@ public class ProcActualizarLocalesComerciales extends Proceso{
 		
 		for(Integer i=0;i<tagsSpliteados.length;i++){
 			tagsParaActualizar.add(tagsSpliteados[i]);
-				}
-						this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar);								
-	}
-	br.close();
+		}
+		this.actualizarLocalesComerciales(nombreLocalComercial,tagsParaActualizar);
 	}
 		
-	public void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar) {
+	protected void actualizarLocalesComerciales(String nombreLocalComercial, List<String> tagsParaActualizar) {
 		Integer resultados=this.getMapa().actualizarTagsDe(nombreLocalComercial, tagsParaActualizar);
 		this.sumarElementosAfectados(resultados);	
 	}

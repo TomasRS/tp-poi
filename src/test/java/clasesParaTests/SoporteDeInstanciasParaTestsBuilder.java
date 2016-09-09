@@ -153,20 +153,6 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	}
 
-	public List<CentroDTO> crearCentrosDTO() {
-		CentroDTO nuevoCGP = new CentroDTO();
-		List<CentroDTO> listaDeCGPsExternosParaElAdapter = new ArrayList<CentroDTO>();
-		nuevoCGP.director = "Juan";
-		nuevoCGP.domicilioCompleto = "Junin 521";
-		nuevoCGP.zonas.add("San Cristobal");
-		nuevoCGP.zonas.add("Balvanera");
-		nuevoCGP.numeroDeComuna = 3;
-		nuevoCGP.telefono = "4375-0644/45";
-		nuevoCGP.serviciosDTO = crearServiciosDTO();
-		listaDeCGPsExternosParaElAdapter.add(nuevoCGP);
-		return listaDeCGPsExternosParaElAdapter;
-	}
-
 	public CentroDTO crearCentroDTO() {
 		CentroDTO nuevoCGP = new CentroDTO();
 		nuevoCGP.director = "Juan";
@@ -194,13 +180,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return serviciosDTO;
 	}
 
-	public CGPExternoParaTest CGPExternoImpostorMock() {
-
-		return new CGPExternoParaTest();
-	}
-
 	public CGPAdapter CGPAdapter() {
-		cgpAdapter = new CGPAdapter(CGPExternoImpostorMock());
+		cgpAdapter = new CGPAdapter(new CGPExternoParaTest());
 		return cgpAdapter;
 
 	}
