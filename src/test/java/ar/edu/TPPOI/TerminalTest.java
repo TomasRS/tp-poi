@@ -10,6 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+
 
 
 public class TerminalTest {

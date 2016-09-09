@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import clasesParaTests.ProcesoImpostorParaPruebas;
+
 public class ReintentosPorFallaTest {
 	private ProcesoImpostorParaPruebas proceso;
 	private ReintentarNVeces manejoReintento;

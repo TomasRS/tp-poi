@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import externos.BancoAdapter;
 import externos.CGPAdapter;
 import externos.CentroDTO;

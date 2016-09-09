@@ -1,4 +1,4 @@
-package ar.edu.TPPOI;
+package clasesParaTests;
 
 import externos.BancoExternoInterface;
 

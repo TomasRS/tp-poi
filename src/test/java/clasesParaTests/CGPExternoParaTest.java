@@ -1,4 +1,4 @@
-package ar.edu.TPPOI;
+package clasesParaTests;
 
 import java.util.ArrayList;
 import java.util.List;

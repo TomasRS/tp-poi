@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Polygon;
 
+import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+
 
 public class AgregarQuitarAccionesTest {
 	

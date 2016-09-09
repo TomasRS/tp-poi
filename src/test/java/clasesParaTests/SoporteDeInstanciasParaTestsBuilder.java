@@ -1,4 +1,4 @@
-package ar.edu.TPPOI;
+package clasesParaTests;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -9,6 +9,31 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import ar.edu.TPPOI.Almacenar;
+import ar.edu.TPPOI.CGP;
+import ar.edu.TPPOI.ComunaALaQuePertenece;
+import ar.edu.TPPOI.ConfiguradorDeProcesos;
+import ar.edu.TPPOI.Direccion;
+import ar.edu.TPPOI.EnvioDeMail;
+import ar.edu.TPPOI.GeneradorDeReportes;
+import ar.edu.TPPOI.Horario;
+import ar.edu.TPPOI.LocalComercial;
+import ar.edu.TPPOI.MapaPOI;
+import ar.edu.TPPOI.NoRealizarAccion;
+import ar.edu.TPPOI.Notificar;
+import ar.edu.TPPOI.ParadaDeColectivo;
+import ar.edu.TPPOI.ProcActualizarLocalesComerciales;
+import ar.edu.TPPOI.ProcAgregarAccionesParaUsuarios;
+import ar.edu.TPPOI.ProcDarDeBajaPOIs;
+import ar.edu.TPPOI.ProcQuitarAccionesParaUsuarios;
+import ar.edu.TPPOI.ReintentarNVeces;
+import ar.edu.TPPOI.RepositorioDeTerminales;
+import ar.edu.TPPOI.Servicio;
+import ar.edu.TPPOI.ServicioBajaPOIs;
+import ar.edu.TPPOI.SucursalBanco;
+import ar.edu.TPPOI.Terminal;
+import ar.edu.TPPOI.TodosLosUsuarios;
+import ar.edu.TPPOI.UsuariosElegidosPorAdmin;
 import externos.BancoAdapter;
 import externos.CGPAdapter;
 import externos.CentroDTO;

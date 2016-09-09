@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+
 public class BancoAdapterTest {
 
 	SoporteDeInstanciasParaTestsBuilder soporteDeInstanciasParaTestsBuilder;

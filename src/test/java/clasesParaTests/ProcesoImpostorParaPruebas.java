@@ -1,6 +1,8 @@
-package ar.edu.TPPOI;
+package clasesParaTests;
 
 import java.io.IOException;
+
+import ar.edu.TPPOI.Proceso;
 
 public class ProcesoImpostorParaPruebas extends Proceso{
 	
