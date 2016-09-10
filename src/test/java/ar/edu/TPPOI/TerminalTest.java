@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import clasesParaTests.EnvioMailImpostor;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 
 
@@ -23,8 +24,8 @@ public class TerminalTest {
 	Notificar accionNotificar2;
 	Almacenar accionAlmacenar;
 	Almacenar accionAlmacenar2;
-	EnvioDeMail envioDeMail1;
-	EnvioDeMail envioDeMail2;
+	EnvioMailImpostor envioDeMail1;
+	EnvioMailImpostor envioDeMail2;
 	
 	@Before
 	public void init(){
@@ -33,8 +34,8 @@ public class TerminalTest {
 		mapaInteractivo = soporteParaTests.mapa();
 		terminalAbasto = soporteParaTests.terminal();
 		terminalCaballito = soporteParaTests.terminal();
-		envioDeMail1 = soporteParaTests.envioDeMail();
-		envioDeMail2 = soporteParaTests.envioDeMail();
+		envioDeMail1 = new EnvioMailImpostor();
+		envioDeMail2 = new EnvioMailImpostor();
 		accionNotificar = soporteParaTests.notificar(envioDeMail1);
 		accionNotificar2 = soporteParaTests.notificar(envioDeMail2);
 		accionAlmacenar = soporteParaTests.almacenar();

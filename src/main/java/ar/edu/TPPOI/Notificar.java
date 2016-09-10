@@ -8,7 +8,9 @@ public class Notificar implements Accion {
 	public void ejecutarLuegoDeLaBusqueda(BusquedaHecha unaBusqueda, Terminal unaTerminal) {
 
 		if (unaBusqueda.tiempoDeBusqueda > tiempoLimite) {
-			envioDeMail.generateAndSendEmail(tiempoLimite, unaBusqueda.tiempoDeBusqueda);
+			envioDeMail.setTiempoLimite(tiempoLimite);
+			envioDeMail.setTiempoBusqueda(unaBusqueda.tiempoDeBusqueda);
+			envioDeMail.enviarMail();
 		}
 	}
 
