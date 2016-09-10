@@ -9,6 +9,9 @@ import org.uqbar.geodds.Point;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import excepciones.NoExisteServicioAsociadoException;
+import pois.CGP;
+import pois.ParadaDeColectivo;
+import pois.Servicio;
 
 public class CGPTest {
 

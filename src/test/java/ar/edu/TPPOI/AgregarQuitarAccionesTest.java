@@ -7,7 +7,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Polygon;
 
+import acciones.Almacenar;
+import acciones.Notificar;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import criteriosFiltradoTerminales.ComunaALaQuePertenece;
+import criteriosFiltradoTerminales.TodosLosUsuarios;
+import criteriosFiltradoTerminales.UsuariosElegidosPorAdmin;
+import deApoyo.RepositorioDeTerminales;
+import manejoErrores.EnvioDeMail;
+import procesos.ProcAgregarAccionesParaUsuarios;
+import procesos.ProcQuitarAccionesParaUsuarios;
 
 
 public class AgregarQuitarAccionesTest {

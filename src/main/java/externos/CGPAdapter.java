@@ -7,11 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 import org.uqbar.geodds.Polygon;
 
-import ar.edu.TPPOI.CGP;
-import ar.edu.TPPOI.Direccion;
-import ar.edu.TPPOI.Horario;
-import ar.edu.TPPOI.POI;
-import ar.edu.TPPOI.Servicio;
+import pois.CGP;
+import pois.Direccion;
+import pois.Horario;
+import pois.POI;
+import pois.Servicio;
 
 public class CGPAdapter implements SistemaExternoAdapterInterface {
 

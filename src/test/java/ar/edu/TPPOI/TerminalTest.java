@@ -10,8 +10,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import acciones.Almacenar;
+import acciones.Notificar;
 import clasesParaTests.EnvioMailImpostor;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.GeneradorDeReportes;
 
 
 

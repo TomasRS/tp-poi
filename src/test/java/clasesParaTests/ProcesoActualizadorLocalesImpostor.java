@@ -1,6 +1,6 @@
 package clasesParaTests;
 
-import ar.edu.TPPOI.ProcActualizarLocalesComerciales;
+import procesos.ProcActualizarLocalesComerciales;
 
 public class ProcesoActualizadorLocalesImpostor extends ProcActualizarLocalesComerciales {
 	

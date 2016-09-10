@@ -2,6 +2,8 @@ package ar.edu.TPPOI;
 
 import java.time.LocalDateTime;
 
+import procesos.Proceso;
+
 public class Tarea {
 
 	Proceso proceso;

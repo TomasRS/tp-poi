@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import pois.LocalComercial;
 
 public class LocalComercialTest {
 

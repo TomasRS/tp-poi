@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.uqbar.geodds.Polygon;
+
+import acciones.Accion;
+import deApoyo.GeneradorDeReportes;
+import deApoyo.RepositorioDeTerminales;
+import pois.POI;
+
 import java.time.LocalDate;
 
 

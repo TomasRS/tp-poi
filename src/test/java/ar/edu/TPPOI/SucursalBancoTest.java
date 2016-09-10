@@ -9,6 +9,10 @@ import org.uqbar.geodds.Point;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import excepciones.NoExisteServicioAsociadoException;
+import pois.LocalComercial;
+import pois.ParadaDeColectivo;
+import pois.Servicio;
+import pois.SucursalBanco;
 
 public class SucursalBancoTest {
 

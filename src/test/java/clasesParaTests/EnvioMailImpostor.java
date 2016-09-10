@@ -3,7 +3,7 @@ package clasesParaTests;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
-import ar.edu.TPPOI.EnvioDeMail;
+import manejoErrores.EnvioDeMail;
 
 public class EnvioMailImpostor extends EnvioDeMail {
 	

@@ -8,10 +8,10 @@ import org.uqbar.geodds.Point;
 
 import com.google.gson.Gson;
 
-import ar.edu.TPPOI.Direccion;
-import ar.edu.TPPOI.POI;
-import ar.edu.TPPOI.Servicio;
-import ar.edu.TPPOI.SucursalBanco;
+import pois.Direccion;
+import pois.POI;
+import pois.Servicio;
+import pois.SucursalBanco;
 
 public class BancoAdapter implements SistemaExternoAdapterInterface {
 

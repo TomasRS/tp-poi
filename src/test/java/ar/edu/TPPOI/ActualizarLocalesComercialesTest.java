@@ -5,6 +5,11 @@ import org.junit.Test;
 
 import clasesParaTests.ProcesoActualizadorLocalesImpostor;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.ConfiguradorDeProcesos;
+import manejoErrores.NoRealizarAccion;
+import manejoErrores.ReintentarNVeces;
+import pois.LocalComercial;
+import procesos.ProcActualizarLocalesComerciales;
 
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -60,7 +65,7 @@ public class ActualizarLocalesComercialesTest {
 	@Test 
 	public void seDetectanTresElemntosAfectados(){
 		actualizadorDeLocalesComerciales.run();
-		Assert.assertEquals(3,actualizadorDeLocalesComerciales.getResultadoDeEjecucionDelProceso().cantidadDeElementosAfectados,0);
+		Assert.assertEquals(3,actualizadorDeLocalesComerciales.getResultadoDeEjecucionDelProceso().getCantidadDeElementosAfectados(),0);
 	}
 	
 	@Test

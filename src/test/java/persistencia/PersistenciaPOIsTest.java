@@ -10,11 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-import ar.edu.TPPOI.CGP;
-import ar.edu.TPPOI.LocalComercial;
-import ar.edu.TPPOI.ParadaDeColectivo;
-import ar.edu.TPPOI.SucursalBanco;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import pois.CGP;
+import pois.LocalComercial;
+import pois.ParadaDeColectivo;
+import pois.SucursalBanco;
 
 public class PersistenciaPOIsTest {
 	SoporteDeInstanciasParaTestsBuilder soporteTest;

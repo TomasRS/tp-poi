@@ -2,7 +2,7 @@ package clasesParaTests;
 
 import java.io.IOException;
 
-import ar.edu.TPPOI.Proceso;
+import procesos.Proceso;
 
 public class ProcesoImpostorParaPruebasDeReintento extends Proceso{
 	

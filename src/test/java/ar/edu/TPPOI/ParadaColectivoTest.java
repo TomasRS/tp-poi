@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import pois.ParadaDeColectivo;
 
 public class ParadaColectivoTest {
 

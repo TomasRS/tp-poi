@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import pois.CGP;
+import pois.POI;
 
 public class CGPAdapterTest {
 	SoporteDeInstanciasParaTestsBuilder soporteDeInstanciasParaTestsBuilder;
@@ -30,9 +32,9 @@ public class CGPAdapterTest {
 		Assert.assertTrue(
 				soporteDeInstanciasParaTestsBuilder.mapa().buscar("Balvanera").get(0).getNombre().equals("3"));
 		Assert.assertEquals("Junin",
-				soporteDeInstanciasParaTestsBuilder.mapa().buscar("Balvanera").get(0).getDireccion().callePrincipal);
+				soporteDeInstanciasParaTestsBuilder.mapa().buscar("Balvanera").get(0).getDireccion().getCallePrincipal());
 		Assert.assertEquals(521,
-				soporteDeInstanciasParaTestsBuilder.mapa().buscar("Balvanera").get(0).getDireccion().numero, 0);
+				soporteDeInstanciasParaTestsBuilder.mapa().buscar("Balvanera").get(0).getDireccion().getNumero(), 0);
 
 	}
 

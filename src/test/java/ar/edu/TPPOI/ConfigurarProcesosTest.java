@@ -5,6 +5,8 @@ import java.util.Date;
 import org.junit.Before;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.ConfiguradorDeProcesos;
+import procesos.ProcActualizarLocalesComerciales;
 
 public class ConfigurarProcesosTest {
 	ProcActualizarLocalesComerciales actualizadorDeLocalesComerciales;

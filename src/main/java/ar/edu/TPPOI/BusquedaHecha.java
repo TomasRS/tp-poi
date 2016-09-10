@@ -3,6 +3,8 @@ package ar.edu.TPPOI;
 import java.time.LocalDate;
 import java.util.List;
 
+import pois.POI;
+
 public class BusquedaHecha {
 	
 	String frase;

@@ -11,6 +11,9 @@ import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import externos.BancoAdapter;
 import externos.CGPAdapter;
 import externos.CentroDTO;
+import pois.CGP;
+import pois.LocalComercial;
+import pois.Servicio;
 
 public class MapaPOITest {
 
@@ -136,8 +139,8 @@ public class MapaPOITest {
 	public void testQueEncuentreUnCGPQueYaAgregado() {
 		mapaInteractivo.buscar("Balvanera");
 		Assert.assertEquals(mapaInteractivo.busquedaLocal("asesoramiento,").size(), 1);
-		Assert.assertEquals(mapaInteractivo.buscar("Balvanera").get(0).getDireccion().callePrincipal, "Junin");
-		Assert.assertEquals(521, mapaInteractivo.buscar("Balvanera").get(0).getDireccion().numero, 0);
+		Assert.assertEquals(mapaInteractivo.buscar("Balvanera").get(0).getDireccion().getCallePrincipal(), "Junin");
+		Assert.assertEquals(521, mapaInteractivo.buscar("Balvanera").get(0).getDireccion().getNumero(), 0);
 	}
 
 	@Test

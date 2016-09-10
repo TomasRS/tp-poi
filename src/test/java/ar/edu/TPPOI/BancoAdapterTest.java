@@ -9,6 +9,8 @@ import org.uqbar.geodds.Point;
 
 import clasesParaTests.BancoExternoParaTest;
 import externos.BancoAdapter;
+import pois.POI;
+import pois.SucursalBanco;
 
 public class BancoAdapterTest {
 

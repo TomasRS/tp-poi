@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import externos.SistemaExternoAdapterInterface;
+import pois.POI;
+import procesos.ProcDarDeBajaPOIs;
 
 public class MapaPOI {
 

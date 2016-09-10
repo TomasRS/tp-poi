@@ -2,7 +2,7 @@ package externos;
 
 import java.util.List;
 
-import ar.edu.TPPOI.POI;
+import pois.POI;
 
 public interface SistemaExternoAdapterInterface {
 
