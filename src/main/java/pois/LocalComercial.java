@@ -17,6 +17,8 @@ public class LocalComercial extends POI {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Horario> horarios = new ArrayList<Horario>();
+	
+	public LocalComercial(){}
 
 	public static LocalComercial nuevoLocalConRubroLibreriaEscolar(String unNombre, Point unaCoordenada,
 			List<Horario> unosHorarios, Direccion unaDireccion) {

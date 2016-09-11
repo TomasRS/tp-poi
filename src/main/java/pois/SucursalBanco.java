@@ -8,6 +8,8 @@ import org.uqbar.geodds.Point;
 @Entity
 public class SucursalBanco extends EmpresaMultiServicios {
 
+	public SucursalBanco() {}
+
 	private String nombreSucursal;
 
 	public String getNombreSucursal() {
