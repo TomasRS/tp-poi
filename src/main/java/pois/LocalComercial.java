@@ -41,7 +41,7 @@ public class LocalComercial extends POI {
 	public LocalComercial(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
 			String unRubro, Direccion unaDireccion) {
 		this.nombre = unNombre;
-		this.coordenada = unaCoordenada;
+		this.setCoordenada(unaCoordenada);
 		this.radioCercania = unRadioCercania;
 		this.horarios.addAll(unosHorarios);
 		this.rubro = unRubro;

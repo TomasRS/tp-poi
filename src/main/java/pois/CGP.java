@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Transient;
-import javax.persistence.GeneratedValue;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
@@ -58,7 +56,7 @@ public class CGP extends EmpresaMultiServicios {
 
 	public void actualizarDesdeDatos(Point unaCoordenada, Direccion unaDireccion, List<String> unosTags,
 			List<Servicio> unosServicios) {
-		this.coordenada = unaCoordenada;
+		this.setCoordenada(unaCoordenada);
 		this.direccion = unaDireccion;
 		this.tags = unosTags;
 		this.servicios = unosServicios;

@@ -22,7 +22,7 @@ public class SucursalBanco extends EmpresaMultiServicios {
 			Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.nombreSucursal = unNombreSucursal;
-		this.coordenada = unaCoordenada;
+		this.setCoordenada(unaCoordenada);
 		this.radioCercania = unRadioCercania;
 		this.direccion = unaDireccion;
 		this.rubro = "Bancos";

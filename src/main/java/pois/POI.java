@@ -3,7 +3,6 @@ package pois;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
-
-import converters.PointConverter;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -27,8 +25,10 @@ public abstract class POI {
 	protected String nombre;
 	protected String rubro;
 	protected Integer radioCercania;
-	@Convert(converter = PointConverter.class)
-	protected Point coordenada;
+	private Double latitud;
+	private Double longitud;
+	@Transient
+	private Point coordenada;
 	@OneToOne
 	protected Direccion direccion;
 	@ElementCollection
@@ -57,6 +57,12 @@ public abstract class POI {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	protected void setCoordenada(Point unaCoordenada){
+		this.latitud = unaCoordenada.latitude();
+		this.longitud = unaCoordenada.longitude();
+		this.coordenada = unaCoordenada;
+	}
 
 	public Point getCoordenada() {
 		return coordenada;
@@ -68,6 +74,14 @@ public abstract class POI {
 
 	public void setTag(String unTag) {
 		this.tags.add(unTag);
+	}
+
+	public Double getLatitud() {
+		return latitud;
+	}
+
+	public Double getLongitud() {
+		return longitud;
 	}
 
 	public boolean sosValido() {

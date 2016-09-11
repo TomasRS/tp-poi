@@ -2,12 +2,11 @@ package pois;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import org.uqbar.geodds.Point;
 
-@Entity //@DiscriminatorValue(value="parada_colectivo")
+@Entity
 public class ParadaDeColectivo extends POI {
 	
 	@SuppressWarnings(value="unused")
@@ -19,7 +18,7 @@ public class ParadaDeColectivo extends POI {
 
 	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Integer unRadioCercania, Direccion unaDireccion) {
 		this.nombre = unNombre;
-		this.coordenada = unaCoordenada;
+		this.setCoordenada(unaCoordenada);
 		this.radioCercania = unRadioCercania;
 		this.direccion = unaDireccion;
 		this.rubro = "Transporte";
