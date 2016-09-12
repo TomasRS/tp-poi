@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.POIComparator;
 import pois.CGP;
 import pois.LocalComercial;
 import pois.ParadaDeColectivo;
@@ -42,25 +43,25 @@ public class PersistenciaPOIsTest {
 	@Test
 	public void traerParadaColectivo114(){
 		ParadaDeColectivo paradaObtenida = entityManager.find(ParadaDeColectivo.class, 1l);
-		Assert.assertTrue(parada114Lugano.soyElMismoPOI(paradaObtenida));
+		Assert.assertTrue(POIComparator.mismoPOI(parada114Lugano,paradaObtenida));
 	}
 	
 	@Test
 	public void traerLocalComercialStarbucks(){
 		LocalComercial localObtenido = entityManager.find(LocalComercial.class, 2l);
-		Assert.assertTrue(lcStarbucks.soyElMismoPOI(localObtenido));
+		Assert.assertTrue(POIComparator.mismoPOI(lcStarbucks, localObtenido));
 	}
 	
 	@Test
 	public void traerCGP5(){
 		CGP cgpObtenido = entityManager.find(CGP.class, 3l);
-		Assert.assertTrue(cgpC5.soyElMismoPOI(cgpObtenido));
+		Assert.assertTrue(POIComparator.mismoPOI(cgpC5, cgpObtenido));
 	}
 	
 	@Test
 	public void traerBancoCiudad(){
-		SucursalBanco bancoOntenido = entityManager.find(SucursalBanco.class, 4l);
-		Assert.assertTrue(bancoCiudad.soyElMismoPOI(bancoOntenido));
+		SucursalBanco bancoObtenido = entityManager.find(SucursalBanco.class, 4l);
+		Assert.assertTrue(POIComparator.mismoPOI(bancoCiudad, bancoObtenido));
 	}
 
 	public void persistirParadaDeColectivo114(){

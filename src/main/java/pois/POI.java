@@ -20,15 +20,13 @@ import org.uqbar.geodds.Point;
 public abstract class POI {
 	
 	@Id @GeneratedValue
-	protected long Id;
+	public long Id;
 	
 	protected String nombre;
 	protected String rubro;
 	protected Integer radioCercania;
 	private Double latitud;
 	private Double longitud;
-	@Transient
-	private Point coordenada;
 	@OneToOne
 	protected Direccion direccion;
 	@ElementCollection
@@ -59,13 +57,17 @@ public abstract class POI {
 	}
 	
 	protected void setCoordenada(Point unaCoordenada){
+		System.out.println("ASIGNO POINT----------------------");
 		this.latitud = unaCoordenada.latitude();
 		this.longitud = unaCoordenada.longitude();
-		this.coordenada = unaCoordenada;
 	}
 
 	public Point getCoordenada() {
-		return coordenada;
+		if (latitud!=null && latitud!=null){
+			return new Point(latitud, longitud);
+		} else {
+			return null;
+		}
 	}
 
 	public List<String> getTags() {
@@ -140,14 +142,14 @@ public abstract class POI {
 	public boolean soyElMismoPOI(POI otroPOI) {
 		return StringUtils.containsIgnoreCase(otroPOI.getNombre(), this.getNombre());
 	}
-
+	
 	public abstract boolean coincideConAtributo(String unTextoLibre);
 
 	public abstract void actualizar(POI unPOIExterno);
 
 	public void actualizarDesdeDatos(Point unaCoordenada, Integer unRadioCercania, String unRubro,
 			Direccion unaDireccion, List<String> unosTags) {
-		this.coordenada = unaCoordenada;
+		this.setCoordenada(unaCoordenada);;
 		this.radioCercania = unRadioCercania;
 		this.rubro = unRubro;
 		this.direccion = unaDireccion;

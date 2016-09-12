@@ -70,4 +70,40 @@ public class Direccion {
 		return callePrincipal;
 	}
 
+	public String getCalle1() {
+		return calle1;
+	}
+
+	public String getCalle2() {
+		return calle2;
+	}
+
+	public Integer getPiso() {
+		return piso;
+	}
+
+	public String getLetraDepto() {
+		return letraDepto;
+	}
+
+	public String getUnidad() {
+		return unidad;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public String getBarrio() {
+		return barrio;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
 }

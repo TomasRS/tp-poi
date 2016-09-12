@@ -17,7 +17,7 @@ public class CGP extends EmpresaMultiServicios {
 	@ElementCollection
 	private List<String> zonasQueIncluye;
 	
-	@SuppressWarnings(value="unnused")
+	@SuppressWarnings(value="unused")
 	public CGP(){}
 
 	public List<String> getZonasQueIncluye() {
