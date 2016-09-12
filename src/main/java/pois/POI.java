@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringUtils;
 import org.uqbar.geodds.Point;
@@ -57,7 +56,6 @@ public abstract class POI {
 	}
 	
 	protected void setCoordenada(Point unaCoordenada){
-		System.out.println("ASIGNO POINT----------------------");
 		this.latitud = unaCoordenada.latitude();
 		this.longitud = unaCoordenada.longitude();
 	}
