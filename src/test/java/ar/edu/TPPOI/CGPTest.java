@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.Punto;
 import excepciones.NoExisteServicioAsociadoException;
 import pois.CGP;
 import pois.ParadaDeColectivo;
@@ -15,7 +15,7 @@ import pois.Servicio;
 
 public class CGPTest {
 
-	Point coordenadaMia;
+	Punto coordenadaMia;
 	ParadaDeColectivo parada114DeCabildoYMonroe;
 	CGP cgp1;
 	Servicio prestamo, cargaSUBE;

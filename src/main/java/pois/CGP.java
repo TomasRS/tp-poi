@@ -7,9 +7,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-import org.uqbar.geodds.Point;
-
 import deApoyo.Poligono;
+import deApoyo.Punto;
 
 @Entity
 public class CGP extends EmpresaMultiServicios {
@@ -41,7 +40,7 @@ public class CGP extends EmpresaMultiServicios {
 		this.direccion = unaDireccion;
 	}
 
-	public boolean estasCercaDe(Point unaCoordenada) {
+	public boolean estasCercaDe(Punto unaCoordenada) {
 		return this.comuna.isInside(unaCoordenada);
 	}
 
@@ -56,7 +55,7 @@ public class CGP extends EmpresaMultiServicios {
 				((CGP) unCGPExterno).getServicios());
 	}
 
-	public void actualizarDesdeDatos(Point unaCoordenada, Direccion unaDireccion, List<String> unosTags,
+	public void actualizarDesdeDatos(Punto unaCoordenada, Direccion unaDireccion, List<String> unosTags,
 			List<Servicio> unosServicios) {
 		this.setCoordenada(unaCoordenada);
 		this.direccion = unaDireccion;

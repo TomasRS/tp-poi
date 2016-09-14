@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.Punto;
 import excepciones.NoExisteServicioAsociadoException;
 import pois.LocalComercial;
 import pois.ParadaDeColectivo;
@@ -17,7 +17,7 @@ import pois.SucursalBanco;
 public class SucursalBancoTest {
 
 	LocalComercial cineAbasto;
-	Point coordenadaMia, coordenadaCercaBancoCiudad;
+	Punto coordenadaMia, coordenadaCercaBancoCiudad;
 	ParadaDeColectivo parada114DeCabildoYMonroe;
 	Servicio prestamo;
 	Servicio deudas;
@@ -29,7 +29,7 @@ public class SucursalBancoTest {
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 
 		coordenadaMia = soporteParaTests.miCoordenaAbasto();
-		coordenadaCercaBancoCiudad = new Point(-58.46362069999999, -34.5545479);
+		coordenadaCercaBancoCiudad = new Punto(-58.46362069999999, -34.5545479);
 
 		parada114DeCabildoYMonroe = soporteParaTests.paradaDeColectivo114DeCabildoYMonroe();
 		prestamo = soporteParaTests.prestamo();

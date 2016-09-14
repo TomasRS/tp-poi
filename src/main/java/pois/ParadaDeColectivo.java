@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 
-import org.uqbar.geodds.Point;
+import deApoyo.Punto;
 
 @Entity
 public class ParadaDeColectivo extends POI {
@@ -12,11 +12,11 @@ public class ParadaDeColectivo extends POI {
 	@SuppressWarnings(value="unused")
 	public ParadaDeColectivo(){}
 
-	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Direccion unaDireccion) {
+	public ParadaDeColectivo(String unNombre, Punto unaCoordenada, Direccion unaDireccion) {
 		this(unNombre, unaCoordenada, 100, unaDireccion);
 	}
 
-	public ParadaDeColectivo(String unNombre, Point unaCoordenada, Integer unRadioCercania, Direccion unaDireccion) {
+	public ParadaDeColectivo(String unNombre, Punto unaCoordenada, Integer unRadioCercania, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.setCoordenada(unaCoordenada);
 		this.radioCercania = unRadioCercania;

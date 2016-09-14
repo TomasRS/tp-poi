@@ -6,12 +6,12 @@ import javax.persistence.EntityTransaction;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.POIComparator;
 import deApoyo.Poligono;
+import deApoyo.Punto;
 import pois.CGP;
 import pois.LocalComercial;
 import pois.ParadaDeColectivo;
@@ -51,7 +51,7 @@ public class PersistenciaPOIsTest {
 	@Test
 	public void traerLocalComercialStarbucks(){
 		LocalComercial localObtenido = entityManager.find(LocalComercial.class, 2l);
-		Assert.assertTrue(POIComparator.mismoPOI(lcStarbucks, localObtenido));
+		Assert.assertTrue(POIComparator.mismoLocalComercial(lcStarbucks, localObtenido));
 	}
 	
 	@Test
@@ -69,6 +69,7 @@ public class PersistenciaPOIsTest {
 	public void persistirParadaDeColectivo114(){
 		tx.begin();
 		parada114Lugano.setTag("economico");
+		entityManager.persist(parada114Lugano.getCoordenada());
 		entityManager.persist(parada114Lugano.getDireccion());
 		entityManager.persist(parada114Lugano);
 		tx.commit();
@@ -76,6 +77,7 @@ public class PersistenciaPOIsTest {
 	
 	public void persistirLocalComercialStarbucks(){
 		tx.begin();
+		entityManager.persist(lcStarbucks.getCoordenada());
 		entityManager.persist(lcStarbucks.getDireccion());
 		entityManager.persist(lcStarbucks);
 		tx.commit();
@@ -83,6 +85,7 @@ public class PersistenciaPOIsTest {
 	
 	public void persistirCGP5(){
 		tx.begin();
+//		entityManager.persist(cgpC5.getCoordenada());
 		entityManager.persist(cgpC5.getDireccion());
 		entityManager.persist(cgpC5);
 		tx.commit();
@@ -90,6 +93,7 @@ public class PersistenciaPOIsTest {
 	
 	public void persistirSucursalBancoCiudad(){
 		tx.begin();
+		entityManager.persist(bancoCiudad.getCoordenada());
 		entityManager.persist(bancoCiudad.getDireccion());
 		entityManager.persist(bancoCiudad);
 		tx.commit();
@@ -99,8 +103,8 @@ public class PersistenciaPOIsTest {
 	public void persistirAlgo(){
 		tx.begin();
 		Poligono poli = new Poligono();
-		poli.add(new Point(0, 1));
-		poli.add(new Point(3, 5));
+		poli.add(new Punto(0, 1));
+		poli.add(new Punto(3, 5));
 		entityManager.persist(poli);
 		tx.commit();
 	}

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
-
 import acciones.Almacenar;
 import acciones.Notificar;
 import ar.edu.TPPOI.MapaPOI;
@@ -19,6 +17,7 @@ import criteriosFiltradoTerminales.UsuariosElegidosPorAdmin;
 import deApoyo.ConfiguradorDeProcesos;
 import deApoyo.GeneradorDeReportes;
 import deApoyo.Poligono;
+import deApoyo.Punto;
 import deApoyo.RepositorioDeTerminales;
 import externos.BancoAdapter;
 import externos.CGPAdapter;
@@ -42,7 +41,7 @@ import procesos.ProcQuitarAccionesParaUsuarios;
 
 public class SoporteDeInstanciasParaTestsBuilder {
 
-	Point miCoordenaAbasto, coordenadaCercaParada114, coordenadaCercaBancoCiudad, coordenadaStarbucks,
+	Punto miCoordenaAbasto, coordenadaCercaParada114, coordenadaCercaBancoCiudad, coordenadaStarbucks,
 			coordenadaCercaStarbucks, coordenadaSportClub, coordenadaCineAbasto, coordenadaParada114,
 			coordenadaBancoCiudad;
 	ParadaDeColectivo parada114DeCabildoYMonroe, parada114DeLugano;
@@ -77,9 +76,9 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	UsuariosElegidosPorAdmin adminCriterio;
 	
 
-	public Point miCoordenaAbasto() {
+	public Punto miCoordenaAbasto() {
 		if (miCoordenaAbasto == null) {
-			miCoordenaAbasto = new Point(-58.42059446334839, -34.60421247366349);
+			miCoordenaAbasto = new Punto(-58.42059446334839, -34.60421247366349);
 		}
 
 		return miCoordenaAbasto;
@@ -87,7 +86,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public ParadaDeColectivo paradaDeColectivo114DeCabildoYMonroe() {
 		if (parada114DeCabildoYMonroe == null) {
-			coordenadaParada114 = new Point(-58.459845185279846, -34.558164509672146);
+			coordenadaParada114 = new Punto(-58.459845185279846, -34.558164509672146);
 			Direccion direccionParada114 = new Direccion();
 			direccionParada114.setCalles("Monroe", "Cabildo");
 			parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114, direccionParada114);
@@ -98,7 +97,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public ParadaDeColectivo paradaDeColectivo114DeLugano() {
 		if (parada114DeLugano == null) {
-			coordenadaParada114 = new Point(-88.459845185279846, -24.558164509672146);
+			coordenadaParada114 = new Punto(-88.459845185279846, -24.558164509672146);
 			Direccion direccionParada114 = new Direccion();
 			direccionParada114.setCalles("lugano", "mozart");
 			parada114DeLugano = new ParadaDeColectivo("114", coordenadaParada114, direccionParada114);
@@ -188,7 +187,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public SucursalBanco bancoCiudadCabildoYCongreso() {
 		if (bancoCiudadCabildoYCongreso == null) {
-			coordenadaBancoCiudad = new Point(-58.46362049999999, -34.5545459);
+			coordenadaBancoCiudad = new Punto(-58.46362049999999, -34.5545459);
 			Direccion direccionBancoCiudad = new Direccion();
 			direccionBancoCiudad.setCalles("Cabildo", "Congreso");
 			bancoCiudadCabildoYCongreso = new SucursalBanco("Banco Ciudad", "Belgrano", coordenadaBancoCiudad,
@@ -202,14 +201,14 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public CGP cgpComuna5() {
 		if (cgpComuna5 == null) {
 			Direccion direccionCGP = new Direccion("Corrientes", 500);
-			List<Point> puntos = new ArrayList<>();
+			List<Punto> puntos = new ArrayList<>();
 			List<String> zonasCGP5 = new ArrayList<>();
-			puntos.add(new Point(-58.411898, -34.597984));
-			puntos.add(new Point(-58.426446, -34.597878));
-			puntos.add(new Point(-58.433334, -34.602696));
-			puntos.add(new Point(-58.430051, -34.615469));
-			puntos.add(new Point(-58.427899, -34.622162));
-			puntos.add(new Point(-58.412372, -34.620890));
+			puntos.add(new Punto(-58.411898, -34.597984));
+			puntos.add(new Punto(-58.426446, -34.597878));
+			puntos.add(new Punto(-58.433334, -34.602696));
+			puntos.add(new Punto(-58.430051, -34.615469));
+			puntos.add(new Punto(-58.427899, -34.622162));
+			puntos.add(new Punto(-58.412372, -34.620890));
 			Poligono poligonoCGP = new Poligono(puntos);
 			cgpComuna5 = new CGP("Comuna 5", "Propositos generales", poligonoCGP, direccionCGP);
 			cgpComuna5.agregarServicio(cargaSUBE());
@@ -224,7 +223,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public LocalComercial starbucksCoronelDiaz1400() {
 		if (starbucksCoronelDiaz1400 == null) {
-			coordenadaStarbucks = new Point(-58.413718, -34.593303);
+			coordenadaStarbucks = new Punto(-58.413718, -34.593303);
 			LocalTime horaInicio = LocalTime.of(10, 00);
 			LocalTime horaFin = LocalTime.of(20, 00);
 			List<Horario> horarios2 = new ArrayList<>();
@@ -244,7 +243,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public LocalComercial starbucksRivadavia() {
 		if (starbucksRivadavia == null) {
-			coordenadaStarbucks = new Point(-98.413718, -44.593303);
+			coordenadaStarbucks = new Punto(-98.413718, -44.593303);
 			LocalTime horaInicio = LocalTime.of(10, 00);
 			LocalTime horaFin = LocalTime.of(20, 00);
 			List<Horario> horarios2 = new ArrayList<>();
@@ -265,7 +264,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public LocalComercial sportClubLibertador7395() {
 		if (sportClubLibertador7395 == null) {
-			coordenadaSportClub = new Point(-58.4627205, -34.5436991);
+			coordenadaSportClub = new Punto(-58.4627205, -34.5436991);
 			LocalTime horaInicioGym = LocalTime.of(7, 00);
 			LocalTime horaFinGym = LocalTime.of(22, 00);
 			List<Horario> horariosGym = new ArrayList<>();
@@ -288,7 +287,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public LocalComercial cineAbasto() {
 		if (cineAbasto == null) {
-			coordenadaCineAbasto = new Point(-34.6033055, -58.411887);
+			coordenadaCineAbasto = new Punto(-34.6033055, -58.411887);
 			Direccion direccionCineAbasto = new Direccion("Av Corrientes", 3247);
 			LocalTime horaInicioCine = LocalTime.of(10, 00);
 			LocalTime horaFinCine = LocalTime.of(23, 00);
@@ -435,25 +434,25 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	}
 	
 	public Poligono crearComunaAbasto(){
-		List<Point> puntosAbasto = new ArrayList<>();
-		puntosAbasto.add(new Point(-58.411898, -34.597984));
-		puntosAbasto.add(new Point(-58.426446, -34.597878));
-		puntosAbasto.add(new Point(-58.433334, -34.602696));
-		puntosAbasto.add(new Point(-58.430051, -34.615469));
-		puntosAbasto.add(new Point(-58.427899, -34.622162));
-		puntosAbasto.add(new Point(-58.412372, -34.620890));
+		List<Punto> puntosAbasto = new ArrayList<>();
+		puntosAbasto.add(new Punto(-58.411898, -34.597984));
+		puntosAbasto.add(new Punto(-58.426446, -34.597878));
+		puntosAbasto.add(new Punto(-58.433334, -34.602696));
+		puntosAbasto.add(new Punto(-58.430051, -34.615469));
+		puntosAbasto.add(new Punto(-58.427899, -34.622162));
+		puntosAbasto.add(new Punto(-58.412372, -34.620890));
 		comunaAbasto = new Poligono(puntosAbasto);
 		return comunaAbasto;
 	}
 	
 	public Poligono crearComunaCaballito(){
-		List<Point> puntosCaballito = new ArrayList<>();
-		puntosCaballito.add(new Point(-58.411898, -34.597984));
-		puntosCaballito.add(new Point(-58.426446, -34.597878));
-		puntosCaballito.add(new Point(-58.433334, -34.602696));
-		puntosCaballito.add(new Point(-58.430051, -34.615469));
-		puntosCaballito.add(new Point(-58.427899, -34.622162));
-		puntosCaballito.add(new Point(-58.412372, -34.620891));
+		List<Punto> puntosCaballito = new ArrayList<>();
+		puntosCaballito.add(new Punto(-58.411898, -34.597984));
+		puntosCaballito.add(new Punto(-58.426446, -34.597878));
+		puntosCaballito.add(new Punto(-58.433334, -34.602696));
+		puntosCaballito.add(new Punto(-58.430051, -34.615469));
+		puntosCaballito.add(new Punto(-58.427899, -34.622162));
+		puntosCaballito.add(new Punto(-58.412372, -34.620891));
 		comunaCaballito = new Poligono(puntosCaballito);
 		return comunaCaballito;
 	}

@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.Punto;
 import pois.LocalComercial;
 
 public class LocalComercialTest {
 
-	Point coordenadaMia, coordenadaCercaStarbucks;
+	Punto coordenadaMia, coordenadaCercaStarbucks;
 	LocalComercial starbucks;
 	LocalComercial cineAbasto;
 
@@ -22,7 +22,7 @@ public class LocalComercialTest {
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
 
 		coordenadaMia = soporteParaTests.miCoordenaAbasto();
-		coordenadaCercaStarbucks = new Point(-58.414099, -34.593686);
+		coordenadaCercaStarbucks = new Punto(-58.414099, -34.593686);
 		cineAbasto= soporteParaTests.cineAbasto();
 		starbucks = soporteParaTests.starbucksCoronelDiaz1400();
 	}

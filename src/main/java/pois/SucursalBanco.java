@@ -3,7 +3,8 @@ package pois;
 import javax.persistence.Entity;
 
 import org.apache.commons.lang3.StringUtils;
-import org.uqbar.geodds.Point;
+
+import deApoyo.Punto;
 
 @Entity
 public class SucursalBanco extends EmpresaMultiServicios {
@@ -16,11 +17,11 @@ public class SucursalBanco extends EmpresaMultiServicios {
 		return nombreSucursal;
 	}
 
-	public SucursalBanco(String unNombre, String unNombreSucursal, Point unaCoordenada, Direccion unaDireccion) {
+	public SucursalBanco(String unNombre, String unNombreSucursal, Punto unaCoordenada, Direccion unaDireccion) {
 		this(unNombre, unNombreSucursal, unaCoordenada, 500, unaDireccion);
 	}
 
-	private SucursalBanco(String unNombre, String unNombreSucursal, Point unaCoordenada, Integer unRadioCercania,
+	private SucursalBanco(String unNombre, String unNombreSucursal, Punto unaCoordenada, Integer unRadioCercania,
 			Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.nombreSucursal = unNombreSucursal;

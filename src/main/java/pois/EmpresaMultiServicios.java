@@ -8,8 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
-import org.uqbar.geodds.Point;
-
+import deApoyo.Punto;
 import excepciones.NoExisteServicioAsociadoException;
 
 @Entity
@@ -50,7 +49,7 @@ public abstract class EmpresaMultiServicios extends POI {
 				unPOIExterno.getTags());
 	}
 
-	public void actualizarDesdeDatos(Point unaCoordenada, Integer unRadioCercania, String unRubro,
+	public void actualizarDesdeDatos(Punto unaCoordenada, Integer unRadioCercania, String unRubro,
 			Direccion unaDireccion, List<Servicio> unosServicios, List<String> unosTags) {
 		super.actualizarDesdeDatos(unaCoordenada, unRadioCercania, unRubro, unaDireccion, unosTags);
 		this.servicios = unosServicios;

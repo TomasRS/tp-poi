@@ -39,5 +39,12 @@ public class Horario {
 		return ((this.diaDeLaSemana == unDiaDeSemana)
 				&& (horaDelDia.isAfter(horaInicio) && horaDelDia.isBefore(horaFin)));
 	}
+	
+	public boolean equals(Horario otroHorario){
+		boolean mismoDia = (diaDeLaSemana==otroHorario.diaDeLaSemana);
+		boolean mismaHoraInicio = (horaInicio == otroHorario.horaInicio);
+		boolean mismaHoraFin = (horaFin == otroHorario.horaFin);
+		return mismoDia&&mismaHoraInicio&&mismaHoraFin;
+	}
 
 }

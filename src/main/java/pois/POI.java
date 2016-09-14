@@ -13,9 +13,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 
 import org.apache.commons.lang3.StringUtils;
-import org.uqbar.geodds.Point;
 
-import converters.PointConverter;
+import deApoyo.Punto;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -27,8 +26,8 @@ public abstract class POI {
 	protected String nombre;
 	protected String rubro;
 	protected Integer radioCercania;
-	@Convert(converter=PointConverter.class)
-	protected Point coordenada;
+	@OneToOne
+	protected Punto coordenada;
 	@OneToOne
 	protected Direccion direccion;
 	@ElementCollection
@@ -58,11 +57,11 @@ public abstract class POI {
 		this.nombre = nombre;
 	}
 	
-	protected void setCoordenada(Point unaCoordenada){
+	protected void setCoordenada(Punto unaCoordenada){
 		this.coordenada = unaCoordenada;
 	}
 
-	public Point getCoordenada() {
+	public Punto getCoordenada() {
 		return coordenada;
 	}
 
@@ -86,15 +85,15 @@ public abstract class POI {
 		return this.getCoordenada() != null;
 	}
 
-	public boolean estasCercaDe(Point unaCoordenada) {
+	public boolean estasCercaDe(Punto unaCoordenada) {
 		return this.estasAMenosDeXMetrosDe(this.radioCercania, unaCoordenada);
 	}
 
-	private boolean estasAMenosDeXMetrosDe(Integer unosMetros, Point unaCoordenada) {
+	private boolean estasAMenosDeXMetrosDe(Integer unosMetros, Punto unaCoordenada) {
 		return this.distanciaAUnaCoordenada(unaCoordenada) < (unosMetros / 1000.0);
 	}
 
-	private double distanciaAUnaCoordenada(Point unaCoordenada) {
+	private double distanciaAUnaCoordenada(Punto unaCoordenada) {
 		return this.getCoordenada().distance(unaCoordenada);
 	}
 
@@ -135,7 +134,7 @@ public abstract class POI {
 
 	public abstract void actualizar(POI unPOIExterno);
 
-	public void actualizarDesdeDatos(Point unaCoordenada, Integer unRadioCercania, String unRubro,
+	public void actualizarDesdeDatos(Punto unaCoordenada, Integer unRadioCercania, String unRubro,
 			Direccion unaDireccion, List<String> unosTags) {
 		this.setCoordenada(unaCoordenada);;
 		this.radioCercania = unRadioCercania;

@@ -8,9 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import org.uqbar.geodds.Point;
-
 import deApoyo.ExisteHorarioDisponibleEnHorarios;
+import deApoyo.Punto;
 
 @Entity
 public class LocalComercial extends POI {
@@ -20,27 +19,27 @@ public class LocalComercial extends POI {
 	
 	public LocalComercial(){}
 
-	public static LocalComercial nuevoLocalConRubroLibreriaEscolar(String unNombre, Point unaCoordenada,
+	public static LocalComercial nuevoLocalConRubroLibreriaEscolar(String unNombre, Punto unaCoordenada,
 			List<Horario> unosHorarios, Direccion unaDireccion) {
 		return new LocalComercial(unNombre, unaCoordenada, 500, unosHorarios, "LibreriaEscolar", unaDireccion);
 	}
 
-	public static LocalComercial nuevoLocalConRubroKioscoDiarios(String unNombre, Point unaCoordenada,
+	public static LocalComercial nuevoLocalConRubroKioscoDiarios(String unNombre, Punto unaCoordenada,
 			List<Horario> unosHorarios, Direccion unaDireccion) {
 		return new LocalComercial(unNombre, unaCoordenada, 200, unosHorarios, "Kiosco Diarios", unaDireccion);
 	}
 
-	public static LocalComercial nuevoLocalConRubroCafeteria(String unNombre, Point unaCoordenada,
+	public static LocalComercial nuevoLocalConRubroCafeteria(String unNombre, Punto unaCoordenada,
 			List<Horario> unosHorarios, Direccion unaDireccion) {
 		return new LocalComercial(unNombre, unaCoordenada, 50, unosHorarios, "Cafeteria", unaDireccion);
 	}
 
-	public static LocalComercial nuevoLocal(String unNombre, Point unaCoordenada, Integer unRadioCercania,
+	public static LocalComercial nuevoLocal(String unNombre, Punto unaCoordenada, Integer unRadioCercania,
 			List<Horario> unosHorarios, String unRubro, Direccion unaDireccion) {
 		return new LocalComercial(unNombre, unaCoordenada, unRadioCercania, unosHorarios, unRubro, unaDireccion);
 	}
 
-	public LocalComercial(String unNombre, Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
+	public LocalComercial(String unNombre, Punto unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
 			String unRubro, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.setCoordenada(unaCoordenada);
@@ -67,7 +66,7 @@ public class LocalComercial extends POI {
 				((LocalComercial) unPOI).getHorarios(), unPOI.getRubro(), unPOI.getDireccion(), unPOI.getTags());
 	}
 
-	public void actualizarDesdeDatos(Point unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
+	public void actualizarDesdeDatos(Punto unaCoordenada, Integer unRadioCercania, List<Horario> unosHorarios,
 			String unRubro, Direccion unaDireccion, List<String> unosTags) {
 
 		super.actualizarDesdeDatos(unaCoordenada, unRadioCercania, unRubro, unaDireccion, unosTags);

@@ -18,6 +18,7 @@
     	<class>ar.edu.TPPOI.Horario</class>
     	<class>ar.edu.TPPOI.Servicio</class>
     	<class>deApoyo.Poligono</class>
+    	<class>deApoyo.Punto</class>
     	 
         <properties> 
 	    	<property name="hibernate.archive.autodetection" value="class"/>        

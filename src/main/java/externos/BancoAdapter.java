@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
-
 import com.google.gson.Gson;
 
+import deApoyo.Punto;
 import pois.Direccion;
 import pois.POI;
 import pois.Servicio;
@@ -39,7 +38,7 @@ public class BancoAdapter implements SistemaExternoAdapterInterface {
 	}
 
 	private SucursalBanco nuevaSucursal(BancoJSON unBancoJSON) {
-		Point coordenadaSucursalBanco = new Point(unBancoJSON.getX(), unBancoJSON.getY());
+		Punto coordenadaSucursalBanco = new Punto(unBancoJSON.getX(), unBancoJSON.getY());
 		SucursalBanco sucursalBanco = new SucursalBanco(unBancoJSON.getBanco(), unBancoJSON.getSucursal(),
 				coordenadaSucursalBanco, new Direccion());
 		unBancoJSON.getServicios().remove("");

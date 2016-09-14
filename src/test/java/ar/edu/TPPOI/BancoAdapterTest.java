@@ -5,9 +5,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
 
 import clasesParaTests.BancoExternoParaTest;
+import deApoyo.Punto;
 import externos.BancoAdapter;
 import pois.POI;
 import pois.SucursalBanco;
@@ -34,13 +34,13 @@ public class BancoAdapterTest {
 		Assert.assertEquals(unaSucursalBanco.getNombre(), "Banco de la Plaza");
 		Assert.assertEquals(unaSucursalBanco.getRubro(), "Bancos");
 		Assert.assertEquals(unaSucursalBanco.getRadioCercania(), (Integer) 500);
-		Assert.assertEquals(unaSucursalBanco.getCoordenada().toString(), new Point(-35.9338322, 72.348353).toString());
+		Assert.assertEquals(unaSucursalBanco.getCoordenada().toString(), new Punto(-35.9338322, 72.348353).toString());
 		Assert.assertEquals(unaSucursalBanco.getNombreSucursal(), "Avellaneda");
 		unaSucursalBanco = (SucursalBanco) listaDePOIs.get(1);
 		Assert.assertEquals(unaSucursalBanco.getNombre(), "Banco de la Plaza");
 		Assert.assertEquals(unaSucursalBanco.getRubro(), "Bancos");
 		Assert.assertEquals(unaSucursalBanco.getRadioCercania(), (Integer) 500);
-		Assert.assertEquals(unaSucursalBanco.getCoordenada().toString(), new Point(-35.9345681, 72.344546).toString());
+		Assert.assertEquals(unaSucursalBanco.getCoordenada().toString(), new Punto(-35.9345681, 72.344546).toString());
 		Assert.assertEquals(unaSucursalBanco.getNombreSucursal(), "Caballito");
 	}
 
