@@ -6,10 +6,12 @@ import javax.persistence.EntityTransaction;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.POIComparator;
+import deApoyo.Poligono;
 import pois.CGP;
 import pois.LocalComercial;
 import pois.ParadaDeColectivo;
@@ -90,6 +92,16 @@ public class PersistenciaPOIsTest {
 		tx.begin();
 		entityManager.persist(bancoCiudad.getDireccion());
 		entityManager.persist(bancoCiudad);
+		tx.commit();
+	}
+	
+	@Test
+	public void persistirAlgo(){
+		tx.begin();
+		Poligono poli = new Poligono();
+		poli.add(new Point(0, 1));
+		poli.add(new Point(3, 5));
+		entityManager.persist(poli);
 		tx.commit();
 	}
 

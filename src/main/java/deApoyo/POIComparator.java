@@ -1,7 +1,11 @@
 package deApoyo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.uqbar.geodds.Point;
 
+import pois.CGP;
 import pois.Direccion;
 import pois.POI;
 
@@ -12,9 +16,27 @@ public class POIComparator {
 		boolean mismoNombre = unPOI.getNombre().equalsIgnoreCase(otroPOI.getNombre());
 		boolean mismoRadioCercania = mismoNumero(unPOI.getRadioCercania(), otroPOI.getRadioCercania());
 		boolean mismoRubro = unPOI.getRubro().equalsIgnoreCase(otroPOI.getRubro());
-		boolean mismosTags = unPOI.getTags().containsAll(otroPOI.getTags())||(unPOI.getTags().size()==otroPOI.getTags().size());
+		boolean mismosTags = mismosElementosEnLista(unPOI.getTags(), otroPOI.getTags());
 		return mismaCoordenada && mismaDireccion && mismoNombre && 
 				mismoRadioCercania && mismoRubro && mismosTags; 
+	}
+	
+	public static boolean mismoCGP(POI unCGP, POI otroCGP){
+		boolean mismosComunes = mismoPOI(unCGP, otroCGP);
+		CGP cgp1, cgp2;
+		cgp1 = (CGP) unCGP;
+		cgp2 = (CGP) otroCGP;
+		boolean mismoPolig = mismoPoligono(cgp1.getComuna(), cgp2.getComuna());
+		boolean mismasZonas = mismosElementosEnLista(cgp1.getZonasQueIncluye(), cgp2.getZonasQueIncluye());
+		return mismosComunes && mismoPolig && mismasZonas;
+	}
+	
+	public static boolean mismoPoligono(Poligono unPolig, Poligono otroPolig){
+		return true;
+	}
+	
+	public static boolean mismosElementosEnLista(List<String> unaLista, List<String> otraLista){
+		return (unaLista.containsAll(otraLista))&&(unaLista.size()==otraLista.size());
 	}
 	
 	public static boolean mismoPunto(Point unPunto, Point otroPunto){

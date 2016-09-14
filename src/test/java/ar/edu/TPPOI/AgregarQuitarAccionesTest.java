@@ -5,7 +5,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Polygon;
 
 import acciones.Almacenar;
 import acciones.Notificar;
@@ -13,6 +12,7 @@ import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import criteriosFiltradoTerminales.ComunaALaQuePertenece;
 import criteriosFiltradoTerminales.TodosLosUsuarios;
 import criteriosFiltradoTerminales.UsuariosElegidosPorAdmin;
+import deApoyo.Poligono;
 import deApoyo.RepositorioDeTerminales;
 import manejoErrores.EnvioDeMail;
 import procesos.ProcAgregarAccionesParaUsuarios;
@@ -34,8 +34,8 @@ public class AgregarQuitarAccionesTest {
 	ComunaALaQuePertenece comunaCriterio; 
 	TodosLosUsuarios todosUsersCriterio;
 	UsuariosElegidosPorAdmin adminCriterio;
-	Polygon comunaAbasto;
-	Polygon comunaCaballito;
+	Poligono comunaAbasto;
+	Poligono comunaCaballito;
 	
 
 	@Before

@@ -3,10 +3,9 @@ package ar.edu.TPPOI;
 import java.util.List;
 import java.util.Set;
 
-import org.uqbar.geodds.Polygon;
-
 import acciones.Accion;
 import deApoyo.GeneradorDeReportes;
+import deApoyo.Poligono;
 import deApoyo.RepositorioDeTerminales;
 import pois.POI;
 
@@ -24,15 +23,15 @@ public class Terminal {
 	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
 	Set<Accion> acciones = new HashSet<Accion>();
 	GeneradorDeReportes reporte;
-	Polygon comuna;
+	Poligono comuna;
 	
 	//-------------------------------------------------------------
 	
-	public Polygon getComuna() {
+	public Poligono getComuna() {
 		return comuna;
 	}
 
-	public void setComuna(Polygon comuna) {
+	public void setComuna(Poligono comuna) {
 		this.comuna = comuna;
 	}
 

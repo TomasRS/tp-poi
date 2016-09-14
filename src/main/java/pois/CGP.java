@@ -2,18 +2,20 @@ package pois;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.OneToOne;
 
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
+
+import deApoyo.Poligono;
 
 @Entity
 public class CGP extends EmpresaMultiServicios {
 	
-	@Transient
-	private Polygon comuna;
+	@OneToOne(cascade=CascadeType.ALL)
+	private Poligono comuna;
 	@ElementCollection
 	private List<String> zonasQueIncluye;
 	
@@ -24,7 +26,7 @@ public class CGP extends EmpresaMultiServicios {
 		return zonasQueIncluye;
 	}
 
-	public Polygon getComuna() {
+	public Poligono getComuna() {
 		return comuna;
 	}
 
@@ -32,7 +34,7 @@ public class CGP extends EmpresaMultiServicios {
 		this.zonasQueIncluye = zonasQueIncluye;
 	}
 
-	public CGP(String unNombre, String unRubro, Polygon unaComuna, Direccion unaDireccion) {
+	public CGP(String unNombre, String unRubro, Poligono unaComuna, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.rubro = unRubro;
 		this.comuna = unaComuna;

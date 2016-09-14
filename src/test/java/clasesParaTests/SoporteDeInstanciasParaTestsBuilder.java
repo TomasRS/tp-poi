@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
 import acciones.Almacenar;
 import acciones.Notificar;
@@ -19,6 +18,7 @@ import criteriosFiltradoTerminales.TodosLosUsuarios;
 import criteriosFiltradoTerminales.UsuariosElegidosPorAdmin;
 import deApoyo.ConfiguradorDeProcesos;
 import deApoyo.GeneradorDeReportes;
+import deApoyo.Poligono;
 import deApoyo.RepositorioDeTerminales;
 import externos.BancoAdapter;
 import externos.CGPAdapter;
@@ -72,8 +72,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	ProcQuitarAccionesParaUsuarios procQuitarAcciones;
 	ComunaALaQuePertenece comunaCriterio;
 	TodosLosUsuarios todosUsersCriterio;
-	Polygon comunaAbasto;
-	Polygon comunaCaballito;
+	Poligono comunaAbasto;
+	Poligono comunaCaballito;
 	UsuariosElegidosPorAdmin adminCriterio;
 	
 
@@ -210,7 +210,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			puntos.add(new Point(-58.430051, -34.615469));
 			puntos.add(new Point(-58.427899, -34.622162));
 			puntos.add(new Point(-58.412372, -34.620890));
-			Polygon poligonoCGP = new Polygon(puntos);
+			Poligono poligonoCGP = new Poligono(puntos);
 			cgpComuna5 = new CGP("Comuna 5", "Propositos generales", poligonoCGP, direccionCGP);
 			cgpComuna5.agregarServicio(cargaSUBE());
 			zonasCGP5.add("Almagro");
@@ -434,7 +434,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return generarHorario;
 	}
 	
-	public Polygon crearComunaAbasto(){
+	public Poligono crearComunaAbasto(){
 		List<Point> puntosAbasto = new ArrayList<>();
 		puntosAbasto.add(new Point(-58.411898, -34.597984));
 		puntosAbasto.add(new Point(-58.426446, -34.597878));
@@ -442,11 +442,11 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		puntosAbasto.add(new Point(-58.430051, -34.615469));
 		puntosAbasto.add(new Point(-58.427899, -34.622162));
 		puntosAbasto.add(new Point(-58.412372, -34.620890));
-		comunaAbasto = new Polygon(puntosAbasto);
+		comunaAbasto = new Poligono(puntosAbasto);
 		return comunaAbasto;
 	}
 	
-	public Polygon crearComunaCaballito(){
+	public Poligono crearComunaCaballito(){
 		List<Point> puntosCaballito = new ArrayList<>();
 		puntosCaballito.add(new Point(-58.411898, -34.597984));
 		puntosCaballito.add(new Point(-58.426446, -34.597878));
@@ -454,7 +454,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		puntosCaballito.add(new Point(-58.430051, -34.615469));
 		puntosCaballito.add(new Point(-58.427899, -34.622162));
 		puntosCaballito.add(new Point(-58.412372, -34.620891));
-		comunaCaballito = new Polygon(puntosCaballito);
+		comunaCaballito = new Poligono(puntosCaballito);
 		return comunaCaballito;
 	}
 }

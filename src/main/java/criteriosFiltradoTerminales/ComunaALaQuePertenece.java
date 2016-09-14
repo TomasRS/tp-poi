@@ -3,13 +3,13 @@ package criteriosFiltradoTerminales;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.uqbar.geodds.Polygon;
 
 import ar.edu.TPPOI.Terminal;
+import deApoyo.Poligono;
 
 public class ComunaALaQuePertenece extends Criterio{
 
-	Polygon comunaAsociada;
+	Poligono comunaAsociada;
 	
 	
 	public List<Terminal> filtrarTerminales(ArrayList<Terminal> terminales) {
@@ -18,12 +18,12 @@ public class ComunaALaQuePertenece extends Criterio{
 	}
 
 
-	public Polygon getComunaAsociada() {
+	public Poligono getComunaAsociada() {
 		return comunaAsociada;
 	}
 
 
-	public void setComunaAsociada(Polygon comunaAsociada) {
+	public void setComunaAsociada(Poligono comunaAsociada) {
 		this.comunaAsociada = comunaAsociada;
 	}
 
