@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ar.edu.TPPOI.Terminal;
-import deApoyo.Poligono;
+import deApoyo.Comuna;
 
 public class ComunaALaQuePertenece extends Criterio{
 
-	Poligono comunaAsociada;
+	Comuna comunaAsociada;
 	
 	
 	public List<Terminal> filtrarTerminales(ArrayList<Terminal> terminales) {
@@ -18,12 +18,12 @@ public class ComunaALaQuePertenece extends Criterio{
 	}
 
 
-	public Poligono getComunaAsociada() {
+	public Comuna getComunaAsociada() {
 		return comunaAsociada;
 	}
 
 
-	public void setComunaAsociada(Poligono comunaAsociada) {
+	public void setComunaAsociada(Comuna comunaAsociada) {
 		this.comunaAsociada = comunaAsociada;
 	}
 

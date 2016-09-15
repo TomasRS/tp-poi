@@ -21,7 +21,6 @@ import deApoyo.GeneradorDeReportes;
 public class TerminalTest {
 	Terminal terminalAbasto;
 	Terminal terminalCaballito;
-	GeneradorDeReportes generadorDeReportes;
 	MapaPOI mapaInteractivo;
 	Notificar accionNotificar;
 	Notificar accionNotificar2;
@@ -33,7 +32,6 @@ public class TerminalTest {
 	@Before
 	public void init(){
 		SoporteDeInstanciasParaTestsBuilder soporteParaTests = new SoporteDeInstanciasParaTestsBuilder();
-		generadorDeReportes = soporteParaTests.reportes();
 		mapaInteractivo = soporteParaTests.mapa();
 		terminalAbasto = soporteParaTests.terminal();
 		terminalCaballito = soporteParaTests.terminal();
@@ -45,8 +43,6 @@ public class TerminalTest {
 		accionAlmacenar2 = soporteParaTests.almacenar();
 		terminalAbasto.setMapa(mapaInteractivo);
 		terminalCaballito.setMapa(mapaInteractivo);
-		terminalAbasto.setReporte(generadorDeReportes);
-		terminalCaballito.setReporte(generadorDeReportes);
 
 	}
 
@@ -202,7 +198,7 @@ public class TerminalTest {
 		terminalCaballito.buscar("hola");
 		terminalCaballito.buscar("SUBE");
 		
-		Assert.assertEquals(diccionarioAuxiliar, generadorDeReportes.generarReportesTotales(listaDeTerminales));
+		Assert.assertEquals(diccionarioAuxiliar, GeneradorDeReportes.generarReportesTotales(listaDeTerminales));
 	}
 	
 	

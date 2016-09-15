@@ -1,7 +1,13 @@
 package deApoyo;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
+import acciones.Accion;
+import ar.edu.TPPOI.BusquedaHecha;
+import ar.edu.TPPOI.Terminal;
 import pois.CGP;
 import pois.Direccion;
 import pois.Horario;
@@ -10,7 +16,10 @@ import pois.POI;
 import pois.ParadaDeColectivo;
 import pois.SucursalBanco;
 
-public class POIComparator {
+public class Comparador {
+	
+	//POIS
+	
 	public static boolean mismoPOI(POI unPOI, POI otroPOI){
 		boolean mismoPOI;
 		boolean mismoTipo;
@@ -45,7 +54,7 @@ public class POIComparator {
 		boolean mismoNombre = unPOI.getNombre().equalsIgnoreCase(otroPOI.getNombre());
 		boolean mismoRadioCercania = mismoNumero(unPOI.getRadioCercania(), otroPOI.getRadioCercania());
 		boolean mismoRubro = unPOI.getRubro().equalsIgnoreCase(otroPOI.getRubro());
-		boolean mismosTags = mismosElementosEnLista(unPOI.getTags(), otroPOI.getTags());
+		boolean mismosTags = Comparador.mismosElementos(unPOI.getTags(), otroPOI.getTags());
 		return mismaCoordenada && mismaDireccion && mismoNombre && 
 				mismoRadioCercania && mismoRubro && mismosTags; 
 	}
@@ -65,34 +74,19 @@ public class POIComparator {
 		return mismosHorarios;
 	}
 	
-	public static boolean mismosHorarios(List<Horario> unaLista, List<Horario> otraLista){
-		boolean mismoTamanio = (unaLista.size()==otraLista.size());
-		if (mismoTamanio){
-			return unaLista.stream().allMatch(
-				unHorario->otraLista.stream().anyMatch(
-					otroHorario->unHorario.equals(otroHorario)));
-		} else {
-			return false;
-		}
-	}
-	
 	public static boolean mismoCGP(POI unCGP, POI otroCGP){
 		CGP cgp1, cgp2;
 		cgp1 = (CGP) unCGP;
 		cgp2 = (CGP) otroCGP;
-		boolean mismoPolig = mismoPoligono(cgp1.getComuna(), cgp2.getComuna());
-		boolean mismasZonas = mismosElementosEnLista(cgp1.getZonasQueIncluye(), cgp2.getZonasQueIncluye());
+		boolean mismoPolig = mismaComuna(cgp1.getComuna(), cgp2.getComuna());
+		boolean mismasZonas = Comparador.mismosElementos(cgp1.getZonasQueIncluye(), cgp2.getZonasQueIncluye());
 		return mismoPolig && mismasZonas;
 	}
 	
-	public static boolean mismoPoligono(Poligono unPolig, Poligono otroPolig){
-		return true;
+	public static boolean mismaComuna(Comuna unaComuna, Comuna otraComuna){
+		return unaComuna.equals(otraComuna);
 	}
-	
-	public static boolean mismosElementosEnLista(List<String> unaLista, List<String> otraLista){
-		return (unaLista.containsAll(otraLista))&&(unaLista.size()==otraLista.size());
-	}
-	
+		
 	public static boolean mismoPunto(Punto unPunto, Punto otroPunto){
 		Double la1, la2, lo1, lo2;
 		boolean mismaCoordenada;
@@ -103,8 +97,6 @@ public class POIComparator {
 			la2 = otroPunto.latitude();
 			lo1 = unPunto.longitude();
 			lo2 = otroPunto.longitude();
-//			mismaCoordenada = (la1-la2==0) &&
-//					(lo1-lo2==0);
 			mismaCoordenada = (la1.longValue()==la2.longValue()) && (lo1.longValue()==lo2.longValue());
 		} else {
 			mismaCoordenada = false;
@@ -138,6 +130,62 @@ public class POIComparator {
 		return mismaDireccion;
 	}
 	
+	//TERMINALES
+	
+	public static boolean mismaTerminal(Terminal unaTerminal, Terminal otraTerminal){
+		boolean mismaComuna = (unaTerminal.getComuna().equals(otraTerminal.getComuna()));
+		boolean mismasBusquedas = Comparador.mismasBusquedas(unaTerminal.getBusquedasHechas(),otraTerminal.getBusquedasHechas());
+		boolean mismasAcciones = Comparador.mismasAcciones(unaTerminal.getAcciones(), otraTerminal.getAcciones());
+		return mismaComuna&&mismasBusquedas&&mismasAcciones;
+	}
+	
+	//GENERALES
+	
+	public static boolean mismasAcciones(Set<Accion> set, Set<Accion> set2){
+		boolean mismoTamanio = (set.size()==set2.size());
+		if (mismoTamanio){
+			return set.stream().allMatch(
+				aElem->set2.stream().anyMatch(
+					otherElem->aElem.equals(otherElem)));
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean mismasBusquedas(List<BusquedaHecha> unaLista, List<BusquedaHecha> otraLista){
+		boolean mismoTamanio = (unaLista.size()==otraLista.size());
+		if (mismoTamanio){
+			return unaLista.stream().allMatch(
+				aElem->otraLista.stream().anyMatch(
+					otherElem->aElem.equals(otherElem)));
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean mismosHorarios(List<Horario> unaLista, List<Horario> otraLista){
+		boolean mismoTamanio = (unaLista.size()==otraLista.size());
+		if (mismoTamanio){
+			return unaLista.stream().allMatch(
+				unHorario->otraLista.stream().anyMatch(
+					otroHorario->unHorario.equals(otroHorario)));
+		} else {
+			return false;
+		}
+	}
+	
+	public static <T> boolean mismosElementos(Collection<T> aCollection, Collection<T> otherCollection){
+		ArrayList<T> unaLista = new ArrayList<T>();
+		ArrayList<T> otraLista = new ArrayList<>();
+		unaLista.addAll(aCollection);
+		otraLista.addAll(otherCollection);
+		boolean mismoTamanio = (unaLista.size()==otraLista.size());
+		boolean mismosElementos = unaLista.stream().allMatch(
+			unElemento->otraLista.stream().anyMatch(
+				otroElemento->unElemento.equals(otroElemento)));
+		return mismoTamanio && mismosElementos;
+	}
+
 	public static boolean mismoString(String unString, String otroString){
 		boolean sonIguales;
 		if (unString==null && otroString==null){
@@ -161,5 +209,5 @@ public class POIComparator {
 		}
 		return sonIguales;
 	}
-	
+
 }

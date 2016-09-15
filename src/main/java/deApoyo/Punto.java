@@ -41,5 +41,9 @@ public class Punto {
 	public String toString(){
 		return getPoint().toString();
 	}
+	
+	public boolean equals(Punto otroPunto){
+		return (latitud==otroPunto.latitud)&&(longitud==otroPunto.longitud);
+	}
 
 }

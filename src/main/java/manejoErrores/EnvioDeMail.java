@@ -86,5 +86,9 @@ public class EnvioDeMail extends ManejoDeResultado {
 	public void setTiempoBusqueda(long tiempoBusqueda) {
 		this.tiempoBusqueda = tiempoBusqueda;
 	}
+	
+	public boolean equals(EnvioDeMail otroEnvioMail){
+		return (tiempoLimite==otroEnvioMail.tiempoLimite)&&(tiempoBusqueda==otroEnvioMail.tiempoBusqueda);
+	}
 
 }

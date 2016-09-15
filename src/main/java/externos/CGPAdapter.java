@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import deApoyo.Poligono;
+import deApoyo.Comuna;
 import pois.CGP;
 import pois.Direccion;
 import pois.Horario;
@@ -37,7 +37,7 @@ public class CGPAdapter implements SistemaExternoAdapterInterface {
 	}
 
 	public CGP crearCGPDeExterno(CentroDTO unCGPExterno) {
-		CGP nuevoCGP = new CGP(unCGPExterno.numeroDeComuna.toString(), new String(), new Poligono(),
+		CGP nuevoCGP = new CGP(unCGPExterno.numeroDeComuna.toString(), new String(), new Comuna(),
 				partirDomicilio(unCGPExterno));
 		nuevoCGP.setZonasQueIncluye(unCGPExterno.getZonas());
 		Arrays.stream(unCGPExterno.getServiciosDTO())

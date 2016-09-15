@@ -16,7 +16,7 @@ import criteriosFiltradoTerminales.TodosLosUsuarios;
 import criteriosFiltradoTerminales.UsuariosElegidosPorAdmin;
 import deApoyo.ConfiguradorDeProcesos;
 import deApoyo.GeneradorDeReportes;
-import deApoyo.Poligono;
+import deApoyo.Comuna;
 import deApoyo.Punto;
 import deApoyo.RepositorioDeTerminales;
 import externos.BancoAdapter;
@@ -71,8 +71,8 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	ProcQuitarAccionesParaUsuarios procQuitarAcciones;
 	ComunaALaQuePertenece comunaCriterio;
 	TodosLosUsuarios todosUsersCriterio;
-	Poligono comunaAbasto;
-	Poligono comunaCaballito;
+	Comuna comunaAbasto;
+	Comuna comunaCaballito;
 	UsuariosElegidosPorAdmin adminCriterio;
 	
 
@@ -209,7 +209,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			puntos.add(new Punto(-58.430051, -34.615469));
 			puntos.add(new Punto(-58.427899, -34.622162));
 			puntos.add(new Punto(-58.412372, -34.620890));
-			Poligono poligonoCGP = new Poligono(puntos);
+			Comuna poligonoCGP = new Comuna(puntos);
 			cgpComuna5 = new CGP("Comuna 5", "Propositos generales", poligonoCGP, direccionCGP);
 			cgpComuna5.agregarServicio(cargaSUBE());
 			zonasCGP5.add("Almagro");
@@ -433,7 +433,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		return generarHorario;
 	}
 	
-	public Poligono crearComunaAbasto(){
+	public Comuna crearComunaAbasto(){
 		List<Punto> puntosAbasto = new ArrayList<>();
 		puntosAbasto.add(new Punto(-58.411898, -34.597984));
 		puntosAbasto.add(new Punto(-58.426446, -34.597878));
@@ -441,11 +441,11 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		puntosAbasto.add(new Punto(-58.430051, -34.615469));
 		puntosAbasto.add(new Punto(-58.427899, -34.622162));
 		puntosAbasto.add(new Punto(-58.412372, -34.620890));
-		comunaAbasto = new Poligono(puntosAbasto);
+		comunaAbasto = new Comuna(puntosAbasto);
 		return comunaAbasto;
 	}
 	
-	public Poligono crearComunaCaballito(){
+	public Comuna crearComunaCaballito(){
 		List<Punto> puntosCaballito = new ArrayList<>();
 		puntosCaballito.add(new Punto(-58.411898, -34.597984));
 		puntosCaballito.add(new Punto(-58.426446, -34.597878));
@@ -453,7 +453,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		puntosCaballito.add(new Punto(-58.430051, -34.615469));
 		puntosCaballito.add(new Punto(-58.427899, -34.622162));
 		puntosCaballito.add(new Punto(-58.412372, -34.620891));
-		comunaCaballito = new Poligono(puntosCaballito);
+		comunaCaballito = new Comuna(puntosCaballito);
 		return comunaCaballito;
 	}
 }

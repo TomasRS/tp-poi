@@ -12,7 +12,7 @@ import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import criteriosFiltradoTerminales.ComunaALaQuePertenece;
 import criteriosFiltradoTerminales.TodosLosUsuarios;
 import criteriosFiltradoTerminales.UsuariosElegidosPorAdmin;
-import deApoyo.Poligono;
+import deApoyo.Comuna;
 import deApoyo.RepositorioDeTerminales;
 import manejoErrores.EnvioDeMail;
 import procesos.ProcAgregarAccionesParaUsuarios;
@@ -34,8 +34,8 @@ public class AgregarQuitarAccionesTest {
 	ComunaALaQuePertenece comunaCriterio; 
 	TodosLosUsuarios todosUsersCriterio;
 	UsuariosElegidosPorAdmin adminCriterio;
-	Poligono comunaAbasto;
-	Poligono comunaCaballito;
+	Comuna comunaAbasto;
+	Comuna comunaCaballito;
 	
 
 	@Before

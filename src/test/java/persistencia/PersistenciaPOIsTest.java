@@ -4,31 +4,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
-import deApoyo.POIComparator;
-import deApoyo.Poligono;
-import deApoyo.Punto;
+import deApoyo.Comparador;
 import pois.CGP;
 import pois.LocalComercial;
 import pois.ParadaDeColectivo;
 import pois.SucursalBanco;
 
 public class PersistenciaPOIsTest {
-	SoporteDeInstanciasParaTestsBuilder soporteTest;
-	ParadaDeColectivo parada114Lugano;
-	LocalComercial lcStarbucks;
-	SucursalBanco bancoCiudad;
-	CGP cgpC5;
-	EntityManager entityManager;
-	EntityTransaction tx;
+	static SoporteDeInstanciasParaTestsBuilder soporteTest;
+	static ParadaDeColectivo parada114Lugano;
+	static LocalComercial lcStarbucks;
+	static SucursalBanco bancoCiudad;
+	static CGP cgpC5;
+	static EntityManager entityManager;
+	static EntityTransaction tx;
 	
 	
-	@Before
-	public void init(){
+	@BeforeClass
+	public static void init(){
 		soporteTest = new SoporteDeInstanciasParaTestsBuilder();
 		parada114Lugano = soporteTest.paradaDeColectivo114DeLugano();
 		lcStarbucks = soporteTest.starbucksCoronelDiaz1400();
@@ -45,28 +43,28 @@ public class PersistenciaPOIsTest {
 	@Test
 	public void traerParadaColectivo114(){
 		ParadaDeColectivo paradaObtenida = entityManager.find(ParadaDeColectivo.class, 1l);
-		Assert.assertTrue(POIComparator.mismoPOI(parada114Lugano,paradaObtenida));
+		Assert.assertTrue(Comparador.mismoPOI(parada114Lugano,paradaObtenida));
 	}
 	
 	@Test
 	public void traerLocalComercialStarbucks(){
 		LocalComercial localObtenido = entityManager.find(LocalComercial.class, 2l);
-		Assert.assertTrue(POIComparator.mismoLocalComercial(lcStarbucks, localObtenido));
+		Assert.assertTrue(Comparador.mismoLocalComercial(lcStarbucks, localObtenido));
 	}
 	
 	@Test
 	public void traerCGP5(){
 		CGP cgpObtenido = entityManager.find(CGP.class, 3l);
-		Assert.assertTrue(POIComparator.mismoPOI(cgpC5, cgpObtenido));
+		Assert.assertTrue(Comparador.mismoPOI(cgpC5, cgpObtenido));
 	}
 	
 	@Test
 	public void traerBancoCiudad(){
 		SucursalBanco bancoObtenido = entityManager.find(SucursalBanco.class, 4l);
-		Assert.assertTrue(POIComparator.mismoPOI(bancoCiudad, bancoObtenido));
+		Assert.assertTrue(Comparador.mismoPOI(bancoCiudad, bancoObtenido));
 	}
 
-	public void persistirParadaDeColectivo114(){
+	public static void persistirParadaDeColectivo114(){
 		tx.begin();
 		parada114Lugano.setTag("economico");
 		entityManager.persist(parada114Lugano.getCoordenada());
@@ -75,7 +73,7 @@ public class PersistenciaPOIsTest {
 		tx.commit();
 	}
 	
-	public void persistirLocalComercialStarbucks(){
+	public static void persistirLocalComercialStarbucks(){
 		tx.begin();
 		entityManager.persist(lcStarbucks.getCoordenada());
 		entityManager.persist(lcStarbucks.getDireccion());
@@ -83,29 +81,18 @@ public class PersistenciaPOIsTest {
 		tx.commit();
 	}
 	
-	public void persistirCGP5(){
+	public static void persistirCGP5(){
 		tx.begin();
-//		entityManager.persist(cgpC5.getCoordenada());
 		entityManager.persist(cgpC5.getDireccion());
 		entityManager.persist(cgpC5);
 		tx.commit();
 	}
 	
-	public void persistirSucursalBancoCiudad(){
+	public static void persistirSucursalBancoCiudad(){
 		tx.begin();
 		entityManager.persist(bancoCiudad.getCoordenada());
 		entityManager.persist(bancoCiudad.getDireccion());
 		entityManager.persist(bancoCiudad);
-		tx.commit();
-	}
-	
-	@Test
-	public void persistirAlgo(){
-		tx.begin();
-		Poligono poli = new Poligono();
-		poli.add(new Punto(0, 1));
-		poli.add(new Punto(3, 5));
-		entityManager.persist(poli);
 		tx.commit();
 	}
 

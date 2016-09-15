@@ -7,14 +7,14 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-import deApoyo.Poligono;
+import deApoyo.Comuna;
 import deApoyo.Punto;
 
 @Entity
 public class CGP extends EmpresaMultiServicios {
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	private Poligono comuna;
+	private Comuna comuna;
 	@ElementCollection
 	private List<String> zonasQueIncluye;
 	
@@ -25,7 +25,7 @@ public class CGP extends EmpresaMultiServicios {
 		return zonasQueIncluye;
 	}
 
-	public Poligono getComuna() {
+	public Comuna getComuna() {
 		return comuna;
 	}
 
@@ -33,7 +33,7 @@ public class CGP extends EmpresaMultiServicios {
 		this.zonasQueIncluye = zonasQueIncluye;
 	}
 
-	public CGP(String unNombre, String unRubro, Poligono unaComuna, Direccion unaDireccion) {
+	public CGP(String unNombre, String unRubro, Comuna unaComuna, Direccion unaDireccion) {
 		this.nombre = unNombre;
 		this.rubro = unRubro;
 		this.comuna = unaComuna;

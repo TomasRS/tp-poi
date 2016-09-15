@@ -3,13 +3,26 @@ package ar.edu.TPPOI;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
+
+import deApoyo.Comparador;
 import pois.POI;
 
+@Entity
 public class BusquedaHecha {
+	
+	@Id @GeneratedValue
+	private long id;
 	
 	String frase;
 	Integer cantDeResultados;
 	long tiempoDeBusqueda;
+	@Convert(converter=LocalDateConverter.class)
 	LocalDate fecha;
 	
 	public void setFrase(String frase){
@@ -56,5 +69,13 @@ public class BusquedaHecha {
 
 	private void setFecha(LocalDate unaFecha) {
 		this.fecha = unaFecha;
+	}
+	
+	public boolean equals(BusquedaHecha otraBusqueda){
+		boolean mismaFrase = Comparador.mismoString(frase,otraBusqueda.frase);
+		boolean mismaCantidadResultados = Comparador.mismoNumero(cantDeResultados,otraBusqueda.cantDeResultados);
+		boolean mismoTiempoBusqueda = Comparador.mismoNumero(tiempoDeBusqueda, otraBusqueda.tiempoDeBusqueda);
+		boolean mismaFecha = (fecha.isEqual(otraBusqueda.fecha));
+		return mismaFrase&&mismaCantidadResultados&&mismoTiempoBusqueda&&mismaFecha;
 	}
 }

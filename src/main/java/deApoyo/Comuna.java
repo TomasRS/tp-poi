@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Convert;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 @Entity
-public class Poligono {
+public class Comuna {
 	
 	@Id @GeneratedValue
 	private long id;
@@ -24,11 +21,11 @@ public class Poligono {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Punto> surface;
 	
-	public Poligono(){
+	public Comuna(){
 		surface = new ArrayList<Punto>();
 	}
 
-	public Poligono(List<Punto> unosPuntos) {
+	public Comuna(List<Punto> unosPuntos) {
 		this.surface = unosPuntos;
 	}
 	
@@ -45,6 +42,11 @@ public class Poligono {
 		surface.forEach(unPunto->polygon.add(
 			new Point(unPunto.latitude(), unPunto.longitude())));
 		return polygon;
+	}
+	
+	public boolean equals(Comuna otraComuna){
+		boolean mismosPuntos = Comparador.mismosElementos(surface, otraComuna.surface);
+		return mismosPuntos;
 	}
 	
 }

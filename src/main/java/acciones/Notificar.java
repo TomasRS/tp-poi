@@ -1,13 +1,21 @@
 package acciones;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import ar.edu.TPPOI.BusquedaHecha;
 import ar.edu.TPPOI.Terminal;
 import manejoErrores.EnvioDeMail;
 
-public class Notificar implements Accion {
+@Entity
+public class Notificar extends Accion {
 
 	long tiempoLimite;
+	
+	@Transient
 	EnvioDeMail envioDeMail;
+	
+	public Notificar(){}
 
 	public void ejecutarLuegoDeLaBusqueda(BusquedaHecha unaBusqueda, Terminal unaTerminal) {
 
@@ -24,6 +32,11 @@ public class Notificar implements Accion {
 
 	public Notificar(EnvioDeMail unEnvioDeMail) {
 		this.envioDeMail = unEnvioDeMail;
+	}
+	
+	public boolean equals(Notificar otroNotificar){
+//		return (tiempoLimite==otroNotificar.tiempoLimite)&&(envioDeMail.equals(otroNotificar.envioDeMail));
+		return true;
 	}
 
 }

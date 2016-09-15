@@ -3,9 +3,17 @@ package ar.edu.TPPOI;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 import acciones.Accion;
 import deApoyo.GeneradorDeReportes;
-import deApoyo.Poligono;
+import deApoyo.Comuna;
 import deApoyo.RepositorioDeTerminales;
 import pois.POI;
 
@@ -16,22 +24,39 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+@Entity
 public class Terminal {
 	
+	@Id @GeneratedValue
+	private long id;
+	
+	@Transient
 	RepositorioDeTerminales rep;
+	
+	@Transient
 	MapaPOI mapa;
-	List<BusquedaHecha> busquedasHechas = new ArrayList<>();
-	Set<Accion> acciones = new HashSet<Accion>();
-	GeneradorDeReportes reporte;
-	Poligono comuna;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	List<BusquedaHecha> busquedasHechas;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	Set<Accion> acciones;
+		
+	@ManyToOne(cascade=CascadeType.ALL)
+	Comuna comuna;
 	
 	//-------------------------------------------------------------
 	
-	public Poligono getComuna() {
+	public Terminal(){
+		busquedasHechas = new ArrayList<BusquedaHecha>();
+		acciones = new HashSet<Accion>();
+	}
+	
+	public Comuna getComuna() {
 		return comuna;
 	}
 
-	public void setComuna(Poligono comuna) {
+	public void setComuna(Comuna comuna) {
 		this.comuna = comuna;
 	}
 
@@ -67,15 +92,7 @@ public class Terminal {
 		return this.acciones;
 	}
 	
-	public GeneradorDeReportes getReporte() {
-		return reporte;
-	}
-
-	public void setReporte(GeneradorDeReportes reporte) {
-		this.reporte = reporte;
-	}
-	
-	//--------------------------------------------------------------
+//--------------------------------------------------------------
 	 
 	public List<POI> buscar(String unTextoLibre){
 		BusquedaHecha unaBusqueda = new BusquedaHecha();
@@ -98,10 +115,10 @@ public class Terminal {
 	}
 
 	public int obtenerReporte(LocalDate unaFecha){
-		return this.getReporte().generarReportePorFecha(unaFecha, this.getBusquedasHechas());   
+		return GeneradorDeReportes.generarReportePorFecha(unaFecha, this.getBusquedasHechas());   
 	}
 	public List<Integer> generarReportePorBusqueda(){
-		return this.getReporte().generarReportePorBusqueda(this.getBusquedasHechas());
+		return GeneradorDeReportes.generarReportePorBusqueda(this.getBusquedasHechas());
 	}
 
 	public void activarAcciones(Set<Accion> accionesPorProceso) {
@@ -110,6 +127,14 @@ public class Terminal {
 
 	public void desactivarAcciones(Set<Accion> accionesPorProceso) {
 		this.getAcciones().addAll(accionesPorProceso);
+	}
+
+	public void setBusquedasHechas(List<BusquedaHecha> busquedasHechas) {
+		this.busquedasHechas = busquedasHechas;
+	}
+
+	public void setAcciones(Set<Accion> acciones) {
+		this.acciones = acciones;
 	}
 
 }
