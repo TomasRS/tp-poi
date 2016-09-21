@@ -3,6 +3,7 @@ package pois;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,17 +11,20 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringUtils;
 
 import deApoyo.Punto;
 
 @Entity
+@Table(name="Pois")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class POI {
 	
 	@Id @GeneratedValue
-	public long Id;
+	public long id;
 	
 	protected String nombre;
 	protected String rubro;
@@ -29,7 +33,7 @@ public abstract class POI {
 	protected Punto coordenada;
 	@OneToOne
 	protected Direccion direccion;
-	@ElementCollection
+	@ElementCollection @CollectionTable(name="Tags")
 	protected List<String> tags = new ArrayList<>();
 
 	public void setTags(List<String> tags) {

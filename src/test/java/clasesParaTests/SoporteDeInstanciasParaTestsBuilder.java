@@ -442,6 +442,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		puntosAbasto.add(new Punto(-58.427899, -34.622162));
 		puntosAbasto.add(new Punto(-58.412372, -34.620890));
 		comunaAbasto = new Comuna(puntosAbasto);
+		comunaAbasto.setDescripcion("Abasto");
 		return comunaAbasto;
 	}
 	
@@ -454,6 +455,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 		puntosCaballito.add(new Punto(-58.427899, -34.622162));
 		puntosCaballito.add(new Punto(-58.412372, -34.620891));
 		comunaCaballito = new Comuna(puntosCaballito);
+		comunaCaballito.setDescripcion("Caballito");
 		return comunaCaballito;
 	}
 }

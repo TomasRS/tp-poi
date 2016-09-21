@@ -7,6 +7,7 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
 
@@ -14,6 +15,7 @@ import deApoyo.Comparador;
 import pois.POI;
 
 @Entity
+@Table(name="BusquedasHechas")
 public class BusquedaHecha {
 	
 	@Id @GeneratedValue

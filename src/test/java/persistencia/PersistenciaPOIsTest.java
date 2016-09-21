@@ -40,30 +40,6 @@ public class PersistenciaPOIsTest {
 		persistirSucursalBancoCiudad();		//id = 4
 	}
 	
-	@Test
-	public void traerParadaColectivo114(){
-		ParadaDeColectivo paradaObtenida = entityManager.find(ParadaDeColectivo.class, 1l);
-		Assert.assertTrue(Comparador.mismoPOI(parada114Lugano,paradaObtenida));
-	}
-	
-	@Test
-	public void traerLocalComercialStarbucks(){
-		LocalComercial localObtenido = entityManager.find(LocalComercial.class, 2l);
-		Assert.assertTrue(Comparador.mismoLocalComercial(lcStarbucks, localObtenido));
-	}
-	
-	@Test
-	public void traerCGP5(){
-		CGP cgpObtenido = entityManager.find(CGP.class, 3l);
-		Assert.assertTrue(Comparador.mismoPOI(cgpC5, cgpObtenido));
-	}
-	
-	@Test
-	public void traerBancoCiudad(){
-		SucursalBanco bancoObtenido = entityManager.find(SucursalBanco.class, 4l);
-		Assert.assertTrue(Comparador.mismoPOI(bancoCiudad, bancoObtenido));
-	}
-
 	public static void persistirParadaDeColectivo114(){
 		tx.begin();
 		parada114Lugano.setTag("economico");
@@ -96,4 +72,32 @@ public class PersistenciaPOIsTest {
 		tx.commit();
 	}
 
+	
+	
+	
+	@Test
+	public void traerParadaColectivo114(){
+		ParadaDeColectivo paradaObtenida = entityManager.find(ParadaDeColectivo.class, 1l);
+		Assert.assertTrue(Comparador.mismoPOI(parada114Lugano,paradaObtenida));
+	}
+	
+	@Test
+	public void traerLocalComercialStarbucks(){
+		LocalComercial localObtenido = entityManager.find(LocalComercial.class, 2l);
+		Assert.assertTrue(Comparador.mismoLocalComercial(lcStarbucks, localObtenido));
+	}
+	
+	@Test
+	public void traerCGP5(){
+		CGP cgpObtenido = entityManager.find(CGP.class, 3l);
+		Assert.assertTrue(Comparador.mismoPOI(cgpC5, cgpObtenido));
+	}
+	
+	@Test
+	public void traerBancoCiudad(){
+		SucursalBanco bancoObtenido = entityManager.find(SucursalBanco.class, 4l);
+		Assert.assertTrue(Comparador.mismoPOI(bancoCiudad, bancoObtenido));
+	}
+
+	
 }

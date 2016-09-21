@@ -25,6 +25,7 @@ public class PersistenciaTerminalesTest {
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		soporteTest = new SoporteDeInstanciasParaTestsBuilder();
 		terminal = soporteTest.terminal();
+		terminal.setDescripcion("Abasto");
 		terminal.setMapa(soporteTest.mapa());
 		terminal.setComuna(soporteTest.crearComunaAbasto());
 		terminal.activarAccion(soporteTest.almacenar());
@@ -33,6 +34,13 @@ public class PersistenciaTerminalesTest {
 		tx = entityManager.getTransaction();
 		persistirTerminal();
 	}
+
+
+	public void persistirTerminal(){
+		tx.begin();
+		entityManager.persist(terminal);
+		tx.commit();
+	}
 	
 	@Test
 	public void traerTerminalTest(){
@@ -40,9 +48,6 @@ public class PersistenciaTerminalesTest {
 		Assert.assertTrue(Comparador.mismaTerminal(terminalObtenida, terminal));
 	}
 	
-	public void persistirTerminal(){
-		tx.begin();
-		entityManager.persist(terminal);
-		tx.commit();
-	}
+	
+
 }

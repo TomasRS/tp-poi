@@ -3,9 +3,11 @@ package pois;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import deApoyo.Comuna;
 import deApoyo.Punto;
@@ -15,7 +17,7 @@ public class CGP extends EmpresaMultiServicios {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Comuna comuna;
-	@ElementCollection
+	@ElementCollection @CollectionTable(name="Zonas")
 	private List<String> zonasQueIncluye;
 	
 	@SuppressWarnings(value="unused")

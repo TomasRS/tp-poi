@@ -7,8 +7,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import acciones.Accion;
@@ -25,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 @Entity
+@Table(name="Terminales")
 public class Terminal {
 	
 	@Id @GeneratedValue
@@ -36,16 +41,26 @@ public class Terminal {
 	@Transient
 	MapaPOI mapa;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL) @JoinColumn(name="Terminal_id")
 	List<BusquedaHecha> busquedasHechas;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL) @JoinTable(name="AccionPorTerminal")
 	Set<Accion> acciones;
 		
 	@ManyToOne(cascade=CascadeType.ALL)
 	Comuna comuna;
 	
+	private String descripcion;
+	
 	//-------------------------------------------------------------
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	
 	public Terminal(){
 		busquedasHechas = new ArrayList<BusquedaHecha>();

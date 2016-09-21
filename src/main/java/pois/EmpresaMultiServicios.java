@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import deApoyo.Punto;
@@ -14,7 +15,7 @@ import excepciones.NoExisteServicioAsociadoException;
 @Entity
 public abstract class EmpresaMultiServicios extends POI {
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL) @JoinTable(name="ServicioPorPoi")
 	protected List<Servicio> servicios = new ArrayList<>();
 
 	public boolean estaDisponible(LocalDateTime unMomento, Servicio unServicio) {

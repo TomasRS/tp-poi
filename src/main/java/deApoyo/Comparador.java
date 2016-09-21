@@ -133,10 +133,11 @@ public class Comparador {
 	//TERMINALES
 	
 	public static boolean mismaTerminal(Terminal unaTerminal, Terminal otraTerminal){
+		boolean mismoString = (unaTerminal.getDescripcion().equals(otraTerminal.getDescripcion()));
 		boolean mismaComuna = (unaTerminal.getComuna().equals(otraTerminal.getComuna()));
 		boolean mismasBusquedas = Comparador.mismasBusquedas(unaTerminal.getBusquedasHechas(),otraTerminal.getBusquedasHechas());
 		boolean mismasAcciones = Comparador.mismasAcciones(unaTerminal.getAcciones(), otraTerminal.getAcciones());
-		return mismaComuna&&mismasBusquedas&&mismasAcciones;
+		return mismaComuna&&mismasBusquedas&&mismasAcciones&&mismoString;
 	}
 	
 	//GENERALES

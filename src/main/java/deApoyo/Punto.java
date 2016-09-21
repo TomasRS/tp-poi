@@ -3,10 +3,12 @@ package deApoyo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name="Puntos")
 public class Punto {
 	
 	@Id @GeneratedValue

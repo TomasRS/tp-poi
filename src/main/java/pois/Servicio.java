@@ -9,19 +9,22 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import deApoyo.ExisteHorarioDisponibleEnHorarios;
 
 import java.time.DayOfWeek;
 
 @Entity
+@Table(name="Servicios")
 public class Servicio {
 	
 	@Id @GeneratedValue
 	private long id;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL) @JoinColumn(name="servicios_id")
 	private List<Horario> horarios = new ArrayList<Horario>();
 	private String nombre;
 
