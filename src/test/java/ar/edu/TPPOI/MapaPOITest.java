@@ -3,6 +3,7 @@ package ar.edu.TPPOI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -192,5 +193,10 @@ public class MapaPOITest {
 	public void tiene1tagCineAbasto(){
 		Assert.assertEquals(1,mapaInteractivo.getListaDePOIs().stream().filter(unP->unP.getNombre().equals("cine Abasto")).collect(Collectors.toList())
 				.size());
+	}
+	
+	@After
+	public void after(){
+		mapaInteractivo.listaDePOIs.clear();
 	}
 }

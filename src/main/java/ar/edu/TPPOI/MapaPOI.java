@@ -4,11 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import externos.SistemaExternoAdapterInterface;
 import pois.POI;
 import procesos.ProcDarDeBajaPOIs;
 
 public class MapaPOI {
+	
+	public MapaPOI(){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		TypedQuery<POI> query = entityManager.createQuery("SELECT p FROM POI p", POI.class);
+		List<POI> pois = query.getResultList();
+		this.agregarListaDePOI(pois);
+	}
 
 	List<POI> listaDePOIs = new ArrayList<>();
 	List<SistemaExternoAdapterInterface> listaDeSistemaExternoAdapter = new ArrayList<>();
@@ -42,6 +54,10 @@ public class MapaPOI {
 		listaDePOIs.add(poi);
 	}
 
+	public void agregarListaDePOI(List<POI> pois) {
+		listaDePOIs.addAll(pois);
+	}
+	
 	public void borrarPOI(POI poi) {
 		listaDePOIs.remove(poi);
 	}
