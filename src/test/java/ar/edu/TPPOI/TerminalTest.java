@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -199,6 +200,12 @@ public class TerminalTest {
 		terminalCaballito.buscar("SUBE");
 		
 		Assert.assertEquals(diccionarioAuxiliar, GeneradorDeReportes.generarReportesTotales(listaDeTerminales));
+	}
+	
+	@After
+	public void dropCollections(){
+		terminalAbasto.limpiarCache();
+		terminalCaballito.limpiarCache();
 	}
 	
 	

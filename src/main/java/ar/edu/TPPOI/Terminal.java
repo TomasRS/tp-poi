@@ -19,6 +19,8 @@ import acciones.Accion;
 import deApoyo.GeneradorDeReportes;
 import deApoyo.Comuna;
 import deApoyo.RepositorioDeTerminales;
+import excepciones.NoEstaEnCacheException;
+import morphia.ElementoCache;
 import pois.POI;
 
 import java.time.LocalDate;
@@ -52,6 +54,9 @@ public class Terminal {
 	
 	private String descripcion;
 	
+	@Transient
+	private CachePersistente cache;
+	
 	//-------------------------------------------------------------
 	
 	public String getDescripcion() {
@@ -65,6 +70,7 @@ public class Terminal {
 	public Terminal(){
 		busquedasHechas = new ArrayList<BusquedaHecha>();
 		acciones = new HashSet<Accion>();
+		cache = new CachePersistente(id, 9999);
 	}
 	
 	public Comuna getComuna() {
@@ -111,9 +117,35 @@ public class Terminal {
 	 
 	public List<POI> buscar(String unTextoLibre){
 		BusquedaHecha unaBusqueda = new BusquedaHecha();
-		this.guardarBusqueda(unaBusqueda,unTextoLibre);
-		this.accionesAutomaticas(unaBusqueda,this);
-		return this.devolverPOIs(unTextoLibre);
+		List<POI> poisEncontrados = null;
+		try {
+			poisEncontrados = cache.buscar(unTextoLibre);
+			System.out.println(poisEncontrados);
+//			System.out.println("Esta en cache");
+		} catch (NoEstaEnCacheException e) {
+			poisEncontrados = this.devolverPOIs(unTextoLibre);
+			guardarEnCache(unTextoLibre, poisEncontrados);
+//			System.out.println("Se busca afuera");
+		} finally {
+			unaBusqueda.datosDeLaBusqueda(unTextoLibre, poisEncontrados);
+			this.accionesAutomaticas(unaBusqueda,this);
+		}
+		return poisEncontrados;
+	}
+	
+	public List<POI> buscarEnCache(String unaFrase) throws NoEstaEnCacheException{
+		return cache.buscar(unaFrase);
+	}
+	
+	public void guardarEnCache(String unaFrase, List<POI> unosPOIs){
+		ElementoCache elemCache = new ElementoCache();
+		elemCache.setFraseBuscada(unaFrase);
+		elemCache.setPoisEncontrados(unosPOIs);
+		cache.guardar(elemCache);
+	}
+	
+	public void limpiarCache(){
+		cache.limpiar();
 	}
 	
 	private void accionesAutomaticas(BusquedaHecha unaBusqueda, Terminal terminal) {

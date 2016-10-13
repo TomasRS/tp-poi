@@ -49,7 +49,7 @@ public class BajaDePOIsTest {
 	public void testDarDeBajaUnPOIExistente(){
 		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		procesoBajaDePOIs.run();
-		Assert.assertEquals(mapaInteractivo.buscar("Banco Ciudad").size(), 0);
+		Assert.assertEquals(0, mapaInteractivo.buscar("Banco Ciudad").size());
 	}
 	
 	@Test
