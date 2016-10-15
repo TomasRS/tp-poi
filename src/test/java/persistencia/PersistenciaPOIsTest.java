@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,11 +45,8 @@ public class PersistenciaPOIsTest {
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		tx = entityManager.getTransaction();
 		mapa = new MapaPOI();//soporteTest.mapa();
-		persistirParadaDeColectivo114();	//id = 1
-		persistirLocalComercialStarbucks();	//id = 2
-		persistirCGP5();					//id = 3
-		persistirSucursalBancoCiudad();		//id = 4
-//		mapa.getListaDePOIs().clear();
+		persistirTodosLosPois();
+		mapa.cargarDeDB();
 	}
 	
 	public static void persistirParadaDeColectivo114(){
@@ -83,10 +81,6 @@ public class PersistenciaPOIsTest {
 		tx.commit();
 	}
 
-//	public static 
-	
-	
-	
 	@Test
 	public void traerParadaColectivo114(){
 		ParadaDeColectivo paradaObtenida = entityManager.find(ParadaDeColectivo.class, 1l);
@@ -111,30 +105,35 @@ public class PersistenciaPOIsTest {
 		Assert.assertTrue(Comparador.mismoPOI(bancoCiudad, bancoObtenido));
 	}
 	
-	public void persistirTodosLosPois(){
-		persistirCGP5();
-		persistirLocalComercialStarbucks();
+	public static void persistirTodosLosPois(){
 		persistirParadaDeColectivo114();
+		persistirLocalComercialStarbucks();
+		persistirCGP5();
 		persistirSucursalBancoCiudad();
 	
 	}
+	
 	@Test
 	public void importarPoisAlMapaPOI(){
-		persistirTodosLosPois();
-		MapaPOI mapa = new MapaPOI();
+		mapa.cargarDeDB();
 		Assert.assertEquals(4, mapa.getListaDePOIs().size());
 	}
+	
 	@Test
 	public void encuentraLocalComercialEnElMapaPOI(){
-		persistirLocalComercialStarbucks();
-		MapaPOI mapa = new MapaPOI();
+		mapa.cargarDeDB();
 		Assert.assertEquals(lcStarbucks,mapa.buscarPoi(lcStarbucks));
 	}
+	
 	@Test
 	public void nombreDeLocalComercialEnElMapaPOIEstaOK(){
-		persistirLocalComercialStarbucks();
-		MapaPOI mapa = new MapaPOI();
+		mapa.cargarDeDB();
 		Assert.assertEquals(lcStarbucks.getNombre(),mapa.buscarPoi(lcStarbucks).getNombre());
+	}
+	
+	@After
+	public void clear(){
+		mapa.getListaDePOIs().clear();
 	}
 	
 }

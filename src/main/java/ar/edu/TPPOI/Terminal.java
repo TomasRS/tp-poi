@@ -70,7 +70,7 @@ public class Terminal {
 	public Terminal(){
 		busquedasHechas = new ArrayList<BusquedaHecha>();
 		acciones = new HashSet<Accion>();
-		cache = new CachePersistente(id, 9999);
+		cache = null;
 	}
 	
 	public Comuna getComuna() {
@@ -118,19 +118,26 @@ public class Terminal {
 	public List<POI> buscar(String unTextoLibre){
 		BusquedaHecha unaBusqueda = new BusquedaHecha();
 		List<POI> poisEncontrados = null;
-		try {
-			poisEncontrados = cache.buscar(unTextoLibre);
-			System.out.println(poisEncontrados);
-//			System.out.println("Esta en cache");
-		} catch (NoEstaEnCacheException e) {
+		if (cache!=null){
+			try {
+				poisEncontrados = cache.buscar(unTextoLibre);
+				System.out.println(poisEncontrados);
+//				System.out.println("Esta en cache");
+			} catch (NoEstaEnCacheException e) {
+				poisEncontrados = this.devolverPOIs(unTextoLibre);
+				guardarEnCache(unTextoLibre, poisEncontrados);
+//				System.out.println("Se busca afuera");
+			} 
+		} else {
 			poisEncontrados = this.devolverPOIs(unTextoLibre);
-			guardarEnCache(unTextoLibre, poisEncontrados);
-//			System.out.println("Se busca afuera");
-		} finally {
-			unaBusqueda.datosDeLaBusqueda(unTextoLibre, poisEncontrados);
-			this.accionesAutomaticas(unaBusqueda,this);
 		}
+		unaBusqueda.datosDeLaBusqueda(unTextoLibre, poisEncontrados);
+		this.accionesAutomaticas(unaBusqueda,this);
 		return poisEncontrados;
+	}
+	
+	public void habilitarCache(){
+		cache = new CachePersistente(id, 9999);
 	}
 	
 	public List<POI> buscarEnCache(String unaFrase) throws NoEstaEnCacheException{

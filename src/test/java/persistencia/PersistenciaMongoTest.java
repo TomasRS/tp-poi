@@ -21,6 +21,7 @@ public class PersistenciaMongoTest {
 	public void init(){
 		soporte = new SoporteDeInstanciasParaTestsBuilder();
 		terminal = new Terminal();
+		terminal.habilitarCache();
 		terminal.setMapa(soporte.mapa());
 		terminal.buscar("114");
 	}

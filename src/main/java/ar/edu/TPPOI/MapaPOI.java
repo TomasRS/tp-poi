@@ -16,15 +16,29 @@ import procesos.ProcDarDeBajaPOIs;
 public class MapaPOI {
 	
 	public MapaPOI(){
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		TypedQuery<POI> query = entityManager.createQuery("SELECT p FROM POI p", POI.class);
-		List<POI> pois = query.getResultList();
-		this.agregarListaDePOI(pois);
+		
 	}
 
 	List<POI> listaDePOIs = new ArrayList<>();
 	List<SistemaExternoAdapterInterface> listaDeSistemaExternoAdapter = new ArrayList<>();
 
+	public void cargarDeDB(){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		TypedQuery<POI> query = entityManager.createQuery("SELECT p FROM POI p", POI.class);
+		List<POI> pois = query.getResultList();
+		this.agregarListaDePOI(pois);
+		System.out.println("Se agregan de DB:");
+		System.out.println(pois);
+		System.out.println("Pois Totales");
+		System.out.println(this.getListaDePOIs());
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public List<POI> getListaDePOIs() {
 		return listaDePOIs;
 	}

@@ -201,21 +201,4 @@ public class TerminalTest {
 		
 		Assert.assertEquals(diccionarioAuxiliar, GeneradorDeReportes.generarReportesTotales(listaDeTerminales));
 	}
-	
-	@After
-	public void dropCollections(){
-		terminalAbasto.limpiarCache();
-		terminalCaballito.limpiarCache();
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

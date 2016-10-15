@@ -46,8 +46,11 @@ public class BajaDePOIsTest {
 
 //-------------------------------Tests para probar el proceso de Dar de Baja-------------------------------
 	@Test
-	public void testDarDeBajaUnPOIExistente(){
+	public void testDarDeBajaUnPOIExistente() throws InterruptedException{
 		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
+		System.out.println("Duermo");
+		System.out.println(mapaInteractivo.getListaDePOIs());
+		Thread.sleep(10000);
 		procesoBajaDePOIs.run();
 		Assert.assertEquals(0, mapaInteractivo.buscar("Banco Ciudad").size());
 	}

@@ -139,11 +139,15 @@ public abstract class POI {
 
 	public void actualizarDesdeDatos(Punto unaCoordenada, Integer unRadioCercania, String unRubro,
 			Direccion unaDireccion, List<String> unosTags) {
-		this.setCoordenada(unaCoordenada);;
+		this.setCoordenada(unaCoordenada);
 		this.radioCercania = unRadioCercania;
 		this.rubro = unRubro;
 		this.direccion = unaDireccion;
 		this.tags = unosTags;
+	}
+	
+	public String toString(){
+		return this.nombre;
 	}
 
 }
