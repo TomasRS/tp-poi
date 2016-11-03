@@ -42,43 +42,25 @@ public class PersistenciaPOIsTest {
 		lcStarbucks = soporteTest.starbucksCoronelDiaz1400();
 		bancoCiudad = soporteTest.bancoCiudadCabildoYCongreso();
 		cgpC5 = soporteTest.cgpComuna5();
-		entityManager = PerThreadEntityManagers.getEntityManager();
-		tx = entityManager.getTransaction();
 		mapa = new MapaPOI();//soporteTest.mapa();
 		persistirTodosLosPois();
 		mapa.cargarDeDB();
 	}
 	
 	public static void persistirParadaDeColectivo114(){
-		tx.begin();
-		parada114Lugano.setTag("economico");
-		entityManager.persist(parada114Lugano.getCoordenada());
-		entityManager.persist(parada114Lugano.getDireccion());
-		entityManager.persist(parada114Lugano);
-		tx.commit();
+		mapa.agregarPOI(parada114Lugano);
 	}
 	
 	public static void persistirLocalComercialStarbucks(){
-		tx.begin();
-		entityManager.persist(lcStarbucks.getCoordenada());
-		entityManager.persist(lcStarbucks.getDireccion());
-		entityManager.persist(lcStarbucks);
-		tx.commit();
+		mapa.agregarPOI(lcStarbucks);
 	}
 	
 	public static void persistirCGP5(){
-		tx.begin();
-		entityManager.persist(cgpC5.getDireccion());
-		entityManager.persist(cgpC5);
-		tx.commit();
+		mapa.agregarPOI(cgpC5);
 	}
 	
 	public static void persistirSucursalBancoCiudad(){
-		tx.begin();
-		entityManager.persist(bancoCiudad.getCoordenada());
-		entityManager.persist(bancoCiudad.getDireccion());
-		entityManager.persist(bancoCiudad);
-		tx.commit();
+		mapa.agregarPOI(bancoCiudad);
 	}
 
 	@Test
@@ -110,7 +92,6 @@ public class PersistenciaPOIsTest {
 		persistirLocalComercialStarbucks();
 		persistirCGP5();
 		persistirSucursalBancoCiudad();
-	
 	}
 	
 	@Test
@@ -134,6 +115,7 @@ public class PersistenciaPOIsTest {
 	@After
 	public void clear(){
 		mapa.getListaDePOIs().clear();
+//		tx.rollback();
 	}
 	
 }

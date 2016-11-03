@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -15,15 +16,18 @@ import procesos.ProcDarDeBajaPOIs;
 
 public class MapaPOI {
 	
+	EntityManager entityManager;
+	EntityTransaction tx;
+	
 	public MapaPOI(){
-		
+		entityManager = PerThreadEntityManagers.getEntityManager();
+		tx = entityManager.getTransaction();
 	}
 
 	List<POI> listaDePOIs = new ArrayList<>();
 	List<SistemaExternoAdapterInterface> listaDeSistemaExternoAdapter = new ArrayList<>();
 
 	public void cargarDeDB(){
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		TypedQuery<POI> query = entityManager.createQuery("SELECT p FROM POI p", POI.class);
 		List<POI> pois = query.getResultList();
 		this.agregarListaDePOI(pois);
@@ -63,16 +67,32 @@ public class MapaPOI {
 				unSistemaExternoAdapter -> listaDePOIsExternos.addAll(unSistemaExternoAdapter.buscar(textoLibre)));
 		return listaDePOIsExternos;
 	}
+	
+	private void persistPOI(POI aPOI){
+		tx.begin();
+		aPOI.persistirEnMapa(entityManager);
+		tx.commit();
+	}
+	
+	private void deletePOI(POI aPOI){
+		tx.begin();
+		entityManager.remove(aPOI);
+		tx.commit();
+	}
 
 	public void agregarPOI(POI poi) {
+		persistPOI(poi);
 		listaDePOIs.add(poi);
 	}
 
 	public void agregarListaDePOI(List<POI> pois) {
-		listaDePOIs.addAll(pois);
+		for (POI aPOI:pois){
+			this.agregarPOI(aPOI);
+		}
 	}
 	
 	public void borrarPOI(POI poi) {
+		this.deletePOI(poi);
 		listaDePOIs.remove(poi);
 	}
 
@@ -83,6 +103,7 @@ public class MapaPOI {
 	private void actualizarPOISiCorresponde(POI unPOIExterno) {
 		if (estaEnLocal(unPOIExterno)) {
 			buscarPoi(unPOIExterno).actualizar(unPOIExterno);
+			//actualizar en DB
 		} else {
 			agregarPOI(unPOIExterno);
 		}

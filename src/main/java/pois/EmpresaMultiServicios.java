@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
@@ -54,5 +55,10 @@ public abstract class EmpresaMultiServicios extends POI {
 			Direccion unaDireccion, List<Servicio> unosServicios, List<String> unosTags) {
 		super.actualizarDesdeDatos(unaCoordenada, unRadioCercania, unRubro, unaDireccion, unosTags);
 		this.servicios = unosServicios;
+	}
+	
+	public void persistirEnMapa(EntityManager em) {
+		super.persistirEnMapa(em);
+		em.persist(this);
 	}
 }
