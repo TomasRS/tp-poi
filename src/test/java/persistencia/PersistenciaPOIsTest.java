@@ -45,6 +45,14 @@ public class PersistenciaPOIsTest {
 		mapa = new MapaPOI();//soporteTest.mapa();
 		persistirTodosLosPois();
 		mapa.cargarDeDB();
+		entityManager = PerThreadEntityManagers.getEntityManager();
+	}
+	
+	public static void persistirTodosLosPois(){
+		persistirParadaDeColectivo114();
+		persistirLocalComercialStarbucks();
+		persistirCGP5();
+		persistirSucursalBancoCiudad();
 	}
 	
 	public static void persistirParadaDeColectivo114(){
@@ -85,13 +93,6 @@ public class PersistenciaPOIsTest {
 	public void traerBancoCiudad(){
 		SucursalBanco bancoObtenido = entityManager.find(SucursalBanco.class, 4l);
 		Assert.assertTrue(Comparador.mismoPOI(bancoCiudad, bancoObtenido));
-	}
-	
-	public static void persistirTodosLosPois(){
-		persistirParadaDeColectivo114();
-		persistirLocalComercialStarbucks();
-		persistirCGP5();
-		persistirSucursalBancoCiudad();
 	}
 	
 	@Test
