@@ -52,7 +52,7 @@ public class LocalComercial extends POI {
 	}
 
 	public boolean coincideConAtributo(String unTextoLibre) {
-		return this.rubro.equals(unTextoLibre);
+		return this.rubro.equalsIgnoreCase(unTextoLibre);
 	}
 
 	public boolean estaDisponible(LocalDateTime unMomento) {

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.Punto;
@@ -13,7 +15,7 @@ import pois.CGP;
 import pois.ParadaDeColectivo;
 import pois.Servicio;
 
-public class CGPTest {
+public class CGPTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	Punto coordenadaMia;
 	ParadaDeColectivo parada114DeCabildoYMonroe;

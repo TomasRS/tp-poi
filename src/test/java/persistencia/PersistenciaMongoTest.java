@@ -6,13 +6,15 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import ar.edu.TPPOI.Terminal;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import excepciones.NoEstaEnCacheException;
 import pois.POI;
 
-public class PersistenciaMongoTest {
+public class PersistenciaMongoTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	private Terminal terminal;
 	private SoporteDeInstanciasParaTestsBuilder soporte;

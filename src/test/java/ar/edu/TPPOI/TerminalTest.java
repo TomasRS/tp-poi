@@ -10,6 +10,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import acciones.Almacenar;
 import acciones.Notificar;
@@ -19,7 +21,7 @@ import deApoyo.GeneradorDeReportes;
 
 
 
-public class TerminalTest {
+public class TerminalTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	Terminal terminalAbasto;
 	Terminal terminalCaballito;
 	MapaPOI mapaInteractivo;

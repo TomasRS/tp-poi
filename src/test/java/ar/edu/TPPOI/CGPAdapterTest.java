@@ -5,12 +5,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import pois.CGP;
 import pois.POI;
 
-public class CGPAdapterTest {
+public class CGPAdapterTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	SoporteDeInstanciasParaTestsBuilder soporteDeInstanciasParaTestsBuilder;
 
 	@Before

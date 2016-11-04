@@ -17,17 +17,17 @@ import procesos.ProcDarDeBajaPOIs;
 public class MapaPOI {
 	
 	EntityManager entityManager;
-	EntityTransaction tx;
 	
 	public MapaPOI(){
 		entityManager = PerThreadEntityManagers.getEntityManager();
-		tx = entityManager.getTransaction();
+		cargarDeDB();
+//		tx = entityManager.getTransaction();
 	}
 
 	List<POI> listaDePOIs = new ArrayList<>();
 	List<SistemaExternoAdapterInterface> listaDeSistemaExternoAdapter = new ArrayList<>();
 
-	public void cargarDeDB(){
+	private void cargarDeDB(){
 		TypedQuery<POI> query = entityManager.createQuery("SELECT p FROM POI p", POI.class);
 		List<POI> pois = query.getResultList();
 		this.agregarListaDePOI(pois);
@@ -69,15 +69,15 @@ public class MapaPOI {
 	}
 	
 	private void persistPOI(POI aPOI){
-		tx.begin();
+//		tx.begin();
 		aPOI.persistirEnMapa(entityManager);
-		tx.commit();
+//		tx.commit();
 	}
 	
 	private void deletePOI(POI aPOI){
-		tx.begin();
+//		tx.begin();
 		entityManager.remove(aPOI);
-		tx.commit();
+//		tx.commit();
 	}
 
 	public void agregarPOI(POI poi) {

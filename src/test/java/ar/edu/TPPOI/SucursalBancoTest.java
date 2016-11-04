@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.Punto;
@@ -14,7 +16,7 @@ import pois.ParadaDeColectivo;
 import pois.Servicio;
 import pois.SucursalBanco;
 
-public class SucursalBancoTest {
+public class SucursalBancoTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	LocalComercial cineAbasto;
 	Punto coordenadaMia, coordenadaCercaBancoCiudad;
