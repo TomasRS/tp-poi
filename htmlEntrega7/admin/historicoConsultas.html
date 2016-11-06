@@ -1,0 +1,73 @@
+<html lang="en">
+	<head>
+		<title>Sistema de POIs</title>
+		<link rel="stylesheet" href="../css/estilos.css">
+	</head>
+	
+	<header>
+			<a href="../principal.html"><img src="../imagenes/POI_Image.png" width="80" height="67"/></a>
+	</header>
+		
+	<body>
+	<div class="content">
+		<ul class="NavigationBar">
+			<li class="ElementoDelBar"><a href="administrarPOIs.html">Administrar POIs</a></li>
+			<li class="ElementoDelBar"><a href="administrarTerminales.html">Administrar Terminales</a></li>
+			<li class="ElementoDelBar"><a href="historicoConsultas.html">Hist&oacute;rico de Consultas</a></li>
+			<li class="ElementoDelBar" style="float:right"><a class="active" href="../principal.html">Cerrar Sesi&oacute;n</a></li>
+		</ul>
+		<br>
+		<h2><u>Hist&oacute;rico de Consultas</u></h2>
+		
+		<label for="buscar">Fecha:</label>
+		<input type="text" class="TextBoxFechaDesde" placeholder="Desde" maxlength="10">
+		<input type="text" class="TextBoxFechaHasta" placeholder="Hasta" maxlength="10">
+		<br><br>
+		<label for="buscar">Cant. de POIs devueltos:</label>
+		<input type="text" class="TextBoxCantidadPOIs" placeholder="Cantidad" maxlength="5">
+		<br><br>
+		<label for="buscar">Terminal:</label>
+		<input type="text" class="TextBoxTerminal" placeholder="Nombre de la terminal" maxlength="20">
+		<br><br>
+		<input type="button" id="boton" class="ButtonBuscar" value="Buscar">
+		<br>
+		<script>(function(){
+			var buscarPOIs = function(){
+				 document.getElementById("TablaDePOIsEncontrados").style.visibility = "visible";
+			}
+		
+			var boton = document.getElementById('boton');
+			boton.addEventListener("click", buscarPOIs);
+		}())
+		</script>
+		<h2><u>B&uacute;squedas encontradas</u></h2>
+		<div class="TablaDePOIsEncontrados" id="TablaDePOIsEncontrados">
+			<table>
+				<tr>
+					<th>Frase</th>
+					<th>Cant. de resultados</th>
+					<th>Fecha</th>
+					<th>Tiempo de b&uacute;squeda</th>
+					<th>POIs devueltos</th>
+				</tr>
+				<!--A partir de aca deberia hacerse un forEach para que cada elemento de la lista (un POI) que
+				me devuelve Java, se represente como una fila de la tabla con sus correspondientes datos-->
+				<tr>
+					<td>Fitness</td>
+					<td>2</td>
+					<td>10-12-2016</td>
+					<td>10</td>
+					<td><a href="#">Entrar</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	</body>
+	
+	<footer>
+		<p>Grupo 8 - Copyright 2016 - Todos los derechos reservados</p>
+	</footer>
+	
+	
+
+</html>

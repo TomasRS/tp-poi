@@ -1,0 +1,72 @@
+<html lang="en">
+	<head>
+		<title>Sistema de POIs</title>
+		<link rel="stylesheet" href="../css/estilos.css">
+	</head>
+	
+	<header>
+			<a href="../principal.html"><img src="../imagenes/POI_Image.png" width="80" height="67"/></a>
+	</header>
+		
+	<body>
+	<div class="content">
+		<ul class="NavigationBar">
+			<li class="ElementoDelBar"><a href="administrarPOIs.html">Administrar POIs</a></li>
+			<li class="ElementoDelBar"><a href="administrarTerminales.html">Administrar Terminales</a></li>
+			<li class="ElementoDelBar"><a href="historicoConsultas.html">Hist&oacute;rico de Consultas</a></li>
+			<li class="ElementoDelBar" style="float:right"><a class="active" href="../principal.html">Cerrar Sesi&oacute;n</a></li>
+		</ul>
+		<br>
+		<h2><u>Administraci&oacute;n de Terminales</u></h2>
+		
+		<label for="buscar">Buscar Terminal:</label>
+		<input type="text" class="TextBox" placeholder="Escriba aqu&iacute;" maxlength="20" name="buscar" id="buscar">
+		
+		<label>Filtrar por:</label>
+		<input type="checkbox" value="Nombre">Comuna
+		
+		<input type="button" id="boton" class="ButtonBuscar" value="Buscar">
+		<br><br>
+		<script>(function(){
+			var buscarPOIs = function(){
+				 document.getElementById("TablaDePOIsEncontrados").style.visibility = "visible";
+			}
+		
+			var boton = document.getElementById('boton');
+			boton.addEventListener("click", buscarPOIs);
+		}())
+		</script>
+		<h3><u>Terminales encontradas</u></h3>
+			<div class="TablaDePOIsEncontrados" id="TablaDePOIsEncontrados">
+			<table>
+				<tr>
+					<th>Nombre</th>
+					<th>Comuna</th>
+					<th>Acciones</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+				<!--A partir de aca deberia hacerse un forEach para que cada elemento de la lista (un POI) que
+				me devuelve Java, se represente como una fila de la tabla con sus correspondientes datos-->
+				<tr>
+					<td>Terminal Cabildo</td>
+					<td>14</td>
+					<td>A, B, C</td>
+					<td><a href="#">Entrar</a></td>
+					<td><input type="checkbox" name="" id=""></td>
+				</tr>
+			</table>
+		
+		<input type="button" class="ButtonAgregarTerminal" value="Agregar">
+		<input type="button" class="ButtonEliminarTerminales" value="Eliminar">
+		</div>
+	</div>
+	</body>
+	
+	<footer>
+		<p>Grupo 8 - Copyright 2016 - Todos los derechos reservados</p>
+	</footer>
+	
+	
+
+</html>
