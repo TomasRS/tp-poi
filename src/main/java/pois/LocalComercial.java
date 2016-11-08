@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
@@ -51,7 +52,7 @@ public class LocalComercial extends POI {
 	}
 
 	public boolean coincideConAtributo(String unTextoLibre) {
-		return this.rubro.equals(unTextoLibre);
+		return this.rubro.equalsIgnoreCase(unTextoLibre);
 	}
 
 	public boolean estaDisponible(LocalDateTime unMomento) {
@@ -72,6 +73,11 @@ public class LocalComercial extends POI {
 
 		super.actualizarDesdeDatos(unaCoordenada, unRadioCercania, unRubro, unaDireccion, unosTags);
 		this.horarios = unosHorarios;
+	}
+	
+	public void persistirEnMapa(EntityManager em) {
+		super.persistirEnMapa(em);
+		em.persist(this);
 	}
 
 }

@@ -1,6 +1,7 @@
 package pois;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -50,5 +51,10 @@ public class SucursalBanco extends EmpresaMultiServicios {
 			return false;
 		}
 
+	}
+
+	public void persistirEnMapa(EntityManager em) {
+		super.persistirEnMapa(em);
+		em.persist(this);
 	}
 }

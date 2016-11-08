@@ -2,6 +2,8 @@ package ar.edu.TPPOI;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import clasesParaTests.ProcesoActualizadorLocalesImpostor;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
 
 import org.junit.Assert;
 
-public class ActualizarLocalesComercialesTest {
+public class ActualizarLocalesComercialesTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	
 	ProcActualizarLocalesComerciales actualizadorDeLocalesComerciales;
 	MapaPOI mapaInteractivo;

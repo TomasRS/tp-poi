@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import externos.BancoAdapter;
@@ -16,7 +18,7 @@ import pois.CGP;
 import pois.LocalComercial;
 import pois.Servicio;
 
-public class MapaPOITest {
+public class MapaPOITest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	LocalComercial cineAbasto;
 	MapaPOI mapaInteractivo;

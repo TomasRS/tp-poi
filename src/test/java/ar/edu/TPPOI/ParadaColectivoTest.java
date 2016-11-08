@@ -5,12 +5,14 @@ import java.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.Punto;
 import pois.ParadaDeColectivo;
 
-public class ParadaColectivoTest {
+public class ParadaColectivoTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	Punto coordenadaMia;
 	ParadaDeColectivo parada114DeCabildoYMonroe;

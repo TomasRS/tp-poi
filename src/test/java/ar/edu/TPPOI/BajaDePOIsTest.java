@@ -2,6 +2,8 @@ package ar.edu.TPPOI;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.ConfiguradorDeProcesos;
@@ -13,7 +15,7 @@ import java.time.LocalDateTime;
 
 import org.junit.Assert;
 
-public class BajaDePOIsTest {
+public class BajaDePOIsTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	ProcDarDeBajaPOIs procesoBajaDePOIs;
 	ProcDarDeBajaPOIs procesoBajaDePOIs2;
@@ -50,7 +52,6 @@ public class BajaDePOIsTest {
 		servicioBajaDePOIs.agregarNombreDePOIADarDeBaja("Banco Ciudad");
 		System.out.println("Duermo");
 		System.out.println(mapaInteractivo.getListaDePOIs());
-		Thread.sleep(10000);
 		procesoBajaDePOIs.run();
 		Assert.assertEquals(0, mapaInteractivo.buscar("Banco Ciudad").size());
 	}

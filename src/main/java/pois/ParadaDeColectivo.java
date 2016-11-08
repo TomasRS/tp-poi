@@ -3,6 +3,7 @@ package pois;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 
 import deApoyo.Punto;
 
@@ -35,6 +36,11 @@ public class ParadaDeColectivo extends POI {
 	public void actualizar(POI unPOI) {
 		this.actualizarDesdeDatos(unPOI.getCoordenada(), unPOI.getRadioCercania(), unPOI.getRubro(),
 				unPOI.getDireccion(), unPOI.getTags());
+	}
+	
+	public void persistirEnMapa(EntityManager em) {
+		super.persistirEnMapa(em);
+		em.persist(this);
 	}
 
 }

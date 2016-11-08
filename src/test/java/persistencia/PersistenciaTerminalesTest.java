@@ -7,16 +7,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import ar.edu.TPPOI.Terminal;
 import clasesParaTests.EnvioMailImpostor;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.Comparador;
 
-public class PersistenciaTerminalesTest {
+public class PersistenciaTerminalesTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	
 	EntityManager entityManager;
-	EntityTransaction tx;
 	SoporteDeInstanciasParaTestsBuilder soporteTest;
 	Terminal terminal;
 
@@ -31,15 +32,12 @@ public class PersistenciaTerminalesTest {
 		terminal.activarAccion(soporteTest.almacenar());
 		terminal.activarAccion(soporteTest.notificar(new EnvioMailImpostor()));
 		terminal.buscar("114");
-		tx = entityManager.getTransaction();
 		persistirTerminal();
 	}
 
 
 	public void persistirTerminal(){
-		tx.begin();
 		entityManager.persist(terminal);
-		tx.commit();
 	}
 	
 	@Test

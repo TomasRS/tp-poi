@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -71,6 +72,11 @@ public class CGP extends EmpresaMultiServicios {
 
 	public boolean soyElMismoPOI(POI otroPOI) {
 		return otroPOI.esCGP() && super.soyElMismoPOI(otroPOI);
+	}
+	
+	public void persistirEnMapa(EntityManager em) {
+		em.persist(this.direccion);
+		em.persist(this);
 	}
 
 }

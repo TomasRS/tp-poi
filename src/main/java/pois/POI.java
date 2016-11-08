@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -150,4 +151,9 @@ public abstract class POI {
 		return this.nombre;
 	}
 
+	public void persistirEnMapa(EntityManager em) {
+		em.persist(this.coordenada);
+		em.persist(this.direccion);
+	}
+		
 }

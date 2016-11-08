@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import acciones.Almacenar;
 import acciones.Notificar;
@@ -19,7 +21,7 @@ import procesos.ProcAgregarAccionesParaUsuarios;
 import procesos.ProcQuitarAccionesParaUsuarios;
 
 
-public class AgregarQuitarAccionesTest {
+public class AgregarQuitarAccionesTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	
 	EnvioDeMail envioDeMail1;
 	MapaPOI mapaInteractivo;
