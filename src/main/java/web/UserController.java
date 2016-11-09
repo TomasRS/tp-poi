@@ -3,12 +3,10 @@ package web;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Session;
 
 public class UserController {
 	
 	public static ModelAndView adminLog(Request req, Response res){
-//		System.out.println("Admin Logging");
 		return new ModelAndView(null, "usuarios/admin_log.hbs");
 	}
 	
@@ -59,6 +57,7 @@ public class UserController {
 	
 	private static boolean cookieOk(Request req, String key, String val){
 		String cookieVal = req.cookie(key);
+		System.out.println(cookieVal);
 		if (cookieVal!=null){
 			return cookieVal.contentEquals(val);
 		} else {
