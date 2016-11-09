@@ -15,6 +15,9 @@ public class Server {
 		Spark.get("/", HomeController::principal, engine);
 		Spark.get("/admin/ingreso", UserController::adminLog, engine);
 		Spark.get("/terminal/ventanaDeTerminal",UserController::ventanaTerminal,engine);
+		Spark.post("/admin/ingreso", UserController::adminLogPost, engine);
+		Spark.get("/admin/workspace", UserController::adminShow, engine);
+		Spark.get("/admin/admin_out", UserController::adminClose, engine);
 	}
 
 }
