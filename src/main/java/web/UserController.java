@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ar.edu.TPPOI.Terminal;
 import deApoyo.Punto;
 import pois.Direccion;
 import pois.POI;
@@ -57,6 +58,26 @@ public class UserController {
 		HashMap<String, List<POI>> hmap = new HashMap<>();
 		hmap.put("pois", pois);
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
+	}
+	
+	public static ModelAndView adminTerminal(Request req, Response res){
+		return new ModelAndView(null, "admin/admin_terminales.hbs");
+	}
+	
+	public static ModelAndView showTerminales(Request req, Response res){
+		HashMap<String, List<Terminal>> hmap = new HashMap<>();
+		hmap.put("terminales", new ArrayList<>());
+		return new ModelAndView(hmap, "admin/admin_terminales_founded.hbs");
+	}
+	
+	public static ModelAndView adminConsultas(Request req, Response res){
+		return new ModelAndView(null, "admin/admin_consultas.hbs");
+	}
+	
+	public static ModelAndView showConsultas(Request req, Response res){
+//		HashMap<String, List<Terminal>> hmap = new HashMap<>();
+//		hmap.put("terminales", new ArrayList<>());
+		return new ModelAndView(null, "admin/admin_consultas_founded.hbs");
 	}
 	
 	public static ModelAndView adminClose(Request req, Response res){

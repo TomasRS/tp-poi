@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="/styles/estilos.css">
     <!--<link rel="stylesheet" href="styles/bootstrap.min.css">-->
   </head>
-  <header>
-    <a href="principal.html"><img src="/images/POI_Image.png" width="80" height="67"/></a>
-  </header>
   <body>
-    {{#block "content"}}
-    {{/block}}
+    <header>
+      <a href="/"><img src="/images/POI_Image.png" width="80" height="67"/></a>
+      {{#block "header_menu"}}
+      {{/block}}
+    </header>
+    <section>
+      <div>
+        {{#block "content"}}
+        {{/block}}
+      </div>
+    </section>
   </body>
   <footer>
     <p>Grupo 8 - Copyright 2016 - Todos los derechos reservados</p>

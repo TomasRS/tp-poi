@@ -3,14 +3,6 @@
 {{/partial}}
 
 {{#partial "content"}}
-<div class="content">
-  <ul class="NavigationBar">
-    <li class="ElementoDelBar"><a href="administrarPOIs.html">Administrar POIs</a></li>
-    <li class="ElementoDelBar"><a href="administrarTerminales.html">Administrar Terminales</a></li>
-    <li class="ElementoDelBar"><a href="historicoConsultas.html">Hist&oacute;rico de Consultas</a></li>
-    <li class="ElementoDelBar" style="float:right"><a class="active" href="/admin/admin_out">Cerrar Sesi&oacute;n</a></li>
-  </ul>
-  <br>
   <h2><u>Administraci&oacute;n de POIs</u></h2>
   <form action="/admin/workspace" method="POST">
     <label for="buscar">Buscar POI:</label>
@@ -22,9 +14,8 @@
 
     <input type="submit" id="boton" class="ButtonBuscar" value="Buscar">
   </form>
-  <br><br>
-  {{#block "pois_found"}}
+  {{#block "pois"}}
   {{/block}}
 {{/partial}}
 
-{{> base.hbs}}
+{{> admin/admin_base.hbs}}

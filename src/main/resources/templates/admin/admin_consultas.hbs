@@ -1,0 +1,24 @@
+{{#partial "title"}}
+  <title>Historial de Consultas</title>
+{{/partial}}
+
+{{#partial "content"}}
+  <h2><u>Historial de consultas</u></h2>
+  <form action="/admin/consultas" method="POST">
+    <label for="buscar">Fecha:</label>
+		<input type="text" class="TextBoxFechaDesde" placeholder="Desde" maxlength="10">
+		<input type="text" class="TextBoxFechaHasta" placeholder="Hasta" maxlength="10">
+		<br><br>
+		<label for="buscar">Cant. de POIs devueltos:</label>
+		<input type="text" class="TextBoxCantidadPOIs" placeholder="Cantidad" maxlength="5">
+		<br><br>
+		<label for="buscar">Terminal:</label>
+		<input type="text" class="TextBoxTerminal" placeholder="Nombre de la terminal" maxlength="20">
+		<br><br>
+		<input type="submit" id="boton" class="ButtonBuscar" value="Buscar">
+  </form>
+  {{#block "consultas"}}
+  {{/block}}
+{{/partial}}
+
+{{> admin/admin_base.hbs}}

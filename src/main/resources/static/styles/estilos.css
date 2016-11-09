@@ -1,5 +1,4 @@
 header{
-	position: absolute;
 	padding: 0.5rem;
 	top:0;
 	left:0;
@@ -22,7 +21,7 @@ body{
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
@@ -32,7 +31,7 @@ footer {
 }
 
 .DetallesPOI{
-	
+
 }
 input{
 	font-family: calibri;

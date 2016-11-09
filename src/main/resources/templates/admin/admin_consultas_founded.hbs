@@ -1,0 +1,25 @@
+{{#partial "consultas"}}
+  <h3><u>B&uacute;squedas encontradas</u></h2>
+  <div>
+    <table border="1">
+      <tr>
+        <th>Frase</th>
+        <th>Cant. de resultados</th>
+        <th>Fecha</th>
+        <th>Tiempo de b&uacute;squeda</th>
+        <th>POIs devueltos</th>
+      </tr>
+      <!--A partir de aca deberia hacerse un forEach para que cada elemento de la lista (un POI) que
+      me devuelve Java, se represente como una fila de la tabla con sus correspondientes datos-->
+      <tr>
+        <td>Fitness</td>
+        <td>2</td>
+        <td>10-12-2016</td>
+        <td>10</td>
+        <td><a href="#">Entrar</a></td>
+      </tr>
+    </table>
+  </div>
+{{/partial}}
+
+{{> admin/admin_consultas.hbs}}
