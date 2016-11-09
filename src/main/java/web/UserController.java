@@ -50,6 +50,24 @@ public class UserController {
 		}
 	}
 	
+	public static ModelAndView adminTerminalShow(Request req, Response res){
+		if(cookieOk(req, "admin", "true")){
+			return adminTerminal(req, res);
+		} else {
+			res.redirect("/admin/ingreso");
+			return null;
+		}
+	}
+	
+	public static ModelAndView adminConsultasShow(Request req, Response res){
+		if(cookieOk(req, "admin", "true")){
+			return adminConsultas(req, res);
+		} else {
+			res.redirect("/admin/ingreso");
+			return null;
+		}
+	}
+	
 	public static ModelAndView showPois(Request req, Response res){
 		System.out.println("Muestro pois");
 		ArrayList<POI> pois = new ArrayList<>();

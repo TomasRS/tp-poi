@@ -18,9 +18,9 @@ public class Server {
 		Spark.post("/admin/ingreso", UserController::adminLogPost, engine);
 		Spark.get("/admin/workspace", UserController::adminShow, engine);
 		Spark.post("/admin/workspace", UserController::showPois, engine);
-		Spark.get("/admin/terminales", UserController::adminTerminal, engine);
+		Spark.get("/admin/terminales", UserController::adminTerminalShow, engine);
 		Spark.post("/admin/terminales", UserController::showTerminales, engine);
-		Spark.get("/admin/consultas", UserController::adminConsultas, engine);
+		Spark.get("/admin/consultas", UserController::adminConsultasShow, engine);
 		Spark.post("/admin/consultas", UserController::showConsultas, engine);
 		Spark.get("/admin/admin_out", UserController::adminClose, engine);
 	}
