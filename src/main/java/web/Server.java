@@ -14,6 +14,9 @@ public class Server {
 		Spark.staticFileLocation("/static");
 		Spark.get("/", HomeController::principal, engine);
 		Spark.get("/admin/ingreso", UserController::adminLog, engine);
+		Spark.post("/admin/ingreso", UserController::adminLogPost, engine);
+		Spark.get("/admin/workspace", UserController::adminShow, engine);
+		Spark.get("/admin/admin_out", UserController::adminClose, engine);
 	}
 
 }

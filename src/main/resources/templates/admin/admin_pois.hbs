@@ -1,0 +1,28 @@
+{{#partial "title"}}
+  <title>Administrador de POIs</title>
+{{/partial}}
+
+{{#partial "content"}}
+<div class="content">
+  <ul class="NavigationBar">
+    <li class="ElementoDelBar"><a href="administrarPOIs.html">Administrar POIs</a></li>
+    <li class="ElementoDelBar"><a href="administrarTerminales.html">Administrar Terminales</a></li>
+    <li class="ElementoDelBar"><a href="historicoConsultas.html">Hist&oacute;rico de Consultas</a></li>
+    <li class="ElementoDelBar" style="float:right"><a class="active" href="/admin/admin_out">Cerrar Sesi&oacute;n</a></li>
+  </ul>
+  <br>
+  <h2><u>Administraci&oacute;n de POIs</u></h2>
+  <form>
+    <label for="buscar">Buscar POI:</label>
+    <input type="text" class="TextBox" placeholder="Escriba aqu&iacute;" maxlength="20" name="buscar" id="buscar">
+
+    <label>Filtrar por:</label>
+    <input type="radio" name="group1" value="Nombre">Nombre
+    <input type="radio" name="group1" value="Milk">Tipo
+
+    <input type="button" id="boton" class="ButtonBuscar" value="Buscar">
+  </form>
+  <br><br>
+{{/partial}}
+
+{{> base.hbs}}
