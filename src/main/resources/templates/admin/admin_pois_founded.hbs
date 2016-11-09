@@ -1,0 +1,24 @@
+{{#partial "pois_found"}}
+  <h3><u>POIs encontrados</u></h3>
+  <div>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Calle Principal</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+      {{#pois}}
+        <tr>
+          <td>{{nombre}}</td>
+          <td>Parada de colectivo</td>
+          <td>{{direccion.callePrincipal}}</td>
+          <td><a href="poiEspecifico/poiHardcodeadoAdmin.html">Entrar</a></td>
+          <td><input type="checkbox" ></td>
+        </tr>
+      {{/pois}}
+    </table>
+  </div>
+{{/partial}}
+{{>admin/admin_pois.hbs}}

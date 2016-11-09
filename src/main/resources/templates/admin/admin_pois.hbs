@@ -12,7 +12,7 @@
   </ul>
   <br>
   <h2><u>Administraci&oacute;n de POIs</u></h2>
-  <form>
+  <form action="/admin/workspace" method="POST">
     <label for="buscar">Buscar POI:</label>
     <input type="text" class="TextBox" placeholder="Escriba aqu&iacute;" maxlength="20" name="buscar" id="buscar">
 
@@ -20,9 +20,11 @@
     <input type="radio" name="group1" value="Nombre">Nombre
     <input type="radio" name="group1" value="Milk">Tipo
 
-    <input type="button" id="boton" class="ButtonBuscar" value="Buscar">
+    <input type="submit" id="boton" class="ButtonBuscar" value="Buscar">
   </form>
   <br><br>
+  {{#block "pois_found"}}
+  {{/block}}
 {{/partial}}
 
 {{> base.hbs}}

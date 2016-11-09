@@ -1,5 +1,13 @@
 package web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import deApoyo.Punto;
+import pois.Direccion;
+import pois.POI;
+import pois.ParadaDeColectivo;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -40,6 +48,17 @@ public class UserController {
 			return null;
 		}
 	}
+	
+	public static ModelAndView showPois(Request req, Response res){
+		System.out.println("Muestro pois");
+		ArrayList<POI> pois = new ArrayList<>();
+		pois.add(new ParadaDeColectivo("114 Lugano", new Punto(12.312, 12.312), new Direccion("Mozart", 2000)));
+		pois.add(new ParadaDeColectivo("151 Medrano", new Punto(12.312, 12.312), new Direccion("Medrano", 790)));
+		HashMap<String, List<POI>> hmap = new HashMap<>();
+		hmap.put("pois", pois);
+		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
+	}
+	
 	public static ModelAndView adminClose(Request req, Response res){
 		if(cookieOk(req, "admin", "true")){
 			res.cookie("admin", "false");
@@ -50,8 +69,8 @@ public class UserController {
 	
 	private static boolean esUsuario(String user, String password){
 		boolean status = user.contentEquals("root")&&password.contentEquals("");
-		System.out.println("OK?");
-		System.out.println(status);
+//		System.out.println("OK?");
+//		System.out.println(status);
 		return status;
 	}
 	
