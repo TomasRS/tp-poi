@@ -1,0 +1,148 @@
+header{
+	position: absolute;
+	padding: 0.5rem;
+	top:0;
+	left:0;
+	right:0;
+	background:#efefef;
+}
+
+header .logo{
+	float:left;
+}
+
+body{
+	background-color: lightgray;
+	font-family: calibri;
+	font-size: 1em;
+}
+
+.content{
+	padding-top:75px;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.DetallesPOI{
+	
+}
+input{
+	font-family: calibri;
+	font-size: 1em;
+}
+
+.wrapper{
+	width:90%;
+	margin:auto;
+	overflow:hidden;
+}
+
+.ingreso{
+	text-align:center;
+}
+
+.botonesPrincipales {
+    text-align: center;
+}
+
+div{
+	width: 95%;
+	padding: 0.5em;
+}
+
+.TextBoxUsuario{
+	margin-left: 1.5em;
+}
+
+.TablaDePOIsEncontrados{
+	visibility: hidden;
+}
+table{
+	width: 100%;
+}
+
+th, td{
+	padding: 15px;
+	text-align:left;
+}
+
+th{
+	background-color: grey;
+	color:white;
+}
+
+td{
+	background-color: white;
+}
+
+.SelectBox{
+	padding:4px;
+}
+
+.TextBoxFechaDesde{
+	margin-left: 7.2em;
+	width: 94px;
+}
+
+.TextBoxFechaHasta{
+	width: 94px;
+}
+.TextBoxTerminal{
+	margin-left: 6.1em;
+}
+.BotonDeCambioDePagina{
+	-moz-appearance: button;
+    -ms-appearance: button;
+    -o-appearance: button;
+    -webkit-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: #000;
+    padding: 0.1em 0.4em;
+}
+
+/*NavigationBar*/
+.NavigationBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.ElementoDelBar {
+    float: left;
+}
+
+.ElementoDelBar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.ElementoDelBar a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+.ElementoDelBar {
+    border-right: 1px solid #bbb;
+}
+
+.ElementoDelBar:last-child {
+    border-right: none;
+}

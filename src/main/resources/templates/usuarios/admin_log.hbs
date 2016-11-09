@@ -1,0 +1,24 @@
+{{#partial "title"}}
+  <title>Ingreso de Usuario dministrador</title>
+{{/partial}}
+
+{{#partial "content"}}
+<div class="content">
+<h2>Ingreso como administrador</h2>
+<div>
+  <label for="nombre">Usuario:</label>
+  <input type="text" class="TextBoxUsuario" placeholder="Escriba su usuario" maxlength="15" name="nombre" id="nombre">
+  <br><br>
+
+  <label for="contrasenia">Contrase&#241;a:</label>
+  <input type="password" placeholder="Escriba su contrase&#241;a" maxlength="15" name="contrasenia" id="contrasenia">
+</div>
+
+<br>
+<a class="BotonDeCambioDePagina" href="administrarPOIs.html">Iniciar sesi&oacute;n</a>
+<br><br>
+<a class="BotonDeCambioDePagina" href="../principal.html">Volver</a>
+</div>
+{{/partial}}
+
+{{> base.hbs}}
