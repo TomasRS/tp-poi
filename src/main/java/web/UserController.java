@@ -80,14 +80,11 @@ public class UserController {
 	
 	public ModelAndView showPois(Request req, Response res){
 		System.out.println("Muestro pois");
-		ArrayList<POIShowStruct> pois = new ArrayList<>();
-		POI poi1 = new ParadaDeColectivo("114 Lugano", new Punto(12.312, 12.312), new Direccion("Mozart", 2000));
-		POI poi2 = new ParadaDeColectivo("151 Medrano", new Punto(12.312, 12.312), new Direccion("Medrano", 790));
-		pois.add(poi1.toShow());
-		pois.add(poi2.toShow());
-		System.out.println(poi1.toShow().toString());
+		String cadenaABuscar = req.queryParams("buscar");
+		List<POI> pois = mapa.buscar(cadenaABuscar);
+		System.out.println(pois.size());
 		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
-		hmap.put("pois", pois);
+		hmap.put("pois", pois2show(pois));
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
 	
@@ -134,6 +131,14 @@ public class UserController {
 		} else {
 			return false;
 		}
+	}
+	
+	private List<POIShowStruct> pois2show(List<POI> pois){
+		List<POIShowStruct> poisShow = new ArrayList<>();
+		for (POI aPOI:pois){
+			poisShow.add(aPOI.toShow());
+		}
+		return poisShow;
 	}
 	
 }

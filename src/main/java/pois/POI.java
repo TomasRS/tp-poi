@@ -157,6 +157,9 @@ public abstract class POI {
 		pShow.setNombre(getNombre());
 		pShow.setCallePrincipal(direccion.getCallePrincipal());
 		pShow.setTipo(this.getClass().getName().substring(5));
+		pShow.setCalle1(direccion.calle1);
+		pShow.setCalle2(direccion.calle2);
+		pShow.setBarrio(direccion.barrio);
 		return pShow;
 	}
 	
