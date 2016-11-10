@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ar.edu.TPPOI.MapaPOI;
 import ar.edu.TPPOI.Terminal;
 import deApoyo.Punto;
 import pois.Direccion;
@@ -12,22 +13,31 @@ import pois.ParadaDeColectivo;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import users.UserManager;
 
 public class UserController {
 	
-	public static ModelAndView adminLog(Request req, Response res){
+	MapaPOI mapa;
+	UserManager uMan;
+	
+	public UserController(MapaPOI aMap){
+		mapa = aMap;
+		uMan = UserManager.getInstance();
+	}
+	
+	public ModelAndView adminLog(Request req, Response res){
 		return new ModelAndView(null, "usuarios/admin_log.hbs");
 	}
 	
-	public static ModelAndView ventanaTerminal(Request req, Response res){
+	public ModelAndView ventanaTerminal(Request req, Response res){
 		return new ModelAndView(null, "usuarios/ventana_terminal.hbs");
 	}
 	
-	public static ModelAndView adminPOIS(Request req, Response res){
+	public ModelAndView adminPOIS(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_pois.hbs");
 	}
 	
-	public static ModelAndView adminLogPost(Request req, Response res){
+	public ModelAndView adminLogPost(Request req, Response res){
 //		System.out.println("Datos recibidos");
 		String username = req.queryParams("txt_username");
 		String password = req.queryParams("txt_password");
@@ -41,7 +51,7 @@ public class UserController {
 		}
 	}
 	
-	public static ModelAndView adminShow(Request req, Response res){
+	public ModelAndView adminShow(Request req, Response res){
 		if(cookieOk(req, "admin", "true")){
 			return adminPOIS(req, res);
 		} else {
@@ -50,7 +60,7 @@ public class UserController {
 		}
 	}
 	
-	public static ModelAndView adminTerminalShow(Request req, Response res){
+	public ModelAndView adminTerminalShow(Request req, Response res){
 		if(cookieOk(req, "admin", "true")){
 			return adminTerminal(req, res);
 		} else {
@@ -59,7 +69,7 @@ public class UserController {
 		}
 	}
 	
-	public static ModelAndView adminConsultasShow(Request req, Response res){
+	public ModelAndView adminConsultasShow(Request req, Response res){
 		if(cookieOk(req, "admin", "true")){
 			return adminConsultas(req, res);
 		} else {
@@ -68,7 +78,7 @@ public class UserController {
 		}
 	}
 	
-	public static ModelAndView showPois(Request req, Response res){
+	public ModelAndView showPois(Request req, Response res){
 		System.out.println("Muestro pois");
 		ArrayList<POI> pois = new ArrayList<>();
 		pois.add(new ParadaDeColectivo("114 Lugano", new Punto(12.312, 12.312), new Direccion("Mozart", 2000)));
@@ -78,27 +88,27 @@ public class UserController {
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
 	
-	public static ModelAndView adminTerminal(Request req, Response res){
+	public ModelAndView adminTerminal(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_terminales.hbs");
 	}
 	
-	public static ModelAndView showTerminales(Request req, Response res){
+	public ModelAndView showTerminales(Request req, Response res){
 		HashMap<String, List<Terminal>> hmap = new HashMap<>();
 		hmap.put("terminales", new ArrayList<>());
 		return new ModelAndView(hmap, "admin/admin_terminales_founded.hbs");
 	}
 	
-	public static ModelAndView adminConsultas(Request req, Response res){
+	public ModelAndView adminConsultas(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_consultas.hbs");
 	}
 	
-	public static ModelAndView showConsultas(Request req, Response res){
+	public ModelAndView showConsultas(Request req, Response res){
 //		HashMap<String, List<Terminal>> hmap = new HashMap<>();
 //		hmap.put("terminales", new ArrayList<>());
 		return new ModelAndView(null, "admin/admin_consultas_founded.hbs");
 	}
 	
-	public static ModelAndView adminClose(Request req, Response res){
+	public ModelAndView adminClose(Request req, Response res){
 		if(cookieOk(req, "admin", "true")){
 			res.cookie("admin", "false");
 		}
@@ -106,14 +116,14 @@ public class UserController {
 		return null;
 	}
 	
-	private static boolean esUsuario(String user, String password){
-		boolean status = user.contentEquals("root")&&password.contentEquals("");
+	private boolean esUsuario(String user, String password){
+		boolean status = uMan.anyMatch(user, password);
 //		System.out.println("OK?");
 //		System.out.println(status);
 		return status;
 	}
 	
-	private static boolean cookieOk(Request req, String key, String val){
+	private boolean cookieOk(Request req, String key, String val){
 		String cookieVal = req.cookie(key);
 		System.out.println(cookieVal);
 		if (cookieVal!=null){

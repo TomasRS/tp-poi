@@ -26,6 +26,8 @@
     	<class>ar.edu.TPPOI.Accion</class>
     	<class>ar.edu.TPPOI.Notificar</class>
     	<class>ar.edu.TPPOI.Almacenar</class>
+    	
+    	<class>users.User</class>
     	 
         <properties> 
 	    	<property name="hibernate.archive.autodetection" value="class"/>        

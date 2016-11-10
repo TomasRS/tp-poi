@@ -150,7 +150,7 @@ public abstract class POI {
 	public String toString(){
 		return this.nombre;
 	}
-
+	
 	public void persistirEnMapa(EntityManager em) {
 		em.persist(this.coordenada);
 		em.persist(this.direccion);
