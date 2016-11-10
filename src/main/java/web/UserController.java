@@ -80,10 +80,13 @@ public class UserController {
 	
 	public ModelAndView showPois(Request req, Response res){
 		System.out.println("Muestro pois");
-		ArrayList<POI> pois = new ArrayList<>();
-		pois.add(new ParadaDeColectivo("114 Lugano", new Punto(12.312, 12.312), new Direccion("Mozart", 2000)));
-		pois.add(new ParadaDeColectivo("151 Medrano", new Punto(12.312, 12.312), new Direccion("Medrano", 790)));
-		HashMap<String, List<POI>> hmap = new HashMap<>();
+		ArrayList<POIShowStruct> pois = new ArrayList<>();
+		POI poi1 = new ParadaDeColectivo("114 Lugano", new Punto(12.312, 12.312), new Direccion("Mozart", 2000));
+		POI poi2 = new ParadaDeColectivo("151 Medrano", new Punto(12.312, 12.312), new Direccion("Medrano", 790));
+		pois.add(poi1.toShow());
+		pois.add(poi2.toShow());
+		System.out.println(poi1.toShow().toString());
+		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
 		hmap.put("pois", pois);
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
