@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 import org.apache.commons.lang3.StringUtils;
 
 import deApoyo.Punto;
+import web.POIShowStruct;
 
 @Entity
 @Table(name="Pois")
@@ -150,7 +151,15 @@ public abstract class POI {
 	public String toString(){
 		return this.nombre;
 	}
-
+	
+	public POIShowStruct toShow(){
+		POIShowStruct pShow = new POIShowStruct();
+		pShow.setNombre(getNombre());
+		pShow.setCallePrincipal(direccion.getCallePrincipal());
+		pShow.setTipo(this.getClass().getName().substring(5));
+		return pShow;
+	}
+	
 	public void persistirEnMapa(EntityManager em) {
 		em.persist(this.coordenada);
 		em.persist(this.direccion);

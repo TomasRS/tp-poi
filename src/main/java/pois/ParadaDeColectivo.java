@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 
 import deApoyo.Punto;
+import web.POIShowStruct;
 
 @Entity
 public class ParadaDeColectivo extends POI {
@@ -42,5 +43,10 @@ public class ParadaDeColectivo extends POI {
 		super.persistirEnMapa(em);
 		em.persist(this);
 	}
+	
+//	public void toShow(POIShowStruct pShow){
+//		super.toShow(pShow);
+//		pShow.setTipo("parada");
+//	}
 
 }

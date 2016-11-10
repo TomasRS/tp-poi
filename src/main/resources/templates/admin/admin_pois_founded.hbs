@@ -1,7 +1,7 @@
 {{#partial "pois"}}
   <h3><u>POIs encontrados</u></h3>
-  <div class="TablaDePOIsEncontrados" id="TablaDePOIsEncontrados">
-    <table>
+  <div>
+    <table border="1">
       <tr>
         <th>Nombre</th>
         <th>Tipo</th>
@@ -12,8 +12,8 @@
       {{#pois}}
         <tr>
           <td>{{nombre}}</td>
-          <td>Parada de colectivo</td>
-          <td>{{direccion.callePrincipal}}</td>
+          <td>{{tipo}}</td>
+          <td>{{callePrincipal}}</td>
           <td><a href="poiEspecifico/poiHardcodeadoAdmin.html">Entrar</a></td>
           <td><input type="checkbox" ></td>
         </tr>
