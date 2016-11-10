@@ -116,6 +116,14 @@ public class UserController {
 		return null;
 	}
 	
+	public ModelAndView terminalClose(Request req, Response res){
+		if(cookieOk(req, "terminal", "true")){
+			res.cookie("terminal", "false");
+		}
+		res.redirect("/");
+		return null;
+	}
+	
 	private boolean esUsuario(String user, String password){
 		boolean status = uMan.anyMatch(user, password);
 //		System.out.println("OK?");
