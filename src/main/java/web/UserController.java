@@ -65,6 +65,11 @@ public class UserController {
 		}
 	}
 	
+	public ModelAndView addTerminales (Request req, Response res){
+		res.redirect("/admin/agregarTerminal");
+		return null;
+	}
+	
 	public ModelAndView adminTerminalShow(Request req, Response res){
 		if(cookieOk(req, "admin", "true")){
 			return adminTerminal(req, res);
@@ -93,26 +98,26 @@ public class UserController {
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
 	public ModelAndView addTerminal(Request req, Response res){
-		String terminalAAgegar=req.queryParams("agregarNombreTerminal");
-		String notificarSI=req.queryParams("NotificarSI");
-		String almacenarSI=req.queryParams("AlmacenarSI");
-		Terminal unaT=new Terminal();
-		Boolean chkbxNotificarSI=(notificarSI!=null);
-		unaT.setDescripcion(terminalAAgegar);
-		Boolean chkbxAlmacenarSI=(almacenarSI!=null);
-		if (chkbxNotificarSI){
-			Notificar n=new Notificar();
-			unaT.activarAccion(n);
-		}
-		if (chkbxAlmacenarSI){
-			Almacenar a=new Almacenar();
-			unaT.activarAccion(a);
-		}
-		RepositorioDeTerminales unR=RepositorioDeTerminales.getSingletonInstance();
-		unR.agregarTerminal(unaT);
-		return new ModelAndView(unR,"admin/admin_terminales.hbs");
-		
+	String terminalAAgegar=req.queryParams("agregarNombreTerminal");
+	String notificarSI=req.queryParams("NotificarSI");
+	String almacenarSI=req.queryParams("AlmacenarSI");
+	Terminal unaT=new Terminal();
+	Boolean chkbxNotificarSI=(notificarSI!=null);
+	unaT.setDescripcion(terminalAAgegar);
+	Boolean chkbxAlmacenarSI=(almacenarSI!=null);
+	if (chkbxNotificarSI){
+		Notificar n=new Notificar();
+		unaT.activarAccion(n);
 	}
+	if (chkbxAlmacenarSI){
+		Almacenar a=new Almacenar();
+		unaT.activarAccion(a);
+	}
+	RepositorioDeTerminales unR=RepositorioDeTerminales.getSingletonInstance();
+	unR.agregarTerminal(unaT);
+	return new ModelAndView(unR,"admin/admin_terminales.hbs");
+	
+}
 	public ModelAndView adminTerminal(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_terminales.hbs");
 	}
