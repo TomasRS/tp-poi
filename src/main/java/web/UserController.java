@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JCheckBox;
+
+import acciones.Almacenar;
+import acciones.Notificar;
 import ar.edu.TPPOI.MapaPOI;
 import ar.edu.TPPOI.Terminal;
 import deApoyo.Punto;
+import deApoyo.RepositorioDeTerminales;
 import pois.Direccion;
 import pois.POI;
 import pois.ParadaDeColectivo;
@@ -87,7 +92,27 @@ public class UserController {
 		hmap.put("pois", pois2show(pois));
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
-	
+	public ModelAndView addTerminal(Request req, Response res){
+		String terminalAAgegar=req.queryParams("agregarNombreTerminal");
+		String notificarSI=req.queryParams("NotificarSI");
+		String almacenarSI=req.queryParams("AlmacenarSI");
+		Terminal unaT=new Terminal();
+		Boolean chkbxNotificarSI=(notificarSI!=null);
+		unaT.setDescripcion(terminalAAgegar);
+		Boolean chkbxAlmacenarSI=(almacenarSI!=null);
+		if (chkbxNotificarSI){
+			Notificar n=new Notificar();
+			unaT.activarAccion(n);
+		}
+		if (chkbxAlmacenarSI){
+			Almacenar a=new Almacenar();
+			unaT.activarAccion(a);
+		}
+		RepositorioDeTerminales unR=RepositorioDeTerminales.getSingletonInstance();
+		unR.agregarTerminal(unaT);
+		return new ModelAndView(unR,"admin/admin_terminales.hbs");
+		
+	}
 	public ModelAndView adminTerminal(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_terminales.hbs");
 	}
@@ -97,6 +122,7 @@ public class UserController {
 		hmap.put("terminales", new ArrayList<>());
 		return new ModelAndView(hmap, "admin/admin_terminales_founded.hbs");
 	}
+	
 	
 	public ModelAndView adminConsultas(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_consultas.hbs");
