@@ -53,6 +53,8 @@ public class CGP extends EmpresaMultiServicios {
 				|| this.getZonasQueIncluye().contains(unTextoLibre) || this.direccion.coincideConCalle(unTextoLibre);
 	}
 
+	
+	
 	public void actualizar(POI unCGPExterno) {
 		this.actualizarDesdeDatos(unCGPExterno.getCoordenada(), unCGPExterno.getDireccion(), unCGPExterno.getTags(),
 				((CGP) unCGPExterno).getServicios());

@@ -16,6 +16,7 @@ import externos.CGPAdapter;
 import externos.CentroDTO;
 import pois.CGP;
 import pois.LocalComercial;
+import pois.POI;
 import pois.Servicio;
 
 public class MapaPOITest extends AbstractPersistenceTest implements WithGlobalEntityManager {
@@ -25,6 +26,7 @@ public class MapaPOITest extends AbstractPersistenceTest implements WithGlobalEn
 	BancoAdapter bancoAdapter;
 	CGPAdapter cgpAdapter;
 	CentroDTO centro;
+	CGP cgpComuna5;
 
 	@Before
 	public void init() {
@@ -35,6 +37,7 @@ public class MapaPOITest extends AbstractPersistenceTest implements WithGlobalEn
 		bancoAdapter = soporteParaTests.bancoAdapter();
 		cgpAdapter = soporteParaTests.CGPAdapter();
 		centro = soporteParaTests.crearCentroDTO();
+		cgpComuna5 = soporteParaTests.cgpComuna5();
 	}
 
 	@Test
@@ -96,7 +99,32 @@ public class MapaPOITest extends AbstractPersistenceTest implements WithGlobalEn
 	public void testBuscarCGPJuninEnSistemaExterno() {
 		Assert.assertEquals(cgpAdapter.buscar("Junin").size(), 1);
 	}
-
+	
+	@Test
+	public void testNoBuscaNada(){
+		List<POI> pois = mapaInteractivo.busquedaLocal("");
+		System.out.println("-----------------------------------------------------------");
+		pois.forEach(poi->System.out.println(poi));
+		System.out.println("-----------------------------------------------------------");
+		Assert.assertEquals(0,pois.size());
+	}
+	
+	@Test
+	public void testComunaSinAtributo(){
+		System.out.println("-----------------------------------------------------------");
+		System.out.println(cgpComuna5.coincideConAtributo(""));
+		System.out.println("-----------------------------------------------------------");
+		Assert.assertEquals(false, cgpComuna5.coincideConAtributo(""));
+	}
+	
+	@Test
+	public void testPOIestaContenidoPalabraClave(){
+		System.out.println("-----------------------------------------------------------");
+		System.out.println(cgpComuna5.getServicios().stream()
+				.anyMatch(unServicio -> cgpComuna5.estanContenidos("", unServicio.getNombre())));
+		System.out.println("-----------------------------------------------------------");
+	}
+	
 	@Test
 	public void testBarrioAbastoAgregoCineAbasto() {
 		mapaInteractivo.agregarPOI(cineAbasto);

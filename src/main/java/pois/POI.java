@@ -118,9 +118,11 @@ public abstract class POI {
 		return this.coincideConAtributo(unTextoLibre) || this.coincideConAlgunTag(unTextoLibre);
 	}
 
-	protected boolean estanContenidos(String unaPalabraClave, String unAtributo) {
-		return StringUtils.containsIgnoreCase(unaPalabraClave, unAtributo)
-				|| StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave);
+	public boolean estanContenidos(String unaPalabraClave, String unAtributo) {
+		return (StringUtils.containsIgnoreCase(unaPalabraClave, unAtributo) && 
+				!unaPalabraClave.contentEquals("") )
+				|| (StringUtils.containsIgnoreCase(unAtributo, unaPalabraClave)&& 
+				!unaPalabraClave.contentEquals("") );
 	}
 
 	public boolean esBanco() {
