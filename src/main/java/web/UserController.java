@@ -82,6 +82,7 @@ public class UserController {
 		System.out.println("Muestro pois");
 		String cadenaABuscar = req.queryParams("buscar");
 		List<POI> pois = mapa.buscar(cadenaABuscar);
+//		List<POI> pois = mapa.getListaDePOIs();
 		System.out.println(pois.size());
 		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
 		hmap.put("pois", pois2show(pois));
@@ -124,6 +125,16 @@ public class UserController {
 		return null;
 	}
 	
+	public ModelAndView showPOI(Request req, Response res){
+		System.out.println("muestro poi");
+		System.out.println("---------------------");
+		String id = req.params("id");
+		POI aPOI = mapa.getPOIbyId(Long.parseLong(id));
+		System.out.println(aPOI);
+		POIShowStruct pShow = aPOI.toShow();
+		return new ModelAndView(pShow, "admin/poi_spec.hbs");
+	}
+	
 	private boolean esUsuario(String user, String password){
 		boolean status = uMan.anyMatch(user, password);
 //		System.out.println("OK?");
@@ -133,7 +144,7 @@ public class UserController {
 	
 	private boolean cookieOk(Request req, String key, String val){
 		String cookieVal = req.cookie(key);
-		System.out.println(cookieVal);
+		System.out.printf("CookieStat:%s\n", cookieVal);
 		if (cookieVal!=null){
 			return cookieVal.contentEquals(val);
 		} else {

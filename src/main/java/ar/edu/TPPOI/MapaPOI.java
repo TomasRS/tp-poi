@@ -167,4 +167,17 @@ public class MapaPOI {
 	public boolean mapaContieneElPOI(String nombreLocalComercial){
 		return listaDePOIs.stream().anyMatch(unP->unP.getNombre().equals(nombreLocalComercial));
 	}
+	
+	public POI getPOIbyId(long id){
+//		return entityManager.find(POI.class, 1l);
+		POI aPOI;
+		for (POI unPOI:listaDePOIs){
+			if (unPOI.id==id){
+				return unPOI;
+			}
+		}
+		System.out.println("No se encontró");
+		return null;
+		
+	}
 }

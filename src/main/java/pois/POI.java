@@ -155,11 +155,10 @@ public abstract class POI {
 	public POIShowStruct toShow(){
 		POIShowStruct pShow = new POIShowStruct();
 		pShow.setNombre(getNombre());
-		pShow.setCallePrincipal(direccion.getCallePrincipal());
+		pShow.setDireccion(direccion);
 		pShow.setTipo(this.getClass().getName().substring(5));
-		pShow.setCalle1(direccion.calle1);
-		pShow.setCalle2(direccion.calle2);
-		pShow.setBarrio(direccion.barrio);
+		pShow.setCoordenada(coordenada);
+		pShow.setId(id);
 		return pShow;
 	}
 	
