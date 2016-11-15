@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import excepciones.POINoExistente;
 import externos.SistemaExternoAdapterInterface;
 import pois.POI;
 import procesos.ProcDarDeBajaPOIs;
@@ -168,15 +169,17 @@ public class MapaPOI {
 		return listaDePOIs.stream().anyMatch(unP->unP.getNombre().equals(nombreLocalComercial));
 	}
 	
-	public POI getPOIbyId(long id){
+	public POI getPOIbyId(long id) throws POINoExistente{
 //		return entityManager.find(POI.class, 1l);
-		POI aPOI;
+		POI aPOI = null;
 		for (POI unPOI:listaDePOIs){
 			if (unPOI.id==id){
 				return unPOI;
 			}
 		}
-		System.out.println("No se encontró");
+		if (aPOI==null){
+			throw new POINoExistente();
+		}
 		return null;
 		
 	}
