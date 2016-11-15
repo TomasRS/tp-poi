@@ -12,6 +12,7 @@ import ar.edu.TPPOI.MapaPOI;
 import ar.edu.TPPOI.Terminal;
 import deApoyo.Punto;
 import deApoyo.RepositorioDeTerminales;
+import excepciones.POINoExistente;
 import pois.Direccion;
 import pois.POI;
 import pois.ParadaDeColectivo;
@@ -160,10 +161,17 @@ public class UserController {
 		System.out.println("muestro poi");
 		System.out.println("---------------------");
 		String id = req.params("id");
-		POI aPOI = mapa.getPOIbyId(Long.parseLong(id));
-		System.out.println(aPOI);
-		POIShowStruct pShow = aPOI.toShow();
-		return new ModelAndView(pShow, "admin/poi_spec.hbs");
+		POI aPOI;
+		try {
+			aPOI = mapa.getPOIbyId(Long.parseLong(id));
+
+			System.out.println(aPOI);
+			POIShowStruct pShow = aPOI.toShow();
+			return new ModelAndView(pShow, "admin/poi_spec.hbs");
+		} catch (POINoExistente e) {
+			// TODO Auto-generated catch block
+			return new ModelAndView(null, "admin/poi_no_existente.hbs");
+		}
 	}
 	
 	private boolean esUsuario(String user, String password){
