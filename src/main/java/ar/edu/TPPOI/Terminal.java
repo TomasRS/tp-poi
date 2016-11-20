@@ -190,5 +190,10 @@ public class Terminal {
 	public void setAcciones(Set<Accion> acciones) {
 		this.acciones = acciones;
 	}
+	
+	public boolean cumpleBusqueda(String searchText){
+		return (!searchText.equalsIgnoreCase(""))&&descripcion.toLowerCase().contains(
+			searchText.toLowerCase());
+	}
 
 }

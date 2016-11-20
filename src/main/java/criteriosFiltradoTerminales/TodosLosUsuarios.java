@@ -1,12 +1,12 @@
 package criteriosFiltradoTerminales;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import ar.edu.TPPOI.Terminal;
 
 public class TodosLosUsuarios extends Criterio{
 
-	public ArrayList<Terminal> filtrarTerminales(ArrayList<Terminal> terminales) {
+	public List<Terminal> filtrarTerminales(List<Terminal> terminales) {
 		return terminales;
 	}
 

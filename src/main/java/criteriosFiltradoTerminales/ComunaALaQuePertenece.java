@@ -1,6 +1,5 @@
 package criteriosFiltradoTerminales;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +11,7 @@ public class ComunaALaQuePertenece extends Criterio{
 	Comuna comunaAsociada;
 	
 	
-	public List<Terminal> filtrarTerminales(ArrayList<Terminal> terminales) {
+	public List<Terminal> filtrarTerminales(List<Terminal> terminales) {
 		
 	return	terminales.stream().filter(unaT->unaT.getComuna().equals(comunaAsociada)).collect(Collectors.toList());
 	}

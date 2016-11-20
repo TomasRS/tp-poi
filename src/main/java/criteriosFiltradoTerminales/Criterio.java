@@ -7,7 +7,7 @@ import ar.edu.TPPOI.Terminal;
 
 public abstract class Criterio {
 
-	public abstract List<Terminal> filtrarTerminales(ArrayList<Terminal> terminales);
+	public abstract List<Terminal> filtrarTerminales(List<Terminal> list);
 
 
 }

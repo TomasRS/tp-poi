@@ -5,7 +5,9 @@ import javax.persistence.EntityTransaction;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import ar.edu.TPPOI.MapaPOI;
+import ar.edu.TPPOI.Terminal;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.RepositorioDeTerminales;
 import spark.Spark;
 import users.User;
 import users.UserManager;
@@ -22,6 +24,7 @@ public class Server {
 		mapa = soporte.mapa();
 		Spark.port(9000);
 		setUsers();
+		setTerminales();
 		Router.initialize(mapa);
 		tx.commit();
 		System.out.println("My server is ready!!");
@@ -31,6 +34,12 @@ public class Server {
 		UserManager uMan = UserManager.getInstance();
 		uMan.addUser(new User("admin", ""));
 		uMan.addUser(new User("root", "pass"));
+	}
+	
+	private static void setTerminales(){
+		Terminal t1 = new Terminal();
+		t1.setDescripcion("terminal 1");
+		RepositorioDeTerminales.agregarTerminal(t1);
 	}
 
 }

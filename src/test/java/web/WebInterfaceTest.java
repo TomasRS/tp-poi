@@ -33,12 +33,12 @@ public class WebInterfaceTest extends AbstractPersistenceTest implements WithGlo
 		Spark.port(9000);
 		setUsers();
 		Router.initialize(mapa);
-		try {
-			Thread.sleep(100000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(100000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	private void setUsers(){

@@ -6,13 +6,15 @@
   <h2><u>Administraci&oacute;n de terminales</u></h2>
   <form action="/admin/terminales" method="POST">
     <label for="buscar">Buscar Terminal:</label>
-		<input type="text" class="TextBox" placeholder="Escriba aqu&iacute;" maxlength="20" name="buscar" id="buscar">
+		<input type="text" class="TextBox" placeholder="Escriba aqu&iacute;" maxlength="20" name="buscar_terminales" id="buscar_terminales">
 
 		<label>Filtrar por:</label>
-		<input type="checkbox" value="Nombre">Comuna
+		<input type="radio" name="criteria" value="comunaBox" checked>Comuna
+    <input type="radio" name="criteria" value="allBox">Mostrar todos
 
 		<input type="submit" id="boton" class="ButtonBuscar" value="Buscar">
   </form>
+
   {{#block "terminales"}}
   {{/block}}
 {{/partial}}

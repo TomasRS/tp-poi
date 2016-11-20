@@ -91,7 +91,7 @@ public class UserController {
 	
 	public ModelAndView showPois(Request req, Response res){
 		System.out.println("Muestro pois");
-		String cadenaABuscar = req.queryParams("buscar");
+		String cadenaABuscar = req.queryParams("buscar_pois");
 		List<POI> pois = mapa.buscar(cadenaABuscar);
 //		List<POI> pois = mapa.getListaDePOIs();
 		System.out.println(pois.size());
@@ -115,9 +115,9 @@ public class UserController {
 		Almacenar a=new Almacenar();
 		unaT.activarAccion(a);
 	}
-	RepositorioDeTerminales unR=RepositorioDeTerminales.getSingletonInstance();
-	unR.agregarTerminal(unaT);
-	return new ModelAndView(unR,"admin/admin_terminales.hbs");
+	RepositorioDeTerminales.agregarTerminal(unaT);
+	return new ModelAndView(RepositorioDeTerminales.getTerminales()
+		,"admin/admin_terminales.hbs");
 	
 }
 	public ModelAndView adminTerminal(Request req, Response res){
@@ -126,7 +126,18 @@ public class UserController {
 	
 	public ModelAndView showTerminales(Request req, Response res){
 		HashMap<String, List<Terminal>> hmap = new HashMap<>();
-		hmap.put("terminales", new ArrayList<>());
+		String textSearch = req.queryParams("buscar_terminales");
+		List<Terminal> terminales;
+		System.out.println(req.queryParams("criteria"));
+		if (req.queryParams("criteria").equalsIgnoreCase("allBox")){
+			System.out.println("muestro todas las terminales");
+			terminales = RepositorioDeTerminales.getTerminales();
+		} else {
+			terminales = RepositorioDeTerminales.buscar(textSearch);
+		}
+		System.out.println("------");
+		System.out.println(terminales.size());
+		hmap.put("terminales", terminales);
 		return new ModelAndView(hmap, "admin/admin_terminales_founded.hbs");
 	}
 	

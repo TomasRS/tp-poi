@@ -43,7 +43,7 @@ public abstract class ProcesoAltaBaja extends Proceso {
 
 
 	public List<Terminal> terminales() {
-			return this.getCriterio().filtrarTerminales(RepositorioDeTerminales.getSingletonInstance().getTerminales());		
+			return this.getCriterio().filtrarTerminales(RepositorioDeTerminales.getTerminales());		
 	}
 
 }

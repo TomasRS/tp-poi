@@ -29,19 +29,14 @@ public class MapaPOI {
 	List<SistemaExternoAdapterInterface> listaDeSistemaExternoAdapter = new ArrayList<>();
 
 	private void cargarDeDB(){
-		TypedQuery<POI> query = entityManager.createQuery("SELECT p FROM POI p", POI.class);
+		TypedQuery<POI> query = entityManager.createQuery(
+			"SELECT p FROM POI p", POI.class);
 		List<POI> pois = query.getResultList();
 		this.agregarListaDePOI(pois);
 		System.out.println("Se agregan de DB:");
 		System.out.println(pois);
 		System.out.println("Pois Totales");
 		System.out.println(this.getListaDePOIs());
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public List<POI> getListaDePOIs() {
