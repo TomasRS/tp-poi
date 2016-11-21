@@ -6,16 +6,19 @@
   <h2><u>Historial de consultas</u></h2>
   <form action="/admin/consultas" method="POST">
     <label for="buscar">Fecha:</label>
-		<input type="text" class="TextBoxFechaDesde" placeholder="Desde" maxlength="10">
-		<input type="text" class="TextBoxFechaHasta" placeholder="Hasta" maxlength="10">
-		<br><br>
+		<input type="date" class="TextBoxFechaDesde" placeholder="Desde" name="desde">
+		<input type="date" class="TextBoxFechaHasta" placeholder="Hasta" name="hasta">
+    <input type="checkbox" name="byDate">
+    <br><br>
 		<label for="buscar">Cant. de POIs devueltos:</label>
 		<input type="text" class="TextBoxCantidadPOIs" placeholder="Cantidad" maxlength="5">
-		<br><br>
+    <input type="checkbox" name="byPOIQ">
+    <br><br>
 		<label for="buscar">Terminal:</label>
 		<input type="text" class="TextBoxTerminal" placeholder="Nombre de la terminal" maxlength="20">
+    <input type="checkbox" name="byName">
 		<br><br>
-		<input type="submit" id="boton" class="ButtonBuscar" value="Buscar">
+    <input type="submit" id="boton" class="search" value="Buscar">
   </form>
   {{#block "consultas"}}
   {{/block}}

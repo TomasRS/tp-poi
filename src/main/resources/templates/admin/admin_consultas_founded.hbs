@@ -18,6 +18,15 @@
         <td>10</td>
         <td><a href="#">Entrar</a></td>
       </tr>
+      {{#consultas}}
+      <tr>
+        <td>{{frase}}</td>
+        <td>{{cantDeResultados}}</td>
+        <td>{{fecha}}</td>
+        <td>{{tiempoDeBusqueda}}</td>
+        <td><a href="#">Entrar</a></td>
+      </tr>
+      {{/consultas}}
     </table>
   </div>
 {{/partial}}

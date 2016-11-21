@@ -4,18 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JCheckBox;
-
 import acciones.Almacenar;
 import acciones.Notificar;
 import ar.edu.TPPOI.MapaPOI;
 import ar.edu.TPPOI.Terminal;
-import deApoyo.Punto;
 import deApoyo.RepositorioDeTerminales;
 import excepciones.POINoExistente;
-import pois.Direccion;
 import pois.POI;
-import pois.ParadaDeColectivo;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
