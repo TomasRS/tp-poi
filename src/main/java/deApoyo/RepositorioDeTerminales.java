@@ -46,6 +46,7 @@ public class RepositorioDeTerminales {
 	public static void agregarTerminal(Terminal aTerminal) {
 		System.out.println("Agregar terminal");
 		entityManager.persist(aTerminal);
+		getTerminales().add(aTerminal);
 	}
 
 	public static void clean() {

@@ -1,0 +1,30 @@
+{{#partial "title"}}
+  <title>Agregar Terminales</title>
+{{/partial}}
+
+{{#partial "content"}}
+  <h1>
+    Agregar Terminal
+  </h1>
+  <h2>
+    Complete los datos de la Terminal segun corresponda
+  </h2>
+  <br>
+  <div class="agregar Terminal">
+    <form method="post" action="/admin/terminales/agregar">
+      <label for="Nombre">Nombre de la terminal:</label>
+      <input type="text" class="TextBox" placeholder="Escriba el nombre de la terminal" maxlength="20" name="nombreTerminal">
+      <br>
+      <input type="checkbox" name="almacenar" value="si"> Puede Almacenar<br>
+      <input type="checkbox" name="notificar" value="si"> Puede Notificar <br>
+      <br>
+
+      <br>
+      <input type="submit" value="Agregar terminal">
+    </form>
+    <a id="cancelar" href="/admin/terminales">Volver a Administrar Terminal</a>
+  </div>
+
+{{/partial}}
+
+{{> admin/admin_base.hbs}}

@@ -94,27 +94,38 @@ public class UserController {
 		hmap.put("pois", pois2show(pois));
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
-	public ModelAndView addTerminal(Request req, Response res){
-	String terminalAAgegar=req.queryParams("agregarNombreTerminal");
-	String notificarSI=req.queryParams("NotificarSI");
-	String almacenarSI=req.queryParams("AlmacenarSI");
-	Terminal unaT=new Terminal();
-	Boolean chkbxNotificarSI=(notificarSI!=null);
-	unaT.setDescripcion(terminalAAgegar);
-	Boolean chkbxAlmacenarSI=(almacenarSI!=null);
-	if (chkbxNotificarSI){
-		Notificar n=new Notificar();
-		unaT.activarAccion(n);
-	}
-	if (chkbxAlmacenarSI){
-		Almacenar a=new Almacenar();
-		unaT.activarAccion(a);
-	}
-	RepositorioDeTerminales.agregarTerminal(unaT);
-	return new ModelAndView(RepositorioDeTerminales.getTerminales()
-		,"admin/admin_terminales.hbs");
 	
-}
+	public ModelAndView showAddTerminal(Request req, Response res){
+		return new ModelAndView(null
+			,"admin/admin_terminales_add.hbs");
+	}
+	
+	public ModelAndView addTerminal(Request req, Response res) {
+		System.out.println("agregar terminal");
+		System.out.println("---------------------------");
+		String terminalAAgegar = req.queryParams("nombreTerminal");
+		System.out.println(terminalAAgegar);
+		String almacenarSI = req.queryParams("almacenar");
+		System.out.println(almacenarSI);
+		String notificarSI = req.queryParams("notificar");
+		System.out.println(notificarSI);
+		Terminal unaT = new Terminal();
+		Boolean chkbxNotificarSI = (notificarSI != null);
+		unaT.setDescripcion(terminalAAgegar);
+		Boolean chkbxAlmacenarSI = (almacenarSI != null);
+		if (chkbxNotificarSI) {
+			Notificar n = new Notificar();
+			unaT.activarAccion(n);
+		}
+		if (chkbxAlmacenarSI) {
+			Almacenar a = new Almacenar();
+			unaT.activarAccion(a);
+		}
+		RepositorioDeTerminales.agregarTerminal(unaT);
+		System.out.println("finnn-------------------");
+		return new ModelAndView(RepositorioDeTerminales.getTerminales(), "admin/admin_terminales_add.hbs");
+
+	}
 	public ModelAndView adminTerminal(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_terminales.hbs");
 	}
@@ -203,6 +214,12 @@ public class UserController {
 			poisShow.add(aPOI.toShow());
 		}
 		return poisShow;
+	}
+	
+	private void verificarLogueo(Request req, Response res){
+		if(!cookieOk(req, "admin", "true")){
+			res.redirect("/admin/ingreso");
+		}
 	}
 	
 }

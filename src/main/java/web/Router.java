@@ -20,14 +20,20 @@ public class Router {
 		Spark.post("/admin/ingreso", uContr::adminLogPost, engine);
 		Spark.get("/admin/workspace", uContr::adminShow, engine);
 		Spark.post("/admin/workspace", uContr::showPois, engine);
+
 		Spark.get("/admin/terminales", uContr::adminTerminalShow, engine);
 		Spark.post("/admin/terminales", uContr::showTerminales, engine);
+		Spark.get("/admin/terminales/agregar", uContr::showAddTerminal,engine);
+		Spark.post("/admin/terminales/agregar", uContr::addTerminal,engine);
+
+		
 		Spark.get("/admin/consultas", uContr::adminConsultasShow, engine);
 		Spark.post("/admin/consultas", uContr::showConsultas, engine);
+		
 		Spark.get("/admin/poi/:id", uContr::showPOI, engine);
+		
 		Spark.get("/admin/admin_out", uContr::adminClose, engine);
-		Spark.post("/admin/terminales", uContr::addTerminal,engine);		
-		Spark.get("/admin/terminales",uContr::addTerminales,engine);
+		
 		Spark.get("/terminal/terminal_out", uContr::terminalClose, engine);
 	}
 }

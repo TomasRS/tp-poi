@@ -59,6 +59,10 @@ public class Terminal {
 	
 	//-------------------------------------------------------------
 	
+	public long getId(){
+		return this.id;
+	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}

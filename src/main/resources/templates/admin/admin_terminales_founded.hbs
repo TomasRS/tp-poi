@@ -9,15 +9,6 @@
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
-      <tr>
-        <td>Terminal Cabildo</td>
-        <td>14</td>
-        <td>A, B, C</td>
-        <td><a href="#">Entrar</a></td>
-        <td><input type="checkbox" name="" id=""></td>
-      </tr>
-      <!--A partir de aca deberia hacerse un forEach para que cada elemento de la lista (un POI) que
-      me devuelve Java, se represente como una fila de la tabla con sus correspondientes datos-->
       {{#terminales}}
         <tr>
           <td>{{descripcion}}</td>
@@ -28,12 +19,13 @@
             {{/acciones}}
           </td>
           <td><a href="#">Entrar</a></td>
-          <td><input type="checkbox" name="" id=""></td>
+          <td><input type="checkbox" name={{id}}></td>
         </tr>
       {{/terminales}}
     </table>
-    <input type="button" class="ButtonAgregarTerminal" value="Agregar">
-    <input type="button" class="ButtonEliminarTerminales" value="Eliminar">
+    <form id="delete" method="post" action="/admin/terminales/eliminar">
+      <input type="submit" value="Eliminar seleccionados">
+    </form>
   </div>
 {{/partial}}
 {{> admin/admin_terminales.hbs}}
