@@ -199,5 +199,17 @@ public class Terminal {
 		return (!searchText.equalsIgnoreCase(""))&&descripcion.toLowerCase().contains(
 			searchText.toLowerCase());
 	}
+	
+	public String getAccionesString(){
+		String cad = "";
+		for (Accion accion:acciones){
+			cad+=accion.getTipo();
+			cad+=", ";
+		}
+		if (acciones.size()>0){
+			cad = cad.substring(0, cad.length()-2);
+		}
+		return cad;
+	}
 
 }

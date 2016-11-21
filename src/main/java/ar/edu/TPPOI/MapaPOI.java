@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import deApoyo.Comuna;
 import excepciones.POINoExistente;
 import externos.SistemaExternoAdapterInterface;
 import pois.POI;
@@ -177,5 +178,17 @@ public class MapaPOI {
 		}
 		return null;
 		
+	}
+	
+	public List<Comuna> getComunas(){
+		TypedQuery<Comuna> query = entityManager.createQuery(
+				"SELECT c FROM Comuna c", Comuna.class);
+			List<Comuna> comunas = query.getResultList();
+		System.out.println(comunas.size());
+		return comunas;
+	}
+	
+	public Comuna getComunaById(long unId){
+		return entityManager.find(Comuna.class, unId);
 	}
 }

@@ -31,6 +31,7 @@ public class Server {
 	}
 	
 	private static void setUsers(){
+		soporte.cgpComuna5();
 		UserManager uMan = UserManager.getInstance();
 		uMan.addUser(new User("admin", ""));
 		uMan.addUser(new User("root", "pass"));

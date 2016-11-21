@@ -21,9 +21,9 @@ public class RepositorioDeTerminales {
 			System.out.println("Init transaction");
 			System.out.println("Traigo de DB");
 			TypedQuery<Terminal> query = entityManager.createQuery("SELECT t FROM Terminal t", Terminal.class);
-			List<Terminal> terminales_enc = query.getResultList();
-			System.out.println(terminales_enc.size());
-			terminales.addAll(terminales_enc);
+			List<Terminal> terminales = query.getResultList();
+			System.out.println(terminales.size());
+//			terminales.addAll(terminales_enc);
 		} catch (Exception e) {
 			System.out.println("paso algo");
 			e.printStackTrace();

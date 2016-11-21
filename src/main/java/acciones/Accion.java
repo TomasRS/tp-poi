@@ -18,5 +18,9 @@ public abstract class Accion {
 	@Id @GeneratedValue
 	private long id;
 	
+	public String getTipo(){
+		return this.getClass().getName().substring(9);
+	}
+	
 	public abstract void ejecutarLuegoDeLaBusqueda(BusquedaHecha unaBusqueda, Terminal terminal);
 }

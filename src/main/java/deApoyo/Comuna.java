@@ -37,6 +37,10 @@ public class Comuna {
 		this.puntos = unosPuntos;
 	}
 	
+	public long getId(){
+		return id;
+	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}

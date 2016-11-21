@@ -8,6 +8,8 @@ import acciones.Almacenar;
 import acciones.Notificar;
 import ar.edu.TPPOI.MapaPOI;
 import ar.edu.TPPOI.Terminal;
+import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
+import deApoyo.Comuna;
 import deApoyo.RepositorioDeTerminales;
 import excepciones.POINoExistente;
 import pois.POI;
@@ -22,7 +24,9 @@ public class UserController {
 	UserManager uMan;
 	
 	public UserController(MapaPOI aMap){
-		mapa = aMap;
+		SoporteDeInstanciasParaTestsBuilder soporte = new SoporteDeInstanciasParaTestsBuilder();
+//		mapa = aMap;
+		mapa = soporte.mapa();
 		uMan = UserManager.getInstance();
 	}
 	
@@ -81,7 +85,14 @@ public class UserController {
 	
 	public ModelAndView showAddTerminal(Request req, Response res){
 		verificarLogueo(req, res);
-		return new ModelAndView(null
+		HashMap< String, List<Comuna>> hmap = new HashMap<>();
+		List<Comuna> comunas = mapa.getComunas();
+//		Comuna otra = new Comuna();
+//		otra.
+//		otra.setDescripcion("descripcion");
+//		comunas.add(otra);
+		hmap.put("comunas", comunas);
+		return new ModelAndView(hmap
 			,"admin/admin_terminales_add.hbs");
 	}
 	
@@ -107,9 +118,12 @@ public class UserController {
 			Almacenar a = new Almacenar();
 			unaT.activarAccion(a);
 		}
+		long unId = Long.parseLong(req.queryParams("comuna"));
+		Comuna comuna = mapa.getComunaById(unId);
+		unaT.setComuna(comuna);
 		RepositorioDeTerminales.agregarTerminal(unaT);
 		System.out.println("finnn-------------------");
-		return new ModelAndView(RepositorioDeTerminales.getTerminales(), "admin/admin_terminales_add.hbs");
+		return new ModelAndView(null, "admin/admin_terminales.hbs");
 
 	}
 	public ModelAndView adminTerminal(Request req, Response res){

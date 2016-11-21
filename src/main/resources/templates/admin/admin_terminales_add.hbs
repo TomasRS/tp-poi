@@ -18,6 +18,12 @@
       <input type="checkbox" name="almacenar" value="si"> Puede Almacenar<br>
       <input type="checkbox" name="notificar" value="si"> Puede Notificar <br>
       <br>
+      <label for="NombreComuna">Comuna:</label>
+      <ul>
+        {{#comunas}}
+        <li><input type="radio" name="comuna" value={{id}}>{{id}}-{{descripcion}}</li>
+        {{/comunas}}
+      </ul>
 
       <br>
       <input type="submit" value="Agregar terminal">

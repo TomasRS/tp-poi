@@ -12,11 +12,9 @@
       {{#terminales}}
         <tr>
           <td>{{descripcion}}</td>
-          <td>{{comuna.id}}</td>
+          <td>{{id}}-{{comuna.descripcion}}</td>
           <td>
-            {{#acciones}}
-              {{id}}
-            {{/acciones}}
+            {{accionesString}}
           </td>
           <td><a href="#">Entrar</a></td>
           <td><input type="checkbox" name={{id}}></td>
