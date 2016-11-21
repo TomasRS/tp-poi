@@ -25,7 +25,9 @@ public class Router {
 		Spark.post("/admin/terminales", uContr::showTerminales, engine);
 		Spark.get("/admin/terminales/agregar", uContr::showAddTerminal,engine);
 		Spark.post("/admin/terminales/agregar", uContr::addTerminal,engine);
-
+		Spark.get("/admin/terminales/editar/:id", uContr::showEditTerminal,engine);
+		Spark.post("/admin/terminales/editar/:id", uContr::editTerminal,engine);
+		Spark.post("/admin/terminales/eliminar", uContr::deleteTerminal,engine);
 		
 		Spark.get("/admin/consultas", uContr::adminConsultasShow, engine);
 		Spark.post("/admin/consultas", uContr::showConsultas, engine);

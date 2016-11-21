@@ -59,4 +59,18 @@ public class RepositorioDeTerminales {
 	public static void clean() {
 		terminales.clear();
 	}
+	
+	public static Terminal getTerminalById(long id){
+		return entityManager.find(Terminal.class, id);
+	}
+	
+	public static void actualizarTerminal(Terminal aTerminal) {
+		entityManager.persist(aTerminal);
+	}
+	
+	public static void eliminarTerminal(Terminal aTerminal) {
+		entityManager.remove(aTerminal);
+		terminales.remove(terminales.indexOf(aTerminal));
+	}
+	
 }

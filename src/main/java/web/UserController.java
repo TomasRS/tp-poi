@@ -3,6 +3,8 @@ package web;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
@@ -139,6 +141,7 @@ public class UserController {
 	}
 	
 	public ModelAndView showTerminales(Request req, Response res){
+		verificarLogueo(req, res);
 		HashMap<String, List<Terminal>> hmap = new HashMap<>();
 		String textSearch = req.queryParams("buscar_terminales");
 		List<Terminal> terminales = new ArrayList<>();;
@@ -160,6 +163,68 @@ public class UserController {
 		return new ModelAndView(hmap, "admin/admin_terminales_founded.hbs");
 	}
 	
+	public ModelAndView showEditTerminal(Request req, Response res){
+		verificarLogueo(req, res);
+		System.out.println("muestro edicion terminal");
+		System.out.println("---------------------");
+		String id = req.params("id");
+		Terminal terminal = RepositorioDeTerminales.getTerminalById(Long.parseLong(id));
+		if (terminal!=null){
+			HashMap< String, Object> hmap = new HashMap<>();
+			List<Comuna> comunas = mapa.getComunas();
+			hmap.put("comunas", comunas);
+			hmap.put("id", id);
+			return new ModelAndView(hmap, "admin/admin_terminales_edit.hbs");
+		} else {
+			return new ModelAndView(null, "admin/terminal_no_existente.hbs");
+		}
+	}
+	
+	public ModelAndView editTerminal(Request req, Response res){
+		verificarLogueo(req, res);
+		System.out.println("editar terminal");
+		System.out.println("---------------------------");
+		String terminalAAgegar = req.queryParams("nombreTerminal");
+		System.out.println(terminalAAgegar);
+		String almacenarSI = req.queryParams("almacenar");
+		System.out.println(almacenarSI);
+		String notificarSI = req.queryParams("notificar");
+		System.out.println(notificarSI);
+		String termId = req.params("id");
+		Terminal unaT = RepositorioDeTerminales.getTerminalById(Long.parseLong(termId));
+		Boolean chkbxNotificarSI = (notificarSI != null);
+		unaT.setDescripcion(terminalAAgegar);
+		Boolean chkbxAlmacenarSI = (almacenarSI != null);
+		if (chkbxNotificarSI) {
+			Notificar n = new Notificar();
+			unaT.activarAccion(n);
+		}
+		if (chkbxAlmacenarSI) {
+			Almacenar a = new Almacenar();
+			unaT.activarAccion(a);
+		}
+		long unId = Long.parseLong(req.queryParams("comuna"));
+		Comuna comuna = mapa.getComunaById(unId);
+		unaT.setComuna(comuna);
+		em.getTransaction().begin();
+		RepositorioDeTerminales.actualizarTerminal(unaT);
+		em.getTransaction().commit();
+		System.out.println("finnn-------------------");
+		return new ModelAndView(null, "admin/admin_terminales.hbs");
+	}
+	
+	public ModelAndView deleteTerminal(Request req, Response res){
+		Set<String> terminalesId =req.queryParams();
+		System.out.println(terminalesId);
+		List<Terminal> terminales = terminalesId.stream().map(
+			aT->RepositorioDeTerminales.getTerminalById(Long.parseLong(aT)))
+			.collect(Collectors.toList());
+		em.getTransaction().begin();
+		terminales.forEach(aT->RepositorioDeTerminales.eliminarTerminal(aT));
+		em.getTransaction().commit();
+		res.redirect("/admin/terminales");
+		return null;
+	}
 	
 	public ModelAndView adminConsultas(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_consultas.hbs");
