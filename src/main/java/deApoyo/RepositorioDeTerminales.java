@@ -33,14 +33,21 @@ public class RepositorioDeTerminales {
 	public static List<Terminal> getTerminales() {
 		if (terminales == null) {
 			terminales = new ArrayList<>();
-			loadDB();
+//			loadDB();
 		}
+		loadDB();
 		return terminales;
 	}
 
-	public static List<Terminal> buscar(String searchText) {
+	public static List<Terminal> searchByDescripcion(String searchText) {
 		return getTerminales().stream().filter(aTerminal -> aTerminal.cumpleBusqueda(searchText))
-				.collect(Collectors.toList());
+			.collect(Collectors.toList());
+	}
+	
+	public static List<Terminal> searchByComuna(String searchText) {
+		return getTerminales().stream().filter(
+			aTerminal -> aTerminal.cumpleBusquedaComuna(searchText))
+			.collect(Collectors.toList());
 	}
 
 	public static void agregarTerminal(Terminal aTerminal) {

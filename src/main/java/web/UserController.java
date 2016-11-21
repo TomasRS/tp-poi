@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
 import acciones.Almacenar;
 import acciones.Notificar;
 import ar.edu.TPPOI.MapaPOI;
@@ -22,12 +26,14 @@ public class UserController {
 	
 	MapaPOI mapa;
 	UserManager uMan;
+	EntityManager em;
 	
 	public UserController(MapaPOI aMap){
 		SoporteDeInstanciasParaTestsBuilder soporte = new SoporteDeInstanciasParaTestsBuilder();
 //		mapa = aMap;
 		mapa = soporte.mapa();
 		uMan = UserManager.getInstance();
+		em = PerThreadEntityManagers.getEntityManager();
 	}
 	
 	public ModelAndView adminLog(Request req, Response res){
@@ -121,7 +127,9 @@ public class UserController {
 		long unId = Long.parseLong(req.queryParams("comuna"));
 		Comuna comuna = mapa.getComunaById(unId);
 		unaT.setComuna(comuna);
+		em.getTransaction().begin();
 		RepositorioDeTerminales.agregarTerminal(unaT);
+		em.getTransaction().commit();
 		System.out.println("finnn-------------------");
 		return new ModelAndView(null, "admin/admin_terminales.hbs");
 
@@ -133,13 +141,18 @@ public class UserController {
 	public ModelAndView showTerminales(Request req, Response res){
 		HashMap<String, List<Terminal>> hmap = new HashMap<>();
 		String textSearch = req.queryParams("buscar_terminales");
-		List<Terminal> terminales;
-		System.out.println(req.queryParams("criteria"));
-		if (req.queryParams("criteria").equalsIgnoreCase("allBox")){
+		List<Terminal> terminales = new ArrayList<>();;
+		String criteria = req.queryParams("criteria");
+		System.out.println(criteria);
+		if (criteria==null){
 			System.out.println("muestro todas las terminales");
 			terminales = RepositorioDeTerminales.getTerminales();
-		} else {
-			terminales = RepositorioDeTerminales.buscar(textSearch);
+		} else if (criteria.equalsIgnoreCase("comunaBox")){
+			System.out.println("busco por comuna");
+			terminales = RepositorioDeTerminales.searchByComuna(textSearch);
+		} else if (criteria.equalsIgnoreCase("nombreBox")) {
+			System.out.println("busco por comuna");
+			terminales = RepositorioDeTerminales.searchByDescripcion(textSearch);
 		}
 		System.out.println("------");
 		System.out.println(terminales.size());

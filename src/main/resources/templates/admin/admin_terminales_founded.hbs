@@ -1,27 +1,25 @@
 {{#partial "terminales"}}
   <h3><u>Terminales encontradas</u></h3>
   <div>
-    <table border="1">
-      <tr>
-        <th>Nombre</th>
-        <th>Comuna</th>
-        <th>Acciones</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
-      </tr>
-      {{#terminales}}
-        <tr>
-          <td>{{descripcion}}</td>
-          <td>{{id}}-{{comuna.descripcion}}</td>
-          <td>
-            {{accionesString}}
-          </td>
-          <td><a href="#">Entrar</a></td>
-          <td><input type="checkbox" name={{id}}></td>
-        </tr>
-      {{/terminales}}
-    </table>
     <form id="delete" method="post" action="/admin/terminales/eliminar">
+      <table border="1">
+        <tr>
+          <th>Nombre</th>
+          <th>Comuna</th>
+          <th>Acciones</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+        {{#terminales}}
+          <tr>
+            <td>{{descripcion}}</td>
+            <td>{{comuna.id}}-{{comuna.descripcion}}</td>
+            <td>{{accionesString}}</td>
+            <td><a href="#">Entrar</a></td>
+            <td><input type="checkbox" name={{id}} value="eliminar"></td>
+          </tr>
+        {{/terminales}}
+      </table>
       <input type="submit" value="Eliminar seleccionados">
     </form>
   </div>

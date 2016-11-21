@@ -200,6 +200,21 @@ public class Terminal {
 			searchText.toLowerCase());
 	}
 	
+	public boolean cumpleBusquedaComuna(String searchText){
+		System.out.println("en terminal");
+		System.out.println(searchText);
+		boolean cumpleComuna;
+		if (comuna!=null){
+			cumpleComuna = comuna.coincideBusqueda(searchText);
+		} else {
+			cumpleComuna = false;
+		}
+		return (!searchText.equalsIgnoreCase(""))
+			&&cumpleComuna;
+		
+		
+	}
+	
 	public String getAccionesString(){
 		String cad = "";
 		for (Accion accion:acciones){

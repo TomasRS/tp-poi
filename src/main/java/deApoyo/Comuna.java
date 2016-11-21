@@ -69,4 +69,23 @@ public class Comuna {
 		return mismosPuntos;
 	}
 	
+	public boolean coincideBusqueda(String searchText){
+		System.out.println("busco en comuna");
+		boolean c1;
+		if (descripcion!=null){
+			c1 = descripcion.toLowerCase().contains(searchText);
+		} else {
+			c1 = false;
+		}
+		System.out.println(c1);
+		boolean c2;
+		try{
+			c2 = String.valueOf(id).contains(searchText);
+		} catch (Exception e) {
+			c2 = false;
+		}
+		System.out.println(c2);
+		return c1||c2;
+	}
+	
 }
