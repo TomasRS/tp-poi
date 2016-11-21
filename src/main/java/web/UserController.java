@@ -53,38 +53,22 @@ public class UserController {
 	}
 	
 	public ModelAndView adminShow(Request req, Response res){
-		if(cookieOk(req, "admin", "true")){
-			return adminPOIS(req, res);
-		} else {
-			res.redirect("/admin/ingreso");
-			return null;
-		}
-	}
-	
-	public ModelAndView addTerminales (Request req, Response res){
-		res.redirect("/admin/agregarTerminal");
-		return null;
+		verificarLogueo(req, res);
+		return adminPOIS(req, res);
 	}
 	
 	public ModelAndView adminTerminalShow(Request req, Response res){
-		if(cookieOk(req, "admin", "true")){
-			return adminTerminal(req, res);
-		} else {
-			res.redirect("/admin/ingreso");
-			return null;
-		}
+		verificarLogueo(req, res);
+		return adminTerminal(req, res);
 	}
 	
 	public ModelAndView adminConsultasShow(Request req, Response res){
-		if(cookieOk(req, "admin", "true")){
-			return adminConsultas(req, res);
-		} else {
-			res.redirect("/admin/ingreso");
-			return null;
-		}
+		verificarLogueo(req, res);
+		return adminConsultas(req, res);
 	}
 	
 	public ModelAndView showPois(Request req, Response res){
+		verificarLogueo(req, res);
 		System.out.println("Muestro pois");
 		String cadenaABuscar = req.queryParams("buscar_pois");
 		List<POI> pois = mapa.buscar(cadenaABuscar);
@@ -96,11 +80,13 @@ public class UserController {
 	}
 	
 	public ModelAndView showAddTerminal(Request req, Response res){
+		verificarLogueo(req, res);
 		return new ModelAndView(null
 			,"admin/admin_terminales_add.hbs");
 	}
 	
 	public ModelAndView addTerminal(Request req, Response res) {
+		verificarLogueo(req, res);
 		System.out.println("agregar terminal");
 		System.out.println("---------------------------");
 		String terminalAAgegar = req.queryParams("nombreTerminal");
@@ -175,6 +161,7 @@ public class UserController {
 	}
 	
 	public ModelAndView showPOI(Request req, Response res){
+		verificarLogueo(req, res);
 		System.out.println("muestro poi");
 		System.out.println("---------------------");
 		String id = req.params("id");
