@@ -31,9 +31,8 @@ public class UserController {
 	UserManager uMan;
 	EntityManager em;
 	
-	public UserController(MapaPOI aMap){
+	public UserController(){
 		SoporteDeInstanciasParaTestsBuilder soporte = new SoporteDeInstanciasParaTestsBuilder();
-//		mapa = aMap;
 		mapa = soporte.mapa();
 		uMan = UserManager.getInstance();
 		em = PerThreadEntityManagers.getEntityManager();
@@ -84,7 +83,9 @@ public class UserController {
 		verificarLogueo(req, res);
 		System.out.println("Muestro pois");
 		String cadenaABuscar = req.queryParams("buscar_pois");
+		em.getTransaction().begin();
 		List<POI> pois = mapa.buscar(cadenaABuscar);
+		em.getTransaction().commit();
 //		List<POI> pois = mapa.getListaDePOIs();
 		System.out.println(pois.size());
 		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();

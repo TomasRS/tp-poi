@@ -6,13 +6,13 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
 	
-	public static void initialize(MapaPOI aMapaPOI){
+	public static void initialize(){
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
 				.create()
 				.withDefaultHelpers()
 				.withHelper("isTrue", BooleanHelper.isTrue)
 				.build();
-		UserController uContr = new UserController(aMapaPOI);
+		UserController uContr = new UserController();
 		Spark.staticFileLocation("/static");
 		Spark.get("/", HomeController::principal, engine);
 		Spark.get("/admin/ingreso", uContr::adminLog, engine);
