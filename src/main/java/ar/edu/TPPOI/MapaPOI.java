@@ -97,7 +97,7 @@ public class MapaPOI {
 		unaListaDePOIs.stream().forEach(unPOI -> actualizarPOISiCorresponde(unPOI));
 	}
 
-	private void actualizarPOISiCorresponde(POI unPOIExterno) {
+	public void actualizarPOISiCorresponde(POI unPOIExterno) {
 		if (estaEnLocal(unPOIExterno)) {
 			buscarPoi(unPOIExterno).actualizar(unPOIExterno);
 			//actualizar en DB

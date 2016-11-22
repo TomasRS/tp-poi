@@ -33,6 +33,7 @@ public class Router {
 		Spark.post("/admin/consultas", uContr::showConsultas, engine);
 		
 		Spark.get("/admin/poi/:id", uContr::showPOI, engine);
+		Spark.post("/admin/poi/editar/:id", uContr::editPOI, engine);
 		
 		Spark.get("/admin/admin_out", uContr::adminClose, engine);
 		

@@ -16,6 +16,7 @@ import ar.edu.TPPOI.MapaPOI;
 import ar.edu.TPPOI.Terminal;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.Comuna;
+import deApoyo.Punto;
 import deApoyo.RepositorioDeTerminales;
 import excepciones.POINoExistente;
 import pois.POI;
@@ -273,6 +274,43 @@ public class UserController {
 			// TODO Auto-generated catch block
 			return new ModelAndView(null, "admin/poi_no_existente.hbs");
 		}
+	}
+	
+	public ModelAndView editPOI(Request req, Response res){
+		verificarLogueo(req, res);
+		System.out.println("editar poi");
+		System.out.println("---------------------------");
+		String POIAAgegar = req.queryParams("nombrePOI");
+		System.out.println(POIAAgegar);
+		String latitud = req.queryParams("latitud");
+		System.out.println(latitud);
+		String longitud = req.queryParams("longitud");
+		System.out.println(longitud);
+		String calle1 = req.queryParams("calle1");
+		System.out.println(calle1);
+		String calle2 = req.queryParams("calle2");
+		System.out.println(calle2);
+		String poiId = req.params("id");
+		System.out.println("Antes del try.");
+		POI unPOI;
+		try{
+			unPOI = mapa.getPOIbyId(Long.parseLong(poiId));
+			unPOI.setNombre(POIAAgegar);
+			Punto unaCoordenada = new Punto(Long.parseLong(latitud), Long.parseLong(longitud));
+			unPOI.setCoordenada(unaCoordenada);
+			unPOI.getDireccion().setCalles(calle1, calle2);
+
+			System.out.println("Setea bien");
+			em.getTransaction().begin();
+			mapa.actualizarPOISiCorresponde(unPOI);
+			em.getTransaction().commit();
+			return new ModelAndView(null, "admin/admin_pois.hbs");
+		}
+		catch (POINoExistente e){
+			return new ModelAndView(null, "admin/poi_no_existente.hbs");
+		}
+
+		
 	}
 	
 	private boolean esUsuario(String user, String password){

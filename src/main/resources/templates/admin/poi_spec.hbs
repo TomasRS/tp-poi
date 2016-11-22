@@ -2,15 +2,26 @@
 {{/partial}}
 
 {{#partial "content"}}
-<h3>POI: {{nombre}}</h3>
+
+<div class="editar POI">
+<form method="post" action=/admin/poi/editar/{{id}} >
+<h3>POI: <input type="text" class="TextBox" value="{{nombre}}" name="nombrePOI"></h3>
 <ul class="DetallesPOI">
   <li>Tipo: {{tipo}}</li>
-  <li>Latitud: {{coordenada.latitud}}</li>
-  <li>Longitud: {{coordenada.longitud}}</li>
-  <li>Calle 1: {{direccion.calle1}}</li>
-  <li>Calle 2: {{direccion.calle2}}</li>
+  <li>Latitud: <input type="text" class="TextBox" value="{{coordenada.latitud}}" name="latitud"></li>
+  <li>Longitud: <input type="text" class="TextBox" value="{{coordenada.longitud}}" name="longitud"></li>
+  <li>Calle 1: <input type="text" class="TextBox" value="{{direccion.calle1}}" name="calle1"></li>
+  <li>Calle 2: <input type="text" class="TextBox" value="{{direccion.calle2}}" name="calle2"></li>
   <li>Barrio: {{direccion.barrio}}</li>
 </ul>
+
+ <br>
+ <input type="submit" value="Editar">
+
+</form>
+
+</div>
+
 {{/partial}}
 
 {{> admin/admin_base.hbs}}
