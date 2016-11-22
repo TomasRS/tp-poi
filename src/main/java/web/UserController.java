@@ -192,6 +192,7 @@ public class UserController {
 		System.out.println(notificarSI);
 		String termId = req.params("id");
 		Terminal unaT = RepositorioDeTerminales.getTerminalById(Long.parseLong(termId));
+		unaT.desactivarTodasAcciones();
 		Boolean chkbxNotificarSI = (notificarSI != null);
 		unaT.setDescripcion(terminalAAgegar);
 		Boolean chkbxAlmacenarSI = (almacenarSI != null);

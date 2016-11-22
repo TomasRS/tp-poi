@@ -104,7 +104,10 @@ public class Terminal {
 			this.acciones.remove(unaAccion);
 		}
 	}
-
+	
+	public void desactivarTodasAcciones(){
+		this.acciones.removeAll(this.acciones);
+	}
 	
 	public void agregarBusquedaHecha(BusquedaHecha unaBusquedaHecha){
 		this.busquedasHechas.add(unaBusquedaHecha);
