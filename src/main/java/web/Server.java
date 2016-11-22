@@ -21,11 +21,10 @@ public class Server {
 		soporte = new SoporteDeInstanciasParaTestsBuilder();
 		EntityTransaction tx = PerThreadEntityManagers.getEntityManager().getTransaction();
 		tx.begin();
-		mapa = soporte.mapa();
 		Spark.port(9000);
 		setUsers();
 		setTerminales();
-		Router.initialize(mapa);
+		Router.initialize();
 		tx.commit();
 		System.out.println("My server is ready!!");
 	}
