@@ -111,6 +111,7 @@ public class TerminalTest extends AbstractPersistenceTest implements WithGlobalE
 	}
 	
 	
+	
 //------------------------------ Tests de Almacenar ------------------------------
 	@Test ()
 	public void testAlmacenarResultadosDeBusqueda(){

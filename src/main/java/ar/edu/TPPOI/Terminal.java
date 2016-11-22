@@ -95,6 +95,7 @@ public class Terminal {
 	
 	public void activarAccion(Accion unaAccion){
 		this.acciones.add(unaAccion);
+		
 	}
 	
 	

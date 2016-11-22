@@ -10,6 +10,7 @@ public class ProcAgregarAccionesParaUsuarios extends ProcesoAltaBaja{
 	}
 	
 	public void activarCadaAccionPorTerminal(Terminal unaTerminal){
+		
 		acciones.forEach(unaA -> unaTerminal.activarAccion(unaA));
 	}
 

@@ -197,11 +197,15 @@ public class UserController {
 		Boolean chkbxAlmacenarSI = (almacenarSI != null);
 		if (chkbxNotificarSI) {
 			Notificar n = new Notificar();
+			if (!(unaT.getAcciones().stream().anyMatch(accion->accion.getClass().equals(n.getClass())))){
 			unaT.activarAccion(n);
+			}
 		}
 		if (chkbxAlmacenarSI) {
 			Almacenar a = new Almacenar();
-			unaT.activarAccion(a);
+			if (!(unaT.getAcciones().stream().anyMatch(accion->accion.getClass().equals(a.getClass())))){
+				unaT.activarAccion(a);
+				}
 		}
 		long unId = Long.parseLong(req.queryParams("comuna"));
 		Comuna comuna = mapa.getComunaById(unId);
