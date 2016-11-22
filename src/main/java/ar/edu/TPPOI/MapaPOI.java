@@ -47,6 +47,7 @@ public class MapaPOI {
 	public List<POI> buscar(String textoLibre) {
 		List<POI> resultadoBusquedaLocal = this.busquedaLocal(textoLibre);
 		if (resultadoBusquedaLocal.isEmpty()) {
+			System.out.println("buscando en externos");
 			List<POI> listaDePOIsExternos = this.buscarEnSistemasExternos(textoLibre);
 			this.actualizarPOIsSiCorresponde(listaDePOIsExternos);
 			resultadoBusquedaLocal = this.busquedaLocal(textoLibre);
@@ -66,15 +67,11 @@ public class MapaPOI {
 	}
 	
 	private void persistPOI(POI aPOI){
-//		tx.begin();
 		aPOI.persistirEnMapa(entityManager);
-//		tx.commit();
 	}
 	
 	private void deletePOI(POI aPOI){
-//		tx.begin();
 		entityManager.remove(aPOI);
-//		tx.commit();
 	}
 
 	public void agregarPOI(POI poi) {
@@ -100,7 +97,7 @@ public class MapaPOI {
 	private void actualizarPOISiCorresponde(POI unPOIExterno) {
 		if (estaEnLocal(unPOIExterno)) {
 			buscarPoi(unPOIExterno).actualizar(unPOIExterno);
-			//actualizar en DB
+			persistPOI(unPOIExterno);
 		} else {
 			agregarPOI(unPOIExterno);
 		}
@@ -166,17 +163,17 @@ public class MapaPOI {
 	}
 	
 	public POI getPOIbyId(long id) throws POINoExistente{
-//		return entityManager.find(POI.class, 1l);
-		POI aPOI = null;
-		for (POI unPOI:listaDePOIs){
-			if (unPOI.id==id){
-				return unPOI;
-			}
-		}
-		if (aPOI==null){
-			throw new POINoExistente();
-		}
-		return null;
+		return entityManager.find(POI.class, 1l);
+//		POI aPOI = null;
+//		for (POI unPOI:listaDePOIs){
+//			if (unPOI.id==id){
+//				return unPOI;
+//			}
+//		}
+//		if (aPOI==null){
+//			throw new POINoExistente();
+//		}
+//		return null;
 		
 	}
 	
