@@ -90,6 +90,9 @@ public class UserController {
 		hmap.put("pois", pois2show(pois));
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
+	/*public ModelAndView filterPois(Request req, Response res){
+		
+	}*/
 	
 	public ModelAndView showAddTerminal(Request req, Response res){
 		verificarLogueo(req, res);
