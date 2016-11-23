@@ -80,6 +80,19 @@ public class UserController {
 		return adminConsultas(req, res);
 	}
 	
+//	public ModelAndView showPois(Request req, Response res){
+//		verificarLogueo(req, res);
+//		System.out.println("Muestro pois");
+//		String cadenaABuscar = req.queryParams("buscar_pois");
+//		List<POI> pois = mapa.buscar(cadenaABuscar);
+////		List<POI> pois = mapa.getListaDePOIs();
+//		System.out.println(pois.size());
+//		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
+//		hmap.put("pois", pois2show(pois));
+//		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
+//	}
+	
+	
 	public ModelAndView showPois(Request req, Response res){
 		List<POI> pois=new ArrayList<>();
 		verificarLogueo(req, res);
@@ -256,6 +269,19 @@ public class UserController {
 		return null;
 	}
 	
+	public ModelAndView deletePOI(Request req, Response res){
+		Set<String> poisId =req.queryParams();
+		System.out.println(poisId);
+		List<POI> pois = poisId.stream().map(
+			unP->mapa.getPOIbyId(Long.parseLong(unP)))
+			.collect(Collectors.toList());
+		em.getTransaction().begin();
+		pois.forEach(unP->mapa.borrarPOI(unP));
+		em.getTransaction().commit();
+		res.redirect("/admin/workspace");
+		return null;
+	}
+	
 	public ModelAndView adminConsultas(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_consultas.hbs");
 	}
@@ -288,16 +314,11 @@ public class UserController {
 		System.out.println("---------------------");
 		String id = req.params("id");
 		POI aPOI;
-		try {
 			aPOI = mapa.getPOIbyId(Long.parseLong(id));
 
 			System.out.println(aPOI);
 			POIShowStruct pShow = aPOI.toShow();
 			return new ModelAndView(pShow, "admin/poi_spec.hbs");
-		} catch (POINoExistente e) {
-			// TODO Auto-generated catch block
-			return new ModelAndView(null, "admin/poi_no_existente.hbs");
-		}
 	}
 	
 	public ModelAndView editPOI(Request req, Response res){
@@ -317,12 +338,7 @@ public class UserController {
 		String poiId = req.params("id");
 		System.out.println("Antes del try.");
 		POI unPOI;
-		try {
 			unPOI = mapa.getPOIbyId(Long.parseLong(poiId));
-		} catch (POINoExistente e1) {
-			e1.printStackTrace();
-			return new ModelAndView(null, "admin/poi_no_existente.hbs");
-		}
 		unPOI.setNombre(POIAAgegar);
 		try {
 			Punto unaCoordenada = new Punto(Long.parseLong(latitud), Long.parseLong(longitud));

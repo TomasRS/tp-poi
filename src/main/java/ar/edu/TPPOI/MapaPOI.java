@@ -162,7 +162,7 @@ public class MapaPOI {
 		return listaDePOIs.stream().anyMatch(unP->unP.getNombre().equals(nombreLocalComercial));
 	}
 	
-	public POI getPOIbyId(long id) throws POINoExistente{
+	public POI getPOIbyId(long id) {
 		return entityManager.find(POI.class, id);
 //		POI aPOI = null;
 //		for (POI unPOI:listaDePOIs){

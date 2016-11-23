@@ -1,6 +1,7 @@
 {{#partial "pois"}}
   <h3><u>POIs encontrados</u></h3>
   <div>
+  <form id="delete" method="post" action="/admin/workspace/eliminar">
     <table border="1">
       <tr>
         <th>Nombre</th>
@@ -19,6 +20,8 @@
         </tr>
       {{/pois}}
     </table>
+     <input type="submit" value="Eliminar seleccionados">
+    </form>
   </div>
 {{/partial}}
 {{>admin/admin_pois.hbs}}

@@ -20,6 +20,8 @@ public class Router {
 		Spark.post("/admin/ingreso", uContr::adminLogPost, engine);
 		Spark.get("/admin/workspace", uContr::adminShow, engine);
 		Spark.post("/admin/workspace", uContr::showPois, engine);
+		Spark.post("/admin/workspace/eliminar", uContr::deletePOI, engine);
+		
 		Spark.get("/admin/terminales", uContr::adminTerminalShow, engine);
 		Spark.post("/admin/terminales", uContr::showTerminales, engine);
 		Spark.get("/admin/terminales/agregar", uContr::showAddTerminal,engine);

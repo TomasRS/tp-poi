@@ -50,7 +50,9 @@ public class CGP extends EmpresaMultiServicios {
 	public boolean coincideConAtributo(String unTextoLibre) {
 		return this.servicios.stream()
 				.anyMatch(unServicio -> this.estanContenidos(unTextoLibre, unServicio.getNombre()))
-				|| this.getZonasQueIncluye().contains(unTextoLibre) || this.direccion.coincideConCalle(unTextoLibre);
+				|| this.getZonasQueIncluye().contains(unTextoLibre) || this.direccion.coincideConCalle(unTextoLibre)
+				|| this.nombre.equalsIgnoreCase(unTextoLibre);
+		
 	}
 
 	

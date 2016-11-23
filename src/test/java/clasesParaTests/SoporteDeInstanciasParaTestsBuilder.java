@@ -87,7 +87,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public ParadaDeColectivo paradaDeColectivo114DeCabildoYMonroe() {
 		if (parada114DeCabildoYMonroe == null) {
 			coordenadaParada114 = new Punto(-58.459845185279846, -34.558164509672146);
-			Direccion direccionParada114 = new Direccion();
+			Direccion direccionParada114 = new Direccion("Cabildo 1111", 1111);
 			direccionParada114.setCalles("Monroe", "Cabildo");
 			parada114DeCabildoYMonroe = new ParadaDeColectivo("114", coordenadaParada114, direccionParada114);
 		}
@@ -98,7 +98,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public ParadaDeColectivo paradaDeColectivo114DeLugano() {
 		if (parada114DeLugano == null) {
 			coordenadaParada114 = new Punto(-88.459845185279846, -24.558164509672146);
-			Direccion direccionParada114 = new Direccion();
+			Direccion direccionParada114 = new Direccion("Mozart 9000", 9000);
 			direccionParada114.setCalles("lugano", "mozart");
 			parada114DeLugano = new ParadaDeColectivo("114", coordenadaParada114, direccionParada114);
 		}
@@ -200,7 +200,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 
 	public CGP cgpComuna5() {
 		if (cgpComuna5 == null) {
-			Direccion direccionCGP = new Direccion("Corrientes", 500);
+			Direccion direccionCGP = new Direccion("Corrientes 500", 500);
 			List<Punto> puntos = new ArrayList<>();
 			List<String> zonasCGP5 = new ArrayList<>();
 			puntos.add(new Punto(-58.411898, -34.597984));
@@ -233,7 +233,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horarios2.add(new Horario(DayOfWeek.THURSDAY, horaInicio, horaFin));
 			horarios2.add(new Horario(DayOfWeek.FRIDAY, horaInicio, horaFin));
 			horarios2.add(new Horario(DayOfWeek.SATURDAY, horaInicio, horaFin));
-			Direccion direccionStarbucks = new Direccion("Coronel Diaz", 1400);
+			Direccion direccionStarbucks = new Direccion("Coronel Diaz 1400", 1400);
 			starbucksCoronelDiaz1400 = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks", coordenadaStarbucks,
 					horarios2, direccionStarbucks);
 		}
@@ -253,7 +253,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horarios2.add(new Horario(DayOfWeek.THURSDAY, horaInicio, horaFin));
 			horarios2.add(new Horario(DayOfWeek.FRIDAY, horaInicio, horaFin));
 			horarios2.add(new Horario(DayOfWeek.SATURDAY, horaInicio, horaFin));
-			Direccion direccionStarbucks = new Direccion("Rivadavia", 3647);
+			Direccion direccionStarbucks = new Direccion("Rivadavia 3647", 3647);
 			starbucksRivadavia = LocalComercial.nuevoLocalConRubroCafeteria("Starbucks"+ "", coordenadaStarbucks, horarios2,
 					direccionStarbucks);
 			starbucksRivadavia.setTag("cafe");
@@ -274,7 +274,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 			horariosGym.add(new Horario(DayOfWeek.THURSDAY, horaInicioGym, horaFinGym));
 			horariosGym.add(new Horario(DayOfWeek.FRIDAY, horaInicioGym, horaFinGym));
 			horariosGym.add(new Horario(DayOfWeek.SATURDAY, horaInicioGym, horaFinGym));
-			Direccion direccionSportClub = new Direccion("Avenida Libertador", 7395);
+			Direccion direccionSportClub = new Direccion("Avenida Libertador 7395", 7395);
 			sportClubLibertador7395 = LocalComercial.nuevoLocal("SportClub", coordenadaSportClub, 15, horariosGym,
 					"Gimnasio", direccionSportClub);
 			sportClubLibertador7395.setTag("fitness");
@@ -288,7 +288,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public LocalComercial cineAbasto() {
 		if (cineAbasto == null) {
 			coordenadaCineAbasto = new Punto(-34.6033055, -58.411887);
-			Direccion direccionCineAbasto = new Direccion("Av Corrientes", 3247);
+			Direccion direccionCineAbasto = new Direccion("Av Corrientes 3247", 3247);
 			LocalTime horaInicioCine = LocalTime.of(10, 00);
 			LocalTime horaFinCine = LocalTime.of(23, 00);
 			List<Horario> horariosCine = new ArrayList<>();
