@@ -269,18 +269,24 @@ public class UserController {
 		return null;
 	}
 	
-	public ModelAndView deletePOI(Request req, Response res){
-		Set<String> poisId =req.queryParams();
-		System.out.println(poisId);
-		List<POI> pois = poisId.stream().map(
-			unP->mapa.getPOIbyId(Long.parseLong(unP)))
-			.collect(Collectors.toList());
-		em.getTransaction().begin();
-		pois.forEach(unP->mapa.borrarPOI(unP));
-		em.getTransaction().commit();
-		res.redirect("/admin/workspace");
-		return null;
-	}
+//	public ModelAndView deletePOI(Request req, Response res){
+//		try{
+//		String poiId = req.params("id");
+//		System.out.println(poiId);
+//		
+//		POI unP = mapa.getPOIbyId(Long.parseLong(poiId));
+//		System.out.println(unP);
+//		
+//		em.getTransaction().begin();
+//		mapa.borrarPOI(unP);
+//		em.getTransaction().commit();
+//		res.redirect("/admin/workspace");
+//		} catch (Exception e){
+//			e.printStackTrace();
+//			}
+//		return null;
+//		}
+//		
 	
 	public ModelAndView adminConsultas(Request req, Response res){
 		return new ModelAndView(null, "admin/admin_consultas.hbs");
