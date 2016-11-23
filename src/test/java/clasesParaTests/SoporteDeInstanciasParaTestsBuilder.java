@@ -188,7 +188,7 @@ public class SoporteDeInstanciasParaTestsBuilder {
 	public SucursalBanco bancoCiudadCabildoYCongreso() {
 		if (bancoCiudadCabildoYCongreso == null) {
 			coordenadaBancoCiudad = new Punto(-58.46362049999999, -34.5545459);
-			Direccion direccionBancoCiudad = new Direccion();
+			Direccion direccionBancoCiudad = new Direccion("Congreso 8907", 8907);
 			direccionBancoCiudad.setCalles("Cabildo", "Congreso");
 			bancoCiudadCabildoYCongreso = new SucursalBanco("Banco Ciudad", "Belgrano", coordenadaBancoCiudad,
 					direccionBancoCiudad);
