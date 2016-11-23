@@ -229,6 +229,7 @@ public class UserController {
 		String notificarSI = req.queryParams("notificar");
 		System.out.println(notificarSI);
 		String termId = req.params("id");
+		System.out.printf("ID:%s\n", termId);
 		Terminal unaT = RepositorioDeTerminales.getTerminalById(Long.parseLong(termId));
 		unaT.desactivarTodasAcciones();
 		Boolean chkbxNotificarSI = (notificarSI != null);
@@ -246,9 +247,12 @@ public class UserController {
 				unaT.activarAccion(a);
 				}
 		}
-		long unId = Long.parseLong(req.queryParams("comuna"));
-		Comuna comuna = mapa.getComunaById(unId);
-		unaT.setComuna(comuna);
+		String comunaIdS = req.queryParams("comuna");
+		if (comunaIdS != null){
+			long comunaId = Long.parseLong(comunaIdS);
+			Comuna comuna = mapa.getComunaById(comunaId);
+			unaT.setComuna(comuna);
+		}
 		em.getTransaction().begin();
 		RepositorioDeTerminales.actualizarTerminal(unaT);
 		em.getTransaction().commit();
