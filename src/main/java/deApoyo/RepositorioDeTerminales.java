@@ -1,5 +1,6 @@
 package deApoyo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import ar.edu.TPPOI.BusquedaHecha;
 import ar.edu.TPPOI.Terminal;
 
 public class RepositorioDeTerminales {
@@ -73,4 +75,34 @@ public class RepositorioDeTerminales {
 		terminales.remove(terminales.indexOf(aTerminal));
 	}
 	
+	public static List<BusquedaHecha> getBusquedasHechas(){
+		List<BusquedaHecha> consultas = new ArrayList<>();
+		terminales.forEach(aT->consultas.addAll(aT.getBusquedasHechas()));
+		return consultas;
+	}
+	
+	public static List<BusquedaHecha> consultasByDate(LocalDate fechaInicio, LocalDate fechaFin){
+		List<BusquedaHecha> consultas = new ArrayList<>();
+		return consultas.stream().filter(aC->
+			estaEnRangoDate(aC.getFecha(), fechaInicio, fechaFin)).collect(Collectors.toList());
+	}
+	
+	private static boolean estaEnRangoDate(LocalDate aDate, LocalDate inicio, LocalDate fin) {
+		boolean cumpleInicio = false;
+		boolean cumpleFin = false;
+		if (inicio != null) {
+			cumpleInicio = aDate.compareTo(inicio) >= 0;
+		}
+		if (fin != null) {
+			cumpleFin = aDate.compareTo(fin) <= 0;
+		}
+		if (inicio != null && fin != null) {
+			return cumpleInicio && cumpleFin;
+		} else if (inicio != null) {
+			return cumpleInicio;
+		} else if (fin != null) {
+			return cumpleFin;
+		}
+		return (Boolean) null;
+	}
 }

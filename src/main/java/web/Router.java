@@ -1,17 +1,18 @@
 package web;
 
+import ar.edu.TPPOI.MapaPOI;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
 	
-	public static void initialize(){
+	public static void initialize(MapaPOI unMapa){
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
 				.create()
 				.withDefaultHelpers()
 				.withHelper("isTrue", BooleanHelper.isTrue)
 				.build();
-		UserController uContr = new UserController();
+		UserController uContr = new UserController(unMapa);
 		Spark.staticFileLocation("/static");
 		Spark.get("/", HomeController::principal, engine);
 		Spark.get("/admin/ingreso", uContr::adminLog, engine);
