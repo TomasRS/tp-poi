@@ -14,20 +14,11 @@ body{
 	background-color: lightgray;
 	font-family: calibri;
 	font-size: 1em;
+	padding-bottom:60px;
 }
 
 .content{
 	padding-top:75px;
-}
-
-footer {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 0.5rem;
-  background-color: #efefef;
-  text-align: center;
 }
 
 .DetallesPOI{
@@ -144,4 +135,14 @@ td{
 
 .ElementoDelBar:last-child {
     border-right: none;
+}
+
+footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem;
+  background-color: #efefef;
+  text-align: center;
 }
