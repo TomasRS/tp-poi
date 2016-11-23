@@ -308,7 +308,7 @@ public class UserController {
 			System.out.println("Se busca por cantidad");
 			Integer qResults = Integer.valueOf(cantidad); 
 			List<BusquedaHecha> consultasByQ = allBusquedas
-				.stream().filter(aB->aB.getCantDeResultados()==0)
+				.stream().filter(aB->aB.getCantDeResultados()==qResults)
 				.collect(Collectors.toList());
 			consultas.addAll(consultasByQ);
 		}
