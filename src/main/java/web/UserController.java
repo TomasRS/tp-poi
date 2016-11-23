@@ -278,14 +278,6 @@ public class UserController {
 		return null;
 	}
 	
-	public ModelAndView terminalClose(Request req, Response res){
-		if(cookieOk(req, "terminal", "true")){
-			res.cookie("terminal", "false");
-		}
-		res.redirect("/");
-		return null;
-	}
-	
 	public ModelAndView showPOI(Request req, Response res){
 		verificarLogueo(req, res);
 		System.out.println("muestro poi");
