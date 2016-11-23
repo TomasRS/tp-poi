@@ -31,7 +31,7 @@ public class ParadaDeColectivo extends POI {
 	}
 
 	public boolean coincideConAtributo(String unTextoLibre) {
-		return this.nombre.equals(unTextoLibre);
+		return this.nombre.equalsIgnoreCase(unTextoLibre);
 	}
 
 	public void actualizar(POI unPOI) {
@@ -43,10 +43,5 @@ public class ParadaDeColectivo extends POI {
 		super.persistirEnMapa(em);
 		em.persist(this);
 	}
-	
-//	public void toShow(POIShowStruct pShow){
-//		super.toShow(pShow);
-//		pShow.setTipo("parada");
-//	}
 
 }

@@ -180,4 +180,10 @@ public class MapaPOI {
 			aP->aP.getClass().getName().toLowerCase()
 			.contains(searchText.toLowerCase())).collect(Collectors.toList());
 	}
+	
+	public List<POI> searchLikeName(String searchText){
+		return listaDePOIs.stream().filter(
+				aP->aP.getNombre().toLowerCase()
+				.contains(searchText.toLowerCase())).collect(Collectors.toList()); 
+	}
 }

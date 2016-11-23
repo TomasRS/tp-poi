@@ -91,6 +91,9 @@ public class UserController {
 			pois = mapa.getListaDePOIs();
 		} else if (criteria.equalsIgnoreCase("Nombre")){
 			System.out.println("busco por nombre");
+			pois = mapa.searchLikeName(cadenaABuscar);
+		} else if (criteria.equalsIgnoreCase("Atributos")){
+			System.out.println("busco por nombre");
 			pois = poisRegistrados;
 		} else if (criteria.equalsIgnoreCase("Tipo")) {
 			System.out.println("busco por tipo");
@@ -332,8 +335,6 @@ public class UserController {
 	
 	private boolean esUsuario(String user, String password){
 		boolean status = uMan.anyMatch(user, password);
-//		System.out.println("OK?");
-//		System.out.println(status);
 		return status;
 	}
 	
