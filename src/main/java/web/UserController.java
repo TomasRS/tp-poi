@@ -338,6 +338,18 @@ public class UserController {
 		return new ModelAndView(hmap, "usuarios/terminal_pois_founded.hbs");
 	}
 	
+	public ModelAndView showPOIParaUsuario(Request req, Response res){
+		System.out.println("muestro poi");
+		System.out.println("---------------------");
+		String id = req.params("id");
+		POI aPOI;
+			aPOI = mapa.getPOIbyId(Long.parseLong(id));
+
+			System.out.println(aPOI);
+			POIShowStruct pShow = aPOI.toShow();
+			return new ModelAndView(pShow, "usuarios/poi_spec.hbs");
+	}
+	
 	private boolean esUsuario(String user, String password){
 		boolean status = uMan.anyMatch(user, password);
 		return status;

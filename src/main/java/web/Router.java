@@ -39,5 +39,6 @@ public class Router {
 		
 		Spark.get("/terminal/ventanaDeTerminal", uContr::ventanaTerminal,engine);
 		Spark.post("/terminal/ventanaDeTerminal", uContr::showPoisParaUsuario, engine);
+		Spark.get("/terminal/poi/:id", uContr::showPOIParaUsuario, engine);
 	}
 }
