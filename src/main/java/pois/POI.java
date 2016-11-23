@@ -62,7 +62,7 @@ public abstract class POI {
 		this.nombre = nombre;
 	}
 	
-	protected void setCoordenada(Punto unaCoordenada){
+	public void setCoordenada(Punto unaCoordenada){
 		this.coordenada = unaCoordenada;
 	}
 

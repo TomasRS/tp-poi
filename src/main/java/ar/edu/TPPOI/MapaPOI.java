@@ -94,7 +94,7 @@ public class MapaPOI {
 		unaListaDePOIs.stream().forEach(unPOI -> actualizarPOISiCorresponde(unPOI));
 	}
 
-	private void actualizarPOISiCorresponde(POI unPOIExterno) {
+	public void actualizarPOISiCorresponde(POI unPOIExterno) {
 		if (estaEnLocal(unPOIExterno)) {
 			buscarPoi(unPOIExterno).actualizar(unPOIExterno);
 			persistPOI(unPOIExterno);
@@ -163,7 +163,7 @@ public class MapaPOI {
 	}
 	
 	public POI getPOIbyId(long id) throws POINoExistente{
-		return entityManager.find(POI.class, 1l);
+		return entityManager.find(POI.class, id);
 //		POI aPOI = null;
 //		for (POI unPOI:listaDePOIs){
 //			if (unPOI.id==id){
