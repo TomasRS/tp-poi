@@ -163,7 +163,7 @@ public class MapaPOI {
 	}
 	
 	public POI getPOIbyId(long id) throws POINoExistente{
-		return entityManager.find(POI.class, 1l);
+		return entityManager.find(POI.class, id);
 //		POI aPOI = null;
 //		for (POI unPOI:listaDePOIs){
 //			if (unPOI.id==id){

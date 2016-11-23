@@ -294,24 +294,26 @@ public class UserController {
 		String poiId = req.params("id");
 		System.out.println("Antes del try.");
 		POI unPOI;
-		try{
+		try {
 			unPOI = mapa.getPOIbyId(Long.parseLong(poiId));
-			unPOI.setNombre(POIAAgegar);
-			Punto unaCoordenada = new Punto(Long.parseLong(latitud), Long.parseLong(longitud));
-			unPOI.setCoordenada(unaCoordenada);
-			unPOI.getDireccion().setCalles(calle1, calle2);
-
-			System.out.println("Setea bien");
-			em.getTransaction().begin();
-			mapa.actualizarPOISiCorresponde(unPOI);
-			em.getTransaction().commit();
-			return new ModelAndView(null, "admin/admin_pois.hbs");
-		}
-		catch (POINoExistente e){
+		} catch (POINoExistente e1) {
+			e1.printStackTrace();
 			return new ModelAndView(null, "admin/poi_no_existente.hbs");
 		}
+		unPOI.setNombre(POIAAgegar);
+		try {
+			Punto unaCoordenada = new Punto(Long.parseLong(latitud), Long.parseLong(longitud));
+			unPOI.setCoordenada(unaCoordenada);
+		} catch (NumberFormatException e) {
+			System.out.println("coordenadas mal escritas---> se ignoran");
+		}
+		unPOI.getDireccion().setCalles(calle1, calle2);
 
-		
+		System.out.println("Setea bien");
+		em.getTransaction().begin();
+		mapa.actualizarPOISiCorresponde(unPOI);
+		em.getTransaction().commit();
+		return new ModelAndView(null, "admin/admin_pois.hbs");
 	}
 	
 	private boolean esUsuario(String user, String password){
