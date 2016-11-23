@@ -82,7 +82,7 @@ public class RepositorioDeTerminales {
 	}
 	
 	public static List<BusquedaHecha> consultasByDate(LocalDate fechaInicio, LocalDate fechaFin){
-		List<BusquedaHecha> consultas = new ArrayList<>();
+		List<BusquedaHecha> consultas = getBusquedasHechas();
 		return consultas.stream().filter(aC->
 			estaEnRangoDate(aC.getFecha(), fechaInicio, fechaFin)).collect(Collectors.toList());
 	}
@@ -90,6 +90,8 @@ public class RepositorioDeTerminales {
 	private static boolean estaEnRangoDate(LocalDate aDate, LocalDate inicio, LocalDate fin) {
 		boolean cumpleInicio = false;
 		boolean cumpleFin = false;
+		System.out.println(inicio);
+		System.out.println(fin);
 		if (inicio != null) {
 			cumpleInicio = aDate.compareTo(inicio) >= 0;
 		}

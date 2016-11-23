@@ -300,10 +300,12 @@ public class UserController {
 			fechaDesde = LocalDate.parse(fechaDesdeS);
 		}
 		if (!fechaHastaS.isEmpty()){
-			fechaHasta = LocalDate.parse(fechaDesdeS);
+			fechaHasta = LocalDate.parse(fechaHastaS);
 		}
-		List<BusquedaHecha> consultasByDate = RepositorioDeTerminales.consultasByDate(fechaDesde, fechaHasta); 
-		consultas.addAll(consultasByDate);
+		if (!fechaDesdeS.isEmpty()||!fechaHastaS.isEmpty()){
+			List<BusquedaHecha> consultasByDate = RepositorioDeTerminales.consultasByDate(fechaDesde, fechaHasta);
+			consultas.addAll(consultasByDate);
+		}
 		if (!cantidad.isEmpty()){
 			System.out.println("Se busca por cantidad");
 			Integer qResults = Integer.valueOf(cantidad); 
@@ -312,7 +314,6 @@ public class UserController {
 				.collect(Collectors.toList());
 			consultas.addAll(consultasByQ);
 		}
-//		System.out.println("despues de cantidad");
 		System.out.println(consultas.size());
 		if (!terminal.isEmpty()){
 			System.out.println("Se busca por terminal");
