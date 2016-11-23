@@ -211,7 +211,7 @@ public class UserController {
 			HashMap< String, Object> hmap = new HashMap<>();
 			List<Comuna> comunas = mapa.getComunas();
 			hmap.put("comunas", comunas);
-			hmap.put("id", id);
+			hmap.put("terminal", terminal);
 			return new ModelAndView(hmap, "admin/admin_terminales_edit.hbs");
 		} else {
 			return new ModelAndView(null, "admin/terminal_no_existente.hbs");
