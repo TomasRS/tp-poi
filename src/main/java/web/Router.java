@@ -15,7 +15,6 @@ public class Router {
 		Spark.staticFileLocation("/static");
 		Spark.get("/", HomeController::principal, engine);
 		Spark.get("/admin/ingreso", uContr::adminLog, engine);
-		Spark.get("/terminal/ventanaDeTerminal", uContr::ventanaTerminal,engine);
 		Spark.post("/admin/ingreso", uContr::adminLogPost, engine);
 		Spark.get("/admin/workspace", uContr::adminShow, engine);
 		Spark.post("/admin/workspace", uContr::showPois, engine);
@@ -36,5 +35,9 @@ public class Router {
 		Spark.post("/admin/poi/editar/:id", uContr::editPOI, engine);
 		
 		Spark.get("/admin/admin_out", uContr::adminClose, engine);
+		
+		
+		Spark.get("/terminal/ventanaDeTerminal", uContr::ventanaTerminal,engine);
+		Spark.post("/terminal/ventanaDeTerminal", uContr::showPoisParaUsuario, engine);
 	}
 }
