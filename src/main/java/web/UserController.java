@@ -388,13 +388,15 @@ public class UserController {
 		List<POI> pois=new ArrayList<>();
 		System.out.println("Muestro pois");
 		String cadenaABuscar = req.queryParams("buscar_pois");
+		String termId = req.params("id");
+		Terminal terminal = RepositorioDeTerminales.getTerminalById(Long.parseLong(termId));
 		em.getTransaction().begin();
-		pois = mapa.buscar(cadenaABuscar);
+		pois = terminal.buscar(cadenaABuscar);
 		em.getTransaction().commit();
 		System.out.println(pois.size());
 		HashMap<String, Object> hmap = new HashMap<>();
 		hmap.put("pois", pois2show(pois));
-		hmap.put("termId", req.params("id"));
+		hmap.put("termId", termId);
 		return new ModelAndView(hmap, "usuarios/terminal_pois_founded.hbs");
 	}
 	
