@@ -32,7 +32,7 @@ public class WebInterfaceTest extends AbstractPersistenceTest implements WithGlo
 	public void serverTest(){
 		Spark.port(9000);
 		setUsers();
-		Router.initialize();
+		Router.initialize(mapa);
 //		try {
 //			Thread.sleep(100000);
 //		} catch (InterruptedException e) {

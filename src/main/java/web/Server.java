@@ -19,12 +19,13 @@ public class Server {
 	
 	public static void main(String[] args) {
 		soporte = new SoporteDeInstanciasParaTestsBuilder();
+		mapa = soporte.mapa();
 		EntityTransaction tx = PerThreadEntityManagers.getEntityManager().getTransaction();
 		tx.begin();
 		Spark.port(9000);
 		setUsers();
 		setTerminales();
-		Router.initialize();
+		Router.initialize(mapa);
 		tx.commit();
 		System.out.println("My server is ready!!");
 	}
@@ -39,6 +40,8 @@ public class Server {
 	private static void setTerminales(){
 		Terminal t1 = new Terminal();
 		t1.setDescripcion("terminal 1");
+		t1.setMapa(mapa);
+		t1.buscar("algo");
 		RepositorioDeTerminales.agregarTerminal(t1);
 	}
 

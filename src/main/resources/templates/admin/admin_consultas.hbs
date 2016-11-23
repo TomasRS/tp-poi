@@ -8,17 +8,14 @@
     <label for="buscar">Fecha:</label>
 		<input type="date" class="TextBoxFechaDesde" placeholder="Desde" name="desde">
 		<input type="date" class="TextBoxFechaHasta" placeholder="Hasta" name="hasta">
-    <input type="checkbox" name="byDate">
     <br><br>
 		<label for="buscar">Cant. de POIs devueltos:</label>
-		<input type="text" class="TextBoxCantidadPOIs" placeholder="Cantidad" maxlength="5">
-    <input type="checkbox" name="byPOIQ">
+		<input type="number" class="TextBoxCantidadPOIs" placeholder="Cantidad" maxlength="5" name="byCantidad">
     <br><br>
 		<label for="buscar">Terminal:</label>
-		<input type="text" class="TextBoxTerminal" placeholder="Nombre de la terminal" maxlength="20">
-    <input type="checkbox" name="byName">
-		<br><br>
-    <input type="submit" id="boton" class="search" value="Buscar">
+		<input type="text" class="TextBoxTerminal" placeholder="Nombre de la terminal" maxlength="20" name="byTerminal">
+    <br><br>
+    <input type="submit" class="search" value="Buscar">
   </form>
   {{#block "consultas"}}
   {{/block}}

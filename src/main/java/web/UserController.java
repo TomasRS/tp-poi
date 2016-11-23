@@ -1,7 +1,10 @@
 package web;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +15,7 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import acciones.Almacenar;
 import acciones.Notificar;
+import ar.edu.TPPOI.BusquedaHecha;
 import ar.edu.TPPOI.MapaPOI;
 import ar.edu.TPPOI.Terminal;
 import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
@@ -30,9 +34,8 @@ public class UserController {
 	UserManager uMan;
 	EntityManager em;
 	
-	public UserController(){
-		SoporteDeInstanciasParaTestsBuilder soporte = new SoporteDeInstanciasParaTestsBuilder();
-		mapa = soporte.mapa();
+	public UserController(MapaPOI unMapa){
+		mapa = unMapa;
 		uMan = UserManager.getInstance();
 		em = PerThreadEntityManagers.getEntityManager();
 	}
@@ -265,9 +268,47 @@ public class UserController {
 	}
 	
 	public ModelAndView showConsultas(Request req, Response res){
-//		HashMap<String, List<Terminal>> hmap = new HashMap<>();
-//		hmap.put("terminales", new ArrayList<>());
-		return new ModelAndView(null, "admin/admin_consultas_founded.hbs");
+		HashMap<String, Set<BusquedaHecha>> hmap = new HashMap<>();
+		
+		Set<BusquedaHecha> consultas = new HashSet<>();
+		String fechaDesdeS = req.queryParams("desde");
+		String fechaHastaS = req.queryParams("hasta");
+		String cantidad = req.queryParams("byCantidad");
+		String terminal = req.queryParams("byTerminal");
+		List<BusquedaHecha> allBusquedas = RepositorioDeTerminales.getBusquedasHechas();
+		LocalDate fechaDesde = null;
+		LocalDate fechaHasta = null;
+		if (!fechaDesdeS.isEmpty()){
+			fechaDesde = LocalDate.parse(fechaDesdeS);
+		}
+		if (!fechaHastaS.isEmpty()){
+			fechaHasta = LocalDate.parse(fechaDesdeS);
+		}
+		List<BusquedaHecha> consultasByDate = RepositorioDeTerminales.consultasByDate(fechaDesde, fechaHasta); 
+		consultas.addAll(consultasByDate);
+		if (!cantidad.isEmpty()){
+			System.out.println("Se busca por cantidad");
+			Integer qResults = Integer.valueOf(cantidad); 
+			List<BusquedaHecha> consultasByQ = allBusquedas
+				.stream().filter(aB->aB.getCantDeResultados()==0)
+				.collect(Collectors.toList());
+			consultas.addAll(consultasByQ);
+		}
+//		System.out.println("despues de cantidad");
+		System.out.println(consultas.size());
+		if (!terminal.isEmpty()){
+			System.out.println("Se busca por terminal");
+			List<Terminal> terminales = RepositorioDeTerminales.searchByDescripcion(terminal);
+			terminales.forEach(aT->consultas.addAll(aT.getBusquedasHechas()));
+			if (!terminal.isEmpty()){
+				System.out.println("agrego");
+//				System.out.println(terminal.get);
+			}
+		}
+//		System.out.println("despues de terminal");
+		System.out.println(consultas.size());
+		hmap.put("consultas", consultas);
+		return new ModelAndView(hmap, "admin/admin_consultas_founded.hbs");
 	}
 	
 	public ModelAndView adminClose(Request req, Response res){
