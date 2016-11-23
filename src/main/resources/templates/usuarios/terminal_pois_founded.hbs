@@ -1,0 +1,22 @@
+{{#partial "pois"}}
+  <h3><u>POIs encontrados</u></h3>
+  <div>
+     <table border="1">
+      <tr>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Calle Principal</th>
+        <th>Ver detalles</th>
+      </tr>
+      {{#pois}}
+        <tr>
+          <td>{{nombre}}</td>
+          <td>{{tipo}}</td>
+          <td>{{direccion.callePrincipal}}</td>
+          <td><a href=/terminal/poi/{{id}}>Entrar</a></td>
+        </tr>
+      {{/pois}}
+    </table>
+  </div>
+{{/partial}}
+{{>usuarios/ventana_terminal.hbs}}

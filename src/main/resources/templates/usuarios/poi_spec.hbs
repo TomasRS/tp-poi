@@ -1,0 +1,22 @@
+{{#partial "title"}}
+{{/partial}}
+
+{{#partial "content"}}
+
+<div class="detalles POI">
+<h3>POI: {{nombre}}</h3>
+<ul class="DetallesPOI">
+  <li>Tipo: {{tipo}}</li>
+  <li>Latitud: {{coordenada.latitud}}</li>
+  <li>Longitud: {{coordenada.longitud}}</li>
+  <li>Calle 1: {{direccion.calle1}}</li>
+  <li>Calle 2: {{direccion.calle2}}</li>
+  <li>Barrio: {{direccion.barrio}}</li>
+</ul>
+
+
+</div>
+
+{{/partial}}
+
+{{> usuarios/terminal_base.hbs}}

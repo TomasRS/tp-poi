@@ -366,6 +366,31 @@ public class UserController {
 		return new ModelAndView(null, "admin/admin_pois.hbs");
 	}
 	
+	public ModelAndView showPoisParaUsuario(Request req, Response res){
+		List<POI> pois=new ArrayList<>();
+		System.out.println("Muestro pois");
+		String cadenaABuscar = req.queryParams("buscar_pois");
+		em.getTransaction().begin();
+		pois = mapa.buscar(cadenaABuscar);
+		em.getTransaction().commit();
+		System.out.println(pois.size());
+		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
+		hmap.put("pois", pois2show(pois));
+		return new ModelAndView(hmap, "usuarios/terminal_pois_founded.hbs");
+	}
+	
+	public ModelAndView showPOIParaUsuario(Request req, Response res){
+		System.out.println("muestro poi");
+		System.out.println("---------------------");
+		String id = req.params("id");
+		POI aPOI;
+			aPOI = mapa.getPOIbyId(Long.parseLong(id));
+
+			System.out.println(aPOI);
+			POIShowStruct pShow = aPOI.toShow();
+			return new ModelAndView(pShow, "usuarios/poi_spec.hbs");
+	}
+	
 	private boolean esUsuario(String user, String password){
 		boolean status = uMan.anyMatch(user, password);
 		return status;
