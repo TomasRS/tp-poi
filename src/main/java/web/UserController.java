@@ -44,8 +44,26 @@ public class UserController {
 		return new ModelAndView(null, "usuarios/admin_log.hbs");
 	}
 	
+	public ModelAndView seleccionTerminal(Request req, Response res){
+		HashMap<String, List<Terminal>> hmap = new HashMap<>();
+		hmap.put("terminales", RepositorioDeTerminales.getTerminales());
+		return new ModelAndView(hmap, "usuarios/terminal_selection.hbs");
+	}
+	
+	public ModelAndView seleccionTerminalRedir(Request req, Response res){
+		String termId = req.queryParams("terminal");
+		if (termId!=null){
+			res.redirect("/terminal/ventanaDeTerminal/"+termId);
+		} else {
+			res.redirect("/terminal/seleccion");
+		}
+		return null;
+	}
+	
 	public ModelAndView ventanaTerminal(Request req, Response res){
-		return new ModelAndView(null, "usuarios/ventana_terminal.hbs");
+		HashMap<String, String> hmap = new HashMap<>();
+		hmap.put("termId", req.params("id"));
+		return new ModelAndView(hmap, "usuarios/ventana_terminal.hbs");
 	}
 	
 	public ModelAndView adminPOIS(Request req, Response res){
@@ -374,8 +392,9 @@ public class UserController {
 		pois = mapa.buscar(cadenaABuscar);
 		em.getTransaction().commit();
 		System.out.println(pois.size());
-		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
+		HashMap<String, Object> hmap = new HashMap<>();
 		hmap.put("pois", pois2show(pois));
+		hmap.put("termId", req.params("id"));
 		return new ModelAndView(hmap, "usuarios/terminal_pois_founded.hbs");
 	}
 	

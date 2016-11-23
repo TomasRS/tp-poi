@@ -37,9 +37,10 @@ public class Router {
 		
 		Spark.get("/admin/admin_out", uContr::adminClose, engine);
 		
-		
-		Spark.get("/terminal/ventanaDeTerminal", uContr::ventanaTerminal,engine);
-		Spark.post("/terminal/ventanaDeTerminal", uContr::showPoisParaUsuario, engine);
+		Spark.get("/terminal/seleccion", uContr::seleccionTerminal, engine);
+		Spark.post("/terminal/seleccion", uContr::seleccionTerminalRedir, engine);
+		Spark.get("/terminal/ventanaDeTerminal/:id", uContr::ventanaTerminal,engine);
+		Spark.post("/terminal/ventanaDeTerminal/:id", uContr::showPoisParaUsuario, engine);
 		Spark.get("/terminal/poi/:id", uContr::showPOIParaUsuario, engine);
 	}
 }

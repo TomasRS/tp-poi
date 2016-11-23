@@ -1,0 +1,21 @@
+{{#partial "title" }}
+
+  <title> Usuario - Seleccion de terminal </title>
+
+{{/partial}}
+
+{{#partial "content"}}
+  <div class="content">
+    <h2 class="ingreso">Seleccione una terminal</h2>
+    <form action="/terminal/seleccion" method="post">
+      <ul>
+      {{#terminales}}
+      <li><input type="radio" name="terminal" value={{id}}>{{id}} - {{descripcion}}
+      {{/terminales}}
+      </ul>
+      <input type="submit" value="ingresar">
+    </form>
+  </div>
+{{/partial}}
+
+{{> base.hbs}}

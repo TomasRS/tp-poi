@@ -7,7 +7,7 @@
 <h2>Ingreso como Terminal</h2>
 <br>
 
-<form action="/terminal/ventanaDeTerminal" method="POST">
+<form action="/terminal/ventanaDeTerminal/{{termId}}" method="POST">
 <label for="buscar">Buscar POI:</label>
 		<input type="text" class="TextBoxCriterio" placeholder="Escriba el criterio" maxlength="20" name="buscar_pois" id="buscar_pois">
 		<input type="submit" id="boton" class="ButtonBuscar" value="Buscar">
@@ -15,7 +15,7 @@
 </form>
 
 	{{#block "pois"}}
-  	{{/block}}
+  {{/block}}
 
 
 {{/partial}}
