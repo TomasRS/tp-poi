@@ -13,7 +13,7 @@
   <div class="agregar Terminal">
     <form method="post" action= /admin/terminales/editar/{{id}} >
       <label for="Nombre">Nombre de la terminal:</label>
-      <input type="text" class="TextBox"  placeholder="Escriba el nombre de la terminal" maxlength="20" name="nombreTerminal">
+      <input type="text" class="TextBox" value="{{descripcion}}"  name="nombreTerminal">
       <br>
       <input type="checkbox" name="almacenar" value="si"> Puede Almacenar<br>
       <input type="checkbox" name="notificar" value="si"> Puede Notificar <br>
@@ -22,11 +22,12 @@
       <ul>
         {{#comunas}}
         <li><input type="radio" name="comuna" value={{id}}>{{id}}-{{descripcion}}</li>
+       
         {{/comunas}}
       </ul>
 
       <br>
-      <input type="submit" value="Agregar terminal">
+      <input type="submit" value="Agregar terminal" disabled>
     </form>
     <a id="cancelar" href="/admin/terminales">Volver a Administrar Terminal</a>
   </div>
