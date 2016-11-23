@@ -112,7 +112,7 @@ public class UserController {
 		} else if (criteria.equalsIgnoreCase("Tipo")) {
 			System.out.println("busco por tipo");
 			System.out.println(cadenaABuscar);
-			pois=obtenerPoisDelTipoQueSeQuiereFiltrar(cadenaABuscar);	
+			pois=mapa.searchLikeType(cadenaABuscar);	
 		}
 		System.out.println(pois.size());
 		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();

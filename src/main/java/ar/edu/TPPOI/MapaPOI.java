@@ -188,4 +188,10 @@ public class MapaPOI {
 	public Comuna getComunaById(long unId){
 		return entityManager.find(Comuna.class, unId);
 	}
+	
+	public List<POI> searchLikeType(String searchText){
+		return listaDePOIs.stream().filter(
+			aP->aP.getClass().getName().toLowerCase()
+			.contains(searchText.toLowerCase())).collect(Collectors.toList());
+	}
 }
