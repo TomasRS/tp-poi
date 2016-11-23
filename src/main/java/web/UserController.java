@@ -103,12 +103,12 @@ public class UserController {
 		em.getTransaction().commit();
 		String criteria = req.queryParams("filtro");
 		System.out.println(criteria);
-		if (criteria==null){
+		if (cadenaABuscar.isEmpty()){
 			System.out.println("muestro todos los pois");
 			pois = mapa.getListaDePOIs();
 		} else if (criteria.equalsIgnoreCase("Nombre")){
 			System.out.println("busco por nombre");
-			pois = mapa.buscar(cadenaABuscar);
+			pois = poisRegistrados;
 		} else if (criteria.equalsIgnoreCase("Tipo")) {
 			System.out.println("busco por tipo");
 			System.out.println(cadenaABuscar);
