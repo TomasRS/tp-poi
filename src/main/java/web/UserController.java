@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -19,7 +18,6 @@ import clasesParaTests.SoporteDeInstanciasParaTestsBuilder;
 import deApoyo.Comuna;
 import deApoyo.Punto;
 import deApoyo.RepositorioDeTerminales;
-import excepciones.POINoExistente;
 import pois.POI;
 import spark.ModelAndView;
 import spark.Request;
@@ -52,11 +50,9 @@ public class UserController {
 	}
 	
 	public ModelAndView adminLogPost(Request req, Response res){
-//		System.out.println("Datos recibidos");
 		String username = req.queryParams("txt_username");
 		String password = req.queryParams("txt_password");
 		if (esUsuario(username, password)){
-//			System.out.println("LOG OK");
 			res.cookie("admin", "true");
 			res.redirect("/admin/workspace");
 			return adminPOIS(req, res);
@@ -79,19 +75,6 @@ public class UserController {
 		verificarLogueo(req, res);
 		return adminConsultas(req, res);
 	}
-	
-//	public ModelAndView showPois(Request req, Response res){
-//		verificarLogueo(req, res);
-//		System.out.println("Muestro pois");
-//		String cadenaABuscar = req.queryParams("buscar_pois");
-//		List<POI> pois = mapa.buscar(cadenaABuscar);
-////		List<POI> pois = mapa.getListaDePOIs();
-//		System.out.println(pois.size());
-//		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
-//		hmap.put("pois", pois2show(pois));
-//		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
-//	}
-	
 	
 	public ModelAndView showPois(Request req, Response res){
 		List<POI> pois=new ArrayList<>();
@@ -119,24 +102,11 @@ public class UserController {
 		hmap.put("pois", pois2show(pois));
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
-	
-	private List<POI> obtenerPoisDelTipoQueSeQuiereFiltrar(String unTexto) {
-		List<POI> poisPrueba= mapa.getListaDePOIs()
-				.stream()
-				.filter(unP->unP.esDelTipoBuscado(unTexto))
-				.collect(Collectors.toList());
-		return poisPrueba;
-		
-	}
 
 	public ModelAndView showAddTerminal(Request req, Response res){
 		verificarLogueo(req, res);
 		HashMap< String, List<Comuna>> hmap = new HashMap<>();
 		List<Comuna> comunas = mapa.getComunas();
-//		Comuna otra = new Comuna();
-//		otra.
-//		otra.setDescripcion("descripcion");
-//		comunas.add(otra);
 		hmap.put("comunas", comunas);
 		return new ModelAndView(hmap
 			,"admin/admin_terminales_add.hbs");

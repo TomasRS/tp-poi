@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import deApoyo.Comuna;
-import excepciones.POINoExistente;
 import externos.SistemaExternoAdapterInterface;
 import pois.POI;
 import procesos.ProcDarDeBajaPOIs;
@@ -23,7 +21,6 @@ public class MapaPOI {
 	public MapaPOI(){
 		entityManager = PerThreadEntityManagers.getEntityManager();
 		cargarDeDB();
-//		tx = entityManager.getTransaction();
 	}
 
 	List<POI> listaDePOIs = new ArrayList<>();
@@ -164,17 +161,6 @@ public class MapaPOI {
 	
 	public POI getPOIbyId(long id) {
 		return entityManager.find(POI.class, id);
-//		POI aPOI = null;
-//		for (POI unPOI:listaDePOIs){
-//			if (unPOI.id==id){
-//				return unPOI;
-//			}
-//		}
-//		if (aPOI==null){
-//			throw new POINoExistente();
-//		}
-//		return null;
-		
 	}
 	
 	public List<Comuna> getComunas(){

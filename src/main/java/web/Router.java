@@ -1,6 +1,5 @@
 package web;
 
-import ar.edu.TPPOI.MapaPOI;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
