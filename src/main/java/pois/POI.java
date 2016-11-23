@@ -168,5 +168,14 @@ public abstract class POI {
 		em.persist(this.coordenada);
 		em.persist(this.direccion);
 	}
-		
+
+	public boolean esDelTipoBuscado(String unTexto) {
+		return this.obtenerNombreDeLaClase().substring(5, this.tamanioCompletoDelNombreDeLaClase()).equals(unTexto);
+	}
+	public String obtenerNombreDeLaClase(){
+		return this.getClass().getName();
+	}
+	public int tamanioCompletoDelNombreDeLaClase(){
+	return this.getClass().getName().length();
+	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -79,22 +80,41 @@ public class UserController {
 	}
 	
 	public ModelAndView showPois(Request req, Response res){
+		List<POI> pois=new ArrayList<>();
 		verificarLogueo(req, res);
 		System.out.println("Muestro pois");
 		String cadenaABuscar = req.queryParams("buscar_pois");
 		em.getTransaction().begin();
-		List<POI> pois = mapa.buscar(cadenaABuscar);
+		List<POI> poisRegistrados = mapa.buscar(cadenaABuscar);
 		em.getTransaction().commit();
-//		List<POI> pois = mapa.getListaDePOIs();
+		String criteria = req.queryParams("filtro");
+		System.out.println(criteria);
+		if (criteria==null){
+			System.out.println("muestro todos los pois");
+			pois = mapa.getListaDePOIs();
+		} else if (criteria.equalsIgnoreCase("Nombre")){
+			System.out.println("busco por nombre");
+			pois = mapa.buscar(cadenaABuscar);
+		} else if (criteria.equalsIgnoreCase("Tipo")) {
+			System.out.println("busco por tipo");
+			System.out.println(cadenaABuscar);
+			pois=obtenerPoisDelTipoQueSeQuiereFiltrar(cadenaABuscar);	
+		}
 		System.out.println(pois.size());
 		HashMap<String, List<POIShowStruct>> hmap = new HashMap<>();
 		hmap.put("pois", pois2show(pois));
 		return new ModelAndView(hmap, "admin/admin_pois_founded.hbs");
 	}
-	/*public ModelAndView filterPois(Request req, Response res){
-		
-	}*/
 	
+	private List<POI> obtenerPoisDelTipoQueSeQuiereFiltrar(String unTexto) {
+		List<POI> poisPrueba= mapa.getListaDePOIs()
+				.stream()
+				.filter(unP->unP.esDelTipoBuscado(unTexto))
+				.collect(Collectors.toList());
+		return poisPrueba;
+		
+	}
+
 	public ModelAndView showAddTerminal(Request req, Response res){
 		verificarLogueo(req, res);
 		HashMap< String, List<Comuna>> hmap = new HashMap<>();
