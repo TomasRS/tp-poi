@@ -7,6 +7,7 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
@@ -26,7 +27,17 @@ public class BusquedaHecha {
 	long tiempoDeBusqueda;
 	@Convert(converter=LocalDateConverter.class)
 	LocalDate fecha;
+	@OneToMany
+	List<POI> poisEncontrados;
 	
+	public long getId() {
+		return id;
+	}
+
+	public List<POI> getPoisEncontrados() {
+		return poisEncontrados;
+	}
+
 	public void setFrase(String frase){
 		this.frase = frase;
 	}
@@ -60,6 +71,7 @@ public class BusquedaHecha {
 	public BusquedaHecha datosDeLaBusqueda(String unTextoLibre,List<POI> poisEncontrados){
 	long tiempoInicio;
 	tiempoInicio = System.nanoTime(); 
+	this.poisEncontrados = poisEncontrados;
 	cantDeResultados = poisEncontrados.size();
 	tiempoDeBusqueda = System.nanoTime() - tiempoInicio;
 	this.setFrase(unTextoLibre);

@@ -31,6 +31,7 @@ public class Router {
 		
 		Spark.get("/admin/consultas", uContr::adminConsultasShow, engine);
 		Spark.post("/admin/consultas", uContr::showConsultas, engine);
+		Spark.get("/admin/consulta/:id", uContr::showConsulta, engine);
 		
 		Spark.get("/admin/poi/:id", uContr::showPOI, engine);
 		Spark.post("/admin/poi/editar/:id", uContr::editPOI, engine);

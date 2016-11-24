@@ -330,6 +330,23 @@ public class UserController {
 		return new ModelAndView(hmap, "admin/admin_consultas_founded.hbs");
 	}
 	
+	public ModelAndView showConsulta(Request req, Response res){
+		String sId = req.params("id");
+		System.out.println("id");
+		System.out.println(sId);
+		BusquedaHecha busqueda = RepositorioDeTerminales.consultaById(Long.parseLong(sId));
+		System.out.println(busqueda);
+		if (busqueda!=null){
+			System.out.println("muestro");
+			HashMap<String, Object> hmap = new HashMap<>();
+			System.out.println(busqueda.getPoisEncontrados().size());
+			hmap.put("poisEncontrados", pois2show(busqueda.getPoisEncontrados()));
+			return new ModelAndView(hmap, "admin/admin_consulta_spec.hbs");
+		} else {
+			return new ModelAndView(null, "admin/consulta_no_existente.hbs");
+		}
+	}
+	
 	public ModelAndView adminClose(Request req, Response res){
 		if(cookieOk(req, "admin", "true")){
 			res.cookie("admin", "false");

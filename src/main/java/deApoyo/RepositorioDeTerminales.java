@@ -87,6 +87,10 @@ public class RepositorioDeTerminales {
 			estaEnRangoDate(aC.getFecha(), fechaInicio, fechaFin)).collect(Collectors.toList());
 	}
 	
+	public static BusquedaHecha consultaById(long id){
+		return entityManager.find(BusquedaHecha.class, id);
+	}
+	
 	private static boolean estaEnRangoDate(LocalDate aDate, LocalDate inicio, LocalDate fin) {
 		boolean cumpleInicio = false;
 		boolean cumpleFin = false;

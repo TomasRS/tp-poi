@@ -1,0 +1,24 @@
+{{#partial "title"}}
+  <title>Detalle de consulta</title>
+{{/partial}}
+
+{{#partial "content"}}
+  <h2><u>POIs encontrados en busqueda realizada</u></h2>
+  <div> Se han encontrado {{cantDeResultados}} pois </div>
+  <table border="1">
+    <tr>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Calle Principal</th>
+    </tr>
+    {{#poisEncontrados}}
+      <tr>
+        <td>{{nombre}}</td>
+        <td>{{tipo}}</td>
+        <td>{{direccion.callePrincipal}}</td>
+      </tr>
+    {{/poisEncontrados}}
+  </table>
+{{/partial}}
+
+{{> admin/admin_base.hbs}}
